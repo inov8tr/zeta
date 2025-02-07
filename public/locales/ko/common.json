@@ -1,0 +1,26 @@
+{
+  "menu": {
+    "home": "홈",
+    "program-overview": "프로그램 개요",
+    "testimonials": "학생 후기",
+    "book-appointment": "상담 예약",
+    "contact": "문의하기"
+  },
+  "footer": {
+    "contactUs": "문의하기",
+    "phone": "전화번호",
+    "email": "이메일",
+    "address": "서울시 메인 스트리트 123번지",
+    "quickLinks": "빠른 링크",
+    "programOverview": "프로그램 개요",
+    "testimonials": "학생 후기",
+    "bookAppointment": "상담 예약",
+    "contact": "문의하기",
+    "followUs": "팔로우 하기",
+    "rightsReserved": "모든 권리 보유."
+  },
+  "language": {
+    "en": "영어",
+    "ko": "한국어"
+  }
+}

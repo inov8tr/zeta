@@ -1,0 +1,26 @@
+{
+  "menu": {
+    "home": "Home",
+    "program-overview": "Program Overview",
+    "testimonials": "Testimonials",
+    "book-appointment": "Book Appointment",
+    "contact": "Contact Us"
+  },
+  "footer": {
+    "contactUs": "Contact Us",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "123 Main St, Seoul, South Korea",
+    "quickLinks": "Quick Links",
+    "programOverview": "Program Overview",
+    "testimonials": "Testimonials",
+    "bookAppointment": "Book Appointment",
+    "contact": "Contact Us",
+    "followUs": "Follow Us",
+    "rightsReserved": "All rights reserved."
+  },
+  "language": {
+    "en": "English",
+    "ko": "Korean"
+  }
+}
