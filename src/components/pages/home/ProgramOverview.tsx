@@ -26,7 +26,7 @@ const ProgramOverview = () => {
           description="At Zeta English Academy, our focus lies in promoting versatility by nurturing adaptability and establishing a robust foundation."
           link="/about"
           linkText="Learn More"
-          extraContent={(
+          extraContent={
             <>
               <h4 className="mt-8 text-lg font-semibold">How We Perform</h4>
               <div className="grid grid-cols-1 gap-4 mt-4">
@@ -35,7 +35,7 @@ const ProgramOverview = () => {
                 <PerformanceCard description="Some students choose to study abroad" />
               </div>
             </>
-          )}
+          }
         />
 
         <FeatureCard
@@ -43,14 +43,14 @@ const ProgramOverview = () => {
           description="We prioritize a holistic approach, emphasizing practical, real-world abilities like critical thinking, problem-solving, and effective communication."
           link="/programs"
           linkText="Learn More"
-          extraContent={(
+          extraContent={
             <>
               <h4 className="text-lg font-semibold">Our Program</h4>
               <p className="text-neutral-muted mt-2">
-                Begin your English proficiency journey with Zeta's streamlined ESL platform. Our structured approach prioritizes real-world skills, including critical thinking and effective communication. Experience clear progression for academic success and beyond.
+                Begin your English proficiency journey with Zeta&rsquo;s streamlined ESL platform. Our structured approach prioritizes real-world skills, including critical thinking and effective communication. Experience clear progression for academic success and beyond.
               </p>
             </>
-          )}
+          }
         />
 
         <FeatureCard
@@ -58,14 +58,14 @@ const ProgramOverview = () => {
           description="At Zeta English Academy, we take a strategic approach to learning, offering diverse educational experiences and providing in-depth training."
           link="/programs"
           linkText="Learn More"
-          extraContent={(
+          extraContent={
             <>
               <h4 className="text-lg font-semibold">Our System</h4>
               <p className="text-neutral-muted mt-2">
                 We focus on English language learning, English education, effective learning strategies, language skills development, and student success.
               </p>
             </>
-          )}
+          }
         />
       </div>
     </section>
@@ -79,7 +79,7 @@ const WhatWeDoSection = () => {
     <div className="text-center max-w-4xl mx-auto">
       <h2 className="text-3xl font-bold mb-4">Empowering Versatile Learners</h2>
       <p className="text-neutral-muted">
-        At Zeta English Academy, we believe that learning should be both fun and inspiring. Our mission is to ignite creativity and provide a solid foundation for our students. Here’s what sets us apart:
+        At Zeta English Academy, we believe that learning should be both fun and inspiring. Our mission is to ignite creativity and provide a solid foundation for our students. Here&rsquo;s what sets us apart:
       </p>
     </div>
   );
