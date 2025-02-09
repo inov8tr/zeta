@@ -5,3 +5,13 @@
 body {
   @apply bg-gray-50 text-gray-900;
 }
+
+@layer utilities {
+  .clip-path-pentagon {
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  }
+}
+
+.pentagon-clip {
+  @apply clip-path-pentagon bg-brand-primary-light rounded-lg;
+}

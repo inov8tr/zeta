@@ -1,73 +1,70 @@
-"use client";
-
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import { IconBaseProps } from "react-icons"; // Import IconBaseProps for correct typing
+import { Card, CardContent } from "@/components/ui/card";
+import { Users, BookOpen, Newspaper, UserPlus } from "lucide-react";
 
-// Dynamically import icons
-const FaBookOpen = dynamic(() => import("react-icons/fa").then(mod => mod.FaBookOpen), { ssr: false });
-const FaChalkboardTeacher = dynamic(() => import("react-icons/fa").then(mod => mod.FaChalkboardTeacher), { ssr: false });
-const FaBlog = dynamic(() => import("react-icons/fa").then(mod => mod.FaBlog), { ssr: false });
-const FaUserPlus = dynamic(() => import("react-icons/fa").then(mod => mod.FaUserPlus), { ssr: false });
-
-interface NavItem {
+// Define the type for highlight items
+interface Highlight {
   title: string;
-  description: string;
-  icon: React.ComponentType<IconBaseProps>;
-  link: string;
+  icon: JSX.Element;
+  href: string;
 }
 
-const HighlightNav = () => {
-  const navItems: NavItem[] = [
-    {
-      title: "About Us",
-      description: "Learn more about our mission and values.",
-      icon: FaChalkboardTeacher,
-      link: "/about",
-    },
-    {
-      title: "Our Program",
-      description: "Explore our versatile and effective programs.",
-      icon: FaBookOpen,
-      link: "/programs",
-    },
-    {
-      title: "Blog",
-      description: "Read stories and insights from our community.",
-      icon: FaBlog,
-      link: "/blog",
-    },
-    {
-      title: "Join Now",
-      description: "Become a part of our vibrant learning community.",
-      icon: FaUserPlus,
-      link: "/join",
-    },
-  ];
+const highlights: Highlight[] = [
+  {
+    title: "About Us",
+    icon: <Users className="h-10 w-10 text-white" />,
+    href: "/about",
+  },
+  {
+    title: "Our Programs",
+    icon: <BookOpen className="h-10 w-10 text-white" />,
+    href: "/programs",
+  },
+  {
+    title: "Blog",
+    icon: <Newspaper className="h-10 w-10 text-white" />,
+    href: "/blog",
+  },
+  {
+    title: "Join Now",
+    icon: <UserPlus className="h-10 w-10 text-white" />,
+    href: "/join",
+  },
+];
 
+export default function HighlightNav() {
   return (
-    <section className="py-12 bg-brand-primary-light text-text-primary">
-      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
-        {navItems.map((item, index) => {
-          const IconComponent = item.icon;
-          return (
-            <Link href={item.link} key={index}>
-              <div className="group block p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:scale-105">
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="text-brand-primary" aria-hidden="true">
-                    <IconComponent size={36} />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+            Explore Our Features
+          </h2>
+          <p className="mt-2 text-lg text-gray-700">
+            Discover what Zeta English Academy offers.
+          </p>
+        </div>
+
+        {/* Highlight Cards */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {highlights.map((item) => (
+            <Link key={item.title} href={item.href} aria-label={item.title}>
+              <Card className="bg-gray-50 border border-gray-300 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-center">
+                <CardContent className="p-8 flex flex-col items-center">
+                  {/* Icon Design */}
+                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-brand-primary to-brand-primary-dark rounded-full shadow-md">
+                    {item.icon}
                   </div>
-                  <h3 className="text-xl font-semibold">{item.title}</h3>
-                  <p className="text-neutral-muted">{item.description}</p>
-                  <span className="mt-2 text-brand-accent font-medium group-hover:underline">Learn More →</span>
-                </div>
-              </div>
+
+                  {/* Title */}
+                  <h3 className="mt-4 text-xl font-bold text-gray-900">{item.title}</h3>
+                </CardContent>
+              </Card>
             </Link>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default HighlightNav;
+}
