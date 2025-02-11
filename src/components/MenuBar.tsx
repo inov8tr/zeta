@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
@@ -11,29 +11,14 @@ export default function MenuBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { t, i18n, ready } = useTranslation("common");
-
   const pathname = usePathname() || "/";
 
-  // Close menu on link click for small screens
-  const handleLinkClick = () => {
-    if (menuOpen) {
-      setMenuOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    console.log("Current pathname:", pathname);
-  }, [pathname]);
-
-  if (!ready) {
-    console.log("Translations not ready");
-    return <div>Loading translations...</div>;
-  }
+  if (!ready) return null; // Wait until translations are ready
 
   const currentLanguage = t(`language.${i18n.language}`, "English");
 
-  const changeLanguage = async (lang: string) => {
-    await i18n.changeLanguage(lang);
+  const changeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
     setDropdownOpen(false);
   };
 
@@ -45,28 +30,34 @@ export default function MenuBar() {
     { key: "contact", href: "/contact" },
   ];
 
+  const handleLinkClick = () => {
+    if (menuOpen) setMenuOpen(false); // Close menu on link click
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Logo and Company Name */}
+        {/* Logo */}
         <Link href="/" className="flex items-center space-x-3">
-          <Image src="/images/MenuLogo.svg" alt="Logo" width={48} height={48} className="object-contain" />
+          <Image
+            src="/images/MenuLogo.svg"
+            alt="Zeta English Academy Logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
           <span className="text-xl font-semibold text-gray-900">Zeta English Academy</span>
         </Link>
 
         {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-[#0a6aa4] focus:outline-none"
-          aria-label="Toggle Menu"
-        >
+        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-[#0a6aa4]">
           {menuOpen ? <X size={25} /> : <Menu size={25} />}
         </button>
 
         {/* Menu Items */}
         <div
-          className={`absolute top-full left-0 w-full md:static md:flex md:justify-end md:space-x-6 md:items-center transition-all ${
-            menuOpen ? "flex flex-col p-4 bg-white shadow-md space-y-4 md:space-y-0" : "hidden md:flex"
+          className={`absolute top-full left-0 w-full md:static md:flex md:justify-end md:space-x-6 md:items-center ${
+            menuOpen ? "flex flex-col p-4 bg-white shadow-md space-y-4" : "hidden md:flex"
           }`}
         >
           {menuItems.map(({ key, href }) => (
@@ -86,7 +77,7 @@ export default function MenuBar() {
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center space-x-2 hover:text-[#0a6aa4] focus:outline-none"
+              className="flex items-center space-x-2 hover:text-[#0a6aa4]"
               aria-label="Select Language"
             >
               <Globe size={20} />
@@ -100,7 +91,7 @@ export default function MenuBar() {
                     key={lang}
                     onClick={() => changeLanguage(lang)}
                     disabled={i18n.language === lang}
-                    className={`flex items-center w-full px-4 py-2 hover:bg-gray-100 ${
+                    className={`flex items-center px-4 py-2 hover:bg-gray-100 ${
                       i18n.language === lang ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                   >

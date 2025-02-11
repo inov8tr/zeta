@@ -6,14 +6,14 @@ import React from "react";
 interface FeatureSectionProps {
   title: string;
   description: string;
-  imageSrc: string;
-  imageTitle: string;
+  imageSrc?: string;
+  imageTitle?: string;
+  customImageComponent?: React.ReactNode;
   children?: React.ReactNode;
   extraContent?: React.ReactNode;
-  imageTitlePosition?: "top" | "bottom";
   layoutVariant?: "left" | "right";
-  sectionHeight?: "consistent" | "large";
-  buttonColor?: string;  // New prop to control button color
+  fontSize?: string;         // Prop for font size customization
+  paddingClass?: string;     // Prop for padding customization
 }
 
 const FeatureSection: React.FC<FeatureSectionProps> = ({
@@ -21,41 +21,30 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   description,
   imageSrc,
   imageTitle,
+  customImageComponent,
   children,
   extraContent,
-  imageTitlePosition = "top",
   layoutVariant = "left",
-  sectionHeight = "consistent",
-  buttonColor = "bg-brand-primary",  // Default button color
+  fontSize = "text-2xl md:text-3xl",   // Default font size
+  paddingClass = "py-12 md:py-16 px-6 md:px-12",   // Default padding class
 }) => {
-  const isLeftAligned = layoutVariant === "left";
-  const paddingClass = sectionHeight === "consistent" ? "py-16" : "py-24";
-
   return (
-    <section className={`flex flex-col lg:flex-row items-center gap-12 bg-gray-100 ${paddingClass} p-12 rounded-lg shadow-lg`}>
-      {/* Image Section */}
-      <div className={`relative lg:w-1/2 ${isLeftAligned ? "" : "lg:order-last"}`}>
-        <div className="overflow-hidden rounded-lg shadow-md relative">
-          {imageTitlePosition === "top" && (
-            <div className="absolute top-0 left-0 right-0 bg-brand-primary bg-opacity-80 py-2 text-white text-center text-lg font-semibold">
-              {imageTitle}
-            </div>
-          )}
-          <Image src={imageSrc} alt={imageTitle} width={400} height={300} className="max-w-full h-auto object-cover" />
-          {imageTitlePosition === "bottom" && (
-            <h4 className="mt-4 text-lg font-semibold text-gray-800 text-center">{imageTitle}</h4>
-          )}
-        </div>
+    <section className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${paddingClass} bg-gray-100`}>
+      {/* Text Content */}
+      <div className={`lg:w-1/2 ${layoutVariant === "left" ? "" : "lg:order-last"} text-center lg:text-left space-y-4`}>
+        <h3 className={`${fontSize} font-bold tracking-tight text-brand-primary`}>{title}</h3>
+        <p className="text-sm md:text-base text-gray-600 leading-relaxed">{description}</p>
+        {extraContent}
+        <div className="mt-6 flex justify-center lg:justify-start">{children}</div>
       </div>
 
-      {/* Text Content */}
-      <div className="lg:w-1/2 text-center lg:text-left space-y-6">
-        <h3 className="text-4xl font-bold text-gray-900">{title}</h3>
-        <p className="text-gray-600 leading-relaxed">{description}</p>
-        {extraContent}
-        <div className={`mt-6 flex flex-wrap gap-4 justify-center lg:justify-start ${buttonColor}`}>
-          {children}
-        </div>
+      {/* Image Section */}
+      <div className="relative lg:w-1/2 h-[300px] overflow-hidden">
+        {customImageComponent ? (
+          customImageComponent
+        ) : (
+          <Image src={imageSrc || ""} alt={imageTitle || ""} fill className="object-contain" />
+        )}
       </div>
     </section>
   );
