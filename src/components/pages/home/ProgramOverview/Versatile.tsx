@@ -5,8 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import FeatureSection from "./FeatureSection";
+import { useTranslation } from "react-i18next";
 
 const Versatile = () => {
+  const { t } = useTranslation("home"); // Use the home namespace
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [
     "/images/pages/home/SA.svg",
@@ -24,13 +26,13 @@ const Versatile = () => {
 
   return (
     <FeatureSection
-      title="Versatile"
-      description="At Zeta English Academy, our focus lies in promoting versatility by nurturing adaptability and establishing a robust foundation. We offer a wide range of English language skills, empowering students to confidently tackle academic challenges and navigate life's transitions with ease."
+      title={t("versatile.title")}
+      description={t("versatile.description")}
       customImageComponent={
         <div className="relative w-full h-[200px] md:h-[300px] overflow-hidden group">
           <Image
             src={images[currentSlide]}
-            alt="Slider Image"
+            alt={t("versatile.imageAlt")}
             fill
             className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
@@ -63,7 +65,7 @@ const Versatile = () => {
           </div>
         </div>
       }
-      fontSize="text-xl md:text-2xl"    // Custom font size for Versatile section
+      fontSize="text-xl md:text-2xl" // Custom font size for Versatile section
       paddingClass="py-8 md:py-10 px-4" // Custom padding for Versatile section
     >
       <Button
@@ -71,7 +73,7 @@ const Versatile = () => {
         size="lg"
         className="bg-gradient-to-r from-brand-blue to-brand-accent text-white px-4 py-2 hover:shadow-lg hover:scale-105 transition-transform"
       >
-        <Link href="#">Learn More</Link>
+        <Link href="#">{t("versatile.buttonText")}</Link>
       </Button>
     </FeatureSection>
   );

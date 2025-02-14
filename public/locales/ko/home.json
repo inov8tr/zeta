@@ -1,0 +1,84 @@
+{
+    "hero": {
+      "heading": {
+        "academyName": "제타영어학원",
+        "belief": "We Believe",
+        "funLearning": "Learning Should Be Fun",
+        "creativity": "and Spark Creativity!"
+      },
+      "buttons": {
+        "enroll": "오늘부터 학습을 시작하세요",
+        "explorePrograms": "프로그램 탐색하기"
+      },
+      "imageAlt": "Student reading a book"
+    },
+    "highlightNav": {
+      "header": "우리의 기능을 탐험하세요",
+      "description": "Zeta 영어 아카데미가 제공하는 서비스를 확인하세요.",
+      "items": [
+        { "title": "회사 소개", "href": "/about" },
+        { "title": "프로그램", "href": "/programs" },
+        { "title": "블로그", "href": "/blog" },
+        { "title": "지금 가입하기", "href": "/join" }
+      ]
+    },
+    "programOverview": {
+      "header": "​제타 영어 학원의 교육 방향성",
+      "description": "​제타영어학원에서는 영어학습이 재미있고 영감을 주는 경험 이어야 한다고 믿습니다. 제타영어학원의 목표는 창의성을 불러일으키고 학생들이 다양한 능력을 가질 수 있는 튼튼한 기반을 제공하는 것입니다."
+    },
+    "versatile": {
+      "title": "Versatile - 균형잡힌 교육",
+      "description": "제타 영어학원은 학생들의 적응력을 키우고 튼튼한 기초를 세워 영어를 자유롭게 구사할 수 있는 기회를 제공하는 균형잡힌 교육을 지향하고 있습니다.",
+      "imageAlt": "슬라이더 이미지",
+      "buttonText": "자세히 알아보기"
+    },
+    "instrumental": {
+      "title": "Instrumental - 영어의 도구화",
+      "description": "제타 영어학원은 영어 학습 활동을 통해 학생들이 삶의 다양한 현장에서 지식을 활용할 수 있도록 비판적 사고와 문제 해결 능력을 기르고 효과적인 의사소통이 가능한 인재 양성을 목표로 합니다.",
+      "imageAlt": "핵심 프로그램의 시각적 표현",
+      "buttonText": "자세히 알아보기",
+      "buttonAriaLabel": "우리 프로그램에 대해 자세히 알아보기"
+    },
+    "strategic": {
+      "title": "Strategic - 전략적 프로그램 구성",
+      "description": "제타 영어학원은 학생들에게 다채롭고 역동적인 교육 경험을 제공하고 심화 훈련을 통해서 미래 성장의 발판이 될 수 있는 자질을 갖출 수 있도록 전략적 프로그램을 구성하고 있습니다. 제타의 프로그램을 통해 학습한 학생들은 입시에 강한 실력은 물론 영어에 대한 자신감을 바탕으로 미래의 학업과 직무에 필요한 효과적인 학습 방향과 전략을 세울 수 있는 실력을 갖추게 될 것입니다.",
+      "imageAlt": "우리 시스템",
+      "buttonText": "자세히 알아보기"
+    },
+    "testimonialSection": {
+      "header": "우리 학생들이 말하는 이야기",
+      "description": "우리 프로그램을 경험한 학생들의 이야기를 들어보세요.",
+      "testimonials": [
+        {
+          "impactPhrase": "Learning through collaboration and communication.",
+          "quote": "수업 분위기가 가장 좋았던 것 같습니다. 단순히 지식을 머리에 넣는다기 보다는 다 같이 이야기하고 피드백하는 시간이 많아서 좋았고 수업 시간에 다 같이 소통하는 느낌이 들어서 재미있게 수업할 수 있었습니다.​ 일반적인 학원과는 다르게 선생님과의 소통이 하는 역할이 크다는 것이 이 수업의 가장 큰 특징이자 장점인 것 같습니다.",
+          "name": "Cindy",
+          "duration": "약 4년 간 수강"
+        },
+        {
+          "impactPhrase": "Expanding perspectives through challenges.",
+          "quote": "제가 기억하는 수업은 자유로우면서도 도전적인 활동들을 해나가는 수업이었습니다. 수업의 각 주제와 테마는 모두 새로운 도전을 요구하였습니다. 이러한 학습과 경험들이 대학교에서 영어로 이루어지는 강의를 듣거나 다양한 학생들과 교류하는 데 큰 강점으로 작용하였고, 이를 통해 훨씬 다양한 관점과 분야를 어우를 수 있는 발판을 마련할 수 있었습니다.",
+          "name": "Zion",
+          "duration": "4년 간 수강"
+        },
+        {
+          "impactPhrase": "Learning through diverse experiences.",
+          "quote": "Brent 선생님의 수업의 가장 큰 장점은 틀에 박히지 않은 방식이라고 생각합니다. 비록 영어 실력 향상이라는 큰 목표는 있었지만, 선생님은 그 안에서 학생들이 다양한 경험을 할 수 있도록 지도해 주셨습니다. 영어라는 언어에 여러 활동을 접목해 즐거움을 느끼게 해주셨으며, 영어를 단순히 학교 수업 과목을 넘어서 경험의 폭을 넓히는 매개로 생각할 수 있게 되었습니다.",
+          "name": "Denny",
+          "duration": "5년 간 수강"
+        }
+      ],
+      "navigation": {
+        "previous": "Previous testimonial",
+        "next": "Next testimonial"
+      }
+    },
+    "callToAction": {
+      "header": "영어 여정을 시작할 준비가 되셨나요?",
+      "description": "Zeta 영어 아카데미와 함께 영어를 마스터하기 위한 첫걸음을 내딛으세요. 전문 강사진과 혁신적인 프로그램이 성공으로 안내해 드립니다.",
+      "enrollButton": "지금 등록하기",
+      "contactButton": "문의하기",
+      "backgroundImageAlt": "장식 배경 패턴"
+    }
+  }
+  

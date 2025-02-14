@@ -2,18 +2,21 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import FeatureSection from "./FeatureSection";
 
 const Strategic = () => {
+  const { t } = useTranslation("home"); // Use the "home" namespace
+
   return (
     <FeatureSection
-      title="Strategic"
-      description="At Zeta English Academy, we take a strategic approach to learning, offering diverse educational experiences and providing in-depth training. This ensures a dynamic and effective learning journey, equipping students with the skills and knowledge for future success. Our academy focuses on English language learning, English education, effective learning strategies, language skills development, and student success."
+      title={t("strategic.title")}
+      description={t("strategic.description")}
       customImageComponent={
         <div className="relative w-full h-[200px] md:h-[300px] overflow-hidden bg-gray-100">
           <Image
             src="/images/pages/home/Strat.png"
-            alt="Our System"
+            alt={t("strategic.imageAlt")}
             fill
             className="object-contain"
           />
@@ -25,8 +28,9 @@ const Strategic = () => {
       <Link
         href="/programs"
         className="text-white font-semibold bg-brand-primary px-4 py-2 hover:bg-brand-primary-dark transition"
+        aria-label={t("strategic.buttonAriaLabel")}
       >
-        Learn More
+        {t("strategic.buttonText")}
       </Link>
     </FeatureSection>
   );

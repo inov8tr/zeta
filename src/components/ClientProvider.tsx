@@ -1,4 +1,4 @@
-"use client";
+"use client";  // ✅ This file must be a client component
 
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/i18n";
