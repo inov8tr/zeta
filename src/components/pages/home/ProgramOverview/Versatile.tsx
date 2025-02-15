@@ -8,8 +8,9 @@ import FeatureSection from "./FeatureSection";
 import { useTranslation } from "react-i18next";
 
 const Versatile = () => {
-  const { t } = useTranslation("home"); // Use the home namespace
+  const { t, ready } = useTranslation("home"); // Ensure translations are ready
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const images = [
     "/images/pages/home/SA.svg",
     "/images/pages/home/SS.svg",
@@ -24,6 +25,9 @@ const Versatile = () => {
     setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
+  // 🚨 Prevent rendering mismatched content
+  if (!ready) return null; // Ensures translations are fully loaded before rendering
+
   return (
     <FeatureSection
       title={t("versatile.title")}
@@ -34,6 +38,7 @@ const Versatile = () => {
             src={images[currentSlide]}
             alt={t("versatile.imageAlt")}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
 

@@ -5,7 +5,10 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
 const Instrumental = () => {
-  const { t } = useTranslation("home"); // Use the "home" namespace
+  const { t, ready } = useTranslation("home"); // Ensure translations are ready
+
+  // Prevent rendering until translations are loaded to avoid hydration mismatches
+  if (!ready) return null;
 
   return (
     <section className="flex flex-col items-center py-6 md:py-8 px-4 bg-gray-100 rounded-lg">
@@ -25,6 +28,7 @@ const Instrumental = () => {
           src="/images/pages/home/Levels.svg"
           alt={t("instrumental.imageAlt")}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-contain"
         />
       </div>

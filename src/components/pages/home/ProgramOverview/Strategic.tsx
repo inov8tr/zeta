@@ -6,7 +6,9 @@ import { useTranslation } from "react-i18next";
 import FeatureSection from "./FeatureSection";
 
 const Strategic = () => {
-  const { t } = useTranslation("home"); // Use the "home" namespace
+  const { t, ready } = useTranslation("home"); // Ensure translations are ready
+
+  if (!ready) return null; // Prevent rendering mismatched content
 
   return (
     <FeatureSection
@@ -18,6 +20,7 @@ const Strategic = () => {
             src="/images/pages/home/Strat.png"
             alt={t("strategic.imageAlt")}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-contain"
           />
         </div>

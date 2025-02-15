@@ -8,16 +8,18 @@ import { useTranslation } from "react-i18next";
 const icons = [Users, BookOpen, Newspaper, UserPlus];
 
 export default function HighlightNav() {
-  const { t } = useTranslation("home");
+  const { t, ready } = useTranslation("home");
 
-  // Log translation output
+  if (!ready) return null; // ✅ Prevents rendering before translations load
+
+  // Ensure highlightNav.items is an array
   const highlights = t("highlightNav.items", { returnObjects: true });
 
   console.log("🚨 highlightNav.items content:", highlights);
 
   if (!Array.isArray(highlights)) {
     console.error("❌ Translation Error: highlightNav.items is not an array", highlights);
-    return null; // Prevent rendering if data is incorrect
+    return null; // ✅ Prevents errors from rendering incorrect data
   }
 
   return (

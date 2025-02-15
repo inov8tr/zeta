@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/Button";
 import { useTranslation } from "react-i18next";
 
 export function Hero() {
-  const { t } = useTranslation("home"); // Using the "home" namespace
+  const { t, ready } = useTranslation("home"); // Ensure translations are ready
+
+  if (!ready) return null; // Prevents rendering mismatched content
 
   return (
     <section className="relative bg-brand-primary-dark py-24 text-white lg:min-h-[90vh]">
@@ -50,12 +52,13 @@ export function Hero() {
 
         {/* Image Section */}
         <div className="relative mt-12 flex justify-center lg:mt-0">
-          <div className="w-[400px] h-[400px] bg-brand-primary-light rounded-lg overflow-hidden pentagon-clip">
+          <div className="relative w-[400px] h-[400px] bg-brand-primary-light rounded-lg overflow-hidden">
             <Image
               src="/images/BookR.png"
               alt={t("hero.imageAlt")} // Translated alt text
               fill
               priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-contain"
             />
           </div>

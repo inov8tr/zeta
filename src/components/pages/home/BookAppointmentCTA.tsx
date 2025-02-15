@@ -6,13 +6,15 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 const BookAppointmentCTA: React.FC = () => {
-  const { t } = useTranslation("home");
+  const { t, ready } = useTranslation("home"); // Ensure translations are loaded
+
+  if (!ready) return null; // Prevent mismatches before translations load
 
   return (
     <section className="bg-brand-primary py-16 text-white">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={typeof window === "undefined" ? {} : { opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
@@ -42,7 +44,6 @@ const BookAppointmentCTA: React.FC = () => {
             </Button>
           </div>
         </div>
-        {/* Background pattern removed */}
       </motion.div>
     </section>
   );

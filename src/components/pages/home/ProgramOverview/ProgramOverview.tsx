@@ -6,7 +6,9 @@ import Instrumental from "@/components/pages/home/ProgramOverview/Instrumental";
 import Strategic from "@/components/pages/home/ProgramOverview/Strategic";
 
 const ProgramOverview = () => {
-  const { t } = useTranslation("home"); // Use the "home" namespace
+  const { t, ready } = useTranslation("home"); // Ensure translations are ready
+
+  if (!ready) return null; // Prevent rendering mismatched content
 
   return (
     <section className="py-24 bg-white">
