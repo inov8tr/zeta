@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST='{"../node_modules/i18next-http-backend/esm/request.js -> cross-fetch":{"id":5647,"files":["static/chunks/647.846a5313e6391a0d.js"]}}';
+self.__REACT_LOADABLE_MANIFEST="{\"../node_modules/i18next-http-backend/esm/request.js -> cross-fetch\":{\"id\":\"../node_modules/i18next-http-backend/esm/request.js -> cross-fetch\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_cross-fetch_dist_browser-ponyfill_js.js\"]}}"
