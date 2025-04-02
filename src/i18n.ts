@@ -1,28 +1,20 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import Backend from "i18next-http-backend";
-import LanguageDetector from "i18next-browser-languagedetector";
-
-const isServer = typeof window === "undefined"; // ✅ Detects if running on server
+import HttpApi from "i18next-http-backend";
 
 i18n
-  .use(Backend)
-  .use(LanguageDetector)
+  .use(HttpApi)
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
-    debug: process.env.NODE_ENV === "development",
     supportedLngs: ["en", "ko"],
-    ns: ["common", "home"], // ✅ Keep only relevant namespaces
+    ns: ["common", "home", "program"],
     defaultNS: "common",
     interpolation: { escapeValue: false },
+    debug: process.env.NODE_ENV === "development",
+    returnObjects: true, // ✅ Enables returning objects in translations
     backend: {
-      loadPath: isServer
-        ? "http://localhost:3000/locales/{{lng}}/{{ns}}.json"
-        : `${window.location.origin}/locales/{{lng}}/{{ns}}.json`,
-    },
-    react: { 
-      useSuspense: false 
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
   });
 

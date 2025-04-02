@@ -1,0 +1,192 @@
+{
+  "hero": {
+    "backgroundAlt": "Program System Background",
+    "title": "Master English with Zeta",
+    "description": "A comprehensive program combining LAB, Grammar, and Discussion.",
+    "cta": "Get Started"
+  },
+  "quickNav": {
+    "lab": "LAB",
+    "discussion": "Discussion",
+    "grammar": "Grammar",
+    "writing": "Writing"
+  },
+  "strategic": {
+    "heading": "Strategic Learning",
+    "description": "A core approach to improving your English skills."
+  },
+  "lab": {
+    "title": "Zeta's LAB Program",
+    "description": "Offers structured reading, vocabulary, and comprehension activities.",
+    "activities": {
+      "reading": {
+        "title": "Reading",
+        "description": "Improve reading skills with level-appropriate books."
+      },
+      "vocabulary": {
+        "title": "Vocabulary Exploration",
+        "description": "Learn new words in context."
+      },
+      "summaries": {
+        "title": "Creating Outlines & Summaries",
+        "description": "Improve comprehension by summarizing key ideas."
+      },
+      "presentations": {
+        "title": "Presentations",
+        "description": "Express ideas confidently with 1:1 coaching."
+      }
+    },
+    "readMore": "Read More",
+    "seeLess": "See Less",
+    "details": {
+      "whatIs": {
+        "title": "What is LAB?",
+        "description": "A hands-on program for practical English learning."
+      },
+      "howItWorks": {
+        "title": "How It Works",
+        "steps": {
+          "readBook": "Read assigned books.",
+          "findWords": "Identify and learn new vocabulary.",
+          "writeSummaries": "Write summaries of what you read.",
+          "discussWithTeacher": "Discuss insights with your teacher.",
+          "presentIdeas": "Present your findings to the class."
+        }
+      }
+    }
+  },
+  "grammar": {
+    "title": "Zeta's Grammar Program",
+    "description": "Provides lessons on grammar, exercises, and structure.",
+    "levels": {
+      "basic": {
+        "title": "Basic Grammar",
+        "description": "Learn fundamental grammar concepts."
+      },
+      "intermediate": {
+        "title": "Intermediate Grammar",
+        "description": "Understand complex sentence structures."
+      },
+      "advanced": {
+        "title": "Advanced Grammar",
+        "description": "Master advanced grammar and writing mechanics."
+      }
+    },
+    "keyFeatures": {
+      "title": "Key Features",
+      "metacognition": "Develop metacognitive grammar awareness.",
+      "curriculum": "Follow a comprehensive grammar curriculum.",
+      "examPrep": "Prepare for grammar-focused exams."
+    },
+    "readMore": "Read More",
+    "seeLess": "See Less",
+    "details": {
+      "whatIs": {
+        "title": "What is Grammar?",
+        "description": "A program to master English grammar rules."
+      },
+      "intuitionIntrinsic": {
+        "title": "Intuition & Intrinsic Values",
+        "intuition": "Build intuitive grammar understanding.",
+        "intrinsicValues": "Foster intrinsic motivation for grammar."
+      },
+      "courseLevels": {
+        "title": "Course Levels",
+        "basic": {
+          "title": "Basic",
+          "description": "For beginners learning grammar basics."
+        },
+        "intermediate": {
+          "title": "Intermediate",
+          "description": "For learners with some grammar knowledge."
+        },
+        "advanced": {
+          "title": "Advanced",
+          "description": "For advanced grammar mastery."
+        }
+      },
+      "classProcess": {
+        "title": "Class Process",
+        "description": "Interactive lessons to reinforce grammar."
+      },
+      "homework": {
+        "title": "Homework",
+        "description": "Assignments to practice grammar skills."
+      }
+    }
+  },
+  "discussion": {
+    "title": "Zeta's Discussion Program",
+    "description": "Encourages students to participate in discussions and critical thinking exercises.",
+    "activities": {
+      "discussions": {
+        "title": "Class Discussions",
+        "description": "Engage in topic-based discussions."
+      },
+      "criticalThinking": {
+        "title": "Critical Thinking",
+        "description": "Analyze different perspectives on various issues."
+      },
+      "expression": {
+        "title": "Expression",
+        "description": "Develop verbal communication and articulation skills."
+      }
+    },
+    "benefits": {
+      "title": "Benefits of Discussion",
+      "expandingPerspectives": "Expand your perspectives through dialogue.",
+      "criticalThinking": "Enhance critical thinking skills.",
+      "verbalExpression": "Improve verbal expression and confidence."
+    },
+    "readMore": "Read More",
+    "seeLess": "See Less",
+    "details": {
+      "whatIs": {
+        "title": "What is Discussion?",
+        "description": "A program to improve conversational fluency."
+      },
+      "intuitionIntrinsic": {
+        "title": "Intuition & Intrinsic Values",
+        "intuition": "Develop intuitive speaking skills.",
+        "intrinsicValues": "Build intrinsic motivation for communication."
+      },
+      "courseLevels": {
+        "title": "Course Levels",
+        "basic": {
+          "title": "Basic",
+          "description": "For beginners to build foundational skills."
+        },
+        "intermediate": {
+          "title": "Intermediate",
+          "description": "For learners with some experience."
+        },
+        "advanced": {
+          "title": "Advanced",
+          "description": "For fluent speakers to refine skills."
+        }
+      },
+      "homework": {
+        "title": "Homework",
+        "description": "Assignments to reinforce discussion skills."
+      }
+    }
+  },
+  "writing": {
+    "title": "Zeta's Writing Program",
+    "description": "Teaches structured writing, editing, and revision techniques.",
+    "activities": {
+      "creativeWriting": {
+        "title": "Creative Writing",
+        "description": "Explore different styles and develop original written pieces."
+      },
+      "academicWriting": {
+        "title": "Academic Writing",
+        "description": "Learn to structure essays and formal documents effectively."
+      },
+      "editingRevisions": {
+        "title": "Editing & Revisions",
+        "description": "Refine your writing through multiple feedback iterations."
+      }
+    }
+  }
+}
