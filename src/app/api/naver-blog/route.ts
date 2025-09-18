@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import Parser from "rss-parser";
 
+export const revalidate = 3600; // cache for 1 hour
+
 export async function GET() {
   const parser = new Parser();
   const rssUrl = "https://rss.blog.naver.com/zeta-eng.xml";
@@ -12,6 +14,7 @@ export async function GET() {
       headers: {
         "User-Agent": "Mozilla/5.0",
       },
+      next: { revalidate },
     });
 
     if (!response.ok) {
@@ -28,7 +31,9 @@ export async function GET() {
 
     // Function to extract images from a blog post page
     async function getImageFromPost(link?: string) {
-      if (!link) return null; // Ensure link is defined before fetching
+      if (!link) {
+        return null; // Ensure link is defined before fetching
+      }
 
       try {
         const postResponse = await fetch(link, { headers: { "User-Agent": "Mozilla/5.0" } });

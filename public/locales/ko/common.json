@@ -1,23 +1,39 @@
 {
     "menu": {
       "home": "홈",
-      "program-overview": "프로그램 개요",
-      "testimonials": "학생 후기",
-      "book-appointment": "상담 예약",
-      "contact": "문의하기"
+      "about": "학원 소개",
+      "program": "프로그램",
+      "blog": "블로그",
+      "bookClass": "수업 예약",
+      "login": "로그인"
     },
     "footer": {
-      "contactUs": "문의하기",
-      "phone": "전화번호",
-      "email": "이메일",
-      "address": "서울시 메인 스트리트 123번지",
-      "quickLinks": "빠른 링크",
-      "programOverview": "프로그램 개요",
-      "testimonials": "학생 후기",
-      "bookAppointment": "상담 예약",
-      "contact": "문의하기",
-      "followUs": "팔로우 하기",
-      "rightsReserved": "모든 권리 보유."
+      "contactHeading": "문의",
+      "phoneLabel": "전화",
+      "phoneValue": "+82-10-1234-5678",
+      "emailLabel": "이메일",
+      "emailValue": "hello@zetaenglish.co.kr",
+      "kakaoLabel": "카카오톡",
+      "kakaoValue": "@zetaenglish",
+      "locationHeading": "찾아오시는 길",
+      "address": "서울시 서초구 서초대로 123",
+      "quickLinksHeading": "바로가기",
+      "quickLinks": {
+        "home": "홈",
+        "program": "프로그램",
+        "about": "학원 소개",
+        "book": "수업 예약"
+      },
+      "socialHeading": "소셜 미디어",
+      "social": {
+        "instagramLabel": "인스타그램",
+        "instagramUrl": "#",
+        "youtubeLabel": "유튜브",
+        "youtubeUrl": "#",
+        "naverLabel": "네이버 블로그",
+        "naverUrl": "#"
+      },
+      "rightsReserved": "모든 권리를 보유하고 있습니다."
     },
     "language": {
       "en": "영어",

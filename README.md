@@ -18,6 +18,21 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Environment Variables
+
+Copy `.env.local.example` to `.env.local` and add your project-specific values before running the app locally or deploying:
+
+```
+cp .env.local.example .env.local
+```
+
+- `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` power server-side booking/admin actions (keep them secret).
+- `SUPABASE_ANON_KEY` plus the `NEXT_PUBLIC_SUPABASE_*` values power the browser client for user login.
+- `RESEND_API_KEY`, `ALERT_FROM`, and `ALERT_TO` enable email notifications (optional).
+- `ADMIN_DASH_TOKEN` gates the `/[lng]/admin/consultations` dashboard (optional).
+
+Restart the dev server after updating environment variables so the changes take effect.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

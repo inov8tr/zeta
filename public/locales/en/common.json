@@ -1,22 +1,38 @@
 {
   "menu": {
     "home": "Home",
-    "program-overview": "Program Overview",
-    "testimonials": "Testimonials",
-    "book-appointment": "Book Appointment",
-    "contact": "Contact Us"
+    "about": "About",
+    "program": "Our Program",
+    "blog": "Blog",
+    "bookClass": "Book a Consultation",
+    "login": "Login"
   },
   "footer": {
-    "contactUs": "Contact Us",
-    "phone": "Phone",
-    "email": "Email",
-    "address": "123 Main St, Seoul, South Korea",
-    "quickLinks": "Quick Links",
-    "programOverview": "Program Overview",
-    "testimonials": "Testimonials",
-    "bookAppointment": "Book Appointment",
-    "contact": "Contact Us",
-    "followUs": "Follow Us",
+    "contactHeading": "Contact",
+    "phoneLabel": "Phone",
+    "phoneValue": "+82-10-1234-5678",
+    "emailLabel": "Email",
+    "emailValue": "hello@zetaenglish.co.kr",
+    "kakaoLabel": "KakaoTalk",
+    "kakaoValue": "@zetaenglish",
+    "locationHeading": "Visit Us",
+    "address": "123 Seocho-daero, Seocho-gu, Seoul",
+    "quickLinksHeading": "Quick Links",
+    "quickLinks": {
+      "home": "Home",
+      "program": "Our Program",
+      "about": "About",
+      "book": "Book a Consultation"
+    },
+    "socialHeading": "Follow Us",
+    "social": {
+      "instagramLabel": "Instagram",
+      "instagramUrl": "#",
+      "youtubeLabel": "YouTube",
+      "youtubeUrl": "#",
+      "naverLabel": "Naver Blog",
+      "naverUrl": "#"
+    },
     "rightsReserved": "All rights reserved."
   },
   "language": {
@@ -24,4 +40,3 @@
     "ko": "Korean"
   }
 }
-

@@ -1,0 +1,14 @@
+{
+  "title": "포털에 로그인",
+  "description": "등록된 이메일과 비밀번호로 역할에 맞는 대시보드로 이동합니다.",
+  "emailLabel": "이메일",
+  "emailPlaceholder": "name@example.com",
+  "passwordLabel": "비밀번호",
+  "passwordPlaceholder": "비밀번호를 입력하세요",
+  "remember": "로그인 상태 유지",
+  "signIn": "로그인",
+  "errorGeneric": "로그인에 실패했습니다. 정보가 맞는지 확인해 주세요.",
+  "errorRole": "사용자 역할을 확인할 수 없습니다. 관리자에게 문의하세요.",
+  "adminRedirect": "관리자 대시보드로 이동합니다...",
+  "roleRedirect": "이동 중..."
+}

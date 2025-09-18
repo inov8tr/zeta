@@ -1,0 +1,136 @@
+{
+  "hero": {
+    "title": "About Zeta English Academy",
+    "tagline": "Empowering Versatile Learners for a Global Future",
+    "description": "Discover how Zeta English Academy blends creativity, confidence, and communication to help every learner thrive."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "At Zeta English Academy, we believe learning should be fun, inspiring, and purposeful. We nurture students who are academically strong, confident communicators, and creative thinkers through a dynamic, learner-centered environment.",
+    "spotlight": "We empower versatile learners who are curious, confident, and ready to shine in any classroom."
+  },
+  "philosophy": {
+    "title": "Our Educational Philosophy",
+    "intro": "We go beyond grammar drills and test prep. Zeta's curriculum is designed to:",
+    "points": [
+      "Spark curiosity through guided reading labs.",
+      "Strengthen grammar and structure with clear, practical lessons.",
+      "Build confident speakers and critical thinkers through discussion, debate, and collaboration.",
+      "Encourage students to think, lead, and connect in English."
+    ]
+  },
+  "levels": {
+    "title": "Our Learning Levels",
+    "description": "A systematic progression across seven core levels aligns with international standards while supporting Korean academic goals.",
+    "detailLabels": {
+      "purpose": "Purpose",
+      "coreSkills": "Core skills"
+    },
+    "items": [
+      {
+        "icon": "early",
+        "title": "Early Explorers",
+        "subtitle": "Build the absolute foundations of English.",
+        "purpose": "Build the absolute foundations of English.",
+        "coreSkills": "Phonics, beginning spelling & vocabulary, first speaking skills."
+      },
+      {
+        "icon": "foundation",
+        "title": "Foundation Builders",
+        "subtitle": "Move from decoding words to understanding full stories.",
+        "purpose": "Move from decoding words to understanding full stories.",
+        "coreSkills": "Early reading comprehension paired with writing short, detailed summaries of complete stories."
+      },
+      {
+        "icon": "knowledge",
+        "title": "Knowledge Navigators",
+        "label": "Lexile ≈ 250–500",
+        "subtitle": "Transition into real chapter books.",
+        "purpose": "Transition into real chapter books.",
+        "coreSkills": "Context-based vocabulary growth, sustained reading stamina, comprehension across chapters."
+      },
+      {
+        "icon": "skill",
+        "title": "Skill Sharpeners",
+        "label": "Lexile ≈ 600–700",
+        "subtitle": "Tighten skills within a Lexile-guided track.",
+        "purpose": "Tighten skills within a Lexile-guided track.",
+        "coreSkills": "Increased reading volume, formal comprehension training, and holistic vocabulary study."
+      },
+      {
+        "icon": "advanced",
+        "title": "Advanced Learners",
+        "label": "Lexile ≈ 660–950",
+        "subtitle": "Tackle higher-level texts and ideas.",
+        "purpose": "Tackle higher-level texts and ideas.",
+        "coreSkills": "Ongoing comprehension and vocabulary work plus discussion of socially relevant topics woven into reading."
+      },
+      {
+        "icon": "critical",
+        "title": "Critical Thinkers",
+        "label": "Capstone",
+        "subtitle": "Synthesize ideas across diverse materials.",
+        "purpose": "Synthesize ideas across diverse materials.",
+        "coreSkills": "Analytical reading, argument formation, and text-to-world connections across capstone materials."
+      },
+      {
+        "icon": "leadership",
+        "title": "Leadership Pathfinders",
+        "label": "Capstone",
+        "subtitle": "Turn mastery into clear, confident communication.",
+        "purpose": "Turn mastery into clear, confident communication.",
+        "coreSkills": "Presentation, collaboration, and applied English for real-world contexts."
+      }
+    ],
+    "footnote": "Each level develops reading fluency, vocabulary expansion, discussion-based learning, and comprehension."
+  },
+  "writingProgram": {
+    "title": "Optional Writing Program",
+    "description": "Students can enroll in Writing I, II, or III as a complementary track for deeper practice.",
+    "levels": [
+      {
+        "title": "Writing I",
+        "description": "Sentence structure, grammar fluency, and writing fundamentals."
+      },
+      {
+        "title": "Writing II",
+        "description": "Paragraph construction, organization, and essay logic."
+      },
+      {
+        "title": "Writing III",
+        "description": "Formal, academic writing with multi-paragraph essays."
+      }
+    ],
+    "note": "Recommended for students preparing for middle school, international programs, or academic competitions."
+  },
+  "globalPerspective": {
+    "title": "A Global Perspective, Locally Rooted",
+    "description": "While rooted in Korean educational excellence, Zeta's upper levels align with U.S. and international benchmarks so learners can excel in Korean high schools or overseas universities."
+  },
+  "differentiators": {
+    "title": "What Makes Zeta Different?",
+    "items": [
+      "Structured progression by skill level and Lexile band",
+      "Small class sizes with individualized coaching",
+      "Emphasis on creativity, confidence, and communication",
+      "Debate, discussion, and real-world English practice",
+      "Native-level instructors with bilingual support",
+      "Optional writing courses for extra challenge"
+    ]
+  },
+  "testimonial": {
+    "quote": "Zeta is not just about learning English. It's about learning how to express who I am.",
+    "name": "Cindy",
+    "subtitle": "Student for 4 years"
+  },
+  "cta": {
+    "title": "Ready to Join Us?",
+    "description": "Zeta is a launchpad for academic and personal growth. Let's build a plan tailored to your child.",
+    "primary": "Book a Consultation",
+    "href": "/enrollment"
+  },
+  "metadata": {
+    "title": "About Zeta English Academy | Our Mission, Levels & Philosophy",
+    "description": "Learn about Zeta English Academy's mission, learning levels, and what makes our English programs unique."
+  }
+}

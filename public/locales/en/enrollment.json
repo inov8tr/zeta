@@ -1,0 +1,19 @@
+{
+  "title": "Book a Consultation",
+  "intro": "Fill out the form below. We'll create an account and confirm by email.",
+  "form": {
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "duration": "Duration (minutes)",
+    "start": "Preferred start (local time)",
+    "timezone": "Timezone",
+    "notes": "Notes",
+    "submit": "Book consultation",
+    "submitting": "Booking…",
+    "success": "Thanks! We’ll confirm shortly by email.",
+    "error": "Booking failed",
+    "optional": "Optional"
+  }
+}
+

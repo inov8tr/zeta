@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import NaverBlogFeed from "@/components/pages/blog/NaverBlogFeed";
+
+export const metadata: Metadata = {
+  title: "Blog | Zeta English Academy",
+  description: "Updates and insights from Zeta English Academy.",
+};
 
 export default function BlogPage() {
   return (

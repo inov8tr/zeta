@@ -53,7 +53,46 @@
           "presentIdeas": "Present your findings to the class."
         }
       }
-    }
+    },
+    "contentSections": [
+      {
+        "heading": "Why the Reading Lab matters",
+        "paragraphs": [
+          "The Lab creates a calm, student-led space where reading, writing, and speaking grow together. Instead of drilling worksheets, students investigate themes, set their own goals, and get immediate feedback from their Lab Teacher.",
+          "Grammar and vocabulary are discovered in context. Learners look closely at the language inside real books, notice patterns, and practise using them naturally inside their summaries and conversations."
+        ],
+        "listTitle": "Three pillars we emphasise",
+        "list": [
+          "Student-led momentum — learners design their study flow with gentle coaching, building ownership of progress.",
+          "Purposeful reading — titles are matched to Lexile levels so every page stretches comprehension without overwhelming.",
+          "Voicing insight — each reading cycle ends with a reflection shared aloud, strengthening speaking confidence."
+        ]
+      },
+      {
+        "heading": "The routine students follow each visit",
+        "paragraphs": [
+          "Every session guides readers from silent exploration to polished expression."
+        ],
+        "list": [
+          "Select a just-right book and read with intent, flagging new vocabulary and questions.",
+          "Predict meanings from context, then confirm using the Lab’s digital tools and workbook prompts.",
+          "Map an outline and craft a multi-paragraph summary with the classic introduction–body–conclusion structure.",
+          "Meet with the Lab Teacher for individual feedback, grammar coaching, and a guided discussion in English that rehearses ideas for the Discussion Class."
+        ]
+      },
+      {
+        "heading": "A library that grows with every reader",
+        "paragraphs": [
+          "From early phonics reinforcement to advanced novels, the Lab curates series and standalone titles that broaden students’ worlds."
+        ],
+        "list": [
+          "Foundational reading with Oxford Reading Tree and similar step-by-step resources.",
+          "Chapter-book adventures such as A to Z Mysteries, Magic Tree House, and Nate the Great for emerging readers.",
+          "Thought-provoking novels including Frindle, The Giver, and City of Ember for learners ready to debate big ideas."
+        ],
+        "closing": "Students move through these shelves while completing comprehension questions, quick essays, and projects that keep reading purposeful."
+      }
+    ]
   },
   "grammar": {
     "title": "Zeta's Grammar Program",
@@ -113,7 +152,46 @@
         "title": "Homework",
         "description": "Assignments to practice grammar skills."
       }
-    }
+    },
+    "contentSections": [
+      {
+        "heading": "Why Grammar Class matters",
+        "paragraphs": [
+          "Grammar Class trains students to assemble sentences with intention instead of filling blanks. Learners discover how structure supports clear thinking and accurate expression.",
+          "By internalising patterns rather than memorising isolated rules, students can reuse grammar instinctively in both conversation and writing."
+        ],
+        "listTitle": "Two skill sets we build",
+        "list": [
+          "Intuition – students learn to hear what sounds right by internalising structure, not rote formulas.",
+          "Intrinsic values – accuracy and clarity fuel success in school assessments and real-world communication alike."
+        ]
+      },
+      {
+        "heading": "How lessons progress",
+        "paragraphs": [
+          "Classes follow three stages so every learner can secure the basics, stretch towards longer sentences, and polish advanced accuracy."
+        ],
+        "listTitle": "Course stages",
+        "list": [
+          "Basic: reinforce the core pieces of short sentences for post-phonics learners.",
+          "Intermediate: practise longer sentences, tense control, and subject–verb agreement until they become second nature.",
+          "Advanced: refine complex structures for essays, exams, and expressive speech."
+        ],
+        "closing": "Teachers constantly spiral back to earlier concepts so new units rest on a confident foundation."
+      },
+      {
+        "heading": "Homework and review",
+        "paragraphs": [
+          "Regular practice keeps grammar instinctive long after class ends."
+        ],
+        "list": [
+          "Weekly assignments drawn from levelled textbooks and worksheets.",
+          "Dual vocabulary quizzes that check spelling plus multiple meanings.",
+          "Teacher-led Q&A that encourages students to surface every question they still have."
+        ],
+        "closing": "Sample materials and detailed plans are available during a consultation."
+      }
+    ]
   },
   "discussion": {
     "title": "Zeta's Discussion Program",
@@ -169,7 +247,45 @@
         "title": "Homework",
         "description": "Assignments to reinforce discussion skills."
       }
-    }
+    },
+    "contentSections": [
+      {
+        "heading": "What is Discussion Class?",
+        "paragraphs": [
+          "Discussion Class pairs native-speaker guidance with authentic texts so students think in English, not translated notes.",
+          "Learners debate ideas, respond to questions like 'What do you think?' and 'What if...?', and build intuition through continuous dialogue."
+        ],
+        "listTitle": "Three qualities we cultivate",
+        "list": [
+          "Intuition – follow the flow of each story and react quickly with insight.",
+          "Active participation – students drive conversation by asking and answering their own questions.",
+          "Agile thinking – a flexible curriculum lets readers tackle higher-level books at their own pace."
+        ]
+      },
+      {
+        "heading": "Inside a typical session",
+        "paragraphs": [
+          "Lessons rotate through reading checks, perspective-taking, summarising, and collaborative problem solving."
+        ],
+        "list": [
+          "Infer vocabulary from context before confirming with the teacher.",
+          "Retell pivotal events and connect them to personal viewpoints.",
+          "Role-play characters, present ideas with evidence, and summarise chapters together."
+        ]
+      },
+      {
+        "heading": "Homework and preparation",
+        "paragraphs": [
+          "Students arrive ready to converse thanks to a custom workbook."
+        ],
+        "list": [
+          "Pre-read assigned chapters and complete vocabulary, comprehension, and short-essay prompts.",
+          "Use class time to revisit questions that remained after homework.",
+          "Advanced students even lead mini discussions during Lab sessions."
+        ],
+        "closing": "See the discussion materials firsthand during a consultation."
+      }
+    ]
   },
   "writing": {
     "title": "Zeta's Writing Program",
@@ -187,6 +303,42 @@
         "title": "Editing & Revisions",
         "description": "Refine your writing through multiple feedback iterations."
       }
-    }
+    },
+    "readMore": "Read More",
+    "seeLess": "See Less",
+    "contentSections": [
+      {
+        "heading": "What is the Writing Program?",
+        "paragraphs": [
+          "Writing Class introduces multiple genres so students think like writers, not just grammar checkers.",
+          "Lessons cultivate the ability to generate ideas, organise logic, and express them in authentic English."
+        ]
+      },
+      {
+        "heading": "Course tracks",
+        "paragraphs": [
+          "Three levels guide learners from foundational planning to advanced application."
+        ],
+        "list": [
+          "Basic Writing Course: learn the essay framework and practise Zeta's 9-Step planning method through idea generation and teacher consultation.",
+          "Intermediate Writing Course: expand to longer pieces and explore descriptive, narrative, compare/contrast, process, cause/effect, problem/solution, and persuasive styles.",
+          "Advanced Writing Course: adapt writing to purpose—from academic essays to creative pieces—with meticulous coaching on structure and nuance."
+        ]
+      },
+      {
+        "heading": "Crafting stronger drafts",
+        "paragraphs": [
+          "Students plan, discuss, draft, and revise repeatedly so every piece improves.",
+          "Feedback covers ideas, organisation, and grammar while students learn to self-edit with confidence."
+        ],
+        "closing": "Completed drafts, annotated feedback, and sample materials are available to review during a consultation."
+      }
+    ]
+  },
+  "vennDiagram": {
+    "alt": "Venn Diagram showing LAB, Grammar, and Discussion",
+    "lab": "LAB",
+    "grammar": "Grammar",
+    "discussion": "Discussion"
   }
 }

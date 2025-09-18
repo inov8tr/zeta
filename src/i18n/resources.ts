@@ -1,14 +1,21 @@
+import enCommon from "../../public/locales/en/common.json";
+import enHome from "../../public/locales/en/home.json";
+import enProgram from "../../public/locales/en/program.json";
+import koCommon from "../../public/locales/ko/common.json";
+import koHome from "../../public/locales/ko/home.json";
+import koProgram from "../../public/locales/ko/program.json";
+
 const resources = {
   en: {
-    common: require("../../public/locales/en/common.json"),
-    home: require("../../public/locales/en/home.json"),
-    program: require("../../public/locales/en/program.json"),
+    common: enCommon,
+    home: enHome,
+    program: enProgram,
   },
   ko: {
-    common: require("../../public/locales/ko/common.json"),
-    home: require("../../public/locales/ko/home.json"),
-    program: require("../../public/locales/ko/program.json"),
+    common: koCommon,
+    home: koHome,
+    program: koProgram,
   },
 };
 
-export default resources; // ✅ Move this to the end
+export default resources;

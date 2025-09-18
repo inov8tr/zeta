@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "eyebrow": "프로그램 개요",
+    "title": "Strategic Learning Pathways",
+    "description": "At Zeta English Academy, we take a strategic approach to learning, offering diverse educational experiences and providing in-depth training. This ensures a dynamic and effective learning journey, equipping students with the skills and knowledge for future success. Our academy focuses on English language learning, English education, effective learning strategies, language skills development, and student success.",
+    "imageAlt": "학생들이 함께 학습하는 모습"
+  },
+  "sections": {
+    "lab": {
+      "title": "LAB",
+      "summary": "리딩랩은 학습자의 수준에 맞는 책과 코칭을 결합해 수업 전에 자신감과 표현력을 기르는 공간입니다.",
+      "detailsTitle": "집중 포인트",
+      "details": [
+        "전담 코칭으로 목표와 진행 상황을 점검합니다.",
+        "의미 있는 독서를 통해 사고의 폭을 넓힙니다.",
+        "쓰기와 대화를 통해 읽은 내용을 자연스럽게 표현합니다."
+      ],
+      "ctaLabel": "Read More",
+      "ctaHref": "/program#lab",
+      "image": "/images/pages/home/SA.svg",
+      "imageAlt": "Students reading together"
+    },
+    "grammar": {
+      "title": "Grammar",
+      "summary": "The Grammar Course offers a comprehensive pathway across basic, intermediate, and advanced levels so learners can build accuracy and confidence step by step.",
+      "detailsTitle": "Key Features:",
+      "details": [
+        "Basic Foundation: Focus on parts of speech and everyday sentence building.",
+        "Intermediate: Dive into syntax, sentence structures, and nuanced usage.",
+        "Advanced: Strengthen reading comprehension and written expression.",
+        "Metacognitive Questioning: Encourage thoughtful inquiry to deepen understanding.",
+        "Comprehensive Curriculum: Progress from fundamentals to college entrance exam-level texts.",
+        "Effective Exam Preparation: Develop durable grammar skills for assessments."
+      ],
+      "ctaLabel": "Read More",
+      "ctaHref": "/program#grammar",
+      "image": "/images/pages/home/Levels.svg",
+      "imageAlt": "Grammar course materials"
+    },
+    "discussion": {
+      "title": "Discussion",
+      "summary": "Our Reading & Discussion Course expands comprehension and perspective through meaningful dialogue and close reading.",
+      "detailsTitle": "What students experience:",
+      "details": [
+        "Reading Books: Engage with a wide range of literature alongside native-speaking teachers.",
+        "Interactive Classroom Activities: Use discussion and collaborative exercises to uncover a text’s implicit meaning.",
+        "Expression: Practice articulating insights clearly and confidently.",
+        "Perspective Building: As reading experiences grow, students develop broader viewpoints and richer worldviews."
+      ],
+      "ctaLabel": "Read More",
+      "ctaHref": "/program#discussion",
+      "image": "/images/pages/home/Strat.png",
+      "imageAlt": "Students sharing ideas during discussion"
+    }
+  }
+}

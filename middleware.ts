@@ -1,26 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
+import { normalizeLanguage, SUPPORTED_LANGUAGES } from "@/lib/i18n";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const cookieLang = request.cookies.get("lang")?.value;
-  const acceptLanguage = request.headers.get("accept-language");
-  const language = cookieLang || acceptLanguage?.split(",")[0]?.slice(0, 2) || "en";
+  const acceptLanguage = request.headers.get("accept-language")?.split(",")[0];
+  const language = normalizeLanguage(cookieLang ?? acceptLanguage ?? "en");
 
-  // ✅ Ensure `/` redirects to `/en/`
   if (pathname === "/") {
     return NextResponse.redirect(new URL(`/${language}/`, request.url));
   }
 
-  // ✅ Ensure paths without a language prefix are redirected
-  if (!["en", "ko"].includes(pathname.split("/")[1])) {
+  const firstSegment = pathname.split("/")[1];
+  const rootExempt = new Set(["admin", "login", "teacher", "student", "parent"]);
+  if (firstSegment && rootExempt.has(firstSegment)) {
+    const response = NextResponse.next();
+    response.cookies.set("lang", language, { path: "/" });
+    return response;
+  }
+
+  const [, maybeLang] = pathname.split("/");
+  if (!SUPPORTED_LANGUAGES.includes((maybeLang ?? "") as (typeof SUPPORTED_LANGUAGES)[number])) {
     return NextResponse.redirect(new URL(`/${language}${pathname}`, request.url));
   }
 
   const response = NextResponse.next();
-  response.cookies.set("lang", language, { path: "/" }); // ✅ Store language in cookies
+  response.cookies.set("lang", language, { path: "/" });
   return response;
 }
 
 export const config = {
-  matcher: "/((?!_next|_vercel|api|.*\\..*).*)", // ✅ Apply middleware to all routes
+  matcher: "/((?!_next|_vercel|api|.*\\..*).*)",
 };

@@ -1,84 +1,103 @@
 {
-    "hero": {
-      "heading": {
-        "academyName": "Zeta English Academy",
-        "belief": "We Believe",
-        "funLearning": "Learning Should Be Fun",
-        "creativity": "and Spark Creativity!"
+  "hero": {
+    "headline": "Zeta English Academy",
+    "tagline": "We believe learning should be fun and spark creativity!",
+    "description": "We guide K-12 learners through joyful English experiences that build confidence, curiosity, and future-ready skills.",
+    "primaryCta": "Book a Consultation",
+    "secondaryCta": "Explore Our Program",
+    "imageAlt": "Smiling students learning together"
+  },
+  "mission": {
+    "title": "Empowering Versatile Learners",
+    "description": "Learning should be fun and inspiring. Zeta English Academy helps students build a strong foundation for future success with engaging lessons, supportive coaching, and space to share their ideas.",
+    "highlights": [
+      { "icon": "creativity", "label": "Creativity" },
+      { "icon": "success", "label": "Academic Success" },
+      { "icon": "communication", "label": "Real-World Communication" }
+    ]
+  },
+  "coreApproach": {
+    "title": "Our Core Approach",
+    "pillars": [
+      {
+        "title": "Versatile",
+        "description": "We develop adaptable, curious learners who are ready for academic and life challenges.",
+        "icon": "sparkles"
       },
-      "buttons": {
-        "enroll": "Start Learning Today",
-        "explorePrograms": "Explore Programs"
+      {
+        "title": "Instrumental",
+        "description": "We teach real-world communication, critical thinking, and confident self-expression.",
+        "icon": "messages"
       },
-      "imageAlt": "Student reading a book"
-    },
-    "highlightNav": {
-      "header": "Explore Our Features",
-      "description": "Discover what Zeta English Academy offers.",
-      "items": [
-        { "title": "About Us", "href": "/about" },
-        { "title": "Our Programs", "href": "/programs" },
-        { "title": "Blog", "href": "/blog" },
-        { "title": "Join Now", "href": "/join" }
-      ]
-    },
-    "programOverview": {
-      "header": "Empowering Versatile Learners",
-      "description": "At Zeta English Academy, we believe learning should be fun and inspiring. We focus on creativity, critical thinking, and communication to help you succeed."
-    },
-    "versatile": {
-      "title": "Versatile",
-      "description": "At Zeta English Academy, our focus lies in promoting versatility by nurturing adaptability and establishing a robust foundation. We offer a wide range of English language skills, empowering students to confidently tackle academic challenges and navigate life's transitions with ease.",
-      "imageAlt": "Slider Image",
-      "buttonText": "Learn More"
-    },
-    "instrumental": {
-      "title": "Instrumental",
-      "description": "We prioritize a holistic approach, emphasizing practical, real-world abilities like critical thinking, problem-solving, and effective communication. These skills are vital not just for academic success but also for navigating life's challenges.",
-      "imageAlt": "Visual representation of our Instrumental Program",
-      "buttonText": "Learn More",
-      "buttonAriaLabel": "Learn more about our programs"
-    },
-    "strategic": {
-      "title": "Strategic",
-      "description": "At Zeta English Academy, we take a strategic approach to learning, offering diverse educational experiences and providing in-depth training. This ensures a dynamic and effective learning journey, equipping students with the skills and knowledge for future success. Our academy focuses on English language learning, English education, effective learning strategies, language skills development, and student success.",
-      "imageAlt": "Our System",
-      "buttonText": "Learn More"
-    },
-    "testimonialSection": {
-      "header": "What Our Students Say",
-      "description": "Hear from those who've experienced our programs firsthand.",
-      "testimonials": [
-        {
-          "impactPhrase": "Learning through collaboration and communication.",
-          "quote": "수업 분위기가 가장 좋았던 것 같습니다. 단순히 지식을 머리에 넣는다기 보다는 다 같이 이야기하고 피드백하는 시간이 많아서 좋았고 수업 시간에 다 같이 소통하는 느낌이 들어서 재미있게 수업할 수 있었습니다.​ 일반적인 학원과는 다르게 선생님과의 소통이 하는 역할이 크다는 것이 이 수업의 가장 큰 특징이자 장점인 것 같습니다.",
-          "name": "Cindy",
-          "duration": "약 4년 간 수강"
-        },
-        {
-          "impactPhrase": "Expanding perspectives through challenges.",
-          "quote": "제가 기억하는 수업은 자유로우면서도 도전적인 활동들을 해나가는 수업이었습니다. 수업의 각 주제와 테마는 모두 새로운 도전을 요구하였습니다. 이러한 학습과 경험들이 대학교에서 영어로 이루어지는 강의를 듣거나 다양한 학생들과 교류하는 데 큰 강점으로 작용하였고, 이를 통해 훨씬 다양한 관점과 분야를 어우를 수 있는 발판을 마련할 수 있었습니다.",
-          "name": "Zion",
-          "duration": "4년 간 수강"
-        },
-        {
-          "impactPhrase": "Learning through diverse experiences.",
-          "quote": "Brent 선생님의 수업의 가장 큰 장점은 틀에 박히지 않은 방식이라고 생각합니다. 비록 영어 실력 향상이라는 큰 목표는 있었지만, 선생님은 그 안에서 학생들이 다양한 경험을 할 수 있도록 지도해 주셨습니다. 영어라는 언어에 여러 활동을 접목해 즐거움을 느끼게 해주셨으며, 영어를 단순히 학교 수업 과목을 넘어서 경험의 폭을 넓히는 매개로 생각할 수 있게 되었습니다.",
-          "name": "Denny",
-          "duration": "5년 간 수강"
-        }
-      ],
-      "navigation": {
-        "previous": "Previous testimonial",
-        "next": "Next testimonial"
+      {
+        "title": "Strategic",
+        "description": "We guide each student with personalized planning, thoughtful feedback, and clear structure.",
+        "icon": "target"
       }
-    },
-    "callToAction": {
-      "header": "Ready to Start Your English Journey?",
-      "description": "Take the first step towards mastering English with Zeta English Academy. Our expert instructors and innovative programs are here to guide you to success.",
-      "enrollButton": "Enroll Now",
-      "contactButton": "Contact Us",
-      "backgroundImageAlt": "Decorative background pattern"
+    ]
+  },
+  "programLevels": {
+    "title": "Our Program",
+    "intro": "Zeta's core classes blend reading, grammar, and discussion so learners grow in comprehension, accuracy, and confident expression.",
+    "levels": [
+      {
+        "name": "LAB - Guided Reading for Fluency",
+        "badge": "LAB",
+        "summary": "Build confidence through leveled books, one-on-one coaching, and the joy of every story.",
+        "ctaLabel": "Explore LAB",
+        "href": "/program#lab"
+      },
+      {
+        "name": "Grammar - Write Clearly, Speak Powerfully",
+        "badge": "Grammar",
+        "summary": "Interactive grammar workshops that build strong sentences, smart vocabulary, and fluent writing.",
+        "ctaLabel": "Explore Grammar",
+        "href": "/program#grammar"
+      },
+      {
+        "name": "Discussion - Speak Boldly, Think Deeply",
+        "badge": "Discussion",
+        "summary": "Literature, debate, and projects come together to grow confident, critical English thinkers.",
+        "ctaLabel": "Explore Discussion",
+        "href": "/program#discussion"
+      }
+    ],
+    "ctaLabel": "See Class Details"
+  },
+  "testimonialSection": {
+    "header": "What Parents & Students Say",
+    "testimonials": [
+      {
+        "impactPhrase": "The atmosphere is warm and motivating.",
+        "quote": "The best part of Zeta was the atmosphere — engaging, encouraging, and focused on real communication.",
+        "name": "Cindy",
+        "role": "Student",
+        "duration": "4 years"
+      },
+      {
+        "impactPhrase": "Confidence soared in school and daily life.",
+        "quote": "Zeta helped my son express himself confidently in both school projects and daily conversation.",
+        "name": "Minjae's mom",
+        "role": "Parent",
+        "duration": "2 years"
+      },
+      {
+        "impactPhrase": "Real-world learning with caring teachers.",
+        "quote": "The classes combine creativity with structure. My daughter now loves presenting her ideas in English.",
+        "name": "Eunji's dad",
+        "role": "Parent",
+        "duration": "3 years"
+      }
+    ],
+    "navigation": {
+      "previous": "Previous testimonial",
+      "next": "Next testimonial"
     }
+  },
+  "callToAction": {
+    "header": "Ready to Spark Your Child's English Journey?",
+    "description": "Book a consultation today or connect with a teacher to build a personalized plan.",
+    "primaryButton": "Book a Consultation",
+    "secondaryButton": "Talk to a Teacher"
   }
-  
+}

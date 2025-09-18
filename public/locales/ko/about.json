@@ -1,0 +1,136 @@
+{
+  "hero": {
+    "title": "제타 영어 아카데미 소개",
+    "tagline": "글로벌 미래를 준비하는 다재다능한 학습자 양성",
+    "description": "제타 영어 아카데미가 창의성, 자신감, 소통 역량을 어떻게 성장시키는지 알아보세요."
+  },
+  "mission": {
+    "title": "제타의 미션",
+    "description": "제타 영어 아카데미는 즐겁고 영감이 넘치며 목적 있는 학습을 추구합니다. 학생들은 학업 실력은 물론 자신 있게 소통하고 창의적으로 사고하는 인재로 성장합니다.",
+    "spotlight": "제타는 호기심 많고 자신감 있는 학습자가 어떤 교실에서도 빛날 수 있도록 돕습니다."
+  },
+  "philosophy": {
+    "title": "교육 철학",
+    "intro": "제타의 커리큘럼은 단순한 문법 학습이나 시험 대비를 넘어 다음을 목표로 합니다:",
+    "points": [
+      "가이드 리딩 랩을 통해 호기심을 자극합니다.",
+      "명확하고 실용적인 레슨으로 문법과 구조를 강화합니다.",
+      "토론, 토의, 협업으로 자신 있는 말하기와 비판적 사고를 기릅니다.",
+      "영어로 생각하고 리드하며 연결하는 학습자를 양성합니다."
+    ]
+  },
+  "levels": {
+    "title": "제타의 학습 단계",
+    "description": "국제 기준과 한국 교육 목표를 동시에 충족하는 7단계 학습 시스템입니다.",
+    "detailLabels": {
+      "purpose": "학습 목표",
+      "coreSkills": "핵심 역량"
+    },
+    "items": [
+      {
+        "icon": "early",
+        "title": "Early Explorers",
+        "subtitle": "영어의 기초 토대를 완성합니다.",
+        "purpose": "영어의 절대적 기초를 다집니다.",
+        "coreSkills": "파닉스, 기초 철자와 어휘, 첫 말하기 자신감."
+      },
+      {
+        "icon": "foundation",
+        "title": "Foundation Builders",
+        "subtitle": "문자 해독에서 완전한 이야기 이해로 나아갑니다.",
+        "purpose": "단어 해독에서 스토리 이해로 도약합니다.",
+        "coreSkills": "기초 독해력과 완성도 높은 요약 쓰기, 전체 이야기 정리 능력."
+      },
+      {
+        "icon": "knowledge",
+        "title": "Knowledge Navigators",
+        "label": "Lexile 약 250–500",
+        "subtitle": "실제 챕터북으로 도약합니다.",
+        "purpose": "실제 챕터북에 자연스럽게 진입합니다.",
+        "coreSkills": "문맥 기반 어휘 확장, 꾸준한 독서 체력, 챕터 전반 이해력."
+      },
+      {
+        "icon": "skill",
+        "title": "Skill Sharpeners",
+        "label": "Lexile 약 600–700",
+        "subtitle": "렉사일 기반 트랙에서 역량을 정교하게 다듬습니다.",
+        "purpose": "렉사일 가이드 안에서 핵심 역량을 날카롭게 다듬습니다.",
+        "coreSkills": "독서 분량 확대, 체계적 이해도 훈련, 전인적 어휘 학습."
+      },
+      {
+        "icon": "advanced",
+        "title": "Advanced Learners",
+        "label": "Lexile 약 660–950",
+        "subtitle": "더 높은 수준의 텍스트와 아이디어를 다룹니다.",
+        "purpose": "고난도 텍스트와 아이디어에 도전합니다.",
+        "coreSkills": "지속적인 독해·어휘 훈련, 사회 이슈와 연결된 토론 중심 읽기."
+      },
+      {
+        "icon": "critical",
+        "title": "Critical Thinkers",
+        "label": "캡스톤",
+        "subtitle": "다양한 자료를 융합하며 사고력을 확장합니다.",
+        "purpose": "다양한 자료를 넘나들며 아이디어를 종합합니다.",
+        "coreSkills": "분석적 읽기, 논리 구성, 텍스트와 실제 세계 연결."
+      },
+      {
+        "icon": "leadership",
+        "title": "Leadership Pathfinders",
+        "label": "캡스톤",
+        "subtitle": "마스터한 실력을 자신감 있는 소통으로 전환합니다.",
+        "purpose": "숙련된 영어를 명확하고 자신 있게 표현합니다.",
+        "coreSkills": "프레젠테이션, 협업 프로젝트, 실생활 기반 영어 적용."
+      }
+    ],
+    "footnote": "모든 단계는 읽기 유창성, 어휘 확장, 토론 중심 학습, 이해력 향상을 균형 있게 다룹니다."
+  },
+  "writingProgram": {
+    "title": "선택형 라이팅 프로그램",
+    "description": "Writing I, II, III 과정은 보다 깊이 있는 글쓰기 훈련을 원하는 학생들을 위한 보충 트랙입니다.",
+    "levels": [
+      {
+        "title": "Writing I",
+        "description": "문장 구조, 문법 유창성, 기초 글쓰기 연습"
+      },
+      {
+        "title": "Writing II",
+        "description": "단락 구성, 조직화, 에세이 논리"
+      },
+      {
+        "title": "Writing III",
+        "description": "학술적 글쓰기와 다단락 에세이 작성"
+      }
+    ],
+    "note": "중학교 진학, 국제학교 준비, 각종 대회를 목표로 하는 학생에게 추천합니다."
+  },
+  "globalPerspective": {
+    "title": "글로벌 시각과 지역 전문성의 조화",
+    "description": "제타는 한국 교육의 강점을 바탕으로 미국 및 국제 교육 기준과 연계하여 국내외 어디에서든 통하는 학업 역량을 길러 줍니다."
+  },
+  "differentiators": {
+    "title": "제타의 차별점",
+    "items": [
+      "실력과 렉사일 밴드에 따른 체계적 단계 구성",
+      "소수 정예 수업과 맞춤형 코칭",
+      "창의성, 자신감, 소통 능력 중심",
+      "토론과 실전 중심 영어 활용",
+      "원어민 수준 강사진과 이중언어 지원",
+      "도전적인 학생을 위한 선택형 라이팅 과정"
+    ]
+  },
+  "testimonial": {
+    "quote": "제타는 영어를 배우는 곳을 넘어, 나를 표현하는 법을 배우는 곳이에요.",
+    "name": "Cindy",
+    "subtitle": "4년 수강"
+  },
+  "cta": {
+    "title": "지금 제타와 함께 시작하세요",
+    "description": "학생의 목표에 맞춘 학습 계획을 함께 설계해 드립니다.",
+    "primary": "상담 예약하기",
+    "href": "/enrollment"
+  },
+  "metadata": {
+    "title": "제타 영어 아카데미 소개 | 미션과 단계, 교육 철학",
+    "description": "제타 영어 아카데미의 미션, 학습 단계, 차별화된 교육 방식을 확인하세요."
+  }
+}

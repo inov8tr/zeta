@@ -3,48 +3,53 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import type { HomeDictionary } from "@/lib/i18n";
 
-interface Testimonial {
-  impactPhrase: string;
-  quote: string;
-  name: string;
-  duration?: string;
-}
+type Testimonial = HomeDictionary["testimonialSection"]["testimonials"][number];
 
 interface TestimonialSectionProps {
-  lng: string;
+  dictionary: HomeDictionary["testimonialSection"];
 }
 
-const TestimonialSection: React.FC<TestimonialSectionProps> = ({ lng }) => {
-  const { t } = useTranslation("home");
+const TestimonialSection: React.FC<TestimonialSectionProps> = ({ dictionary }) => {
+  const testimonials = dictionary.testimonials ?? [];
+  const description = (dictionary as { description?: string }).description;
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  const testimonials = t("testimonialSection.testimonials", { returnObjects: true, lng }) as Testimonial[];
 
   if (!Array.isArray(testimonials) || testimonials.length === 0) {
-    return (
-      <section className="py-24 bg-gray-50 text-gray-900">
-        <div className="text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">{t("testimonialSection.header")}</h2>
-          <p className="mt-4 text-lg text-gray-600">{t("testimonialSection.description")}</p>
-          <p className="mt-4 text-lg text-gray-600">No testimonials available.</p>
-        </div>
-      </section>
-    );
+    return null;
   }
+
+  const previous = () => {
+    setCurrentSlide((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const next = () => {
+    setCurrentSlide((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <section className="py-24 bg-gray-50 text-gray-900">
       <header className="text-center mb-12 px-6">
-        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">{t("testimonialSection.header")}</h2>
+        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">{dictionary.header}</h2>
+        {description && <p className="mt-4 text-lg text-gray-600">{description}</p>}
       </header>
 
       <div className="relative max-w-4xl mx-auto px-6">
-        <button onClick={() => setCurrentSlide((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))}>
+        <button
+          type="button"
+          onClick={previous}
+          className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow-md hover:bg-gray-100"
+          aria-label={dictionary.navigation?.previous ?? "Previous testimonial"}
+        >
           <ChevronLeft className="h-6 w-6 text-gray-700" />
         </button>
-        <button onClick={() => setCurrentSlide((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))}>
+        <button
+          type="button"
+          onClick={next}
+          className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow-md hover:bg-gray-100"
+          aria-label={dictionary.navigation?.next ?? "Next testimonial"}
+        >
           <ChevronRight className="h-6 w-6 text-gray-700" />
         </button>
 
@@ -67,13 +72,17 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ lng }) => {
   );
 };
 
-const TestimonialCard: React.FC<Testimonial> = ({ impactPhrase, quote, name, duration }) => (
-  <div className="flex flex-col justify-between h-full text-center lg:text-left">
-    <div className="mb-4 text-lg font-bold text-brand-primary">{impactPhrase}</div>
-    <p className="italic text-gray-700 mb-6 leading-relaxed">“{quote}”</p>
+const TestimonialCard: React.FC<Testimonial> = ({ impactPhrase, quote, name, duration, role }) => (
+  <div className="flex h-full flex-col justify-between text-center lg:text-left">
+    {impactPhrase && <div className="mb-4 text-lg font-semibold text-brand-primary">{impactPhrase}</div>}
+    <p className="mb-6 text-lg italic leading-relaxed text-gray-700">“{quote}”</p>
     <div className="mt-auto text-center lg:text-right">
       <p className="font-semibold text-brand-primary">{name}</p>
-      {duration && <p className="text-sm text-gray-500">{duration}</p>}
+      <div className="text-sm text-gray-500">
+        {role && <span>{role}</span>}
+        {role && duration && <span className="mx-1">•</span>}
+        {duration && <span>{duration}</span>}
+      </div>
     </div>
   </div>
 );
