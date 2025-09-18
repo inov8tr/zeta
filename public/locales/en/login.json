@@ -5,10 +5,13 @@
   "emailPlaceholder": "name@example.com",
   "passwordLabel": "Password",
   "passwordPlaceholder": "Enter your password",
-  "remember": "Keep me signed in",
   "signIn": "Sign in",
   "errorGeneric": "Sign-in failed. Please check your details and try again.",
   "errorRole": "We couldn't determine your role. Please contact the administrator.",
-  "adminRedirect": "Redirecting to the admin dashboard...",
-  "roleRedirect": "Redirecting..."
+  "providers": {
+    "title": "Or continue with",
+    "google": "Continue with Google",
+    "apple": "Continue with Apple",
+    "kakao": "Continue with KakaoTalk"
+  }
 }

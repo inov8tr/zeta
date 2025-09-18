@@ -20,9 +20,15 @@ export async function generateMetadata(): Promise<Metadata> {
   } satisfies Metadata;
 }
 
-export default async function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
   const lng = await resolveLanguage();
   const { login } = getDictionaries(lng);
+  const { error } = await searchParams;
+  const initialError = error === "role" ? login.errorRole : error === "oauth" ? login.errorGeneric : null;
 
   return (
     <main className="bg-white pb-32 pt-28">
@@ -33,7 +39,7 @@ export default async function LoginPage() {
         </div>
 
         <div className="mt-12">
-          <LoginForm dictionary={login} />
+          <LoginForm dictionary={login} initialError={initialError} />
         </div>
       </div>
     </main>
