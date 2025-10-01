@@ -16,9 +16,15 @@ const eslintConfig = [
       curly: "error",
       eqeqeq: ["error", "always", { null: "ignore" }],
       "react/jsx-no-useless-fragment": ["warn", { allowExpressions: true }],
+      // Allow named function declarations to avoid noisy warnings,
+      // while still preferring arrow functions elsewhere.
       "react/function-component-definition": [
         "warn",
-        { namedComponents: "arrow-function", unnamedComponents: "arrow-function" },
+        {
+          namedComponents: "arrow-function",
+          unnamedComponents: "arrow-function",
+          allowDeclarations: true,
+        },
       ],
     },
   },

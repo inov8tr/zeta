@@ -12,7 +12,7 @@ interface HeroProps {
   };
 }
 
-export default function Hero({ dictionary, vennDiagram }: HeroProps) {
+const Hero = ({ dictionary, vennDiagram }: HeroProps) => {
   return (
     <section className="relative w-full overflow-hidden py-12 sm:py-16 lg:py-20 text-white flex items-center">
       <div className="absolute inset-0 w-full h-full">
@@ -52,4 +52,6 @@ export default function Hero({ dictionary, vennDiagram }: HeroProps) {
       </div>
     </section>
   );
-}
+};
+
+export default Hero;

@@ -18,7 +18,7 @@ const iconMap: Partial<Record<PillarIcon, LucideIcon>> = {
   strategy: Target,
 };
 
-export default function CoreApproachSection({ dictionary }: CoreApproachSectionProps) {
+const CoreApproachSection = ({ dictionary }: CoreApproachSectionProps) => {
   const { title, pillars = [] } = dictionary;
 
   return (
@@ -49,4 +49,6 @@ export default function CoreApproachSection({ dictionary }: CoreApproachSectionP
       </div>
     </section>
   );
-}
+};
+
+export default CoreApproachSection;

@@ -24,7 +24,7 @@ const oauthProviders: { key: "google" | "apple" | "kakao"; label: string }[] = [
   { key: "kakao", label: "KakaoTalk" },
 ];
 
-export default function LoginForm({ dictionary, initialError = null }: LoginFormProps) {
+const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -167,4 +167,6 @@ export default function LoginForm({ dictionary, initialError = null }: LoginForm
       </div>
     </div>
   );
-}
+};
+
+export default LoginForm;

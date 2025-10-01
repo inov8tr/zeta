@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Updates and insights from Zeta English Academy.",
 };
 
-export default function BlogPage() {
+const BlogPage = () => {
   return (
     <div className="min-h-screen px-4 py-10 bg-gray-100">
       <div className="max-w-3xl mx-auto pt-20"> {/* Added pt-20 to push content down */}
@@ -18,4 +18,6 @@ export default function BlogPage() {
       </div>
     </div>
   );
-}
+};
+
+export default BlogPage;

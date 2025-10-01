@@ -20,7 +20,7 @@ const FALLBACK: Required<VennDiagramContent> = {
   discussion: "Discussion",
 };
 
-export default function VennDiagram({ dictionary }: VennDiagramProps) {
+const VennDiagram = ({ dictionary }: VennDiagramProps) => {
   const content = { ...FALLBACK, ...(dictionary ?? {}) };
 
   return (
@@ -50,4 +50,6 @@ export default function VennDiagram({ dictionary }: VennDiagramProps) {
       </text>
     </motion.svg>
   );
-}
+};
+
+export default VennDiagram;

@@ -37,7 +37,7 @@ interface Props {
   };
 }
 
-export default function ConsultationServerForm({ dictionary }: Props) {
+const ConsultationServerForm = ({ dictionary }: Props) => {
   const [pending, startTransition] = useTransition();
   const [ok, setOk] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -114,4 +114,6 @@ export default function ConsultationServerForm({ dictionary }: Props) {
       {err && <p className="text-red-700">{dictionary?.form?.error ?? err}</p>}
     </form>
   );
-}
+};
+
+export default ConsultationServerForm;

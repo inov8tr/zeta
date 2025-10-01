@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import type { Database } from "../../../lib/database.types";
 
 const roleRedirectMap: Record<string, string> = {
   admin: "/admin",
@@ -12,8 +13,10 @@ const roleRedirectMap: Record<string, string> = {
 export const dynamic = "force-dynamic";
 
 export default async function OAuthCallbackPage() {
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient({ cookies: () => cookieStore });
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookies(),
+  });
+
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -22,19 +25,19 @@ export default async function OAuthCallbackPage() {
     redirect("/login?error=oauth");
   }
 
-  const { data: profile, error: profileError } = await supabase
+  const { data, error } = await supabase
     .from("profiles")
     .select("role")
     .eq("user_id", session.user.id)
-    .single();
+    .maybeSingle<{ role: string }>(); // narrow result type
 
-  if (profileError) {
-    console.error(profileError);
-    redirect("/login?error=oauth");
+  if (error || !data?.role) {
+    console.error(error || "No role found");
+    redirect("/login?error=role");
   }
 
-  const role = profile?.role?.toLowerCase();
-  const nextPath = role ? roleRedirectMap[role] : null;
+  const role = data.role.toLowerCase();
+  const nextPath = roleRedirectMap[role];
 
   if (!nextPath) {
     redirect("/login?error=role");

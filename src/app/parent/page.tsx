@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ParentPortal() {
+const ParentPortal = () => {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 px-6 text-center">
       <h1 className="text-3xl font-extrabold text-neutral-900">Parent Portal</h1>
@@ -12,4 +12,6 @@ export default function ParentPortal() {
       </Link>
     </main>
   );
-}
+};
+
+export default ParentPortal;

@@ -7,7 +7,7 @@ interface WritingSectionProps {
   dictionary: ProgramDictionary["writing"];
 }
 
-export default function WritingSection({ dictionary }: WritingSectionProps) {
+const WritingSection = ({ dictionary }: WritingSectionProps) => {
   const activityItems = [
     {
       icon: <BookOpen size={32} />,
@@ -43,4 +43,6 @@ export default function WritingSection({ dictionary }: WritingSectionProps) {
       </div>
     </section>
   );
-}
+};
+
+export default WritingSection;

@@ -10,15 +10,9 @@ import AboutTestimonialsSection from "@/components/pages/about/AboutTestimonials
 import CallToActionBanner from "@/components/pages/about/CallToActionBanner";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
 
-interface PageParams {
-  lng?: string;
-}
+type PageParams = { lng?: string };
 
-interface PageProps {
-  params: Promise<PageParams>;
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { about } = getDictionaries(lng);
@@ -29,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   } satisfies Metadata;
 }
 
-export default async function AboutPage({ params }: PageProps) {
+const AboutPage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { about } = getDictionaries(lng);
@@ -47,4 +41,6 @@ export default async function AboutPage({ params }: PageProps) {
       <CallToActionBanner lng={lng} dictionary={about.cta} />
     </main>
   );
-}
+};
+
+export default AboutPage;

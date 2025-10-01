@@ -9,7 +9,7 @@ interface Program {
   href: string;
 }
 
-export default function ProgramCard({ program }: { program: Program }) {
+const ProgramCard = ({ program }: { program: Program }) => {
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all hover:shadow-xl">
       <div className="aspect-h-2 aspect-w-3 overflow-hidden">
@@ -32,4 +32,6 @@ export default function ProgramCard({ program }: { program: Program }) {
       </div>
     </div>
   );
-}
+};
+
+export default ProgramCard;

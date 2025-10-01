@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "dev": "NEXT_NO_TURBOPACK=1 next dev",
-    "lint": "next lint"
+    "lint": "next lint",
+    "apple:secret": "dotenv -e .env.local -- node scripts/mint-apple-client-secret.cjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -33,6 +34,7 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.2.7",
     "@types/webpack": "^5.28.5",
+    "dotenv-cli": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8.5.1",

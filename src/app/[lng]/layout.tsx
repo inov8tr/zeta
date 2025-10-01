@@ -10,7 +10,7 @@ interface LayoutProps {
   }>;
 }
 
-export default async function LanguageLayout({ children, params }: LayoutProps) {
+const LanguageLayout = async ({ children, params }: LayoutProps) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const dictionaries = getDictionaries(lng);
@@ -22,4 +22,6 @@ export default async function LanguageLayout({ children, params }: LayoutProps) 
       <Footer lng={lng} dictionary={dictionaries.common.footer} />
     </div>
   );
-}
+};
+
+export default LanguageLayout;

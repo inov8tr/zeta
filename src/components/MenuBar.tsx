@@ -15,7 +15,7 @@ interface MenuBarProps {
 
 const PRIMARY_LINK_KEYS = ["home", "about", "program", "blog"] as const;
 
-export default function MenuBar({ lng, dictionary }: MenuBarProps) {
+const MenuBar = ({ lng, dictionary }: MenuBarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname() || "/";
@@ -215,4 +215,6 @@ export default function MenuBar({ lng, dictionary }: MenuBarProps) {
       )}
     </nav>
   );
-}
+};
+
+export default MenuBar;

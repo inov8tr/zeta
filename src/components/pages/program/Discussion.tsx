@@ -7,7 +7,7 @@ interface DiscussionSectionProps {
   dictionary: ProgramDictionary["discussion"];
 }
 
-export default function DiscussionSection({ dictionary }: DiscussionSectionProps) {
+const DiscussionSection = ({ dictionary }: DiscussionSectionProps) => {
   const activityItems = [
     {
       icon: <MessageSquare size={32} />,
@@ -43,4 +43,6 @@ export default function DiscussionSection({ dictionary }: DiscussionSectionProps
       </div>
     </section>
   );
-}
+};
+
+export default DiscussionSection;

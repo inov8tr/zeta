@@ -10,7 +10,7 @@ interface ProgramLevelsSectionProps {
   dictionary: HomeDictionary["programLevels"];
 }
 
-export default function ProgramLevelsSection({ lng, dictionary }: ProgramLevelsSectionProps) {
+const ProgramLevelsSection = ({ lng, dictionary }: ProgramLevelsSectionProps) => {
   const { title, intro, levels = [], ctaLabel } = dictionary;
 
   type LevelKey = "lab" | "grammar" | "discussion" | "default";
@@ -132,4 +132,6 @@ export default function ProgramLevelsSection({ lng, dictionary }: ProgramLevelsS
       </div>
     </section>
   );
-}
+};
+
+export default ProgramLevelsSection;

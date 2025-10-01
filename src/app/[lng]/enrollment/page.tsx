@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
 import ConsultationServerForm from "@/components/consultation/ConsultationServerForm";
 
-interface PageParams { lng?: string }
-interface PageProps { params: Promise<PageParams> }
+type PageParams = { lng?: string }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { common } = getDictionaries(lng);
@@ -16,7 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   } satisfies Metadata;
 }
 
-export default async function EnrollmentPage({ params }: PageProps) {
+const EnrollmentPage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { enrollment } = getDictionaries(lng);
@@ -32,4 +31,6 @@ export default async function EnrollmentPage({ params }: PageProps) {
       </section>
     </main>
   );
-}
+};
+
+export default EnrollmentPage;

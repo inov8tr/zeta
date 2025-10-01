@@ -16,7 +16,7 @@ const iconMap: Partial<Record<IconKey, LucideIcon>> = {
   versatile: Sparkles,
 };
 
-export default function MissionSection({ dictionary }: MissionSectionProps) {
+const MissionSection = ({ dictionary }: MissionSectionProps) => {
   const { title, description, highlights = [] } = dictionary;
 
   return (
@@ -48,4 +48,6 @@ export default function MissionSection({ dictionary }: MissionSectionProps) {
       </div>
     </section>
   );
-}
+};
+
+export default MissionSection;

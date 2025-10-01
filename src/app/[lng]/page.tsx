@@ -8,13 +8,9 @@ import type { Metadata } from "next";
 import type { SupportedLanguage } from "@/lib/i18n";
 import { getDictionaries, normalizeLanguage } from "@/lib/i18n";
 
-interface PageProps {
-  params: Promise<{
-    lng?: string;
-  }>;
-}
+type PageParams = { lng?: string };
 
-export default async function HomePage({ params }: PageProps) {
+const HomePage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { home } = getDictionaries(lng);
@@ -29,9 +25,11 @@ export default async function HomePage({ params }: PageProps) {
       <BookAppointmentCTA lng={lng} dictionary={home.callToAction} />
     </main>
   );
-}
+};
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export default HomePage;
+
+export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { home } = getDictionaries(lng);

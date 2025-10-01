@@ -24,17 +24,7 @@ interface ProgramSectionCardProps {
   contentSections?: ContentSection[];
 }
 
-export default function ProgramSectionCard({
-  id,
-  title,
-  summary,
-  highlights = [],
-  imageSrc,
-  imageAlt,
-  readMoreLabel,
-  seeLessLabel,
-  contentSections = [],
-}: ProgramSectionCardProps) {
+const ProgramSectionCard = ({ id, title, summary, highlights = [], imageSrc, imageAlt, readMoreLabel, seeLessLabel, contentSections = [] }: ProgramSectionCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const hasMoreContent = contentSections.length > 0;
@@ -116,4 +106,6 @@ export default function ProgramSectionCard({
       </div>
     </section>
   );
-}
+};
+
+export default ProgramSectionCard;

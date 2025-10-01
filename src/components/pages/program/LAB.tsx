@@ -20,7 +20,7 @@ interface LABSectionProps {
   dictionary: ProgramDictionary["lab"];
 }
 
-export default function LABSection({ dictionary }: LABSectionProps) {
+const LABSection = ({ dictionary }: LABSectionProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -161,4 +161,6 @@ export default function LABSection({ dictionary }: LABSectionProps) {
       </div>
     </section>
   );
-}
+};
+
+export default LABSection;

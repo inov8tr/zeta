@@ -6,15 +6,9 @@ import BookAppointmentCTA from "@/components/pages/home/BookAppointmentCTA";
 import type { Metadata } from "next";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
 
-interface PageParams {
-  lng?: string;
-}
+type PageParams = { lng?: string };
 
-export default async function ProgramPage({
-  params,
-}: {
-  params: Promise<PageParams>;
-}) {
+const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { program, home } = getDictionaries(lng);
@@ -127,7 +121,9 @@ export default async function ProgramPage({
       </div>
     </main>
   );
-}
+};
+
+export default ProgramPage;
 
 export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
   const { lng: rawLng } = await params;

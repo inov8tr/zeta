@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function StudentPortal() {
+const StudentPortal = () => {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 px-6 text-center">
       <h1 className="text-3xl font-extrabold text-neutral-900">Student Portal</h1>
@@ -12,4 +12,6 @@ export default function StudentPortal() {
       </Link>
     </main>
   );
-}
+};
+
+export default StudentPortal;

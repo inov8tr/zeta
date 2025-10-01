@@ -16,7 +16,7 @@ const quickLinkPaths = {
 
 type QuickLinkKey = keyof typeof quickLinkPaths;
 
-export default function Footer({ lng, dictionary }: FooterProps) {
+const Footer = ({ lng, dictionary }: FooterProps) => {
   const {
     contactHeading,
     phoneLabel,
@@ -133,4 +133,6 @@ export default function Footer({ lng, dictionary }: FooterProps) {
       </p>
     </footer>
   );
-}
+};
+
+export default Footer;

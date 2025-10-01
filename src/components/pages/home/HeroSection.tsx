@@ -11,7 +11,7 @@ interface HeroProps {
 const PRIMARY_CTA_PATH = "/enrollment";
 const SECONDARY_CTA_PATH = "/program";
 
-export default function HeroSection({ lng, dictionary }: HeroProps) {
+const HeroSection = ({ lng, dictionary }: HeroProps) => {
   const { headline, tagline, description, primaryCta, secondaryCta, imageAlt } = dictionary;
 
   return (
@@ -72,4 +72,6 @@ export default function HeroSection({ lng, dictionary }: HeroProps) {
       </div>
     </section>
   );
-}
+};
+
+export default HeroSection;

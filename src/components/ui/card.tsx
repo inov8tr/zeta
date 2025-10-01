@@ -9,7 +9,7 @@ interface CardProps {
 }
 
 // Card component definition
-export function Card({ children, className, onClick }: CardProps) {
+export const Card = ({ children, className, onClick }: CardProps) => {
   return (
     <div
       className={`rounded-lg shadow-md border border-gray-200 bg-white overflow-hidden ${className}`}
@@ -18,7 +18,7 @@ export function Card({ children, className, onClick }: CardProps) {
       {children}
     </div>
   );
-}
+};
 
 // Define the prop types for CardContent
 interface CardContentProps {
@@ -27,9 +27,9 @@ interface CardContentProps {
 }
 
 // CardContent component definition
-export function CardContent({ children, className }: CardContentProps) {
+export const CardContent = ({ children, className }: CardContentProps) => {
   return <div className={`p-6 ${className}`}>{children}</div>;
-}
+};
 
 // Define prop types for CardHeader (optional component)
 interface CardHeaderProps {
@@ -39,14 +39,14 @@ interface CardHeaderProps {
 }
 
 // CardHeader component definition
-export function CardHeader({ title, subtitle, className }: CardHeaderProps) {
+export const CardHeader = ({ title, subtitle, className }: CardHeaderProps) => {
   return (
     <div className={`p-4 border-b border-gray-100 ${className}`}>
       <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
       {subtitle && <p className="text-sm text-gray-600 mt-1">{subtitle}</p>}
     </div>
   );
-}
+};
 
 // Export all components for easy imports
 export default Card;

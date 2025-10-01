@@ -4,15 +4,9 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
 
-interface PageParams {
-  lng?: string;
-}
+type PageParams = { lng?: string };
 
-export default async function ProgramOverviewPage({
-  params,
-}: {
-  params: Promise<PageParams>;
-}) {
+const ProgramOverviewPage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { programOverview } = getDictionaries(lng);
@@ -190,7 +184,9 @@ export default async function ProgramOverviewPage({
       </div>
     </main>
   );
-}
+};
+
+export default ProgramOverviewPage;
 
 export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
   const { lng: rawLng } = await params;

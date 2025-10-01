@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Zeta application",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-white text-neutral-950">
@@ -15,4 +15,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

@@ -15,7 +15,7 @@ const QUICK_NAV_ITEMS = [
   { key: "writing", href: "#writing" },
 ] as const satisfies readonly { key: keyof ProgramDictionary["quickNav"]; href: string }[];
 
-export default function QuickNav({ dictionary }: QuickNavProps) {
+const QuickNav = ({ dictionary }: QuickNavProps) => {
   return (
     <section className="w-full bg-white z-10 shadow-md">
       <div className="bg-white py-10 sm:py-12 lg:py-14">
@@ -53,4 +53,6 @@ export default function QuickNav({ dictionary }: QuickNavProps) {
       </div>
     </section>
   );
-}
+};
+
+export default QuickNav;

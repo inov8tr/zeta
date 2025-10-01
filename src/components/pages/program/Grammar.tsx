@@ -7,7 +7,7 @@ interface GrammarSectionProps {
   dictionary: ProgramDictionary["grammar"];
 }
 
-export default function GrammarSection({ dictionary }: GrammarSectionProps) {
+const GrammarSection = ({ dictionary }: GrammarSectionProps) => {
   const levelItems = [
     {
       icon: <BookOpen size={32} />,
@@ -43,4 +43,6 @@ export default function GrammarSection({ dictionary }: GrammarSectionProps) {
       </div>
     </section>
   );
-}
+};
+
+export default GrammarSection;

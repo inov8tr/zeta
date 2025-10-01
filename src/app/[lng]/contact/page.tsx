@@ -3,10 +3,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
 
-interface PageParams { lng?: string }
-interface PageProps { params: Promise<PageParams> }
+type PageParams = { lng?: string }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { common } = getDictionaries(lng);
@@ -17,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   } satisfies Metadata;
 }
 
-export default async function ContactPage({ params }: PageProps) {
+const ContactPage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { common } = getDictionaries(lng);
@@ -69,4 +68,6 @@ export default async function ContactPage({ params }: PageProps) {
       </section>
     </main>
   );
-}
+};
+
+export default ContactPage;

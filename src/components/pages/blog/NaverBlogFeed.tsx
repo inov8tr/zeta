@@ -11,7 +11,7 @@ interface BlogPost {
   image?: string;
 }
 
-export default function NaverBlogFeed() {
+const NaverBlogFeed = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -70,4 +70,6 @@ export default function NaverBlogFeed() {
       )}
     </div>
   );
-}
+};
+
+export default NaverBlogFeed;
