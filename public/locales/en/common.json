@@ -10,13 +10,13 @@
   "footer": {
     "contactHeading": "Contact",
     "phoneLabel": "Phone",
-    "phoneValue": "+82-10-1234-5678",
+    "phoneValue": "939-2278",
     "emailLabel": "Email",
-    "emailValue": "hello@zetaenglish.co.kr",
+    "emailValue": "info@zeta-eng.com",
     "kakaoLabel": "KakaoTalk",
-    "kakaoValue": "@zetaenglish",
+    "kakaoValue": "",
     "locationHeading": "Visit Us",
-    "address": "123 Seocho-daero, Seocho-gu, Seoul",
+    "address": "제타영어학원, 4층, 589 Deongneung-ro, Nowon-gu, Seoul",
     "quickLinksHeading": "Quick Links",
     "quickLinks": {
       "home": "Home",
@@ -26,12 +26,12 @@
     },
     "socialHeading": "Follow Us",
     "social": {
-      "instagramLabel": "Instagram",
-      "instagramUrl": "#",
-      "youtubeLabel": "YouTube",
-      "youtubeUrl": "#",
+      "instagramLabel": "zeta_eng",
+      "instagramUrl": "https://www.instagram.com/zeta_eng",
+      "youtubeLabel": "@zeta_english_academy",
+      "youtubeUrl": "https://www.youtube.com/@zeta_english_academy",
       "naverLabel": "Naver Blog",
-      "naverUrl": "#"
+      "naverUrl": "https://blog.naver.com/zeta-eng"
     },
     "rightsReserved": "All rights reserved."
   },

@@ -35,6 +35,9 @@ const Footer = ({ lng, dictionary }: FooterProps) => {
   } = dictionary;
 
   const basePath = `/${lng}`;
+  const googleMapsUrl = address
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+    : undefined;
 
   const mappedQuickLinks = quickLinks
     ? (Object.entries(quickLinks) as Array<[QuickLinkKey, string]>).filter(([, label]) => Boolean(label))
@@ -82,7 +85,18 @@ const Footer = ({ lng, dictionary }: FooterProps) => {
             <p className="text-sm text-gray-300">
               <span className="flex items-start gap-3">
                 <MapPin className="mt-1 h-4 w-4 text-brand-accent" />
-                <span>{address}</span>
+                {googleMapsUrl ? (
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white"
+                  >
+                    {address}
+                  </a>
+                ) : (
+                  <span>{address}</span>
+                )}
               </span>
             </p>
           )}
@@ -108,21 +122,33 @@ const Footer = ({ lng, dictionary }: FooterProps) => {
           <h4 className="text-lg font-semibold">{socialHeading}</h4>
           <div className="flex flex-wrap gap-4 text-gray-300">
             {social?.instagramUrl && (
-              <Link href={social.instagramUrl} className="flex items-center gap-2 hover:text-white">
-                <Instagram className="h-5 w-5" />
-                <span>{social.instagramLabel}</span>
+              <Link
+                href={social.instagramUrl}
+                className="flex items-center hover:text-white"
+                aria-label={social.instagramLabel}
+              >
+                <Instagram className="h-5 w-5" aria-hidden="true" />
+                <span className="sr-only">{social.instagramLabel}</span>
               </Link>
             )}
             {social?.youtubeUrl && (
-              <Link href={social.youtubeUrl} className="flex items-center gap-2 hover:text-white">
-                <Youtube className="h-5 w-5" />
-                <span>{social.youtubeLabel}</span>
+              <Link
+                href={social.youtubeUrl}
+                className="flex items-center hover:text-white"
+                aria-label={social.youtubeLabel}
+              >
+                <Youtube className="h-5 w-5" aria-hidden="true" />
+                <span className="sr-only">{social.youtubeLabel}</span>
               </Link>
             )}
             {social?.naverUrl && (
-              <Link href={social.naverUrl} className="flex items-center gap-2 hover:text-white">
-                <PenSquare className="h-5 w-5" />
-                <span>{social.naverLabel}</span>
+              <Link
+                href={social.naverUrl}
+                className="flex items-center hover:text-white"
+                aria-label={social.naverLabel}
+              >
+                <PenSquare className="h-5 w-5" aria-hidden="true" />
+                <span className="sr-only">{social.naverLabel}</span>
               </Link>
             )}
           </div>
