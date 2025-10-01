@@ -19,9 +19,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const variantStyles = {
-      default: "bg-brand-accent text-text-primary hover:bg-brand-accent-dark",
-      outline: "border border-neutral-lightest text-neutral-lightest hover:bg-neutral-lightest hover:text-brand-primary",
-      link: "text-brand-primary underline hover:text-brand-primary-dark",
+      default:
+        "bg-brand-accent text-neutral-900 hover:bg-brand-accent-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent-dark",
+      outline:
+        "border border-neutral-300 text-neutral-800 hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500",
+      link:
+        "text-brand-primary underline hover:text-brand-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary",
     };
 
     if (asChild && React.isValidElement(children)) {

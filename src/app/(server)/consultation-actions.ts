@@ -120,8 +120,7 @@ export async function updateConsultationStatusAction(formData: FormData): Promis
     if (!id || !["pending", "confirmed", "cancelled"].includes(status)) {
       throw new Error("Invalid input");
     }
-    const cookieStore = cookies();
-    const supabase = createServerActionClient({ cookies: () => cookieStore });
+    const supabase = createServerActionClient({ cookies: () => cookies() });
     const {
       data: { session },
     } = await supabase.auth.getSession();

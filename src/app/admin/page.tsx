@@ -27,8 +27,7 @@ export default async function AdminDashboard({
 }: {
   searchParams: Promise<{ status?: string }>;
 }) {
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient({ cookies: () => cookieStore });
+  const supabase = createServerComponentClient({ cookies: () => cookies() });
   const {
     data: { session },
   } = await supabase.auth.getSession();
