@@ -25,11 +25,11 @@ export async function generateMetadata() {
   });
 }
 
-export default async function LoginPage({
+const LoginPage = async ({
   searchParams,
 }: {
   searchParams: Promise<{ error?: string }>;
-}) {
+}) => {
   const lng = await resolveLanguage();
   const { login } = getDictionaries(lng);
   const { error } = await searchParams;
@@ -49,4 +49,6 @@ export default async function LoginPage({
       </div>
     </main>
   );
-}
+};
+
+export default LoginPage;

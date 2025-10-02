@@ -34,6 +34,12 @@ Restart the dev server after updating environment variables so the changes take 
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Monitoring & SEO Ops
+
+- Use `npm run analyze` (or `yarn analyze`) to open the built-in bundle analyzer and keep the shared client chunk under control.
+- Add a lightweight error monitor such as Vercel Analytics, Sentry, or LogRocket to catch runtime issues post-release.
+- Schedule periodic pings to `https://www.zeta-eng.co.kr/sitemap.xml` (or resubmit in Search Console) whenever new content launches so crawlers pick up updates fast.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

@@ -1,22 +1,4 @@
 {
-  "/auth/callback/route": "app/auth/callback/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/robots.txt/route": "app/robots.txt/route.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/api/naver-blog/route": "app/api/naver-blog/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/parent/page": "app/parent/page.js",
-  "/student/page": "app/student/page.js",
-  "/teacher/page": "app/teacher/page.js",
-  "/oauth/callback/page": "app/oauth/callback/page.js",
-  "/[lng]/blog/page": "app/[lng]/blog/page.js",
-  "/[lng]/contact/page": "app/[lng]/contact/page.js",
-  "/[lng]/page": "app/[lng]/page.js",
-  "/[lng]/enrollment/page": "app/[lng]/enrollment/page.js",
-  "/[lng]/program-overview/page": "app/[lng]/program-overview/page.js",
-  "/[lng]/program/page": "app/[lng]/program/page.js",
-  "/[lng]/about/page": "app/[lng]/about/page.js"
+  "/[lng]/page": "app/[lng]/page.js"
 }

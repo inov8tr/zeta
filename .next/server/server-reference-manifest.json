@@ -1,1 +1,5 @@
-{"node":{"40841ef201ec899a7631f43455748aeefce8b28fcb":{"workers":{"app/admin/page":{"moduleId":"49966","async":false},"app/[lng]/enrollment/page":{"moduleId":"14328","async":false}},"layer":{"app/admin/page":"rsc","app/[lng]/enrollment/page":"action-browser"},"filename":"app/(server)/consultation-actions.ts","exportedName":"bookConsultation"},"40bdd09ee62ff9b4ce33c393558e002e95518ab9b1":{"workers":{"app/admin/page":{"moduleId":"49966","async":false},"app/[lng]/enrollment/page":{"moduleId":"14328","async":false}},"layer":{"app/admin/page":"rsc","app/[lng]/enrollment/page":"action-browser"},"filename":"app/(server)/consultation-actions.ts","exportedName":"updateConsultationStatusAction"}},"edge":{},"encryptionKey":"AERuTTGmIUhhuKL0oqqDdoouSiyCsUCFvJYfMxrmW5E="}
+{
+  "node": {},
+  "edge": {},
+  "encryptionKey": "m2yx2dROOoKPJnIdLGNFFG2D3kIS7K6T9n5Lb1i1xUk="
+}

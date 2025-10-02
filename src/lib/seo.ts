@@ -5,7 +5,7 @@ const SITE_NAME = "Zeta English Academy";
 const FALLBACK_URL = "https://www.zeta-eng.co.kr";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? FALLBACK_URL).replace(/\/$/, "");
-export const DEFAULT_OG_IMAGE = "/images/pages/home/Strat.png";
+export const DEFAULT_OG_IMAGE = "/opengraph-image";
 
 const DEFAULT_KEYWORDS = [
   "English academy Seoul",

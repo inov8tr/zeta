@@ -9,7 +9,8 @@
     "start": "next start",
     "dev": "NEXT_NO_TURBOPACK=1 next dev",
     "lint": "next lint",
-    "apple:secret": "dotenv -e .env.local -- node scripts/mint-apple-client-secret.cjs"
+    "apple:secret": "dotenv -e .env.local -- node scripts/mint-apple-client-secret.cjs",
+    "analyze": "next build --analyze"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",

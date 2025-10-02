@@ -22,11 +22,11 @@ interface ConsultationRow {
 
 const STATUS_ORDER: Status[] = ["pending", "confirmed", "cancelled"];
 
-export default async function AdminDashboard({
+const AdminDashboard = async ({
   searchParams,
 }: {
   searchParams: Promise<{ status?: string }>;
-}) {
+}) => {
   const supabase = createServerComponentClient({ cookies: () => cookies() });
   const {
     data: { session },
@@ -102,9 +102,9 @@ export default async function AdminDashboard({
       </section>
     </main>
   );
-}
+};
 
-function FilterLink({ label, status, active }: { label: string; status?: Status; active: boolean }) {
+const FilterLink = ({ label, status, active }: { label: string; status?: Status; active: boolean }) => {
   const params = new URLSearchParams();
   if (status) {
     params.set("status", status);
@@ -123,9 +123,9 @@ function FilterLink({ label, status, active }: { label: string; status?: Status;
       {label.charAt(0).toUpperCase() + label.slice(1)}
     </a>
   );
-}
+};
 
-function ConsultationCard({ row }: { row: ConsultationRow }) {
+const ConsultationCard = ({ row }: { row: ConsultationRow }) => {
   const statusStyles: Record<Status, string> = {
     pending: "bg-amber-100 text-amber-800",
     confirmed: "bg-emerald-100 text-emerald-800",
@@ -168,9 +168,9 @@ function ConsultationCard({ row }: { row: ConsultationRow }) {
       <StatusActions id={row.id} currentStatus={row.status} />
     </article>
   );
-}
+};
 
-function StatusActions({ id, currentStatus }: { id: string; currentStatus: Status }) {
+const StatusActions = ({ id, currentStatus }: { id: string; currentStatus: Status }) => {
   const actions: { label: string; status: Status; style: string }[] = [
     { label: "Mark Pending", status: "pending", style: "border border-amber-300 text-amber-700 hover:bg-amber-50" },
     { label: "Confirm", status: "confirmed", style: "bg-emerald-600 text-white hover:bg-emerald-700" },
@@ -194,4 +194,6 @@ function StatusActions({ id, currentStatus }: { id: string; currentStatus: Statu
       ))}
     </div>
   );
-}
+};
+
+export default AdminDashboard;
