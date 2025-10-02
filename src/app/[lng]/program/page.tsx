@@ -3,8 +3,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import ProgramSectionCard from "@/components/pages/program/ProgramSectionCard";
 import BookAppointmentCTA from "@/components/pages/home/BookAppointmentCTA";
-import type { Metadata } from "next";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
+import { buildLocalizedMetadata } from "@/lib/seo";
 
 type PageParams = { lng?: string };
 
@@ -125,11 +125,25 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
 
 export default ProgramPage;
 
-export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<PageParams> }) {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
-  const title = "Our Program | Zeta English Academy";
   const { program } = getDictionaries(lng);
   const description = program?.hero?.description ?? "Explore LAB, Grammar, and Discussion classes at Zeta.";
-  return { title, description } satisfies Metadata;
+  const keywords = [
+    program?.lab?.title,
+    program?.discussion?.title,
+    program?.grammar?.title,
+    program?.writing?.title,
+  ].filter((keyword): keyword is string => Boolean(keyword));
+
+  return buildLocalizedMetadata({
+    lng,
+    path: "/program",
+    title: program?.hero?.title ?? "Our Program",
+    description,
+    keywords,
+    image: "/images/pages/program/SystemBG.png",
+    imageAlt: program?.hero?.backgroundAlt ?? "Zeta English Academy program overview",
+  });
 }

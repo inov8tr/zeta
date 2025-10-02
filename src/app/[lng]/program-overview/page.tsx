@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
+import { buildLocalizedMetadata } from "@/lib/seo";
 
 type PageParams = { lng?: string };
 
@@ -188,13 +188,26 @@ const ProgramOverviewPage = async ({ params }: { params: Promise<PageParams> }) 
 
 export default ProgramOverviewPage;
 
-export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<PageParams> }) {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { programOverview } = getDictionaries(lng);
-  const title = programOverview?.hero?.title
-    ? `${programOverview.hero.title} | Zeta`
-    : "Program Overview | Zeta";
-  const description = programOverview?.hero?.description ?? "A concise overview of Zeta's LAB, Grammar, and Discussion classes.";
-  return { title, description } satisfies Metadata;
+  const title = programOverview?.hero?.title ?? "Program Overview";
+  const description =
+    programOverview?.hero?.description ?? "A concise overview of Zeta's LAB, Grammar, and Discussion classes.";
+  const keywords = [
+    programOverview?.sections?.lab?.title,
+    programOverview?.sections?.grammar?.title,
+    programOverview?.sections?.discussion?.title,
+  ].filter((keyword): keyword is string => Boolean(keyword));
+
+  return buildLocalizedMetadata({
+    lng,
+    path: "/program-overview",
+    title,
+    description,
+    keywords,
+    image: "/images/BookR.png",
+    imageAlt: programOverview?.hero?.imageAlt ?? "Program overview illustration",
+  });
 }

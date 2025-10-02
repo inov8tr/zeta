@@ -1,7 +1,7 @@
 import { cookies, headers } from "next/headers";
-import type { Metadata } from "next";
 import LoginForm from "@/components/auth/LoginForm";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
+import { buildBasicMetadata } from "@/lib/seo";
 
 async function resolveLanguage(): Promise<SupportedLanguage> {
   const cookieStore = await cookies();
@@ -11,13 +11,18 @@ async function resolveLanguage(): Promise<SupportedLanguage> {
   return normalizeLanguage(cookieLang ?? acceptLanguage ?? "en");
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata() {
   const lng = await resolveLanguage();
   const { login } = getDictionaries(lng);
-  return {
+  return buildBasicMetadata({
+    path: "/login",
     title: login.title,
     description: login.description,
-  } satisfies Metadata;
+    robots: {
+      index: false,
+      follow: false,
+    },
+  });
 }
 
 export default async function LoginPage({

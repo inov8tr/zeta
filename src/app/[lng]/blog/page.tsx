@@ -1,10 +1,23 @@
-import type { Metadata } from "next";
 import NaverBlogFeed from "@/components/pages/blog/NaverBlogFeed";
+import { normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
+import { buildLocalizedMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog | Zeta English Academy",
-  description: "Updates and insights from Zeta English Academy.",
-};
+type PageParams = { lng?: string };
+
+export async function generateMetadata({ params }: { params: Promise<PageParams> }) {
+  const { lng: rawLng } = await params;
+  const lng: SupportedLanguage = normalizeLanguage(rawLng);
+
+  return buildLocalizedMetadata({
+    lng,
+    path: "/blog",
+    title: "Blog",
+    description: "Updates and insights from Zeta English Academy.",
+    keywords: ["blog", "updates", "English education"],
+    image: "/images/pages/home/Strat.png",
+    imageAlt: "Zeta English Academy blog",
+  });
+}
 
 const BlogPage = () => {
   return (

@@ -1,19 +1,28 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
+import { buildLocalizedMetadata } from "@/lib/seo";
 
-type PageParams = { lng?: string }
+type PageParams = { lng?: string };
 
-export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<PageParams> }) {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { common } = getDictionaries(lng);
   const phone = common.footer?.phoneValue ?? "";
-  return {
-    title: "Contact | Zeta English Academy",
-    description: `Contact Zeta English Academy. Call ${phone}, email us, or visit our academy in Seoul.`,
-  } satisfies Metadata;
+  const description = phone
+    ? `Contact Zeta English Academy. Call ${phone}, email us, or visit our academy in Seoul.`
+    : "Contact Zeta English Academy in Seoul for consultations, visits, or support.";
+
+  return buildLocalizedMetadata({
+    lng,
+    path: "/contact",
+    title: "Contact",
+    description,
+    keywords: ["contact", "visit", "consultation"],
+    image: "/images/ZetaLogo.svg",
+    imageAlt: "Zeta English Academy contact logo",
+  });
 }
 
 const ContactPage = async ({ params }: { params: Promise<PageParams> }) => {

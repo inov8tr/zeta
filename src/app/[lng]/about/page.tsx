@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import AboutHeroSection from "@/components/pages/about/AboutHeroSection";
 import MissionBlock from "@/components/pages/about/MissionBlock";
 import PhilosophyBlock from "@/components/pages/about/PhilosophyBlock";
@@ -9,18 +8,31 @@ import WhatMakesUsDifferent from "@/components/pages/about/WhatMakesUsDifferent"
 import AboutTestimonialsSection from "@/components/pages/about/AboutTestimonialsSection";
 import CallToActionBanner from "@/components/pages/about/CallToActionBanner";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
+import { buildLocalizedMetadata } from "@/lib/seo";
 
 type PageParams = { lng?: string };
 
-export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<PageParams> }) {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { about } = getDictionaries(lng);
 
-  return {
-    title: about.metadata?.title,
-    description: about.metadata?.description,
-  } satisfies Metadata;
+  const keywords = Array.isArray(about.differentiators?.items)
+    ? about.differentiators.items
+    : undefined;
+
+  return buildLocalizedMetadata({
+    lng,
+    path: "/about",
+    title: about.metadata?.title ?? "About Zeta English Academy",
+    description:
+      about.metadata?.description ??
+      "Learn about Zeta English Academy's mission, levels, and educational philosophy.",
+    keywords,
+    image: "/images/pages/home/SSA.svg",
+    imageAlt: about.hero?.title ?? "About Zeta English Academy",
+    useTitleTemplate: about.metadata?.title ? false : undefined,
+  });
 }
 
 const AboutPage = async ({ params }: { params: Promise<PageParams> }) => {
