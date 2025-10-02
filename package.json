@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/validate-env.mjs",
+    "prebuild": "node scripts/validate-env.mjs",
     "build": "next build",
     "start": "next start",
     "dev": "NEXT_NO_TURBOPACK=1 next dev",

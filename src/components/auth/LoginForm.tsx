@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { LoginDictionary } from "@/lib/i18n";
-import { supabase } from "@/lib/supabaseClient";
 import { Button } from "@/components/ui/Button";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 interface LoginFormProps {
   dictionary: LoginDictionary;
@@ -30,6 +30,13 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(initialError);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const supabase = useMemo(() => {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      console.warn("Supabase is not configured.");
+      return null;
+    }
+    return createClientComponentClient();
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -91,7 +98,12 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
       return;
     }
 
-    const redirectTo = typeof window !== "undefined" ? `${window.location.origin}/oauth/callback` : undefined;
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    const redirectTo = siteUrl
+      ? `${siteUrl}/auth/callback`
+      : typeof window !== "undefined"
+        ? `${window.location.origin}/auth/callback`
+        : undefined;
     const { error: signInError } = await supabase.auth.signInWithOAuth({
       provider,
       options: {

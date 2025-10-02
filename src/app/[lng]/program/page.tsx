@@ -21,7 +21,7 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
       highlights: Object.values(program.lab.activities ?? {}).map(
         (activity: { title: string; description: string }) => `${activity.title}: ${activity.description}`
       ),
-      imageSrc: "/images/pages/home/SA.svg",
+      imageSrc: "/images/pages/home/Strat.png",
       imageAlt: program.lab.activities?.reading?.title ?? program.lab.title,
       readMoreLabel: program.lab.readMore,
       seeLessLabel: program.lab.seeLess,
@@ -34,7 +34,7 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
       highlights: Object.entries(program.discussion.benefits ?? {})
         .filter(([key]) => key !== "title")
         .map(([, benefit]) => benefit as string),
-      imageSrc: "/images/pages/home/Strat.png",
+      imageSrc: "/images/BookR.png",
       imageAlt: program.discussion.title,
       readMoreLabel: program.discussion.readMore,
       seeLessLabel: program.discussion.seeLess,
@@ -101,7 +101,7 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
 
           <div className="relative mx-auto h-72 w-full max-w-sm overflow-hidden rounded-3xl bg-white/80 shadow-lg backdrop-blur">
             <Image
-              src="/images/ZetaLogo.svg"
+              src="/images/pages/home/SA.svg"
               alt="Zeta English Academy"
               fill
               className="object-contain p-8"

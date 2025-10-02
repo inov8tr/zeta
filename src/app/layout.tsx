@@ -6,6 +6,9 @@ import "../styles/globals.css";
 export const metadata: Metadata = {
   title: "Zeta",
   description: "Zeta application",
+  icons: {
+    icon: "/images/ZetaLogo.svg",
+  },
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
