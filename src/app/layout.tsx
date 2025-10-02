@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { ReactNode } from "react";
 import "../styles/globals.css";
 
@@ -12,6 +13,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-white text-neutral-950">
         {children}
+        <Analytics />
       </body>
     </html>
   );

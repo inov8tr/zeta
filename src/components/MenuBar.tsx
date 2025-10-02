@@ -28,6 +28,7 @@ const MenuBar = ({ lng, dictionary }: MenuBarProps) => {
   }, [pathname]);
 
   const basePath = `/${lng}`;
+  const academyName = lng === "ko" ? "제타영어학원" : "Zeta English Academy";
 
   const mappedLinks = PRIMARY_LINK_KEYS.map((key) => {
     const hrefSuffix =
@@ -65,7 +66,11 @@ const MenuBar = ({ lng, dictionary }: MenuBarProps) => {
       aria-label="Primary navigation"
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
-        <Link href={`/${lng}`} className="flex items-center" aria-label="Zeta English Academy home">
+        <Link
+          href={`/${lng}`}
+          className="flex items-center gap-3"
+          aria-label={lng === "ko" ? "제타영어학원 홈" : "Zeta English Academy home"}
+        >
           <Image
             src="/images/ZetaLogo.svg"
             alt="Zeta English Academy Logo"
@@ -74,6 +79,7 @@ const MenuBar = ({ lng, dictionary }: MenuBarProps) => {
             priority
             className="h-11 w-auto object-contain"
           />
+          <span className="text-sm font-semibold text-gray-900">{academyName}</span>
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
