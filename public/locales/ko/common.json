@@ -35,7 +35,32 @@
         "naverLabel": "네이버 블로그",
         "naverUrl": "https://blog.naver.com/zeta-eng"
       },
-      "rightsReserved": "모든 권리를 보유하고 있습니다."
+      "rightsReserved": "모든 권리를 보유하고 있습니다.",
+      "approvedResources": {
+        "heading": "인증된 자료",
+        "links": [
+          {
+            "label": "British Council 활동 모음",
+            "href": "https://learnenglish.britishcouncil.org/vocabulary/vocabulary-games"
+          },
+          {
+            "label": "Practice TOEFL",
+            "href": "https://etest.chosun.com/"
+          },
+          {
+            "label": "ReadTheory — 리딩 연습",
+            "href": "https://readtheory.org/"
+          },
+          {
+            "label": "Grammarly 블로그 — 인사이트",
+            "href": "https://www.grammarly.com/blog/"
+          },
+          {
+            "label": "CEFR",
+            "href": "https://www.coe.int/en/web/common-european-framework-reference-languages"
+          }
+        ]
+      }
     },
     "language": {
       "en": "영어",

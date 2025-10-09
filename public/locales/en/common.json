@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "About",
     "program": "Our Program",
+    "search": "Search",
     "blog": "Blog",
     "bookClass": "Book a Consultation",
     "login": "Login"
@@ -34,7 +35,32 @@
       "naverLabel": "Naver Blog",
       "naverUrl": "https://blog.naver.com/zeta-eng"
     },
-    "rightsReserved": "All rights reserved."
+    "rightsReserved": "All rights reserved.",
+    "approvedResources": {
+      "heading": "Approved Resources",
+      "links": [
+        {
+          "label": "Activities by British Council",
+          "href": "https://learnenglish.britishcouncil.org/vocabulary/vocabulary-games"
+        },
+        {
+          "label": "Practice TOEFL",
+          "href": "https://etest.chosun.com/"
+        },
+        {
+          "label": "ReadTheory — Reading Practice",
+          "href": "https://readtheory.org/"
+        },
+        {
+          "label": "Grammarly Blog — Insights",
+          "href": "https://www.grammarly.com/blog/"
+        },
+        {
+          "label": "CEFR",
+          "href": "https://www.coe.int/en/web/common-european-framework-reference-languages"
+        }
+      ]
+    }
   },
   "language": {
     "en": "English",

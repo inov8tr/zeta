@@ -1,32 +1,5 @@
 {
-  "node": {
-    "401ac4a8ebb8a980d31775c6e8f429ea5e303869b3": {
-      "workers": {
-        "app/[lng]/enrollment/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fworkspaces%2Fzeta%2Fsrc%2Fapp%2F(server)%2Fconsultation-actions.ts%22%2C%5B%7B%22id%22%3A%22401ac4a8ebb8a980d31775c6e8f429ea5e303869b3%22%2C%22exportedName%22%3A%22updateConsultationStatusAction%22%2C%22filename%22%3A%22app%2F(server)%2Fconsultation-actions.ts%22%7D%2C%7B%22id%22%3A%22402ad504334d8ee646788ce5b911ef7bf979083c65%22%2C%22exportedName%22%3A%22bookConsultation%22%2C%22filename%22%3A%22app%2F(server)%2Fconsultation-actions.ts%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/[lng]/enrollment/page": "action-browser"
-      },
-      "filename": "app/(server)/consultation-actions.ts",
-      "exportedName": "updateConsultationStatusAction"
-    },
-    "402ad504334d8ee646788ce5b911ef7bf979083c65": {
-      "workers": {
-        "app/[lng]/enrollment/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fworkspaces%2Fzeta%2Fsrc%2Fapp%2F(server)%2Fconsultation-actions.ts%22%2C%5B%7B%22id%22%3A%22401ac4a8ebb8a980d31775c6e8f429ea5e303869b3%22%2C%22exportedName%22%3A%22updateConsultationStatusAction%22%2C%22filename%22%3A%22app%2F(server)%2Fconsultation-actions.ts%22%7D%2C%7B%22id%22%3A%22402ad504334d8ee646788ce5b911ef7bf979083c65%22%2C%22exportedName%22%3A%22bookConsultation%22%2C%22filename%22%3A%22app%2F(server)%2Fconsultation-actions.ts%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/[lng]/enrollment/page": "action-browser"
-      },
-      "filename": "app/(server)/consultation-actions.ts",
-      "exportedName": "bookConsultation"
-    }
-  },
+  "node": {},
   "edge": {},
-  "encryptionKey": "HN9ZatKoB86KGMxWlJSdRImFonVIFLSAzmGw2c8wpJQ="
+  "encryptionKey": "/1rdfxE93/KqUzYKRZS9F8VG3fRh1dTqCs+BTKAW9xY="
 }

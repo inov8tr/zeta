@@ -1,7 +1,3 @@
 {
-  "/api/naver-blog/route": "app/api/naver-blog/route.js",
-  "/[lng]/enrollment/page": "app/[lng]/enrollment/page.js",
-  "/[lng]/page": "app/[lng]/page.js",
-  "/[lng]/about/page": "app/[lng]/about/page.js",
-  "/[lng]/blog/page": "app/[lng]/blog/page.js"
+  "/[lng]/page": "app/[lng]/page.js"
 }
