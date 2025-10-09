@@ -40,5 +40,12 @@
     "optional": "선택 입력",
     "emailConfirmationMessage": "새 계정 확인 메일을 확인해 주세요. 아래에서 예약을 마무리할 수 있어요.",
     "accountCreatedMessage": "계정이 생성되었습니다! 이제 로그인된 상태로 예약을 저장할 수 있어요."
+  },
+  "naverCard": {
+    "heading": "네이버 스마트플레이스에서 확인하세요",
+    "description": "공식 스마트플레이스에서 실시간 길찾기, 사진, 리뷰를 바로 확인할 수 있어요. 아래 지도는 네이버로 바로 연결됩니다.",
+    "mapTitle": "네이버 지도 미리보기",
+    "directionsCta": "전체 지도 열기",
+    "viewCta": "스마트플레이스 보기"
   }
 }

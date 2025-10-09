@@ -40,5 +40,12 @@
     "optional": "Optional",
     "emailConfirmationMessage": "Check your email to confirm your new account. We'll finish booking below.",
     "accountCreatedMessage": "Account created! You're now signed in so we can save this booking."
+  },
+  "naverCard": {
+    "heading": "Visit us on Naver Smart Place",
+    "description": "See real-time directions, photos, and reviews on our official Smart Place listing. The embedded view below opens directly in Naver.",
+    "mapTitle": "Naver Map preview",
+    "directionsCta": "Open full map",
+    "viewCta": "View Smart Place"
   }
 }

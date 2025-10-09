@@ -32,8 +32,16 @@
       "instagramUrl": "https://www.instagram.com/zeta_eng",
       "youtubeLabel": "@zeta_english_academy",
       "youtubeUrl": "https://www.youtube.com/@zeta_english_academy",
-      "naverLabel": "Naver Blog",
-      "naverUrl": "https://blog.naver.com/zeta-eng"
+      "naverLabel": "Naver Smart Place",
+      "naverUrl": "https://map.naver.com/p/entry/place/1475124508?placePath=%2Fhome&entry=plt"
+    },
+    "smartPlace": {
+      "title": "Naver Smart Place",
+      "description": "Open directions, reviews, and photos in Korean.",
+      "mapUrl": "https://map.naver.com/p/entry/place/1475124508?placePath=%2Fhome&entry=plt",
+      "embedUrl": "https://map.naver.com/v5/iframe/site/?lang=en&code=1475124508&searchCoord=127.061704;37.648972",
+      "embedTitle": "Naver map preview",
+      "cta": "Open map in Naver"
     },
     "rightsReserved": "All rights reserved.",
     "approvedResources": {
