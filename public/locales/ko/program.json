@@ -3,6 +3,11 @@
     "backgroundAlt": "영어 학습 배경",
     "title": "영어 학습을 위한 종합적인 접근 방식",
     "description": "LAB, Discussion, Grammar 과정을 조합한 제타 영어학원의 독창적인 프로그램을 경험해 보세요.",
+    "supporting": "제타 영어학원은 리딩랩, 토론 수업, 문법 수업 세 가지 핵심 경험에 글쓰기와 토론 선택 과정을 더해 학생들이 영어로 생각하고 말하고 쓸 수 있도록 돕습니다.",
+    "buttons": {
+      "primary": "상담 예약하기",
+      "secondary": "요약 페이지 보기"
+    },
     "cta": "시작하기"
   },
   "quickNav": {

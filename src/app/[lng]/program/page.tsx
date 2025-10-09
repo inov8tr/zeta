@@ -154,21 +154,26 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
               {program.hero?.description ?? "A comprehensive program combining LAB, Grammar, and Discussion."}
             </p>
             <p className="mt-4 text-base leading-relaxed text-white/80">
-              Zeta English Academy weaves three core experiences—Reading Lab, Discussion Class, and Grammar Class—with writing and debate electives so students can think, speak, and write in English with confidence.
+              {program.hero?.supporting ??
+                "Zeta English Academy weaves three core experiences—Reading Lab, Discussion Class, and Grammar Class—with writing and debate electives so students can think, speak, and write in English with confidence."}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button
                 asChild
                 className="bg-white text-brand-primary shadow-lg shadow-white/30 hover:bg-white/90"
               >
-                <Link href={`/${lng}/contact`}>Book a Consultation</Link>
+                <Link href={`/${lng}/contact`}>
+                  {program.hero?.buttons?.primary ?? "Book a Consultation"}
+                </Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
                 className="border-white/60 text-white hover:bg-white/10"
               >
-                <Link href={`/${lng}/program-overview`}>View Summary Page</Link>
+                <Link href={`/${lng}/program-overview`}>
+                  {program.hero?.buttons?.secondary ?? "View Summary Page"}
+                </Link>
               </Button>
             </div>
 

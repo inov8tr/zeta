@@ -3,6 +3,11 @@
     "backgroundAlt": "Program System Background",
     "title": "Master English with Zeta",
     "description": "A comprehensive program combining LAB, Grammar, and Discussion.",
+    "supporting": "Zeta English Academy weaves three core experiences—Reading Lab, Discussion Class, and Grammar Class—with writing and debate electives so students can think, speak, and write in English with confidence.",
+    "buttons": {
+      "primary": "Book a Consultation",
+      "secondary": "View Summary Page"
+    },
     "cta": "Get Started"
   },
   "quickNav": {
