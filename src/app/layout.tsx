@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { ReactNode } from "react";
@@ -67,6 +68,13 @@ const organizationStructuredData = getOrganizationStructuredData();
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="THtFfxDCbg4Ttp8pyLU84A"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body className="min-h-screen flex flex-col bg-white text-neutral-950">
         <script
           type="application/ld+json"

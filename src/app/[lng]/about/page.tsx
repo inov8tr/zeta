@@ -43,8 +43,8 @@ const AboutPage = async ({ params }: { params: Promise<PageParams> }) => {
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { about, common, home } = getDictionaries(lng);
 
-  const heroHighlights = Array.isArray(about.mission?.points)
-    ? about.mission.points.slice(0, 3)
+  const heroHighlights = Array.isArray(about.philosophy?.points)
+    ? about.philosophy.points.slice(0, 3)
     : undefined;
 
   return (
