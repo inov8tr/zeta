@@ -8,66 +8,49 @@ import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { createAdminClient } from "@/lib/supabaseAdmin";
 
 interface Input {
+  appointment_type: "consultation" | "entrance_test";
   full_name: string;
   email: string;
-  phone?: string;
+  phone: string;
   preferred_start: string; // ISO from datetime-local
-  duration_minutes: number;
   timezone?: string;
   notes?: string;
 }
 
+const DEFAULT_DURATION_MINUTES = 45;
+
 export async function bookConsultation(input: Input) {
   try {
-    const admin = createAdminClient();
+    const supabase = createServerActionClient({ cookies: () => cookies() });
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
-    // find or create user by email
-    let userId: string | null = null;
-    const { data: list, error: listError } = await admin.auth.admin.listUsers();
-    if (listError) {
-      throw listError;
-    }
-    const existingUser = list?.users?.find((user) => user.email?.toLowerCase() === input.email.toLowerCase()) ?? null;
-    if (existingUser) {
-      userId = existingUser.id;
-      // best-effort: upsert profile if table exists
+    const admin = createAdminClient();
+    const userId = session?.user.id ?? null;
+    const email = session?.user.email ?? input.email;
+
+    if (userId) {
       await admin.from("profiles").upsert(
-        { user_id: userId, full_name: input.full_name, phone: input.phone ?? null },
+        { user_id: userId, full_name: input.full_name, phone: input.phone.trim() || null },
         { onConflict: "user_id" }
       );
-    } else {
-      const created = await admin.auth.admin.createUser({
-        email: input.email,
-        email_confirm: false,
-        user_metadata: { full_name: input.full_name, phone: input.phone ?? null },
-      });
-      if (created.error) {
-        throw created.error;
-      }
-      userId = created.data.user?.id ?? null;
-      if (!userId) {
-        throw new Error("Could not create user");
-      }
-      await admin.from("profiles").insert({
-        user_id: userId,
-        full_name: input.full_name,
-        phone: input.phone ?? null,
-      });
     }
 
     const start = parseISO(input.preferred_start);
     if (Number.isNaN(start.getTime())) {
       throw new Error("Invalid start time");
     }
-    const end = addMinutes(start, Math.max(15, Math.min(input.duration_minutes || 30, 180)));
+    const end = addMinutes(start, DEFAULT_DURATION_MINUTES);
 
     const { data: booking, error } = await admin
       .from("consultations")
       .insert({
-        user_id: userId!,
+        user_id: userId,
+        type: input.appointment_type,
         full_name: input.full_name,
-        email: input.email,
-        phone: input.phone ?? null,
+        email,
+        phone: input.phone.trim() || null,
         preferred_start: start.toISOString(),
         preferred_end: end.toISOString(),
         timezone: input.timezone ?? "Asia/Seoul",
@@ -90,16 +73,18 @@ export async function bookConsultation(input: Input) {
       await Promise.all([
         resend.emails.send({
           from: process.env.ALERT_FROM!,
-          to: input.email,
-          subject: "Your consultation request — Zeta English",
-          text: `Hi ${input.full_name},\n\nThanks for booking a consultation. We tentatively reserved: ${startText} → ${endText} (${tz}).\n\nWe’ll confirm shortly.`,
+          to: email,
+          subject: "Your booking request — Zeta English",
+          text: `Hi ${input.full_name},\n\nThanks for booking a ${
+            input.appointment_type === "entrance_test" ? "placement test" : "consultation"
+          }. We tentatively reserved: ${startText} → ${endText} (${tz}).\n\nWe’ll confirm shortly.`,
         }),
         process.env.ALERT_TO
           ? resend.emails.send({
               from: process.env.ALERT_FROM!,
               to: process.env.ALERT_TO!,
-              subject: `New consultation request — ${input.full_name}`,
-              text: `Name: ${input.full_name}\nEmail: ${input.email}\nPhone: ${input.phone ?? "-"}\nWhen: ${startText} → ${endText} (${tz})\nNotes: ${input.notes ?? "-"}\nBooking ID: ${booking.id}`,
+              subject: `New ${input.appointment_type} request — ${input.full_name}`,
+              text: `Type: ${input.appointment_type}\nName: ${input.full_name}\nEmail: ${email}\nPhone: ${input.phone ?? "-"}\nWhen: ${startText} → ${endText} (${tz})\nNotes: ${input.notes ?? "-"}\nBooking ID: ${booking.id}`,
             })
           : Promise.resolve(),
       ]);

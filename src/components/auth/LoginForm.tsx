@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { LoginDictionary } from "@/lib/i18n";
@@ -85,7 +86,13 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
       router.push(redirectPath);
     } catch (err: unknown) {
       console.error(err);
-      setError(dictionary.errorGeneric);
+      const message =
+        err instanceof Error && err.message.toLowerCase().includes("invalid login credentials")
+          ? dictionary.errorGeneric
+          : err instanceof Error
+            ? err.message
+            : dictionary.errorGeneric;
+      setError(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -113,7 +120,10 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
 
     if (signInError) {
       console.error(signInError);
-      setError(dictionary.errorGeneric);
+      const message = signInError.message?.toLowerCase().includes("invalid login credentials")
+        ? dictionary.errorGeneric
+        : signInError.message;
+      setError(message ?? dictionary.errorGeneric);
     }
   };
 
@@ -157,6 +167,11 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
         <Button type="submit" disabled={isSubmitting} className="w-full px-6 py-3 text-sm font-semibold">
           {isSubmitting ? "…" : dictionary.signIn}
         </Button>
+        <div className="text-center text-sm">
+          <Link href="/auth/forgot-password" className="text-brand-primary underline">
+            {dictionary.forgotPasswordLink ?? "Forgot your password?"}
+          </Link>
+        </div>
       </form>
 
       <div className="basis-1/2 space-y-4">

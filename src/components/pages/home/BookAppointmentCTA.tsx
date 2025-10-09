@@ -25,12 +25,16 @@ const BookAppointmentCTA: React.FC<BookAppointmentCTAProps> = ({ lng, dictionary
         {description && <p className="mt-4 text-lg text-brand-lightest">{description}</p>}
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           {primaryButton && (
-            <Button asChild>
+            <Button asChild className="bg-white text-brand-primary shadow-md shadow-white/20 hover:bg-white/90">
               <Link href={`/${lng}/enrollment`}>{primaryButton}</Link>
             </Button>
           )}
           {secondaryButton && (
-            <Button asChild variant="outline">
+            <Button
+              asChild
+              variant="outline"
+              className="border-white/60 text-white hover:bg-white/10 hover:text-white focus-visible:outline-white"
+            >
               <Link href={`/${lng}/contact`}>{secondaryButton}</Link>
             </Button>
           )}

@@ -6,6 +6,7 @@
   "passwordLabel": "Password",
   "passwordPlaceholder": "Enter your password",
   "signIn": "Sign in",
+  "forgotPasswordLink": "Forgot your password?",
   "errorGeneric": "Sign-in failed. Please check your details and try again.",
   "errorRole": "We couldn't determine your role. Please contact the administrator.",
   "providers": {

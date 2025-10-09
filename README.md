@@ -40,6 +40,18 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - Add a lightweight error monitor such as Vercel Analytics, Sentry, or LogRocket to catch runtime issues post-release.
 - Schedule periodic pings to `https://www.zeta-eng.co.kr/sitemap.xml` (or resubmit in Search Console) whenever new content launches so crawlers pick up updates fast.
 
+## Account Recovery
+
+- Users can request a reset link at `/auth/forgot-password`; Supabase redirects back to `/auth/reset-password` to set a new password.
+- Add these URLs to the Supabase Auth > Redirect URLs list for each provider/environment.
+- The login forms link to the reset flow; confirm transactional emails arrive before launch.
+
+## Consultations & Reservations
+
+- The enrollment page now uses a two-card layout: left card captures booking details (type, schedule, notes), right card handles account sign in/up or guest checkout.
+- Bookings include an `appointment_type` of `consultation` or `entrance_test`. Update the Supabase `consultations` table (or create the new `reservations` table) to include a `type` column: `ALTER TABLE consultations ADD COLUMN type text DEFAULT 'consultation';`.
+- Guest bookings are allowed; authenticated users are still linked via `user_id`. Add any new columns to Supabase and re-run the admin dashboard to confirm badges show correctly.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

@@ -12,6 +12,7 @@ interface ConsultationRow {
   full_name: string;
   email: string;
   phone: string | null;
+  type?: "consultation" | "entrance_test" | null;
   preferred_start: string;
   preferred_end: string | null;
   timezone: string | null;
@@ -49,7 +50,9 @@ const AdminDashboard = async ({
   const admin = createAdminClient();
   const { data, error } = await admin
     .from("consultations")
-    .select("id, full_name, email, phone, preferred_start, preferred_end, timezone, status, notes, created_at")
+    .select(
+      "id, full_name, email, phone, type, preferred_start, preferred_end, timezone, status, notes, created_at"
+    )
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -131,6 +134,10 @@ const ConsultationCard = ({ row }: { row: ConsultationRow }) => {
     confirmed: "bg-emerald-100 text-emerald-800",
     cancelled: "bg-rose-100 text-rose-800",
   };
+  const typeLabel =
+    row.type === "entrance_test"
+      ? { label: "Entrance Test", style: "bg-indigo-100 text-indigo-800" }
+      : { label: "Consultation", style: "bg-sky-100 text-sky-800" };
 
   const start = format(new Date(row.preferred_start), "PPP p");
   const end = row.preferred_end ? format(new Date(row.preferred_end), "PPP p") : null;
@@ -143,9 +150,18 @@ const ConsultationCard = ({ row }: { row: ConsultationRow }) => {
           <p className="text-sm text-neutral-600">{row.email}</p>
           {row.phone && <p className="text-sm text-neutral-600">{row.phone}</p>}
         </div>
-        <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase ${statusStyles[row.status]}`}>
-          {row.status}
-        </span>
+        <div className="flex flex-wrap gap-2">
+          <span
+            className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase ${typeLabel.style}`}
+          >
+            {typeLabel.label}
+          </span>
+          <span
+            className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase ${statusStyles[row.status]}`}
+          >
+            {row.status}
+          </span>
+        </div>
       </div>
 
       <dl className="mt-4 grid gap-2 text-sm text-neutral-700 sm:grid-cols-2">
