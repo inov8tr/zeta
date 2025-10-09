@@ -16,10 +16,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/[lng]/not-found.js"
     ],
+    "/[lng]/program/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/[lng]/program/page.js"
+    ],
+    "/[lng]/blog/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/[lng]/blog/page.js"
+    ],
+    "/api/naver-blog/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/naver-blog/route.js"
+    ],
     "/[lng]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/[lng]/page.js"
+    ],
+    "/[lng]/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/[lng]/about/page.js"
+    ],
+    "/[lng]/enrollment/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/[lng]/enrollment/page.js"
     ]
   }
 }

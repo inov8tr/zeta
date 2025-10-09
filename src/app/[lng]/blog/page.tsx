@@ -75,7 +75,7 @@ const BlogPage = async ({ params }: { params: Promise<PageParams> }) => {
   };
 
   return (
-    <main className="bg-neutral-50 pb-24 pt-10">
+    <main className="bg-neutral-50 pb-24">
       <StructuredData data={breadcrumbsStructuredData} />
       <StructuredData data={blogStructuredData} />
       <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-primary-dark to-brand-primary-light text-white">
@@ -85,7 +85,7 @@ const BlogPage = async ({ params }: { params: Promise<PageParams> }) => {
           <div className="absolute inset-y-0 right-1/2 hidden w-px bg-white/10 lg:block" aria-hidden />
         </div>
 
-        <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-28">
+        <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full bg-white/15 px-5 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-white/80">
               {blog.hero?.eyebrow ?? "Zeta English Academy"}

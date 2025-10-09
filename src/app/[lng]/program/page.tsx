@@ -133,7 +133,7 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
   };
 
   return (
-    <main className="bg-neutral-50 pb-0 pt-20">
+    <main className="bg-neutral-50 pb-0">
       <StructuredData data={breadcrumbsStructuredData} />
       <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-primary-dark to-brand-primary-light text-white">
         <div className="absolute inset-0">
@@ -142,7 +142,7 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
           <div className="absolute inset-y-0 right-1/3 hidden w-px bg-white/10 lg:block" aria-hidden />
         </div>
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:py-24">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:py-32">
           <div className="max-w-2xl">
             <span className="inline-flex items-center rounded-full bg-white/15 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-white/80">
               {program.hero?.backgroundAlt ?? "Program Overview"}
