@@ -7,6 +7,11 @@
   resolved "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+"@edge-runtime/cookies@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.npmjs.org/@edge-runtime/cookies/-/cookies-5.0.2.tgz"
+  integrity sha512-Sd8LcWpZk/SWEeKGE8LT6gMm5MGfX/wm+GPnh1eBEtCpya3vYqn37wYknwAHw92ONoyyREl1hJwxV/Qx2DWNOg==
+
 "@eslint-community/eslint-utils@^4.7.0", "@eslint-community/eslint-utils@^4.8.0":
   version "4.9.0"
   resolved "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.9.0.tgz"
@@ -73,6 +78,15 @@
     "@eslint/core" "^0.15.2"
     levn "^0.4.1"
 
+"@flags-sdk/growthbook@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/@flags-sdk/growthbook/-/growthbook-0.1.0.tgz"
+  integrity sha512-ZN6gMVD1z1uxsDdlA5gkrchF17rTnSm8vkVXKoqQ4PkSL/a3VWJBiUckU/8Jzf2cbF7OLsbyn4dMJFXL/5YnCw==
+  dependencies:
+    "@growthbook/growthbook" "^1.5.1"
+    "@vercel/edge-config" "^1.2.0"
+    "@vercel/functions" "^1.5.2"
+
 "@floating-ui/core@^1.7.3":
   version "1.7.3"
   resolved "https://registry.npmjs.org/@floating-ui/core/-/core-1.7.3.tgz"
@@ -108,6 +122,13 @@
   version "0.2.10"
   resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.10.tgz"
   integrity sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==
+
+"@growthbook/growthbook@^1.5.1":
+  version "1.6.1"
+  resolved "https://registry.npmjs.org/@growthbook/growthbook/-/growthbook-1.6.1.tgz"
+  integrity sha512-GSvb7bNaBTfH54AZ0oQdnoyV/ZxN9NhDEIHOsRUiM+CSOPiodz0i8/+1O6Wg0wFEVgBxS5CGWffyd74fym43Xw==
+  dependencies:
+    dom-mutator "^0.6.0"
 
 "@headlessui/react@^2.2.0":
   version "2.2.8"
@@ -640,6 +661,23 @@
   version "1.5.0"
   resolved "https://registry.npmjs.org/@vercel/analytics/-/analytics-1.5.0.tgz"
   integrity sha512-MYsBzfPki4gthY5HnYN7jgInhAZ7Ac1cYDoRWFomwGHWEX7odTEzbtg9kf/QSo7XEsEAqlQugA6gJ2WS2DEa3g==
+
+"@vercel/edge-config-fs@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/@vercel/edge-config-fs/-/edge-config-fs-0.1.0.tgz"
+  integrity sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==
+
+"@vercel/edge-config@^1.2.0":
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/@vercel/edge-config/-/edge-config-1.4.0.tgz"
+  integrity sha512-69Wg5gw9DzwnyUmnjToSeLRm1nm8mCPgN0kflX8EHRHyqvzH80wPem5A8rI2LXPb2Y9tJNoqN3vXPcQhS2Wh5g==
+  dependencies:
+    "@vercel/edge-config-fs" "0.1.0"
+
+"@vercel/functions@^1.5.2":
+  version "1.6.0"
+  resolved "https://registry.npmjs.org/@vercel/functions/-/functions-1.6.0.tgz"
+  integrity sha512-R6FKQrYT5MZs5IE1SqeCJWxMuBdHawFcCZboKKw8p7s+6/mcd55Gx6tWmyKnQTyrSEA04NH73Tc9CbqpEle8RA==
 
 "@webassemblyjs/ast@^1.14.1", "@webassemblyjs/ast@1.14.1":
   version "1.14.1"
@@ -1290,6 +1328,11 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
+dom-mutator@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/dom-mutator/-/dom-mutator-0.6.0.tgz"
+  integrity sha512-iCt9o0aYfXMUkz/43ZOAUFQYotjGB+GNbYJiJdz4TgXkyToXbbRy5S6FbTp72lRBtfpUMwEc1KmpFEU4CZeoNg==
+
 dotenv-cli@^10.0.0:
   version "10.0.0"
   resolved "https://registry.npmjs.org/dotenv-cli/-/dotenv-cli-10.0.0.tgz"
@@ -1812,6 +1855,14 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
+flags@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/flags/-/flags-4.0.1.tgz"
+  integrity sha512-nJNY97LoI+BDNCSnGIEvBAxYkRYeRuMZ3KtdjCj60quGH3cnyjnSQfw9vB/kvb3+wAtdn2sm5t+jO6dy5tpi1w==
+  dependencies:
+    "@edge-runtime/cookies" "^5.0.2"
+    jose "^5.2.1"
+
 flat-cache@^4.0.0:
   version "4.0.1"
   resolved "https://registry.npmjs.org/flat-cache/-/flat-cache-4.0.1.tgz"
@@ -2308,6 +2359,11 @@ jose@^4.14.4:
   resolved "https://registry.npmjs.org/jose/-/jose-4.15.9.tgz"
   integrity sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==
 
+jose@^5.2.1:
+  version "5.10.0"
+  resolved "https://registry.npmjs.org/jose/-/jose-5.10.0.tgz"
+  integrity sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==
+
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -2606,7 +2662,7 @@ neo-async@^2.6.2:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-next@^15.1.6, "next@>= 13":
+next@*, next@^15.1.6, "next@>= 13":
   version "15.5.3"
   resolved "https://registry.npmjs.org/next/-/next-15.5.3.tgz"
   integrity sha512-r/liNAx16SQj4D+XH/oI1dlpv9tdKJ6cONYPwwcCC46f2NjpaRWY+EKCzULfgQYV6YKXjHBchff2IZBSlZmJNw==
