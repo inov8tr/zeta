@@ -60,7 +60,7 @@ const HeroSection = ({ lng, dictionary }: HeroProps) => {
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-brand-accent/20" aria-hidden="true" />
             <div className="relative aspect-square w-full">
               <Image
-                src="/images/BookR.png"
+                src="/images/BookR.webp"
                 alt={imageAlt}
                 fill
                 priority

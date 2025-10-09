@@ -1,6 +1,27 @@
 {
   "title": "Book a Consultation",
   "intro": "Fill out the form below. We'll create an account and confirm by email.",
+  "card": {
+    "heading": "Book your consultation & account",
+    "description": "Share your preferred schedule, then add an optional password to save this booking to a new account.",
+    "guestReminder": "Leave the password fields blank to continue as a guest, or set one to create your account while booking.",
+    "loading": "Loading form…",
+    "stepOneLabel": "Step 1",
+    "stepOneTitle": "Choose appointment type",
+    "stepTwoLabel": "Step 2",
+    "stepTwoTitle": "Tell us when you're available",
+    "consultation": {
+      "title": "Free Consultation",
+      "description": "Meet a Zeta teacher to discuss learning goals and class placement."
+    },
+    "entranceTest": {
+      "title": "Entrance Test (₩20,000)",
+      "description": "Reserve a detailed placement exam with feedback and recommendations."
+    },
+    "passwordTitle": "Create a password (optional)",
+    "passwordDescription": "Add a password to create an account and manage consultations. Leave blank to continue as a guest.",
+    "notesPlaceholder": "Anything specific you want to cover?"
+  },
   "form": {
     "fullName": "Full name",
     "email": "Email",
@@ -9,11 +30,15 @@
     "start": "Preferred start (local time)",
     "timezone": "Timezone",
     "notes": "Notes",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
     "submit": "Book consultation",
+    "createAccountSubmit": "Create account & book",
     "submitting": "Booking…",
     "success": "Thanks! We’ll confirm shortly by email.",
     "error": "Booking failed",
-    "optional": "Optional"
+    "optional": "Optional",
+    "emailConfirmationMessage": "Check your email to confirm your new account. We'll finish booking below.",
+    "accountCreatedMessage": "Account created! You're now signed in so we can save this booking."
   }
 }
-

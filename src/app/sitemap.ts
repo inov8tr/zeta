@@ -16,6 +16,7 @@ const STATIC_ROUTES: RouteConfig[] = [
   { path: "/enrollment", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.6 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.6 },
+  { path: "/search", changeFrequency: "weekly", priority: 0.5 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

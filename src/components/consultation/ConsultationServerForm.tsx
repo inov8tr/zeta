@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { bookConsultation } from "@/app/(server)/consultation-actions";
 import { Button } from "@/components/ui/Button";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
+import type { EnrollmentDictionary } from "@/lib/i18n";
 import type { IconType } from "react-icons";
 import { FaGoogle, FaApple } from "react-icons/fa";
 import { SiKakaotalk } from "react-icons/si";
@@ -69,21 +70,7 @@ const Schema = BookingSchema.extend({
 type FormValues = z.infer<typeof Schema>;
 
 interface Props {
-  dictionary?: {
-    form?: {
-      fullName?: string;
-      email?: string;
-      phone?: string;
-      duration?: string;
-      start?: string;
-      notes?: string;
-      submit?: string;
-      submitting?: string;
-      success?: string;
-      error?: string;
-      optional?: string;
-    };
-  };
+  dictionary?: EnrollmentDictionary;
   initialFullName?: string;
   initialEmail?: string;
   initialPhone?: string;
@@ -101,6 +88,7 @@ const ConsultationServerForm = ({
   session,
   supabase,
 }: Props) => {
+  const card = dictionary?.card;
   const [pending, startTransition] = useTransition();
   const [ok, setOk] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -190,9 +178,15 @@ const ConsultationServerForm = ({
       }
 
       if (!data.session) {
-        setAuthMessage("Check your email to confirm your new account. We'll finish booking below.");
+        setAuthMessage(
+          dictionary?.form?.emailConfirmationMessage ??
+            "Check your email to confirm your new account. We'll finish booking below."
+        );
       } else {
-        setAuthMessage("Account created! You're now signed in so we can save this booking.");
+        setAuthMessage(
+          dictionary?.form?.accountCreatedMessage ??
+            "Account created! You're now signed in so we can save this booking."
+        );
       }
     }
 
@@ -201,7 +195,7 @@ const ConsultationServerForm = ({
       if (res?.error) {
         setErr(res.error);
       } else {
-        setOk("Thanks! We’ll confirm shortly by email.");
+        setOk(dictionary?.form?.success ?? "Thanks! We’ll confirm shortly by email.");
         form.reset({
           appointment_type: bookingPayload.appointment_type,
           full_name: initialFullName ?? "",
@@ -221,8 +215,12 @@ const ConsultationServerForm = ({
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <div>
-        <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-neutral-500">Step 1</h3>
-        <p className="mt-1 text-lg font-semibold text-neutral-900">Choose appointment type</p>
+        <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-neutral-500">
+          {card?.stepOneLabel ?? "Step 1"}
+        </h3>
+        <p className="mt-1 text-lg font-semibold text-neutral-900">
+          {card?.stepOneTitle ?? "Choose appointment type"}
+        </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <button
             type="button"
@@ -233,9 +231,12 @@ const ConsultationServerForm = ({
                 : "border-neutral-300 text-neutral-700 hover:border-neutral-400"
             }`}
           >
-            <span className="block text-base font-semibold">Free Consultation</span>
+            <span className="block text-base font-semibold">
+              {card?.consultation?.title ?? "Free Consultation"}
+            </span>
             <span className="mt-1 block text-sm text-neutral-600">
-              Meet a Zeta teacher to discuss learning goals and class placement.
+              {card?.consultation?.description ??
+                "Meet a Zeta teacher to discuss learning goals and class placement."}
             </span>
           </button>
           <button
@@ -247,9 +248,12 @@ const ConsultationServerForm = ({
                 : "border-neutral-300 text-neutral-700 hover:border-neutral-400"
             }`}
           >
-            <span className="block text-base font-semibold">Entrance Test (₩20,000)</span>
+            <span className="block text-base font-semibold">
+              {card?.entranceTest?.title ?? "Entrance Test (₩20,000)"}
+            </span>
             <span className="mt-1 block text-sm text-neutral-600">
-              Reserve a detailed placement exam with feedback and recommendations.
+              {card?.entranceTest?.description ??
+                "Reserve a detailed placement exam with feedback and recommendations."}
             </span>
           </button>
         </div>
@@ -259,8 +263,12 @@ const ConsultationServerForm = ({
       </div>
 
       <div className="space-y-2">
-        <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-neutral-500">Step 2</h3>
-        <p className="text-lg font-semibold text-neutral-900">Tell us when you&apos;re available</p>
+        <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-neutral-500">
+          {card?.stepTwoLabel ?? "Step 2"}
+        </h3>
+        <p className="text-lg font-semibold text-neutral-900">
+          {card?.stepTwoTitle ?? "Tell us when you're available"}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -318,14 +326,19 @@ const ConsultationServerForm = ({
       {!session && (
         <div className="rounded-2xl border border-neutral-200 p-4">
           <div>
-            <span className="text-sm font-medium text-neutral-800">Create a password (optional)</span>
+            <span className="text-sm font-medium text-neutral-800">
+              {card?.passwordTitle ?? "Create a password (optional)"}
+            </span>
             <p className="mt-1 text-xs text-neutral-500">
-              Add a password to create an account and manage consultations. Leave blank to continue as a guest.
+              {card?.passwordDescription ??
+                "Add a password to create an account and manage consultations. Leave blank to continue as a guest."}
             </p>
           </div>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <label>
-              <span className="block text-sm font-medium text-neutral-800">Password</span>
+              <span className="block text-sm font-medium text-neutral-800">
+                {dictionary?.form?.password ?? "Password"}
+              </span>
               <input
                 className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
                 type="password"
@@ -336,7 +349,9 @@ const ConsultationServerForm = ({
               )}
             </label>
             <label>
-              <span className="block text-sm font-medium text-neutral-800">Confirm password</span>
+              <span className="block text-sm font-medium text-neutral-800">
+                {dictionary?.form?.confirmPassword ?? "Confirm password"}
+              </span>
               <input
                 className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
                 type="password"
@@ -355,7 +370,7 @@ const ConsultationServerForm = ({
         <textarea
           className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
           rows={4}
-          placeholder="Anything specific you want to cover?"
+          placeholder={card?.notesPlaceholder ?? "Anything specific you want to cover?"}
           {...form.register("notes")}
         />
       </label>
@@ -364,8 +379,8 @@ const ConsultationServerForm = ({
         {isSubmitting
           ? dictionary?.form?.submitting ?? "Booking…"
           : wantsAccount
-            ? "Create account & book"
-            : dictionary?.form?.submit ?? "Confirm booking"}
+            ? dictionary?.form?.createAccountSubmit ?? "Create account & book"
+            : dictionary?.form?.submit ?? "Book consultation"}
       </Button>
       {authMessage && <p className="text-sm text-emerald-600">{authMessage}</p>}
       {ok && <p className="text-green-700">{dictionary?.form?.success ?? ok}</p>}

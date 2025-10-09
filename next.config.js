@@ -14,6 +14,26 @@ const nextConfig = {
         hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'blogfiles.pstatic.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blogpfthumb-phinf.pstatic.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'postfiles.pstatic.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mblogthumb-phinf.pstatic.net',
+        pathname: '/**',
+      },
     ],
   },
   webpack: (config, { isServer }) => {

@@ -7,10 +7,13 @@ import GlobalPerspectiveSection from "@/components/pages/about/GlobalPerspective
 import WhatMakesUsDifferent from "@/components/pages/about/WhatMakesUsDifferent";
 import AboutTestimonialsSection from "@/components/pages/about/AboutTestimonialsSection";
 import CallToActionBanner from "@/components/pages/about/CallToActionBanner";
+import StructuredData from "@/components/seo/StructuredData";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
-import { buildLocalizedMetadata } from "@/lib/seo";
+import { absoluteUrl, buildLocalizedMetadata } from "@/lib/seo";
 
 type PageParams = { lng?: string };
+
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: { params: Promise<PageParams> }) {
   const { lng: rawLng } = await params;
@@ -38,10 +41,30 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
 const AboutPage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
-  const { about } = getDictionaries(lng);
+  const { about, common } = getDictionaries(lng);
 
   return (
     <main className="space-y-0">
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: common.menu?.home ?? "Home",
+              item: absoluteUrl(`/${lng}`),
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: about.metadata?.title ?? "About",
+              item: absoluteUrl(`/${lng}/about`),
+            },
+          ],
+        }}
+      />
       <AboutHeroSection dictionary={about.hero} />
       <MissionBlock dictionary={about.mission} />
       <PhilosophyBlock dictionary={about.philosophy} />

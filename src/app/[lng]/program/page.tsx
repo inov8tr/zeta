@@ -5,18 +5,21 @@ import { Button } from "@/components/ui/Button";
 import ProgramSectionCard from "@/components/pages/program/ProgramSectionCard";
 import ProgramHeroSlider from "@/components/pages/program/ProgramHeroSlider";
 import BookAppointmentCTA from "@/components/pages/home/BookAppointmentCTA";
+import StructuredData from "@/components/seo/StructuredData";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
-import { buildLocalizedMetadata } from "@/lib/seo";
+import { absoluteUrl, buildLocalizedMetadata } from "@/lib/seo";
 
 type PageParams = { lng?: string };
+
+export const revalidate = 3600;
 
 const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
-  const { program, home } = getDictionaries(lng);
+  const { program, home, common } = getDictionaries(lng);
 
   const heroImageAlt = program.hero?.backgroundAlt ?? "Zeta English Academy program highlights";
-  const heroImages = ["/images/pages/home/SA.png", "/images/pages/home/SS.png", "/images/pages/home/SSA.png"].map(
+  const heroImages = ["/images/pages/home/SA.webp", "/images/pages/home/SS.webp", "/images/pages/home/SSA.webp"].map(
     (src, index) => ({
       src,
       alt: `${heroImageAlt} slide ${index + 1}`,
@@ -31,7 +34,7 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
       highlights: Object.values(program.lab.activities ?? {}).map(
         (activity: { title: string; description: string }) => `${activity.title}: ${activity.description}`
       ),
-      imageSrc: "/images/pages/home/Strat.png",
+      imageSrc: "/images/pages/home/Strat.webp",
       imageAlt: program.lab.activities?.reading?.title ?? program.lab.title,
       readMoreLabel: program.lab.readMore,
       seeLessLabel: program.lab.seeLess,
@@ -44,7 +47,7 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
       highlights: Object.entries(program.discussion.benefits ?? {})
         .filter(([key]) => key !== "title")
         .map(([, benefit]) => benefit as string),
-      imageSrc: "/images/BookR.png",
+      imageSrc: "/images/BookR.webp",
       imageAlt: program.discussion.title,
       readMoreLabel: program.discussion.readMore,
       seeLessLabel: program.discussion.seeLess,
@@ -70,12 +73,12 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
       highlights: Object.values(program.writing.activities ?? {}).map(
         (activity: { title: string; description: string }) => `${activity.title}: ${activity.description}`
       ),
-      imageSrc: "/images/pages/program/Korean Beginning Writing Class.png",
+      imageSrc: "/images/pages/program/Korean Beginning Writing Class.webp",
       imageAlt: program.writing.title,
       sliderImages: [
-        "/images/pages/program/Korean Beginning Writing Class.png",
-        "/images/pages/program/Intermediate Writing Class.png",
-        "/images/pages/program/Advanced Speech.png",
+        "/images/pages/program/Korean Beginning Writing Class.webp",
+        "/images/pages/program/Intermediate Writing Class.webp",
+        "/images/pages/program/Advanced Speech.webp",
       ].map((src, index) => ({
         src,
         alt: `${program.writing.title} visual ${index + 1}`,
@@ -110,8 +113,28 @@ const ProgramPage = async ({ params }: { params: Promise<PageParams> }) => {
 
   const toneSequence = ["primary", "accent", "neutral"] as const;
 
+  const breadcrumbsStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: common.menu?.home ?? "Home",
+        item: absoluteUrl(`/${lng}`),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: program.hero?.title ?? "Our Program",
+        item: absoluteUrl(`/${lng}/program`),
+      },
+    ],
+  };
+
   return (
     <main className="bg-neutral-50 pb-0 pt-20">
+      <StructuredData data={breadcrumbsStructuredData} />
       <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-primary-dark to-brand-primary-light text-white">
         <div className="absolute inset-0">
           <div className="absolute left-10 top-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" aria-hidden />
@@ -240,7 +263,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
     title: program?.hero?.title ?? "Our Program",
     description,
     keywords,
-    image: "/images/pages/program/SystemBG.png",
+    image: "/images/pages/program/SystemBG.webp",
     imageAlt: program?.hero?.backgroundAlt ?? "Zeta English Academy program overview",
   });
 }

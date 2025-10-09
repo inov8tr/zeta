@@ -29,6 +29,7 @@ cp .env.local.example .env.local
 - `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` power server-side booking/admin actions (keep them secret).
 - `SUPABASE_ANON_KEY` plus the `NEXT_PUBLIC_SUPABASE_*` values power the browser client for user login.
 - `RESEND_API_KEY`, `ALERT_FROM`, and `ALERT_TO` enable email notifications (optional).
+- `NAVER_SITE_VERIFICATION` lets the app emit the `<meta name="naver-site-verification" ...>` tag so you can verify the domain in Naver Search Console.
 
 Restart the dev server after updating environment variables so the changes take effect.
 

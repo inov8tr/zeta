@@ -68,25 +68,25 @@
     "header": "What Parents & Students Say",
     "testimonials": [
       {
-        "impactPhrase": "The atmosphere is warm and motivating.",
-        "quote": "The best part of Zeta was the atmosphere — engaging, encouraging, and focused on real communication.",
+        "impactPhrase": "Conversation-first classes that feel collaborative.",
+        "quote": "\"The atmosphere in class was what I loved most. Instead of cramming information, we spent a lot of time talking together and sharing feedback, so it felt like real communication and made learning fun.\n\nUnlike typical academies, the teacher’s constant communication with us is the biggest feature and strength of these lessons.\"",
         "name": "Cindy",
         "role": "Student",
-        "duration": "4 years"
+        "duration": "Studied for about 4 years"
       },
       {
-        "impactPhrase": "Confidence soared in school and daily life.",
-        "quote": "Zeta helped my son express himself confidently in both school projects and daily conversation.",
-        "name": "Minjae's mom",
-        "role": "Parent",
-        "duration": "2 years"
+        "impactPhrase": "Joyful learning that stretches real-world English.",
+        "quote": "\"What sets Brent’s class apart is that it never felt rigid. Even though improving our English was the goal, he guided us through all kinds of experiences inside that goal. He connected English with different activities so we could enjoy it, and helped me see the language as a gateway to broader experiences, not just a school subject.\n\nIf I had studied the same way as everyone else somewhere else, I don’t think I’d be using English as such a natural part of everyday life now.\"",
+        "name": "Denny",
+        "role": "Student",
+        "duration": "Studied for 5 years"
       },
       {
-        "impactPhrase": "Real-world learning with caring teachers.",
-        "quote": "The classes combine creativity with structure. My daughter now loves presenting her ideas in English.",
-        "name": "Eunji's dad",
-        "role": "Parent",
-        "duration": "3 years"
+        "impactPhrase": "Challenging projects that build lasting confidence.",
+        "quote": "\"What I remember about Brent’s lessons is that they were free yet always asked us to take on new challenges. Every topic and theme required us to try something different.\n\nThose experiences became a major strength when I attended university lectures in English or collaborated with students from different backgrounds. They gave me the foundation to connect with many perspectives and fields.\"",
+        "name": "Zion",
+        "role": "Student",
+        "duration": "Studied for 4 years"
       }
     ],
     "navigation": {

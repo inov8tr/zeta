@@ -1,0 +1,50 @@
+{
+  "page": {
+    "title": "Search Zeta English Academy",
+    "description": "Find program details, blog posts, and enrollment options across Zeta English Academy.",
+    "placeholder": "Search programs, blog posts, or keywords",
+    "cta": "Search",
+    "empty": "Try another query or browse the popular topics below.",
+    "popular": "Popular searches",
+    "results": "Search results",
+    "noResults": "No matches yet. Try a different keyword or explore the popular searches below."
+  },
+  "popular": [
+    { "label": "Writing program", "href": "/en/program#writing" },
+    { "label": "Grammar levels", "href": "/en/program#grammar" },
+    { "label": "Contact", "href": "/en/contact" },
+    { "label": "Blog", "href": "/en/blog" }
+  ],
+  "index": [
+    {
+      "title": "Zeta's Writing Program",
+      "description": "Explore structured writing courses with feedback, revision cycles, and advanced electives.",
+      "href": "/en/program#writing",
+      "tags": ["writing", "program", "courses", "advanced"]
+    },
+    {
+      "title": "Reading LAB Overview",
+      "description": "Learn how our LAB program builds vocabulary, comprehension, and presentation confidence.",
+      "href": "/en/program#lab",
+      "tags": ["lab", "reading", "vocabulary", "presentation"]
+    },
+    {
+      "title": "Grammar Class Levels",
+      "description": "See the grammar curriculum from foundational skills to advanced structure mastery.",
+      "href": "/en/program#grammar",
+      "tags": ["grammar", "curriculum", "levels"]
+    },
+    {
+      "title": "Book a Consultation",
+      "description": "Schedule a consultation to map your child's learning pathway with Zeta teachers.",
+      "href": "/en/enrollment",
+      "tags": ["consultation", "enrollment", "booking"]
+    },
+    {
+      "title": "Latest Blog Articles",
+      "description": "Read classroom stories, family guidance, and writing tips from Zeta English Academy.",
+      "href": "/en/blog",
+      "tags": ["blog", "insights", "tips"]
+    }
+  ]
+}

@@ -5,6 +5,8 @@ import enProgramOverview from "../../public/locales/en/program-overview.json";
 import enAbout from "../../public/locales/en/about.json";
 import enEnrollment from "../../public/locales/en/enrollment.json";
 import enLogin from "../../public/locales/en/login.json";
+import enBlog from "../../public/locales/en/blog.json";
+import enSearch from "../../public/locales/en/search.json";
 import koCommon from "../../public/locales/ko/common.json";
 import koHome from "../../public/locales/ko/home.json";
 import koProgram from "../../public/locales/ko/program.json";
@@ -12,6 +14,8 @@ import koProgramOverview from "../../public/locales/ko/program-overview.json";
 import koAbout from "../../public/locales/ko/about.json";
 import koEnrollment from "../../public/locales/ko/enrollment.json";
 import koLogin from "../../public/locales/ko/login.json";
+import koBlog from "../../public/locales/ko/blog.json";
+import koSearch from "../../public/locales/ko/search.json";
 
 export const SUPPORTED_LANGUAGES = ["en", "ko"] as const;
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
@@ -25,6 +29,8 @@ const dictionaries = {
     about: enAbout,
     enrollment: enEnrollment,
     login: enLogin,
+    blog: enBlog,
+    search: enSearch,
   },
   ko: {
     common: koCommon,
@@ -34,6 +40,8 @@ const dictionaries = {
     about: koAbout,
     enrollment: koEnrollment,
     login: koLogin,
+    blog: koBlog,
+    search: koSearch,
   },
 } as const;
 
@@ -44,6 +52,8 @@ export type ProgramOverviewDictionary = typeof enProgramOverview;
 export type AboutDictionary = typeof enAbout;
 export type EnrollmentDictionary = typeof enEnrollment;
 export type LoginDictionary = typeof enLogin;
+export type BlogDictionary = typeof enBlog;
+export type SearchDictionary = typeof enSearch;
 
 export function normalizeLanguage(lng?: string | null): SupportedLanguage {
   if (!lng) {

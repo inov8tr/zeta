@@ -1,0 +1,50 @@
+{
+  "page": {
+    "title": "제타 잉글리시 아카데미 검색",
+    "description": "프로그램, 블로그 글, 상담 안내 등 제타의 주요 정보를 한 곳에서 찾아보세요.",
+    "placeholder": "프로그램, 블로그, 키워드 검색",
+    "cta": "검색",
+    "empty": "다른 검색어를 입력하거나 아래 인기 검색어를 살펴보세요.",
+    "popular": "인기 검색어",
+    "results": "검색 결과",
+    "noResults": "일치하는 결과가 없습니다. 다른 키워드를 입력하거나 인기 검색어를 이용해 보세요."
+  },
+  "popular": [
+    { "label": "글쓰기 프로그램", "href": "/ko/program#writing" },
+    { "label": "문법 수업", "href": "/ko/program#grammar" },
+    { "label": "상담 예약", "href": "/ko/enrollment" },
+    { "label": "블로그", "href": "/ko/blog" }
+  ],
+  "index": [
+    {
+      "title": "제타 글쓰기 프로그램",
+      "description": "피드백과 수정 과정을 통해 글쓰기 실력을 단계별로 키우는 수업입니다.",
+      "href": "/ko/program#writing",
+      "tags": ["글쓰기", "프로그램", "수업", "피드백"]
+    },
+    {
+      "title": "리딩 LAB 소개",
+      "description": "어휘와 이해력을 함께 키우는 제타의 리딩 LAB 프로그램을 살펴보세요.",
+      "href": "/ko/program#lab",
+      "tags": ["lab", "리딩", "어휘"]
+    },
+    {
+      "title": "문법 클래스 단계",
+      "description": "기초부터 심화까지 문법 커리큘럼을 확인하세요.",
+      "href": "/ko/program#grammar",
+      "tags": ["문법", "커리큘럼", "레벨"]
+    },
+    {
+      "title": "상담 예약",
+      "description": "제타 선생님과 상담 일정을 예약하고 학습 계획을 세워 보세요.",
+      "href": "/ko/enrollment",
+      "tags": ["상담", "예약", "등록"]
+    },
+    {
+      "title": "최신 블로그",
+      "description": "교실 이야기, 학부모 가이드, 글쓰기 팁을 블로그에서 만나보세요.",
+      "href": "/ko/blog",
+      "tags": ["블로그", "인사이트", "팁"]
+    }
+  ]
+}

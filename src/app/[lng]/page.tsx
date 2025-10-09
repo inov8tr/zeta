@@ -4,11 +4,14 @@ import CoreApproachSection from "@/components/pages/home/CoreApproachSection";
 import ProgramLevelsSection from "@/components/pages/home/ProgramLevelsSection";
 import TestimonialSection from "@/components/pages/home/TestimonialSection";
 import BookAppointmentCTA from "@/components/pages/home/BookAppointmentCTA";
+import StructuredData from "@/components/seo/StructuredData";
 import type { SupportedLanguage } from "@/lib/i18n";
 import { getDictionaries, normalizeLanguage } from "@/lib/i18n";
-import { buildLocalizedMetadata } from "@/lib/seo";
+import { absoluteUrl, buildLocalizedMetadata } from "@/lib/seo";
 
 type PageParams = { lng?: string };
+
+export const revalidate = 3600;
 
 const HomePage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
@@ -17,6 +20,17 @@ const HomePage = async ({ params }: { params: Promise<PageParams> }) => {
 
   return (
     <main>
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: home.hero?.headline ?? "Zeta English Academy",
+          url: absoluteUrl(`/${lng}`),
+          description:
+            home.hero?.description ??
+            "Zeta English Academy — joyful English learning for curious students.",
+        }}
+      />
       <HeroSection lng={lng} dictionary={home.hero} />
       <MissionSection dictionary={home.mission} />
       <CoreApproachSection dictionary={home.coreApproach} />

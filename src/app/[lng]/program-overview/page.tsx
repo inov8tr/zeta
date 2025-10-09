@@ -1,15 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import StructuredData from "@/components/seo/StructuredData";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
-import { buildLocalizedMetadata } from "@/lib/seo";
+import { absoluteUrl, buildLocalizedMetadata } from "@/lib/seo";
 
 type PageParams = { lng?: string };
+
+export const revalidate = 3600;
 
 const ProgramOverviewPage = async ({ params }: { params: Promise<PageParams> }) => {
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
-  const { programOverview } = getDictionaries(lng);
+  const { programOverview, common } = getDictionaries(lng);
 
   type SectionContent = {
     heading?: string;
@@ -38,8 +41,28 @@ const ProgramOverviewPage = async ({ params }: { params: Promise<PageParams> }) 
     { id: "discussion", ...programOverview.sections.discussion },
   ];
 
+  const breadcrumbsStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: common.menu?.home ?? "Home",
+        item: absoluteUrl(`/${lng}`),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: programOverview.hero.title ?? "Program Overview",
+        item: absoluteUrl(`/${lng}/program-overview`),
+      },
+    ],
+  };
+
   return (
     <main className="bg-white pb-24 pt-28">
+      <StructuredData data={breadcrumbsStructuredData} />
       <section className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-gradient-to-br from-brand-primary/10 via-white to-brand-primary/5 px-4 py-16 shadow-xl">
         <div className="absolute -top-24 -left-24 h-48 w-48 rounded-full bg-brand-primary/20 blur-3xl" aria-hidden />
         <div className="absolute -bottom-24 -right-10 h-56 w-56 rounded-full bg-brand-accent/20 blur-3xl" aria-hidden />
@@ -70,7 +93,7 @@ const ProgramOverviewPage = async ({ params }: { params: Promise<PageParams> }) 
           <div className="relative w-full max-w-md">
             <div className="relative aspect-square overflow-hidden rounded-3xl bg-white/70 shadow-lg backdrop-blur">
               <Image
-                src="/images/BookR.png"
+                src="/images/BookR.webp"
                 alt={programOverview.hero.imageAlt}
                 fill
                 priority
@@ -207,7 +230,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
     title,
     description,
     keywords,
-    image: "/images/BookR.png",
+    image: "/images/BookR.webp",
     imageAlt: programOverview?.hero?.imageAlt ?? "Program overview illustration",
   });
 }

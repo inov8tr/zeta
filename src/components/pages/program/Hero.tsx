@@ -17,7 +17,7 @@ const Hero = ({ dictionary, vennDiagram }: HeroProps) => {
     <section className="relative w-full overflow-hidden py-12 sm:py-16 lg:py-20 text-white flex items-center">
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="/images/pages/program/SystemBG.png"
+          src="/images/pages/program/SystemBG.webp"
           alt={dictionary.backgroundAlt}
           fill
           className="object-cover object-center w-full h-full"

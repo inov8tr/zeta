@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import StructuredData from "@/components/seo/StructuredData";
 import { getDictionaries, normalizeLanguage, type SupportedLanguage } from "@/lib/i18n";
-import { buildLocalizedMetadata } from "@/lib/seo";
+import { absoluteUrl, buildLocalizedMetadata } from "@/lib/seo";
 
 type PageParams = { lng?: string };
 
@@ -36,6 +37,43 @@ const ContactPage = async ({ params }: { params: Promise<PageParams> }) => {
 
   return (
     <main className="bg-white pb-24 pt-28">
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: common.menu?.home ?? "Home",
+              item: absoluteUrl(`/${lng}`),
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Contact",
+              item: absoluteUrl(`/${lng}/contact`),
+            },
+          ],
+        }}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Zeta English Academy",
+          url: absoluteUrl(`/${lng}/contact`),
+          telephone: f.phoneValue,
+          email: f.emailValue,
+          address: f.address
+            ? {
+                "@type": "PostalAddress",
+                streetAddress: f.address,
+                addressCountry: "KR",
+              }
+            : undefined,
+        }}
+      />
       <section className="mx-auto max-w-5xl px-4">
         <h1 className="text-4xl font-extrabold text-neutral-900">Contact Us</h1>
         <p className="mt-4 text-lg text-neutral-700">We’ll help you choose the right path for your learner.</p>

@@ -5,6 +5,7 @@ import { SITE_URL, absoluteUrl, defaultKeywords, getOrganizationStructuredData }
 import "../styles/globals.css";
 
 const siteDescription = "Zeta English Academy guides K-12 learners through joyful English experiences that build confidence, curiosity, and future-ready skills.";
+const naverSiteVerification = process.env.NAVER_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: absoluteUrl("/images/pages/home/Strat.png"),
+        url: absoluteUrl("/images/pages/home/Strat.webp"),
         width: 1200,
         height: 630,
         alt: "Students learning with Zeta English Academy",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zeta English Academy",
     description: siteDescription,
-    images: [absoluteUrl("/images/pages/home/Strat.png")],
+    images: [absoluteUrl("/images/pages/home/Strat.webp")],
   },
   alternates: {
     canonical: SITE_URL,
@@ -53,6 +54,11 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "lYIgsNGnEpFny_l7OzLgaQMgnpkfqjrKMNx1z_DGBRM",
+    other: naverSiteVerification
+      ? {
+          "naver-site-verification": naverSiteVerification,
+        }
+      : undefined,
   },
 };
 

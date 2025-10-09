@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "eyebrow": "Zeta English Academy",
+    "title": "Blog & Insights",
+    "description": "Stay up to date with stories from our classrooms, reflections from Zeta coaches, and practical tips to help your child thrive in English.",
+    "highlightCta": "Read story",
+    "highlights": [
+      {
+        "key": "classroom",
+        "title": "Inside the Classroom",
+        "description": "Peek into LAB sessions, debate prep, and the daily routines that build confident speakers.",
+        "href": "https://blog.naver.com/zeta-eng/222384215393"
+      },
+      {
+        "key": "families",
+        "title": "Guidance for Families",
+        "description": "Practical advice on supporting English learning at home and celebrating progress together.",
+        "href": "https://blog.naver.com/zeta-eng/222312379399"
+      },
+      {
+        "key": "writing",
+        "title": "Writing & Speaking Tips",
+        "description": "Coach-approved strategies that help students organise ideas, edit drafts, and speak with clarity.",
+        "href": "https://blog.naver.com/zeta-eng/222415492183"
+      }
+    ]
+  },
+  "feed": {
+    "eyebrow": "Latest from the community",
+    "title": "Recent Articles & Updates",
+    "description": "Explore the newest posts pulled straight from our Naver blog. Tap any card to read the full story in a new tab.",
+    "loading": "Loading blog posts...",
+    "empty": "No blog posts available right now. Please check back soon.",
+    "cardCta": "Read story"
+  }
+}
