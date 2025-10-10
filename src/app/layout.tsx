@@ -74,6 +74,24 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           data-key="THtFfxDCbg4Ttp8pyLU84A"
           strategy="beforeInteractive"
         />
+        <Script id="matomo-tracker" strategy="afterInteractive">
+          {`
+            var _paq = window._paq = window._paq || [];
+            _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+            _paq.push(["setCookieDomain", "*.www.zeta-eng.co.kr"]);
+            _paq.push(["setDomains", ["*.www.zeta-eng.co.kr"]]);
+            _paq.push(["setDoNotTrack", true]);
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+              var u="https://zetaeng.matomo.cloud/";
+              _paq.push(['setTrackerUrl', u+'matomo.php']);
+              _paq.push(['setSiteId', '1']);
+              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+              g.async=true; g.src='https://cdn.matomo.cloud/zetaeng.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+            })();
+          `}
+        </Script>
       </head>
       <body className="min-h-screen flex flex-col bg-white text-neutral-950">
         <script
@@ -82,6 +100,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         />
         {children}
         <Analytics />
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html:
+              '<p><img referrerpolicy="no-referrer-when-downgrade" src="https://zetaeng.matomo.cloud/matomo.php?idsite=1&rec=1" style="border:0;" alt="" /></p>',
+          }}
+        />
       </body>
     </html>
   );
