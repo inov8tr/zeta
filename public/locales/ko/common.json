@@ -5,7 +5,7 @@
       "program": "프로그램",
       "search": "검색",
       "blog": "블로그",
-      "bookClass": "수업 예약",
+      "bookClass": "상담예약",
       "login": "로그인"
     },
     "footer": {
@@ -24,7 +24,7 @@
         "program": "프로그램",
         "search": "검색",
         "about": "학원 소개",
-        "book": "수업 예약"
+        "book": "상담예약"
       },
       "socialHeading": "소셜 미디어",
       "social": {
