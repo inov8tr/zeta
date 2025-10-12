@@ -4,6 +4,9 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
 
+type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
+type ClassRow = Database["public"]["Tables"]["classes"]["Row"];
+
 interface EditUserPageProps {
   params: Promise<{ id: string }>;
 }
@@ -19,7 +22,7 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
     .from("profiles")
     .select("user_id, full_name, role, class_id, test_status")
     .eq("user_id", id)
-    .single();
+    .maybeSingle<ProfileRow>();
 
   const { data: classes } = await supabase
     .from("classes")
@@ -54,10 +57,10 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
           <div>
             <div className="text-xs uppercase text-neutral-400">Available classes</div>
             <ul className="mt-1 list-disc space-y-1 pl-4 text-neutral-600">
-              {(classes ?? []).length === 0 ? (
+              {((classes as ClassRow[] | null) ?? []).length === 0 ? (
                 <li>No classes created yet.</li>
               ) : (
-                classes!.map((item) => (
+                ((classes as ClassRow[] | null) ?? []).map((item) => (
                   <li key={item.id}>
                     {item.name}
                     {item.level ? ` — Level ${item.level}` : ""}
