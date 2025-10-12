@@ -57,7 +57,8 @@ const DEFAULT_DURATION_MINUTES = 45;
 
 export async function bookConsultation(input: Input) {
   try {
-    const supabase = createServerActionClient({ cookies: () => cookies() });
+    const cookieStore = await cookies();
+    const supabase = createServerActionClient({ cookies: () => cookieStore });
     const {
       data: { session },
     } = await supabase.auth.getSession();

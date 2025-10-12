@@ -51,7 +51,10 @@ export async function updateUserProfileAction(
 
   const { user_id, full_name, phone, role, class_id, test_status } = parsed.data;
 
-  const supabase = createServerActionClient<Database>({ cookies: () => cookies() });
+  const cookieStore = await cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore,
+  });
   const {
     data: { session },
   } = await supabase.auth.getSession();
