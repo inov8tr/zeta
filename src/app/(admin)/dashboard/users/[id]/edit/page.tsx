@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
+import UserEditForm from "@/components/admin/UserEditForm";
 
 type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
 type ClassRow = Database["public"]["Tables"]["classes"]["Row"];
@@ -20,7 +21,7 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
 
   const { data: profile, error } = await supabase
     .from("profiles")
-    .select("user_id, full_name, role, class_id, test_status")
+    .select("user_id, full_name, phone, role, class_id, test_status")
     .eq("user_id", id)
     .maybeSingle<ProfileRow>();
 
@@ -33,44 +34,27 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
     notFound();
   }
 
+  const classOptions = (classes as ClassRow[] | null) ?? [];
+
   return (
     <main className="mx-auto flex max-w-3xl flex-col gap-8 px-6 py-12">
       <header>
         <h1 className="text-3xl font-semibold text-neutral-900">Edit user</h1>
-        <p className="text-sm text-neutral-600">
-          Update roles, assign a class, or change their current test status.
-        </p>
+        <p className="text-sm text-neutral-600">Update roles, assign a class, or change their current test status.</p>
       </header>
 
       <section className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div className="space-y-6 text-sm text-neutral-700">
-          <div>
-            <div className="text-xs uppercase text-neutral-400">Full name</div>
-            <div className="mt-1 text-neutral-900">{profile.full_name ?? "Unnamed user"}</div>
-          </div>
-
-          <div>
-            <div className="text-xs uppercase text-neutral-400">Current role</div>
-            <div className="mt-1 text-neutral-900">{profile.role ?? "student"}</div>
-          </div>
-
-          <div>
-            <div className="text-xs uppercase text-neutral-400">Available classes</div>
-            <ul className="mt-1 list-disc space-y-1 pl-4 text-neutral-600">
-              {((classes as ClassRow[] | null) ?? []).length === 0 ? (
-                <li>No classes created yet.</li>
-              ) : (
-                ((classes as ClassRow[] | null) ?? []).map((item) => (
-                  <li key={item.id}>
-                    {item.name}
-                    {item.level ? ` — Level ${item.level}` : ""}
-                  </li>
-                ))
-              )}
-            </ul>
-          </div>
-
-        </div>
+        <UserEditForm
+          profile={{
+            user_id: profile.user_id,
+            full_name: profile.full_name,
+            phone: profile.phone,
+            role: profile.role,
+            class_id: profile.class_id,
+            test_status: profile.test_status,
+          }}
+          classes={classOptions.map((item) => ({ id: item.id, name: item.name, level: item.level }))}
+        />
       </section>
     </main>
   );
