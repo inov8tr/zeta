@@ -2,6 +2,7 @@
 
 import type { ComponentType } from "react";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CalendarDays, Users, GraduationCap, FileCheck2, LayoutDashboard } from "lucide-react";
@@ -46,9 +47,21 @@ const DashboardSidebar = () => {
   return (
     <aside className="hidden w-64 flex-shrink-0 bg-brand-primary text-white shadow-2xl sm:flex sm:min-h-screen">
       <nav className="flex w-full flex-col gap-8 px-6 py-10">
-        <div className="space-y-1">
-          <p className="text-xs uppercase tracking-widest text-brand-accent/80">Zeta Admin</p>
-          <h1 className="text-xl font-semibold text-white">Control Center</h1>
+        <div className="flex items-center gap-3">
+          <div className="relative h-10 w-10 flex-shrink-0">
+            <Image
+              src="/images/ZetaLogo.svg"
+              alt="Zeta logo"
+              fill
+              priority
+              sizes="40px"
+              className="object-contain"
+            />
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-widest text-brand-accent/80">Zeta Admin</p>
+            <h1 className="text-xl font-semibold text-white">Control Center</h1>
+          </div>
         </div>
         <ul className="flex flex-1 flex-col gap-2 text-sm">
           {NAV_ITEMS.map((item) => {
