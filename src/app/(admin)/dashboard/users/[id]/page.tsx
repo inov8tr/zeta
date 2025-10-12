@@ -64,14 +64,22 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
-      <div className="flex flex-col gap-2">
-        <Link href="/dashboard/users" className="text-xs font-semibold uppercase text-neutral-400">
-          ← Back to users
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col gap-2">
+          <Link href="/dashboard/users" className="text-xs font-semibold uppercase text-neutral-400">
+            ← Back to users
+          </Link>
+          <h1 className="text-3xl font-semibold text-neutral-900">{profile.full_name ?? "Unnamed user"}</h1>
+          <p className="text-sm text-neutral-600">
+            Role: <span className="font-medium text-neutral-900">{profile.role ?? "student"}</span>
+          </p>
+        </div>
+        <Link
+          href={`/dashboard/users/${id}/edit`}
+          className="mt-2 inline-flex items-center rounded-full border border-neutral-300 px-4 py-2 text-xs font-semibold uppercase text-neutral-600 transition hover:border-neutral-400 hover:text-neutral-900 sm:mt-0"
+        >
+          Edit user
         </Link>
-        <h1 className="text-3xl font-semibold text-neutral-900">{profile.full_name ?? "Unnamed user"}</h1>
-        <p className="text-sm text-neutral-600">
-          Role: <span className="font-medium text-neutral-900">{profile.role ?? "student"}</span>
-        </p>
       </div>
 
       <section className="grid gap-4 sm:grid-cols-2">
