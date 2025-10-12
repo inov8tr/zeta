@@ -6,6 +6,10 @@ import { format } from "date-fns";
 
 import { Database } from "@/lib/database.types";
 
+type TestRow = Database["public"]["Tables"]["tests"]["Row"];
+type ConsultationRow = Database["public"]["Tables"]["consultations"]["Row"];
+type ProfileRow = Pick<Database["public"]["Tables"]["profiles"]["Row"], "full_name">;
+
 interface TestDetailPageProps {
   params: Promise<{ id: string }>;
 }
@@ -21,22 +25,29 @@ const TestDetailPage = async ({ params }: TestDetailPageProps) => {
     .from("tests")
     .select("id, student_id, type, status, score, assigned_at, completed_at")
     .eq("id", id)
-    .single();
+    .maybeSingle<TestRow>();
 
   if (error || !test) {
     notFound();
   }
 
-  const { data: consultations } = await supabase
+  const { data: consultationsData } = await supabase
     .from("consultations")
     .select("id, status, created_at")
     .eq("user_id", test.student_id)
     .order("created_at", { ascending: false })
     .limit(5);
 
+  const consultations =
+    (consultationsData as ConsultationRow[] | null) ?? [];
+
   const { data: profile } =
     test.student_id
-      ? await supabase.from("profiles").select("full_name").eq("user_id", test.student_id).single()
+      ? await supabase
+          .from("profiles")
+          .select("full_name")
+          .eq("user_id", test.student_id)
+          .maybeSingle<ProfileRow>()
       : { data: null };
 
   return (
@@ -81,12 +92,12 @@ const TestDetailPage = async ({ params }: TestDetailPageProps) => {
           <h2 className="text-lg font-semibold text-neutral-900">Recent consultations</h2>
         </header>
         <div className="divide-y divide-neutral-100">
-          {(consultations ?? []).length === 0 ? (
+          {consultations.length === 0 ? (
             <div className="px-6 py-8 text-center text-sm text-neutral-500">
               This student has no consultation history.
             </div>
           ) : (
-            consultations!.map((record) => (
+            consultations.map((record) => (
               <article key={record.id} className="flex items-center justify-between px-6 py-4 text-sm">
                 <div>
                   <div className="font-medium text-neutral-900">{record.status}</div>
