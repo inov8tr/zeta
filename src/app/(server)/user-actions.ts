@@ -45,7 +45,7 @@ export async function updateUserProfileAction(
 
   const parsed = schema.safeParse(raw);
   if (!parsed.success) {
-    const message = parsed.error.errors[0]?.message ?? "Invalid form submission";
+    const message = parsed.error.issues[0]?.message ?? "Invalid form submission";
     return { error: message };
   }
 
