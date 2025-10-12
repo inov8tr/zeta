@@ -8,6 +8,13 @@ import { format } from "date-fns";
 
 import { Database } from "@/lib/database.types";
 
+type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
+type ProfileWithRelations = ProfileRow & {
+  classes: { name: string; level: string | null } | { name: string; level: string | null }[] | null;
+};
+type TestRow = Database["public"]["Tables"]["tests"]["Row"];
+type ConsultationRow = Database["public"]["Tables"]["consultations"]["Row"];
+
 interface UserDetailPageProps {
   params: Promise<{ id: string }>;
 }
@@ -23,25 +30,31 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     .from("profiles")
     .select("user_id, full_name, username, role, phone, class_id, test_status, classes(name, level)")
     .eq("user_id", id)
-    .single();
+    .maybeSingle<ProfileWithRelations>();
 
   const testsPromise = supabase
     .from("tests")
     .select("id, type, status, score, assigned_at, completed_at")
     .eq("student_id", id)
-    .order("assigned_at", { ascending: false });
+    .order("assigned_at", { ascending: false })
+    .returns<TestRow[]>();
 
   const consultationsPromise = supabase
     .from("consultations")
     .select("id, status, created_at")
     .eq("user_id", id)
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .returns<ConsultationRow[]>();
 
-  const [{ data: profile, error: profileError }, { data: tests }, { data: consultations }] = await Promise.all([
+  const [profileResult, testsResult, consultationsResult] = await Promise.all([
     profilePromise,
     testsPromise,
     consultationsPromise,
   ]);
+
+  const { data: profile, error: profileError } = profileResult;
+  const tests = (testsResult.data as TestRow[] | null) ?? [];
+  const consultations = (consultationsResult.data as ConsultationRow[] | null) ?? [];
 
   if (profileError || !profile) {
     notFound();
@@ -93,10 +106,10 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
           <h2 className="text-lg font-semibold text-neutral-900">Tests</h2>
         </header>
         <div className="divide-y divide-neutral-100">
-          {(tests ?? []).length === 0 ? (
+          {tests.length === 0 ? (
             <EmptyRow message="No tests assigned yet." />
           ) : (
-            (tests ?? []).map((test) => (
+            tests.map((test) => (
               <article key={test.id} className="grid gap-2 px-6 py-4 text-sm text-neutral-700 sm:grid-cols-4">
                 <div>
                   <div className="text-xs uppercase text-neutral-400">Type</div>
@@ -125,10 +138,10 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
           <h2 className="text-lg font-semibold text-neutral-900">Consultation history</h2>
         </header>
         <div className="divide-y divide-neutral-100">
-          {(consultations ?? []).length === 0 ? (
+          {consultations.length === 0 ? (
             <EmptyRow message="No consultations recorded." />
           ) : (
-            (consultations ?? []).map((consultation) => (
+            consultations.map((consultation) => (
               <article key={consultation.id} className="flex items-center justify-between px-6 py-4 text-sm">
                 <div>
                   <div className="font-medium text-neutral-900">{consultation.status}</div>

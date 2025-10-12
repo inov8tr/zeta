@@ -5,6 +5,9 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
 
+type ClassRow = Database["public"]["Tables"]["classes"]["Row"];
+type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
+
 interface ClassDetailPageProps {
   params: Promise<{ id: string }>;
 }
@@ -15,8 +18,6 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
   const supabase = createServerComponentClient<Database>({
     cookies: () => Promise.resolve(cookieStore),
   });
-
-  type ClassRow = Database["public"]["Tables"]["classes"]["Row"];
 
   const { data: classInfo, error } = await supabase
     .from("classes")
@@ -33,6 +34,8 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
     .select("user_id, full_name, role, username, test_status")
     .eq("class_id", id)
     .order("full_name", { ascending: true });
+
+  const rosterRows = (roster as ProfileRow[] | null) ?? [];
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
@@ -51,12 +54,12 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
           <h2 className="text-lg font-semibold text-neutral-900">Enrolled students</h2>
         </header>
         <div className="divide-y divide-neutral-100">
-          {(roster ?? []).length === 0 ? (
+          {rosterRows.length === 0 ? (
             <div className="px-6 py-8 text-center text-sm text-neutral-500">
               No students assigned yet. Use the user edit page to add them.
             </div>
           ) : (
-            ((roster as ProfileRow[] | null) ?? []).map((student) => (
+            rosterRows.map((student) => (
               <article key={student.user_id} className="flex items-center justify-between px-6 py-4 text-sm">
                 <div>
                   <div className="font-medium text-neutral-900">{student.full_name ?? "Unnamed student"}</div>
@@ -82,4 +85,3 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
 };
 
 export default ClassDetailPage;
-  type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];

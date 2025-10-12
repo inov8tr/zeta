@@ -4,6 +4,11 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
 
+type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
+type UserWithClass = ProfileRow & {
+  classes: { name: string } | { name: string }[] | null;
+};
+
 const UsersPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
@@ -24,7 +29,7 @@ const UsersPage = async () => {
     );
   }
 
-  const users = data ?? [];
+  const users = (data as UserWithClass[] | null) ?? [];
 
   return (
     <main className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-12">
