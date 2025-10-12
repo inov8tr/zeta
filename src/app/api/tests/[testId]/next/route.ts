@@ -85,40 +85,6 @@ export async function POST(_req: Request, { params }: { params: { testId: string
     const passageUsage = new Map<string, number>();
     answeredQuestions?.forEach((row) => {
       if (row.passage_id) {
-        passageUsage.set(
-          row.passage_id,
-          (passageUsage.get(row.passage_id) ?? 0) + 1
-        );
-      }
-    });
-
-    const { data: passages, error: passagesError } = await supabase
-      .from("question_passages")
-      .select("id")
-      .eq("section", "reading")
-      .eq("level", activeSection.current_level)
-      .eq("sublevel", activeSection.current_sublevel)
-      .order("created_at");
-
-    if (passagesError) {
-      console.error("next route: failed to load passages", passagesError);
-      return NextResponse.json({ error: "No passages available" }, { status: 500 });
-    }
-
-    const nextPassage = passages?.find(
-      (passage) => (passageUsage.get(passage.id) ?? 0) < 5
-    );
-
-  if (activeSection.section === "reading" && (!currentPassageId || passageQuestionCount >= 5)) {
-    const { data: answeredQuestions } = answeredIds.size
-      ? await supabase
-          .from("questions")
-          .select("id, passage_id")
-          .in("id", Array.from(answeredIds))
-      : { data: [], error: null };
-    const passageUsage = new Map<string, number>();
-    answeredQuestions?.forEach((row) => {
-      if (row.passage_id) {
         passageUsage.set(row.passage_id, (passageUsage.get(row.passage_id) ?? 0) + 1);
       }
     });

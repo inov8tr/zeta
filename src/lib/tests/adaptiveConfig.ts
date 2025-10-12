@@ -52,12 +52,20 @@ function clampLevel(level: number, sublevel: "1" | "2" | "3"): LevelState {
 
 function stepSublevel(level: number, sublevel: "1" | "2" | "3", direction: 1 | -1): LevelState {
   if (direction === 1) {
-    if (sublevel === "1") return { level, sublevel: "2" };
-    if (sublevel === "2") return { level, sublevel: "3" };
+    if (sublevel === "1") {
+      return { level, sublevel: "2" };
+    }
+    if (sublevel === "2") {
+      return { level, sublevel: "3" };
+    }
     return { level: level + 1, sublevel: "1" };
   } else {
-    if (sublevel === "3") return { level, sublevel: "2" };
-    if (sublevel === "2") return { level, sublevel: "1" };
+    if (sublevel === "3") {
+      return { level, sublevel: "2" };
+    }
+    if (sublevel === "2") {
+      return { level, sublevel: "1" };
+    }
     return { level: level - 1, sublevel: "3" };
   }
 }

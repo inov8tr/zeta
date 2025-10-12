@@ -5,7 +5,6 @@ import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/database.types";
 import {
   SECTION_MAX_QUESTIONS,
-  SECTION_ORDER,
   STREAK_DOWN_THRESHOLD,
   STREAK_SKIP_DELTA,
   STREAK_SKIP_THRESHOLD,
