@@ -6,8 +6,9 @@ import { format } from "date-fns";
 import { Database } from "@/lib/database.types";
 
 const TestsPage = async () => {
+  const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookies(),
+    cookies: () => cookieStore,
   });
 
   const { data, error } = await supabase

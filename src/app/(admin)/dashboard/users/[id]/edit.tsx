@@ -9,8 +9,9 @@ interface EditUserPageProps {
 }
 
 const EditUserPage = async ({ params }: EditUserPageProps) => {
+  const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookies(),
+    cookies: () => cookieStore,
   });
 
   const { data: profile, error } = await supabase

@@ -10,8 +10,9 @@ interface ClassDetailPageProps {
 }
 
 const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
+  const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookies(),
+    cookies: () => cookieStore,
   });
 
   const classPromise = supabase

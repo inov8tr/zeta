@@ -11,22 +11,23 @@ interface AdminDashboardLayoutProps {
 }
 
 const AdminDashboardLayout = async ({ children }: AdminDashboardLayoutProps) => {
+  const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookies(),
+    cookies: () => cookieStore,
   });
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (!session) {
+  if (!user) {
     redirect("/login");
   }
 
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("role")
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .single();
 
   if (error || profile?.role !== "admin") {

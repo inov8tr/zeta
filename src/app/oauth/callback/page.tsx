@@ -13,22 +13,23 @@ const roleRedirectMap: Record<string, string> = {
 export const dynamic = "force-dynamic";
 
 export default async function OAuthCallbackPage() {
+  const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookies(),
+    cookies: () => cookieStore,
   });
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (!session) {
+  if (!user) {
     redirect("/login?error=oauth");
   }
 
   const { data, error } = await supabase
     .from("profiles")
     .select("role")
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .maybeSingle<{ role: string }>(); // narrow result type
 
   if (error || !data?.role) {

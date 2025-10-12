@@ -13,8 +13,9 @@ interface UserDetailPageProps {
 }
 
 const UserDetailPage = async ({ params }: UserDetailPageProps) => {
+  const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookies(),
+    cookies: () => cookieStore,
   });
 
   const profilePromise = supabase

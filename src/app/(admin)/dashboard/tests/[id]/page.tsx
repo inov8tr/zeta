@@ -11,8 +11,9 @@ interface TestDetailPageProps {
 }
 
 const TestDetailPage = async ({ params }: TestDetailPageProps) => {
+  const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookies(),
+    cookies: () => cookieStore,
   });
 
   const { data: test, error } = await supabase
