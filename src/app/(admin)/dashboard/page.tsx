@@ -36,36 +36,36 @@ const AdminDashboardPage = async () => {
       description: `${pendingConsultations ?? 0} pending responses`,
       href: "/dashboard/consultations",
       value: consultationCount ?? 0,
-      accent: "border-sky-300 text-sky-800",
+      accent: "text-brand-primary bg-brand-primary/10",
     },
     {
       title: "Users",
       description: "View and manage profiles",
       href: "/dashboard/users",
       value: userCount ?? 0,
-      accent: "border-neutral-300 text-neutral-800",
+      accent: "text-brand-primary-dark bg-brand-primary/10",
     },
     {
       title: "Classes",
       description: "Assign students to cohorts",
       href: "/dashboard/classes",
       value: classCount ?? 0,
-      accent: "border-emerald-300 text-emerald-800",
+      accent: "text-brand-accent-dark bg-brand-accent/10",
     },
     {
       title: "Tests",
       description: "Track assessments and scores",
       href: "/dashboard/tests",
       value: testCount ?? 0,
-      accent: "border-indigo-300 text-indigo-800",
+      accent: "text-brand-primary bg-brand-primary/10",
     },
   ];
 
   return (
     <main className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12">
       <header className="space-y-2">
-        <h1 className="text-3xl font-semibold text-neutral-900">Admin Dashboard</h1>
-        <p className="text-sm text-neutral-600">
+        <h1 className="text-3xl font-semibold text-brand-primary-dark">Admin Dashboard</h1>
+        <p className="text-sm text-neutral-muted">
           Stay on top of consultations, user management, class assignments, and test progress.
         </p>
       </header>
@@ -75,11 +75,11 @@ const AdminDashboardPage = async () => {
           <Link
             key={stat.title}
             href={stat.href}
-            className="group flex flex-col justify-between rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            className="group flex flex-col justify-between rounded-3xl border border-brand-primary/10 bg-white/90 p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
           >
-            <div className="text-sm uppercase tracking-wide text-neutral-400">{stat.title}</div>
-            <div className="py-4 text-4xl font-semibold text-neutral-900">{stat.value}</div>
-            <p className={`text-sm font-medium ${stat.accent}`}>{stat.description}</p>
+            <div className="text-xs uppercase tracking-[0.4em] text-brand-primary/60">{stat.title}</div>
+            <div className="py-4 text-4xl font-semibold text-brand-primary-dark">{stat.value}</div>
+            <p className={`text-sm font-medium rounded-full px-3 py-1 ${stat.accent}`}>{stat.description}</p>
           </Link>
         ))}
       </section>
@@ -103,13 +103,15 @@ const AdminDashboardPage = async () => {
 const DashboardQuickLink = ({ title, description, href }: { title: string; description: string; href: string }) => (
   <Link
     href={href}
-    className="flex flex-col justify-between rounded-3xl border border-dashed border-neutral-300 bg-white p-6 transition hover:border-neutral-400"
+    className="flex flex-col justify-between rounded-3xl border border-brand-primary/15 bg-gradient-to-br from-white to-brand-primary/5 p-6 transition hover:border-brand-primary/40 hover:shadow-lg"
   >
     <div>
-      <h2 className="text-xl font-semibold text-neutral-900">{title}</h2>
-      <p className="mt-2 text-sm text-neutral-600">{description}</p>
+      <h2 className="text-xl font-semibold text-brand-primary-dark">{title}</h2>
+      <p className="mt-2 text-sm text-neutral-muted">{description}</p>
     </div>
-    <span className="mt-6 text-sm font-medium text-neutral-900">Open &rarr;</span>
+    <span className="mt-6 inline-flex items-center text-sm font-semibold text-brand-primary">
+      Open <span className="ml-1 text-brand-accent">→</span>
+    </span>
   </Link>
 );
 

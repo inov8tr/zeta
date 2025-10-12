@@ -66,17 +66,17 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-2">
-          <Link href="/dashboard/users" className="text-xs font-semibold uppercase text-neutral-400">
+          <Link href="/dashboard/users" className="text-xs font-semibold uppercase text-brand-primary/60">
             ← Back to users
           </Link>
-          <h1 className="text-3xl font-semibold text-neutral-900">{profile.full_name ?? "Unnamed user"}</h1>
-          <p className="text-sm text-neutral-600">
-            Role: <span className="font-medium text-neutral-900">{profile.role ?? "student"}</span>
+          <h1 className="text-3xl font-semibold text-brand-primary-dark">{profile.full_name ?? "Unnamed user"}</h1>
+          <p className="text-sm text-neutral-muted">
+            Role: <span className="font-medium text-brand-primary-dark">{profile.role ?? "student"}</span>
           </p>
         </div>
         <Link
           href={`/dashboard/users/${id}/edit`}
-          className="mt-2 inline-flex items-center rounded-full border border-neutral-300 px-4 py-2 text-xs font-semibold uppercase text-neutral-600 transition hover:border-neutral-400 hover:text-neutral-900 sm:mt-0"
+          className="mt-2 inline-flex items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold uppercase text-white transition hover:bg-brand-primary-dark sm:mt-0"
         >
           Edit user
         </Link>
@@ -84,56 +84,58 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
 
       <section className="grid gap-4 sm:grid-cols-2">
         <DetailCard title="Contact">
-          <dl className="space-y-2 text-sm text-neutral-700">
+          <dl className="space-y-2 text-sm text-neutral-800">
             <div>
-              <dt className="font-medium text-neutral-900">Username</dt>
+              <dt className="font-medium text-brand-primary-dark">Username</dt>
               <dd>{profile.username ?? "—"}</dd>
             </div>
             <div>
-              <dt className="font-medium text-neutral-900">Phone</dt>
+              <dt className="font-medium text-brand-primary-dark">Phone</dt>
               <dd>{profile.phone ?? "—"}</dd>
             </div>
           </dl>
         </DetailCard>
         <DetailCard title="Assignments">
-          <dl className="space-y-2 text-sm text-neutral-700">
+          <dl className="space-y-2 text-sm text-neutral-800">
             <div>
-              <dt className="font-medium text-neutral-900">Class</dt>
+              <dt className="font-medium text-brand-primary-dark">Class</dt>
               <dd>{classData ? classData.name : "Unassigned"}</dd>
             </div>
             <div>
-              <dt className="font-medium text-neutral-900">Test status</dt>
+              <dt className="font-medium text-brand-primary-dark">Test status</dt>
               <dd>{profile.test_status ?? "none"}</dd>
             </div>
           </dl>
         </DetailCard>
       </section>
 
-      <section className="rounded-3xl border border-neutral-200 bg-white shadow-sm">
-        <header className="border-b border-neutral-200 px-6 py-4">
-          <h2 className="text-lg font-semibold text-neutral-900">Tests</h2>
+      <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
+        <header className="border-b border-brand-primary/10 px-6 py-4">
+          <h2 className="text-lg font-semibold text-brand-primary-dark">Tests</h2>
         </header>
-        <div className="divide-y divide-neutral-100">
+        <div className="divide-y divide-brand-primary/10">
           {tests.length === 0 ? (
             <EmptyRow message="No tests assigned yet." />
           ) : (
             tests.map((test) => (
-              <article key={test.id} className="grid gap-2 px-6 py-4 text-sm text-neutral-700 sm:grid-cols-4">
+              <article key={test.id} className="grid gap-2 px-6 py-4 text-sm text-neutral-800 sm:grid-cols-4">
                 <div>
-                  <div className="text-xs uppercase text-neutral-400">Type</div>
-                  <div className="font-medium text-neutral-900">{test.type}</div>
+                  <div className="text-xs uppercase tracking-wide text-brand-primary/70">Type</div>
+                  <div className="font-medium text-brand-primary-dark">{test.type}</div>
                 </div>
                 <div>
-                  <div className="text-xs uppercase text-neutral-400">Status</div>
+                  <div className="text-xs uppercase tracking-wide text-brand-primary/70">Status</div>
                   <div>{test.status}</div>
                 </div>
                 <div>
-                  <div className="text-xs uppercase text-neutral-400">Assigned</div>
-                  <div>{test.assigned_at ? format(new Date(test.assigned_at), "MMM d, yyyy") : "—"}</div>
+                  <div className="text-xs uppercase tracking-wide text-brand-primary/70">Assigned</div>
+                  <div className="text-brand-primary-dark">
+                    {test.assigned_at ? format(new Date(test.assigned_at), "MMM d, yyyy") : "—"}
+                  </div>
                 </div>
                 <div>
-                  <div className="text-xs uppercase text-neutral-400">Score</div>
-                  <div>{test.score ?? "Pending"}</div>
+                  <div className="text-xs uppercase tracking-wide text-brand-primary/70">Score</div>
+                  <div className="text-brand-primary-dark">{test.score ?? "Pending"}</div>
                 </div>
               </article>
             ))
@@ -141,25 +143,25 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
         </div>
       </section>
 
-      <section className="rounded-3xl border border-neutral-200 bg-white shadow-sm">
-        <header className="border-b border-neutral-200 px-6 py-4">
-          <h2 className="text-lg font-semibold text-neutral-900">Consultation history</h2>
+      <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
+        <header className="border-b border-brand-primary/10 px-6 py-4">
+          <h2 className="text-lg font-semibold text-brand-primary-dark">Consultation history</h2>
         </header>
-        <div className="divide-y divide-neutral-100">
+        <div className="divide-y divide-brand-primary/10">
           {consultations.length === 0 ? (
             <EmptyRow message="No consultations recorded." />
           ) : (
             consultations.map((consultation) => (
-              <article key={consultation.id} className="flex items-center justify-between px-6 py-4 text-sm">
+              <article key={consultation.id} className="flex items-center justify-between px-6 py-4 text-sm text-neutral-800">
                 <div>
-                  <div className="font-medium text-neutral-900">{consultation.status}</div>
-                  <div className="text-xs text-neutral-500">
+                  <div className="font-medium text-brand-primary-dark">{consultation.status}</div>
+                  <div className="text-xs text-neutral-muted">
                     {consultation.created_at ? format(new Date(consultation.created_at), "MMM d, yyyy p") : "—"}
                   </div>
                 </div>
                 <Link
                   href={`/dashboard/consultations`}
-                  className="text-xs font-semibold uppercase text-neutral-400 hover:text-neutral-600"
+                  className="text-xs font-semibold uppercase text-brand-primary hover:text-brand-primary-dark"
                 >
                   Manage
                 </Link>
@@ -173,14 +175,14 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
 };
 
 const DetailCard = ({ title, children }: { title: string; children: ReactNode }) => (
-  <section className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-    <h2 className="text-lg font-semibold text-neutral-900">{title}</h2>
+  <section className="rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm">
+    <h2 className="text-lg font-semibold text-brand-primary-dark">{title}</h2>
     <div className="mt-4">{children}</div>
   </section>
 );
 
 const EmptyRow = ({ message }: { message: string }) => (
-  <div className="px-6 py-8 text-center text-sm text-neutral-500">{message}</div>
+  <div className="px-6 py-8 text-center text-sm text-neutral-muted">{message}</div>
 );
 
 export default UserDetailPage;

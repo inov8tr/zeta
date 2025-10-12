@@ -37,22 +37,22 @@ const ConsultationSlotsPage = async () => {
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-12">
       <header className="space-y-2">
-        <h1 className="text-3xl font-semibold text-neutral-900">Consultation availability</h1>
-        <p className="text-sm text-neutral-600">
+        <h1 className="text-3xl font-semibold text-brand-primary-dark">Consultation availability</h1>
+        <p className="text-sm text-neutral-muted">
           Publish new times to keep the booking form open, or toggle slots off to avoid double-booking.
         </p>
       </header>
 
       <section className="grid gap-4 text-sm sm:grid-cols-3">
         <AvailabilityStat label="Total slots" value={totals.total} />
-        <AvailabilityStat label="Open" value={totals.open} accent="bg-emerald-100 text-emerald-800" />
-        <AvailabilityStat label="Booked" value={totals.booked} accent="bg-amber-100 text-amber-800" />
+        <AvailabilityStat label="Open" value={totals.open} accent="bg-brand-primary/10 text-brand-primary-dark" />
+        <AvailabilityStat label="Booked" value={totals.booked} accent="bg-brand-accent/20 text-brand-accent-dark" />
       </section>
 
-      <section className="rounded-3xl border border-neutral-200 bg-white shadow-sm">
+      <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-neutral-200 text-sm">
-            <thead className="bg-neutral-50 text-xs uppercase tracking-wide text-neutral-500">
+            <thead className="bg-brand-primary/5 text-xs uppercase tracking-wide text-brand-primary">
               <tr>
                 <th className="px-6 py-3 text-left font-semibold">Date</th>
                 <th className="px-6 py-3 text-left font-semibold">Time</th>
@@ -63,27 +63,27 @@ const ConsultationSlotsPage = async () => {
             <tbody className="divide-y divide-neutral-100">
               {slots.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-6 py-10 text-center text-neutral-500">
+                  <td colSpan={4} className="px-6 py-10 text-center text-neutral-muted">
                     No slots published yet. Use the Supabase SQL editor or build a form to add availability.
                   </td>
                 </tr>
               ) : (
                 slots.map((slot) => (
-                  <tr key={slot.id} className="hover:bg-neutral-50">
-                    <td className="px-6 py-4 text-neutral-700">{format(new Date(slot.slot_date), "MMM d, yyyy")}</td>
-                    <td className="px-6 py-4 text-neutral-700">{formatSlot(slot.start_time, slot.end_time)}</td>
+                  <tr key={slot.id} className="hover:bg-brand-primary/5">
+                    <td className="px-6 py-4 text-neutral-800">{format(new Date(slot.slot_date), "MMM d, yyyy")}</td>
+                    <td className="px-6 py-4 text-neutral-800">{formatSlot(slot.start_time, slot.end_time)}</td>
                     <td className="px-6 py-4">
                       {slot.is_booked ? (
-                        <span className="inline-flex rounded-full bg-neutral-900 px-3 py-1 text-xs font-semibold text-white">
+                        <span className="inline-flex rounded-full bg-brand-primary px-3 py-1 text-xs font-semibold text-white">
                           Booked
                         </span>
                       ) : (
-                        <span className="inline-flex rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">
+                        <span className="inline-flex rounded-full bg-brand-accent/20 px-3 py-1 text-xs font-semibold text-brand-accent-dark">
                           Open
                         </span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-xs text-neutral-500">
+                    <td className="px-6 py-4 text-xs text-neutral-muted">
                       {slot.created_at ? format(new Date(slot.created_at), "MMM d, yyyy p") : "—"}
                     </td>
                   </tr>
@@ -100,15 +100,15 @@ const ConsultationSlotsPage = async () => {
 const AvailabilityStat = ({
   label,
   value,
-  accent = "bg-neutral-100 text-neutral-700",
+  accent = "bg-brand-primary/10 text-brand-primary-dark",
 }: {
   label: string;
   value: number;
   accent?: string;
 }) => (
-  <div className={`rounded-3xl px-5 py-6 text-center text-base font-semibold ${accent}`}>
-    <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">{label}</div>
-    <div className="text-3xl font-bold text-neutral-900">{value}</div>
+  <div className={`rounded-3xl px-5 py-6 text-center text-base font-semibold shadow-sm ${accent}`}>
+    <div className="text-xs font-medium uppercase tracking-wide text-brand-primary/70">{label}</div>
+    <div className="text-3xl font-bold text-brand-primary-dark">{value}</div>
   </div>
 );
 

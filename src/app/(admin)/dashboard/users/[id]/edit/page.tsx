@@ -39,11 +39,13 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
   return (
     <main className="mx-auto flex max-w-3xl flex-col gap-8 px-6 py-12">
       <header>
-        <h1 className="text-3xl font-semibold text-neutral-900">Edit user</h1>
-        <p className="text-sm text-neutral-600">Update roles, assign a class, or change their current test status.</p>
+        <h1 className="text-3xl font-semibold text-brand-primary-dark">Edit user</h1>
+        <p className="text-sm text-neutral-muted">
+          Update roles, assign a class, or change their current test status.
+        </p>
       </header>
 
-      <section className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+      <section className="rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm">
         <UserEditForm
           profile={{
             user_id: profile.user_id,

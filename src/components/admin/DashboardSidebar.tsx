@@ -44,11 +44,11 @@ const DashboardSidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-64 flex-shrink-0 border-r border-neutral-200 bg-white/80 backdrop-blur sm:flex sm:min-h-screen">
+    <aside className="hidden w-64 flex-shrink-0 bg-brand-primary text-white shadow-2xl sm:flex sm:min-h-screen">
       <nav className="flex w-full flex-col gap-8 px-6 py-10">
-        <div>
-          <p className="text-xs uppercase tracking-widest text-neutral-400">Zeta Admin</p>
-          <h1 className="text-xl font-semibold text-neutral-900">Control Center</h1>
+        <div className="space-y-1">
+          <p className="text-xs uppercase tracking-widest text-brand-accent/80">Zeta Admin</p>
+          <h1 className="text-xl font-semibold text-white">Control Center</h1>
         </div>
         <ul className="flex flex-1 flex-col gap-2 text-sm">
           {NAV_ITEMS.map((item) => {
@@ -61,19 +61,22 @@ const DashboardSidebar = () => {
                   href={item.href}
                   className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition ${
                     isActive
-                      ? "bg-neutral-900 text-white shadow-sm"
-                      : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900"
+                      ? "bg-white text-brand-primary shadow-lg"
+                      : "text-white/80 hover:bg-brand-primary-light hover:text-white"
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className={`h-4 w-4 ${isActive ? "text-brand-primary" : "text-white/90"}`} />
                   <span className="font-medium">{item.label}</span>
                 </Link>
               </li>
             );
           })}
         </ul>
-        <div className="text-xs text-neutral-400">
-          Need help? <a href="mailto:info@zeta-eng.co.kr" className="font-semibold text-neutral-600">Contact support</a>
+        <div className="rounded-2xl border border-white/20 bg-white/10 p-4 text-xs text-white/80">
+          Need help?{" "}
+          <a href="mailto:info@zeta-eng.co.kr" className="font-semibold text-brand-accent">
+            Contact support
+          </a>
         </div>
       </nav>
     </aside>

@@ -37,7 +37,7 @@ const SubmitButton = () => {
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex items-center rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-70"
+      className="inline-flex items-center rounded-full bg-brand-primary px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-primary-dark disabled:cursor-not-allowed disabled:opacity-70"
     >
       {pending ? "Saving..." : "Save changes"}
     </button>
@@ -62,33 +62,33 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
       <input type="hidden" name="user_id" value={profile.user_id} />
 
       <div className="grid gap-6 md:grid-cols-2">
-        <label className="flex flex-col gap-2 text-sm text-neutral-700">
-          <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Full name</span>
+        <label className="flex flex-col gap-2 text-sm text-neutral-800">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Full name</span>
           <input
             type="text"
             name="full_name"
             required
             defaultValue={profile.full_name ?? ""}
-            className="rounded-2xl border border-neutral-300 px-4 py-2 text-neutral-900 shadow-sm focus:border-neutral-400 focus:outline-none"
+            className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           />
         </label>
 
-        <label className="flex flex-col gap-2 text-sm text-neutral-700">
-          <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Phone</span>
+        <label className="flex flex-col gap-2 text-sm text-neutral-800">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Phone</span>
           <input
             type="tel"
             name="phone"
             defaultValue={profile.phone ?? ""}
-            className="rounded-2xl border border-neutral-300 px-4 py-2 text-neutral-900 shadow-sm focus:border-neutral-400 focus:outline-none"
+            className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           />
         </label>
 
-        <label className="flex flex-col gap-2 text-sm text-neutral-700">
-          <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Role</span>
+        <label className="flex flex-col gap-2 text-sm text-neutral-800">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Role</span>
           <select
             name="role"
             defaultValue={(profile.role ?? "student").toLowerCase()}
-            className="rounded-2xl border border-neutral-300 px-4 py-2 text-neutral-900 shadow-sm focus:border-neutral-400 focus:outline-none"
+            className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           >
             {ROLE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -98,12 +98,12 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
           </select>
         </label>
 
-        <label className="flex flex-col gap-2 text-sm text-neutral-700">
-          <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Assigned class</span>
+        <label className="flex flex-col gap-2 text-sm text-neutral-800">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Assigned class</span>
           <select
             name="class_id"
             defaultValue={profile.class_id ?? ""}
-            className="rounded-2xl border border-neutral-300 px-4 py-2 text-neutral-900 shadow-sm focus:border-neutral-400 focus:outline-none"
+            className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           >
             <option value="">Unassigned</option>
             {classes.map((item) => (
@@ -115,14 +115,14 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
           </select>
         </label>
 
-        <label className="flex flex-col gap-2 text-sm text-neutral-700 md:col-span-2">
-          <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Test status</span>
+        <label className="flex flex-col gap-2 text-sm text-neutral-800 md:col-span-2">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Test status</span>
           <input
             type="text"
             name="test_status"
             defaultValue={profile.test_status ?? ""}
             placeholder="e.g. none, assigned, completed"
-            className="rounded-2xl border border-neutral-300 px-4 py-2 text-neutral-900 shadow-sm focus:border-neutral-400 focus:outline-none"
+            className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           />
         </label>
       </div>

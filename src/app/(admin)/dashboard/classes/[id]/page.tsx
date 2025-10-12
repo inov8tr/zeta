@@ -40,37 +40,40 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
       <div className="flex flex-col gap-2">
-        <Link href="/dashboard/classes" className="text-xs font-semibold uppercase text-neutral-400">
+        <Link href="/dashboard/classes" className="text-xs font-semibold uppercase text-brand-primary/60">
           ← Back to classes
         </Link>
-        <h1 className="text-3xl font-semibold text-neutral-900">{classInfo.name}</h1>
-        <p className="text-sm text-neutral-600">
+        <h1 className="text-3xl font-semibold text-brand-primary-dark">{classInfo.name}</h1>
+        <p className="text-sm text-neutral-muted">
           Level {classInfo.level ?? "custom"} • Teacher {classInfo.teacher_id ?? "unassigned"}
         </p>
       </div>
 
-      <section className="rounded-3xl border border-neutral-200 bg-white shadow-sm">
-        <header className="border-b border-neutral-200 px-6 py-4">
-          <h2 className="text-lg font-semibold text-neutral-900">Enrolled students</h2>
+      <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
+        <header className="border-b border-brand-primary/10 px-6 py-4">
+          <h2 className="text-lg font-semibold text-brand-primary-dark">Enrolled students</h2>
         </header>
-        <div className="divide-y divide-neutral-100">
+        <div className="divide-y divide-brand-primary/10">
           {rosterRows.length === 0 ? (
-            <div className="px-6 py-8 text-center text-sm text-neutral-500">
+            <div className="px-6 py-8 text-center text-sm text-neutral-muted">
               No students assigned yet. Use the user edit page to add them.
             </div>
           ) : (
             rosterRows.map((student) => (
-              <article key={student.user_id} className="flex items-center justify-between px-6 py-4 text-sm">
+              <article
+                key={student.user_id}
+                className="flex items-center justify-between px-6 py-4 text-sm text-neutral-800"
+              >
                 <div>
-                  <div className="font-medium text-neutral-900">{student.full_name ?? "Unnamed student"}</div>
-                  <div className="text-xs text-neutral-500">{student.username ?? "No username"}</div>
+                  <div className="font-medium text-brand-primary-dark">{student.full_name ?? "Unnamed student"}</div>
+                  <div className="text-xs text-neutral-muted">{student.username ?? "No username"}</div>
                 </div>
-                <div className="flex items-center gap-3 text-xs text-neutral-500">
+                <div className="flex items-center gap-3 text-xs text-neutral-muted">
                   <span>Role: {student.role ?? "student"}</span>
                   <span>Test: {student.test_status ?? "none"}</span>
                   <Link
                     href={`/dashboard/users/${student.user_id}`}
-                    className="font-semibold uppercase text-neutral-400 hover:text-neutral-600"
+                    className="font-semibold uppercase text-brand-primary hover:text-brand-primary-dark"
                   >
                     View
                   </Link>

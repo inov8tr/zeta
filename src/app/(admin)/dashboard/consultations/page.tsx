@@ -37,23 +37,23 @@ const ConsultationsPage = async () => {
     <main className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-12">
       <header className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <h1 className="text-3xl font-semibold text-neutral-900">Consultations</h1>
-          <p className="text-sm text-neutral-600">
+          <h1 className="text-3xl font-semibold text-brand-primary-dark">Consultations</h1>
+          <p className="text-sm text-neutral-muted">
             Review booking requests, manage statuses, and jump into availability planning.
           </p>
         </div>
         <Link
           href="/dashboard/consultations/slots"
-          className="inline-flex items-center justify-center rounded-full border border-neutral-300 px-5 py-2 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:text-neutral-900"
+          className="inline-flex items-center justify-center rounded-full bg-brand-primary px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-primary-dark"
         >
           Manage availability
         </Link>
       </header>
 
-      <section className="rounded-3xl border border-neutral-200 bg-white shadow-sm">
+      <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-neutral-200 text-sm">
-            <thead className="bg-neutral-50 text-xs uppercase tracking-wide text-neutral-500">
+            <thead className="bg-brand-primary/5 text-xs uppercase tracking-wide text-brand-primary">
               <tr>
                 <th className="px-6 py-3 text-left font-semibold">Name</th>
                 <th className="px-6 py-3 text-left font-semibold">Status</th>
@@ -75,29 +75,29 @@ const ConsultationsPage = async () => {
                     ? item.consultation_slots[0]
                     : item.consultation_slots;
                   return (
-                    <tr key={item.id} className="hover:bg-neutral-50">
+                    <tr key={item.id} className="hover:bg-brand-primary/5">
                       <td className="px-6 py-4">
-                        <div className="font-medium text-neutral-900">{item.full_name ?? "Unknown"}</div>
-                        <div className="text-xs text-neutral-500">{item.notes}</div>
+                        <div className="font-medium text-brand-primary-dark">{item.full_name ?? "Unknown"}</div>
+                        <div className="text-xs text-neutral-muted">{item.notes}</div>
                       </td>
                       <td className="px-6 py-4">
                         <StatusBadge status={item.status ?? "pending"} />
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sm text-neutral-700">{item.email}</p>
-                        {item.phone ? <p className="text-xs text-neutral-500">{item.phone}</p> : null}
+                        <p className="text-sm text-neutral-800">{item.email}</p>
+                        {item.phone ? <p className="text-xs text-neutral-muted">{item.phone}</p> : null}
                       </td>
-                      <td className="px-6 py-4 text-neutral-700">
+                      <td className="px-6 py-4 text-neutral-800">
                         {slot ? (
                           <>
                             <div>{formatSlot(slot.start_time, slot.end_time)}</div>
-                            <div className="text-xs text-neutral-500">{formatDate(slot.slot_date)}</div>
+                            <div className="text-xs text-neutral-muted">{formatDate(slot.slot_date)}</div>
                           </>
                         ) : (
-                          <span className="text-xs text-neutral-400">No slot selected</span>
+                          <span className="text-xs text-neutral-muted">No slot selected</span>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-xs text-neutral-500">
+                      <td className="px-6 py-4 text-xs text-neutral-muted">
                         {item.created_at ? format(new Date(item.created_at), "MMM d, yyyy p") : "—"}
                       </td>
                     </tr>
@@ -114,9 +114,9 @@ const ConsultationsPage = async () => {
 
 const StatusBadge = ({ status }: { status: string }) => {
   const palette: Record<string, string> = {
-    pending: "bg-amber-100 text-amber-800",
-    confirmed: "bg-emerald-100 text-emerald-800",
-    cancelled: "bg-rose-100 text-rose-800",
+    pending: "bg-brand-accent/20 text-brand-accent-dark",
+    confirmed: "bg-brand-primary/15 text-brand-primary-dark",
+    cancelled: "bg-rose-100 text-rose-700",
   };
   const style = palette[status] ?? "bg-neutral-200 text-neutral-700";
   return <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${style}`}>{status}</span>;

@@ -2,20 +2,18 @@ import Link from "next/link";
 
 const DashboardHeader = () => {
   return (
-    <header className="sticky top-0 z-10 border-b border-neutral-200 bg-white/80 backdrop-blur">
-      <div className="flex items-center justify-between px-6 py-4">
+    <header className="sticky top-0 z-10 bg-white/90 shadow-sm backdrop-blur">
+      <div className="flex items-center justify-between border-b border-brand-primary/10 px-6 py-4">
         <div>
-          <p className="text-xs uppercase tracking-widest text-neutral-400">Admin workspace</p>
-          <h2 className="text-lg font-semibold text-neutral-900">Stay in sync with every learner</h2>
+          <p className="text-xs uppercase tracking-[0.3em] text-brand-primary/70">Admin workspace</p>
+          <h2 className="text-lg font-semibold text-brand-primary-dark">Stay in sync with every learner</h2>
         </div>
-        <div className="flex items-center gap-2 text-sm">
-          <Link
-            href="mailto:info@zeta-eng.co.kr"
-            className="rounded-full border border-neutral-300 px-4 py-2 font-medium text-neutral-600 transition hover:border-neutral-400 hover:text-neutral-900"
-          >
-            Need help?
-          </Link>
-        </div>
+        <Link
+          href="mailto:info@zeta-eng.co.kr"
+          className="inline-flex items-center rounded-full bg-brand-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-primary-dark"
+        >
+          Need help?
+        </Link>
       </div>
     </header>
   );
