@@ -11,17 +11,15 @@ const ClassesPage = async () => {
     cookies: () => Promise.resolve(cookieStore),
   });
 
-  const classesPromise = supabase
+  const { data: classes, error } = await supabase
     .from("classes")
     .select("id, name, level, teacher_id, schedule, created_at")
     .order("created_at", { ascending: false });
 
-  const membersPromise = supabase
+  const { data: members } = await supabase
     .from("profiles")
     .select("user_id, full_name, class_id, role")
     .not("class_id", "is", null);
-
-  const [{ data: classes, error }, { data: members }] = await Promise.all([classesPromise, membersPromise]);
 
   if (error) {
     return (
