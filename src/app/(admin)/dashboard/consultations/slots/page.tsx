@@ -4,6 +4,8 @@ import { format } from "date-fns";
 
 import { Database } from "@/lib/database.types";
 
+type SlotRow = Database["public"]["Tables"]["consultation_slots"]["Row"];
+
 const ConsultationSlotsPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
@@ -25,7 +27,7 @@ const ConsultationSlotsPage = async () => {
     );
   }
 
-  const slots = data ?? [];
+  const slots = (data as SlotRow[] | null) ?? [];
   const totals = {
     total: slots.length,
     open: slots.filter((slot) => !slot.is_booked).length,
