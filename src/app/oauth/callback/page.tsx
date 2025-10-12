@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export default async function OAuthCallbackPage() {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => Promise.resolve(cookieStore),
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
 
   const {

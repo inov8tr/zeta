@@ -11,7 +11,7 @@ type MemberRow = Pick<Database["public"]["Tables"]["profiles"]["Row"], "user_id"
 const ClassesPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => Promise.resolve(cookieStore),
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
 
   const { data: classes, error } = await supabase

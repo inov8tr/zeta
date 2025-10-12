@@ -23,7 +23,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const { id } = await params;
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => Promise.resolve(cookieStore),
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
 
   const profilePromise = supabase

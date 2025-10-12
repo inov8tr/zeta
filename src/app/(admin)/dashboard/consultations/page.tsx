@@ -11,7 +11,7 @@ type SlotRow = Database["public"]["Tables"]["consultation_slots"]["Row"];
 const ConsultationsPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => Promise.resolve(cookieStore),
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
 
   const { data, error } = await supabase

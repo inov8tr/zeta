@@ -16,7 +16,7 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
   const { id } = await params;
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => Promise.resolve(cookieStore),
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
 
   const { data: classInfo, error } = await supabase

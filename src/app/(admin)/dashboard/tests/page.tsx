@@ -11,7 +11,7 @@ type ProfileRow = Pick<Database["public"]["Tables"]["profiles"]["Row"], "user_id
 const TestsPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => Promise.resolve(cookieStore),
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
 
   const { data, error } = await supabase
