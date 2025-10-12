@@ -7,6 +7,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { format } from "date-fns";
 
 import { Database } from "@/lib/database.types";
+import AssignTestButton from "@/components/admin/AssignTestButton";
 
 type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
 type ProfileWithRelations = ProfileRow & {
@@ -74,12 +75,15 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
             Role: <span className="font-medium text-brand-primary-dark">{profile.role ?? "student"}</span>
           </p>
         </div>
-        <Link
-          href={`/dashboard/users/${id}/edit`}
-          className="mt-2 inline-flex items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold uppercase text-white transition hover:bg-brand-primary-dark sm:mt-0"
-        >
-          Edit user
-        </Link>
+        <div className="mt-2 flex flex-wrap gap-2 sm:mt-0">
+          <Link
+            href={`/dashboard/users/${id}/edit`}
+            className="inline-flex items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold uppercase text-white transition hover:bg-brand-primary-dark"
+          >
+            Edit user
+          </Link>
+          <AssignTestButton studentId={id} />
+        </div>
       </div>
 
       <section className="grid gap-4 sm:grid-cols-2">
