@@ -3,7 +3,17 @@ import { cookies } from "next/headers";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
-import { SECTION_ORDER } from "@/lib/tests/adaptiveConfig";
+import { SECTION_ORDER, generateLevelCandidates } from "@/lib/tests/adaptiveConfig";
+
+interface QuestionRow {
+  id: string;
+  stem: string;
+  options: string[];
+  skill_tags: string[] | null;
+  media_url: string | null;
+  passage_id: string | null;
+  question_passages: { title: string; body: string }[] | { title: string; body: string } | null;
+}
 
 export async function POST(_req: Request, { params }: { params: { testId: string } }) {
   const cookieStore = cookies();
@@ -19,7 +29,7 @@ export async function POST(_req: Request, { params }: { params: { testId: string
 
   const { data: test, error: testError } = await supabase
     .from("tests")
-    .select("id, student_id, status, time_limit_seconds, elapsed_ms, seed_start")
+    .select("id, student_id, status, time_limit_seconds, elapsed_ms")
     .eq("id", params.testId)
     .maybeSingle();
 
@@ -72,77 +82,105 @@ export async function POST(_req: Request, { params }: { params: { testId: string
 
   const answeredIds = new Set(sectionResponses.data?.map((row) => row.question_id) ?? []);
 
-  let currentPassageId = activeSection.current_passage_id as string | null;
-  let passageQuestionCount = activeSection.current_passage_question_count ?? 0;
+  const currentLevelState = {
+    level: activeSection.current_level,
+    sublevel: (activeSection.current_sublevel as "1" | "2" | "3") ?? "1",
+  };
 
-  if (activeSection.section === "reading" && (!currentPassageId || passageQuestionCount >= 5)) {
-    const { data: answeredQuestions } = answeredIds.size
+  const levelCandidates = generateLevelCandidates(currentLevelState, 4);
+
+  const answeredReading =
+    answeredIds.size > 0 && activeSection.section === "reading"
       ? await supabase
           .from("questions")
           .select("id, passage_id")
           .in("id", Array.from(answeredIds))
       : { data: [], error: null };
-    const passageUsage = new Map<string, number>();
-    answeredQuestions?.forEach((row) => {
-      if (row.passage_id) {
-        passageUsage.set(row.passage_id, (passageUsage.get(row.passage_id) ?? 0) + 1);
-      }
-    });
 
-    const { data: passages, error: passagesError } = await supabase
-      .from("question_passages")
-      .select("id")
-      .eq("section", "reading")
-      .eq("level", activeSection.current_level)
-      .eq("sublevel", activeSection.current_sublevel)
+  const passageUsage = new Map<string, number>();
+  answeredReading.data?.forEach((row) => {
+    if (row.passage_id) {
+      passageUsage.set(row.passage_id, (passageUsage.get(row.passage_id) ?? 0) + 1);
+    }
+  });
+
+  let selectedQuestion: QuestionRow | null = null;
+  let selectedCandidate = currentLevelState;
+  let selectedPassage: { title: string; body: string } | null = null;
+  let nextPassageId = activeSection.current_passage_id as string | null;
+  let nextPassageCount = activeSection.current_passage_question_count ?? 0;
+
+  for (const candidate of levelCandidates) {
+    let passageId = nextPassageId;
+    let passageCount = nextPassageCount;
+    let passagePayload: { title: string; body: string } | null = null;
+
+    if (activeSection.section === "reading") {
+      const levelChanged =
+        candidate.level !== currentLevelState.level || candidate.sublevel !== currentLevelState.sublevel;
+      if (levelChanged || !passageId || passageCount >= 5) {
+        const { data: passages, error: passagesError } = await supabase
+          .from("question_passages")
+          .select("id, title, body")
+          .eq("section", "reading")
+          .eq("level", candidate.level)
+          .eq("sublevel", candidate.sublevel)
+          .order("created_at");
+
+        if (passagesError) {
+          console.error("next route: failed to load passages", passagesError);
+          continue;
+        }
+
+        const availablePassage = passages?.find((row) => (passageUsage.get(row.id) ?? 0) < 5);
+        if (!availablePassage) {
+          continue;
+        }
+
+        passageId = availablePassage.id;
+        passageCount = passageUsage.get(availablePassage.id) ?? 0;
+        passagePayload = { title: availablePassage.title, body: availablePassage.body };
+      }
+    }
+
+    let questionQuery = supabase
+      .from("questions")
+      .select("id, stem, options, skill_tags, media_url, passage_id, question_passages(title, body)")
+      .eq("section", activeSection.section)
+      .eq("level", candidate.level)
+      .eq("sublevel", candidate.sublevel)
       .order("created_at");
 
-    if (passagesError) {
-      console.error("next route: failed to load passages", passagesError);
-      return NextResponse.json({ error: "No passages available" }, { status: 500 });
+    if (activeSection.section === "reading" && passageId) {
+      questionQuery = questionQuery.eq("passage_id", passageId);
     }
 
-    const nextPassage = passages?.find((passage) => (passageUsage.get(passage.id) ?? 0) < 5);
-
-    if (!nextPassage) {
-      await supabase
-        .from("test_sections")
-        .update({ completed: true, final_level: Number(`${activeSection.current_level}.${activeSection.current_sublevel}`) })
-        .eq("id", activeSection.id);
-      return NextResponse.json({ done: false, sectionCompleted: true });
+    const { data: candidateQuestions, error: questionError } = await questionQuery;
+    if (questionError) {
+      console.error("next route: failed to load questions", questionError);
+      continue;
     }
 
-    currentPassageId = nextPassage.id;
-    passageQuestionCount = 0;
-    await supabase
-      .from("test_sections")
-      .update({ current_passage_id: currentPassageId, current_passage_question_count: passageQuestionCount })
-      .eq("id", activeSection.id);
+    const nextQuestion = candidateQuestions?.find((row) => !answeredIds.has(row.id));
+
+    if (nextQuestion) {
+      selectedQuestion = nextQuestion as QuestionRow;
+      selectedCandidate = candidate;
+      nextPassageId = passageId;
+      nextPassageCount = passageCount;
+      if (activeSection.section === "reading") {
+        selectedPassage =
+          passagePayload ??
+          (Array.isArray(nextQuestion.question_passages)
+            ? nextQuestion.question_passages[0]
+            : (nextQuestion.question_passages as { title: string; body: string } | null)) ??
+          null;
+      }
+      break;
+    }
   }
 
-  let questionQuery = supabase
-    .from("questions")
-    .select(
-      "id, stem, options, skill_tags, media_url, passage_id, question_passages(title, body)"
-    )
-    .eq("section", activeSection.section)
-    .eq("level", activeSection.current_level)
-    .eq("sublevel", activeSection.current_sublevel)
-    .order("created_at");
-
-  if (activeSection.section === "reading" && currentPassageId) {
-    questionQuery = questionQuery.eq("passage_id", currentPassageId);
-  }
-
-  const { data: candidateQuestions, error: questionError } = await questionQuery;
-  if (questionError) {
-    console.error("next route: failed to load questions", questionError);
-    return NextResponse.json({ error: "No questions available" }, { status: 500 });
-  }
-
-  const nextQuestion = candidateQuestions?.find((question) => !answeredIds.has(question.id));
-
-  if (!nextQuestion) {
+  if (!selectedQuestion) {
     await supabase
       .from("test_sections")
       .update({ completed: true })
@@ -150,25 +188,44 @@ export async function POST(_req: Request, { params }: { params: { testId: string
     return NextResponse.json({ done: false, sectionCompleted: true });
   }
 
+  const sectionUpdate: Record<string, unknown> = {};
+  if (
+    selectedCandidate.level !== activeSection.current_level ||
+    selectedCandidate.sublevel !== activeSection.current_sublevel
+  ) {
+    sectionUpdate.current_level = selectedCandidate.level;
+    sectionUpdate.current_sublevel = selectedCandidate.sublevel;
+  }
+  if (activeSection.section === "reading") {
+    sectionUpdate.current_passage_id = nextPassageId;
+    sectionUpdate.current_passage_question_count = nextPassageCount;
+  }
+  if (Object.keys(sectionUpdate).length > 0) {
+    const { error: syncError } = await supabase
+      .from("test_sections")
+      .update(sectionUpdate)
+      .eq("id", activeSection.id);
+    if (syncError) {
+      console.error("next route: failed to sync section state", syncError);
+    }
+  }
+
   const responsePayload: Record<string, unknown> = {
     testId: params.testId,
     section: activeSection.section,
     timeRemainingSeconds,
-    level: `${activeSection.current_level}.${activeSection.current_sublevel}`,
+    level: `${selectedCandidate.level}.${selectedCandidate.sublevel}`,
     question: {
-      id: nextQuestion.id,
-      stem: nextQuestion.stem,
-      options: nextQuestion.options,
-      skillTags: nextQuestion.skill_tags ?? [],
-      mediaUrl: nextQuestion.media_url,
+      id: selectedQuestion.id,
+      stem: selectedQuestion.stem,
+      options: selectedQuestion.options,
+      skillTags: selectedQuestion.skill_tags ?? [],
+      mediaUrl: selectedQuestion.media_url,
     },
   };
 
   if (activeSection.section === "reading") {
-    const passage = Array.isArray(nextQuestion.question_passages)
-      ? nextQuestion.question_passages[0]
-      : (nextQuestion.question_passages as { title: string; body: string } | null);
-    responsePayload.passage = passage ?? null;
+    responsePayload.passage = selectedPassage ?? null;
   }
 
   return NextResponse.json(responsePayload);

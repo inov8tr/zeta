@@ -87,3 +87,28 @@ export function adjustLevel(
 export function clampStreak(value: number): number {
   return Math.max(0, value);
 }
+
+export function generateLevelCandidates(
+  current: LevelState,
+  maxSteps = 3
+): LevelState[] {
+  const seen = new Set<string>();
+  const candidates: LevelState[] = [];
+
+  const push = (state: LevelState) => {
+    const key = levelToSeed(state);
+    if (!seen.has(key)) {
+      candidates.push(state);
+      seen.add(key);
+    }
+  };
+
+  push(current);
+
+  for (let step = 1; step <= maxSteps; step += 1) {
+    push(adjustLevel(current, "down", step));
+    push(adjustLevel(current, "up", step));
+  }
+
+  return candidates;
+}
