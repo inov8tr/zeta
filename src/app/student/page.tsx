@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
+import StartTestButton from "@/components/student/StartTestButton";
 
 const StudentPortal = async () => {
   const cookieStore = await cookies();
@@ -70,12 +71,7 @@ const StudentPortal = async () => {
                   </p>
                 </div>
                 <div className="mt-6 flex flex-wrap gap-2">
-                  <Link
-                    href={`/assessment?test=${test.id}`}
-                    className="inline-flex items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold uppercase text-white transition hover:bg-brand-primary-dark"
-                  >
-                    {test.status === "in_progress" ? "Resume test" : "Start test"}
-                  </Link>
+                  <StartTestButton testId={test.id} status={test.status} />
                   <Link
                     href="/resources/prep"
                     className="inline-flex items-center rounded-full border border-brand-primary/30 px-4 py-2 text-xs font-semibold uppercase text-brand-primary transition hover:border-brand-primary hover:text-brand-primary-dark"
