@@ -6,6 +6,8 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/database.types";
 import AdminShell from "@/components/admin/AdminShell";
 
+type ProfileRow = Pick<Database["public"]["Tables"]["profiles"]["Row"], "role">;
+
 interface AdminDashboardLayoutProps {
   children: ReactNode;
 }
@@ -28,7 +30,7 @@ const AdminDashboardLayout = async ({ children }: AdminDashboardLayoutProps) => 
     .from("profiles")
     .select("role")
     .eq("user_id", user.id)
-    .single();
+    .maybeSingle<ProfileRow>();
 
   if (error || profile?.role !== "admin") {
     redirect("/login");
