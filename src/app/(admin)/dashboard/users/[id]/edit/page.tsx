@@ -70,9 +70,6 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
             </ul>
           </div>
 
-          <p className="text-xs text-neutral-500">
-            Hook up these fields to a real form with Supabase mutations when you are ready.
-          </p>
         </div>
       </section>
     </main>
