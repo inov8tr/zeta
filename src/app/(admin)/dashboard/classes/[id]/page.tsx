@@ -32,7 +32,14 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
     .from("profiles")
     .select("user_id, full_name, role, username, test_status")
     .eq("class_id", id)
-    .order("full_name", { ascending: true });
+    .order("full_name", { ascending: true }) as Promise<{
+    data: Array<Database["public"]["Tables"]["profiles"]["Row"] & {
+      full_name: string | null;
+      username: string | null;
+      role: string | null;
+      test_status: string | null;
+    }> | null;
+  }>;
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
