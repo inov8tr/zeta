@@ -195,8 +195,14 @@ export type Database = {
           student_id: string | null;
           type: string;
           status: string;
-          score: number | null;
+          total_score: number | null;
           assigned_at: string | null;
+          seed_start: Json | null;
+          time_limit_seconds: number;
+          weighted_level: number | null;
+          started_at: string | null;
+          last_seen_at: string | null;
+          elapsed_ms: number;
           completed_at: string | null;
         };
         Insert: {
@@ -204,8 +210,14 @@ export type Database = {
           student_id?: string | null;
           type: string;
           status?: string;
-          score?: number | null;
+          total_score?: number | null;
           assigned_at?: string | null;
+          seed_start?: Json | null;
+          time_limit_seconds?: number;
+          weighted_level?: number | null;
+          started_at?: string | null;
+          last_seen_at?: string | null;
+          elapsed_ms?: number;
           completed_at?: string | null;
         };
         Update: {
@@ -213,8 +225,14 @@ export type Database = {
           student_id?: string | null;
           type?: string;
           status?: string;
-          score?: number | null;
+          total_score?: number | null;
           assigned_at?: string | null;
+          seed_start?: Json | null;
+          time_limit_seconds?: number;
+          weighted_level?: number | null;
+          started_at?: string | null;
+          last_seen_at?: string | null;
+          elapsed_ms?: number;
           completed_at?: string | null;
         };
         Relationships: [
@@ -231,6 +249,250 @@ export type Database = {
             referencedColumns: ["user_id"];
           }
         ];
+      };
+      question_passages: {
+        Row: {
+          id: string;
+          section: string;
+          level: number;
+          sublevel: string;
+          title: string;
+          body: string;
+          tags: string[] | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          section: string;
+          level: number;
+          sublevel: string;
+          title: string;
+          body: string;
+          tags?: string[] | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          section?: string;
+          level?: number;
+          sublevel?: string;
+          title?: string;
+          body?: string;
+          tags?: string[] | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      questions: {
+        Row: {
+          id: string;
+          section: string;
+          level: number;
+          sublevel: string;
+          passage_id: string | null;
+          stem: string;
+          options: string[];
+          answer_index: number;
+          skill_tags: string[] | null;
+          media_url: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          section: string;
+          level: number;
+          sublevel: string;
+          passage_id?: string | null;
+          stem: string;
+          options: string[];
+          answer_index: number;
+          skill_tags?: string[] | null;
+          media_url?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          section?: string;
+          level?: number;
+          sublevel?: string;
+          passage_id?: string | null;
+          stem?: string;
+          options?: string[];
+          answer_index?: number;
+          skill_tags?: string[] | null;
+          media_url?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "questions_passage_id_fkey";
+            columns: ["passage_id"];
+            referencedRelation: "question_passages";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      test_sections: {
+        Row: {
+          id: string;
+          test_id: string;
+          section: string;
+          current_level: number;
+          current_sublevel: string;
+          questions_served: number;
+          correct_count: number;
+          incorrect_count: number;
+          streak_up: number;
+          streak_down: number;
+          completed: boolean;
+          score: number | null;
+          final_level: number | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          test_id: string;
+          section: string;
+          current_level: number;
+          current_sublevel: string;
+          questions_served?: number;
+          correct_count?: number;
+          incorrect_count?: number;
+          streak_up?: number;
+          streak_down?: number;
+          completed?: boolean;
+          score?: number | null;
+          final_level?: number | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          test_id?: string;
+          section?: string;
+          current_level?: number;
+          current_sublevel?: string;
+          questions_served?: number;
+          correct_count?: number;
+          incorrect_count?: number;
+          streak_up?: number;
+          streak_down?: number;
+          completed?: boolean;
+          score?: number | null;
+          final_level?: number | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "test_sections_test_id_fkey";
+            columns: ["test_id"];
+            referencedRelation: "tests";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      responses: {
+        Row: {
+          id: string;
+          test_id: string;
+          section: string;
+          question_id: string;
+          selected_index: number;
+          correct: boolean;
+          time_spent_ms: number | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          test_id: string;
+          section: string;
+          question_id: string;
+          selected_index: number;
+          correct: boolean;
+          time_spent_ms?: number | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          test_id?: string;
+          section?: string;
+          question_id?: string;
+          selected_index?: number;
+          correct?: boolean;
+          time_spent_ms?: number | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "responses_question_id_fkey";
+            columns: ["question_id"];
+            referencedRelation: "questions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "responses_test_id_fkey";
+            columns: ["test_id"];
+            referencedRelation: "tests";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      entrance_survey: {
+        Row: {
+          id: string;
+          student_id: string;
+          answers: Json;
+          score: Json | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          student_id: string;
+          answers: Json;
+          score?: Json | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          student_id?: string;
+          answers?: Json;
+          score?: Json | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "entrance_survey_student_id_fkey";
+            columns: ["student_id"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      analytics_settings: {
+        Row: {
+          id: string;
+          weights: Json;
+          caps: Json;
+          streak_rules: Json;
+          section_max_questions: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          weights: Json;
+          caps: Json;
+          streak_rules: Json;
+          section_max_questions: Json;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          weights?: Json;
+          caps?: Json;
+          streak_rules?: Json;
+          section_max_questions?: Json;
+          created_at?: string;
+        };
+        Relationships: [];
       };
     };
     Views: Record<string, never>;
