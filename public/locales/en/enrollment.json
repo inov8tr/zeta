@@ -3,8 +3,8 @@
   "intro": "Fill out the form below. We'll create an account and confirm by email.",
   "card": {
     "heading": "Book your consultation & account",
-    "description": "Share your preferred schedule, then add an optional password to save this booking to a new account.",
-    "guestReminder": "Leave the password fields blank to continue as a guest, or set one to create your account while booking.",
+    "description": "Share your preferred schedule, then create a password so we can save this booking to your new account.",
+    "guestReminder": "Set a password to create your account while booking.",
     "loading": "Loading form…",
     "stepOneLabel": "Step 1",
     "stepOneTitle": "Choose appointment type",
@@ -18,13 +18,15 @@
       "title": "Entrance Test (₩20,000)",
       "description": "Reserve a detailed placement exam with feedback and recommendations."
     },
-    "passwordTitle": "Create a password (optional)",
-    "passwordDescription": "Add a password to create an account and manage consultations. Leave blank to continue as a guest.",
+    "passwordTitle": "Create a password",
+    "passwordDescription": "Create a password so you can sign in and manage consultations.",
     "notesPlaceholder": "Anything specific you want to cover?"
   },
   "form": {
     "fullName": "Full name",
     "email": "Email",
+    "username": "Username",
+    "usernameHelp": "Use 3-32 lowercase letters, numbers, underscores, or hyphens.",
     "phone": "Phone",
     "duration": "Duration (minutes)",
     "start": "Preferred start (local time)",
@@ -39,7 +41,8 @@
     "error": "Booking failed",
     "optional": "Optional",
     "emailConfirmationMessage": "Check your email to confirm your new account. We'll finish booking below.",
-    "accountCreatedMessage": "Account created! You're now signed in so we can save this booking."
+    "accountCreatedMessage": "Account created! You're now signed in so we can save this booking.",
+    "inviteMessage": "Check your email to set a password and access your booking."
   },
   "naverCard": {
     "heading": "Visit us on Naver Smart Place",

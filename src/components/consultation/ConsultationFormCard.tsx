@@ -11,6 +11,15 @@ type Props = {
 const ConsultationFormCard = ({ dictionary }: Props) => {
   const { session, loading, supabase } = useSupabaseSession();
   const card = dictionary.card;
+  const metadata = (session?.user.user_metadata ?? {}) as Record<string, unknown>;
+  const initialFullName =
+    session && typeof metadata.full_name === "string" && metadata.full_name.trim().length > 0
+      ? (metadata.full_name as string)
+      : undefined;
+  const initialUsername =
+    session && typeof metadata.username === "string" && metadata.username.trim().length > 0
+      ? (metadata.username as string)
+      : undefined;
 
   return (
     <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
@@ -39,11 +48,10 @@ const ConsultationFormCard = ({ dictionary }: Props) => {
             )}
             <ConsultationServerForm
               dictionary={dictionary}
-              initialFullName={
-                session ? ((session.user.user_metadata as Record<string, unknown>)?.full_name as string | undefined) : undefined
-              }
+              initialFullName={initialFullName}
               initialEmail={session?.user.email ?? undefined}
               readOnlyEmail={Boolean(session?.user.email)}
+              initialUsername={initialUsername}
               session={session}
               supabase={supabase}
             />

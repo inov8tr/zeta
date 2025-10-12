@@ -78,8 +78,17 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           {`
             var _paq = window._paq = window._paq || [];
             _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-            _paq.push(["setCookieDomain", "*.www.zeta-eng.co.kr"]);
-            _paq.push(["setDomains", ["*.www.zeta-eng.co.kr"]]);
+            (function() {
+              var prodDomain = "zeta-eng.co.kr";
+              var host = window.location.hostname || "localhost";
+              if (host === prodDomain || host.endsWith("." + prodDomain)) {
+                _paq.push(["setCookieDomain", ".zeta-eng.co.kr"]);
+                _paq.push(["setDomains", ["*.zeta-eng.co.kr", "zeta-eng.co.kr"]]);
+              } else {
+                _paq.push(["disableCookies"]);
+                _paq.push(["setDomains", [host]]);
+              }
+            })();
             _paq.push(["setDoNotTrack", true]);
             _paq.push(['trackPageView']);
             _paq.push(['enableLinkTracking']);

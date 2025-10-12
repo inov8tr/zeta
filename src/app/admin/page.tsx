@@ -18,6 +18,8 @@ interface ConsultationRow {
   timezone: string | null;
   status: Status;
   notes: string | null;
+  username: string | null;
+  user_type: string | null;
   created_at: string;
 }
 
@@ -51,7 +53,7 @@ const AdminDashboard = async ({
   const { data, error } = await admin
     .from("consultations")
     .select(
-      "id, full_name, email, phone, type, preferred_start, preferred_end, timezone, status, notes, created_at"
+      "id, full_name, email, phone, type, preferred_start, preferred_end, timezone, status, notes, username, user_type, created_at"
     )
     .order("created_at", { ascending: false });
 
@@ -141,6 +143,9 @@ const ConsultationCard = ({ row }: { row: ConsultationRow }) => {
 
   const start = format(new Date(row.preferred_start), "PPP p");
   const end = row.preferred_end ? format(new Date(row.preferred_end), "PPP p") : null;
+  const userTypeLabel = row.user_type
+    ? row.user_type.charAt(0).toUpperCase() + row.user_type.slice(1)
+    : null;
 
   return (
     <article className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
@@ -151,6 +156,11 @@ const ConsultationCard = ({ row }: { row: ConsultationRow }) => {
           {row.phone && <p className="text-sm text-neutral-600">{row.phone}</p>}
         </div>
         <div className="flex flex-wrap gap-2">
+          {row.username ? (
+            <span className="inline-flex items-center rounded-full bg-neutral-200 px-3 py-1 text-xs font-semibold uppercase text-neutral-700">
+              Username: {row.username}
+            </span>
+          ) : null}
           <span
             className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase ${typeLabel.style}`}
           >
@@ -173,6 +183,18 @@ const ConsultationCard = ({ row }: { row: ConsultationRow }) => {
           <dt className="font-medium text-neutral-900">Submitted</dt>
           <dd>{format(new Date(row.created_at), "PPP p")}</dd>
         </div>
+        {row.username ? (
+          <div>
+            <dt className="font-medium text-neutral-900">Username</dt>
+            <dd>{row.username}</dd>
+          </div>
+        ) : null}
+        {userTypeLabel ? (
+          <div>
+            <dt className="font-medium text-neutral-900">User type</dt>
+            <dd>{userTypeLabel}</dd>
+          </div>
+        ) : null}
         {row.notes && (
           <div className="sm:col-span-2">
             <dt className="font-medium text-neutral-900">Notes</dt>

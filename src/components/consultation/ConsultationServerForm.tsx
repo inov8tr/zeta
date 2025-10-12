@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition, useState } from "react";
+import { useMemo, useTransition, useState } from "react";
 import { useForm, type Resolver } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,60 +20,90 @@ const oauthProviders: { key: "google" | "apple" | "kakao"; label: string; icon: 
 
 const BookingSchema = z.object({
   appointment_type: z.enum(["consultation", "entrance_test"]),
-  full_name: z.string().min(2, "Please enter your full name."),
-  email: z.string().email("Enter a valid email."),
-  phone: z.string().min(3, "Please enter a phone number."),
+  full_name: z
+    .string()
+    .trim()
+    .min(2, "Please enter your full name."),
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .email("Enter a valid email."),
+  phone: z
+    .string()
+    .trim()
+    .min(3, "Please enter a phone number."),
   preferred_start: z.string().min(1, "Pick a date/time."),
-  notes: z.string().max(2000).optional(),
+  notes: z
+    .string()
+    .trim()
+    .max(2000, "Keep notes under 2000 characters.")
+    .optional(),
+  username: z
+    .string()
+    .trim()
+    .min(3, "Username must be at least 3 characters.")
+    .max(32, "Username must be under 32 characters.")
+    .regex(/^[a-z0-9_-]+$/i, "Use only letters, numbers, underscores, or hyphens.")
+    .transform((value) => value.toLowerCase()),
 });
 type BookingValues = z.infer<typeof BookingSchema>;
 
-const Schema = BookingSchema.extend({
-  password: z.string().optional(),
-  confirmPassword: z.string().optional(),
-}).superRefine((data, ctx) => {
-  const hasPassword = Boolean(data.password?.trim().length);
-  const hasConfirm = Boolean(data.confirmPassword?.trim().length);
+const buildSchema = (requirePassword: boolean) =>
+  BookingSchema.extend({
+    password: requirePassword
+      ? z
+          .string()
+          .trim()
+          .min(6, "Password must be at least 6 characters.")
+      : z.string().trim().optional(),
+    confirmPassword: requirePassword ? z.string().trim() : z.string().trim().optional(),
+  }).superRefine((data, ctx) => {
+    const hasPassword = Boolean(data.password?.trim().length);
+    const hasConfirm = Boolean(data.confirmPassword?.trim().length);
 
-  if (hasPassword || hasConfirm) {
-    if (!hasPassword) {
+    if (requirePassword) {
+      if (!hasPassword) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["password"],
+          message: "Password is required.",
+        });
+      }
+      if (!hasConfirm) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["confirmPassword"],
+          message: "Please confirm your password.",
+        });
+      }
+    }
+
+    if ((hasPassword && !hasConfirm) || (!hasPassword && hasConfirm)) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        path: ["password"],
-        message: "Password is required to create an account.",
+        path: hasPassword ? ["confirmPassword"] : ["password"],
+        message: "Enter and confirm your password.",
       });
     }
-    if (!hasConfirm) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["confirmPassword"],
-        message: "Please confirm your password.",
-      });
-    }
-    if (data.password && data.password.length < 6) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["password"],
-        message: "Password must be at least 6 characters.",
-      });
-    }
-    if (data.password && data.password !== data.confirmPassword) {
+
+    if (hasPassword && hasConfirm && data.password !== data.confirmPassword) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["confirmPassword"],
         message: "Passwords do not match.",
       });
     }
-  }
-});
+  });
 
-type FormValues = z.infer<typeof Schema>;
+type FormValues = z.infer<ReturnType<typeof buildSchema>>;
 
 interface Props {
   dictionary?: EnrollmentDictionary;
   initialFullName?: string;
   initialEmail?: string;
   initialPhone?: string;
+  initialUsername?: string;
   readOnlyEmail?: boolean;
   session: Session | null;
   supabase: SupabaseClient;
@@ -84,6 +114,7 @@ const ConsultationServerForm = ({
   initialFullName,
   initialEmail,
   initialPhone,
+  initialUsername,
   readOnlyEmail = false,
   session,
   supabase,
@@ -94,13 +125,25 @@ const ConsultationServerForm = ({
   const [err, setErr] = useState<string | null>(null);
   const [authMessage, setAuthMessage] = useState<string | null>(null);
   const [authPending, setAuthPending] = useState(false);
+  type UserRole = "admin" | "teacher" | "student" | "parent";
+  const metadata = (session?.user.user_metadata ?? {}) as Record<string, unknown>;
+  const allowedRoles = new Set<UserRole>(["admin", "teacher", "student", "parent"]);
+  const sessionUserType: UserRole =
+    typeof metadata.user_type === "string" && allowedRoles.has(metadata.user_type.toLowerCase() as UserRole)
+      ? (metadata.user_type.toLowerCase() as UserRole)
+      : "student";
+  const requirePassword = !session;
+  const schema = useMemo(() => buildSchema(requirePassword), [requirePassword]);
   const form = useForm<FormValues>({
-    resolver: zodResolver(Schema) as Resolver<FormValues>,
+    resolver: zodResolver(schema) as Resolver<FormValues>,
     defaultValues: {
       appointment_type: "consultation",
       full_name: initialFullName ?? "",
       email: initialEmail ?? "",
       phone: initialPhone ?? "",
+      preferred_start: "",
+      notes: "",
+      username: initialUsername?.toLowerCase() ?? "",
       password: "",
       confirmPassword: "",
     },
@@ -119,8 +162,7 @@ const ConsultationServerForm = ({
     return redirect.toString();
   };
 
-  const passwordValue = form.watch("password");
-  const wantsAccount = Boolean(passwordValue?.trim().length && !session);
+  const mustCreateAccount = requirePassword;
   const isSubmitting = pending || authPending;
 
   const handleOAuth = async (provider: "google" | "apple" | "kakao") => {
@@ -151,21 +193,32 @@ const ConsultationServerForm = ({
     setOk(null);
     setErr(null);
     setAuthMessage(null);
-    const { password, ...rest } = values;
-    const { confirmPassword: confirmPasswordValue, ...bookingWithoutConfirm } = rest;
-    void confirmPasswordValue;
+    const { password, confirmPassword: _confirmPassword, ...bookingWithoutConfirm } = values;
+    void _confirmPassword;
     const bookingPayload: BookingValues = {
       ...bookingWithoutConfirm,
     };
+    if (!bookingPayload.notes) {
+      bookingPayload.notes = undefined;
+    }
 
-    if (!session && password?.trim()) {
+    let signupUserId: string | null = null;
+
+    if (!session) {
+      const passwordValue = password?.trim();
+      if (!passwordValue) {
+        setErr("Password is required.");
+        return;
+      }
       setAuthPending(true);
       const { data, error } = await supabase.auth.signUp({
         email: bookingPayload.email,
-        password,
+        password: passwordValue,
         options: {
           data: {
             full_name: bookingPayload.full_name,
+            username: bookingPayload.username,
+            user_type: sessionUserType,
           },
           emailRedirectTo: getRedirectUrl(),
         },
@@ -176,6 +229,8 @@ const ConsultationServerForm = ({
         setErr(error.message);
         return;
       }
+
+      signupUserId = data.user?.id ?? null;
 
       if (!data.session) {
         setAuthMessage(
@@ -191,18 +246,29 @@ const ConsultationServerForm = ({
     }
 
     startTransition(async () => {
-      const res = await bookConsultation(bookingPayload);
+      const res = await bookConsultation({
+        ...bookingPayload,
+        user_type: sessionUserType,
+        authUserId: signupUserId ?? undefined,
+      });
       if (res?.error) {
         setErr(res.error);
       } else {
+        if (res?.invitedUser) {
+          setAuthMessage(
+            dictionary?.form?.inviteMessage ??
+              "Check your email to set a password. We sent you an invite to finish creating your account."
+          );
+        }
         setOk(dictionary?.form?.success ?? "Thanks! We’ll confirm shortly by email.");
         form.reset({
           appointment_type: bookingPayload.appointment_type,
-          full_name: initialFullName ?? "",
-          email: initialEmail ?? "",
-          phone: initialPhone ?? "",
+          full_name: bookingPayload.full_name,
+          email: bookingPayload.email,
+          phone: bookingPayload.phone,
           preferred_start: "",
           notes: "",
+          username: bookingPayload.username,
           password: "",
           confirmPassword: "",
         });
@@ -297,6 +363,24 @@ const ConsultationServerForm = ({
         </label>
       </div>
 
+      <div>
+        <label>
+          <span className="block text-sm font-medium text-neutral-800">
+            {dictionary?.form?.username ?? "Username"}
+          </span>
+          <input
+            className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+            {...form.register("username")}
+          />
+          {dictionary?.form?.usernameHelp && (
+            <p className="mt-1 text-xs text-neutral-500">{dictionary?.form?.usernameHelp}</p>
+          )}
+          {form.formState.errors.username && (
+            <p className="text-sm text-red-600">{form.formState.errors.username.message}</p>
+          )}
+        </label>
+      </div>
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label>
           <span className="block text-sm font-medium text-neutral-800">{dictionary?.form?.phone ?? "Phone"}</span>
@@ -327,11 +411,11 @@ const ConsultationServerForm = ({
         <div className="rounded-2xl border border-neutral-200 p-4">
           <div>
             <span className="text-sm font-medium text-neutral-800">
-              {card?.passwordTitle ?? "Create a password (optional)"}
+              {card?.passwordTitle ?? "Create a password"}
             </span>
             <p className="mt-1 text-xs text-neutral-500">
               {card?.passwordDescription ??
-                "Add a password to create an account and manage consultations. Leave blank to continue as a guest."}
+                "Create your password so you can sign in and manage consultations."}
             </p>
           </div>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -343,6 +427,7 @@ const ConsultationServerForm = ({
                 className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
                 type="password"
                 {...form.register("password")}
+                required={requirePassword}
               />
               {form.formState.errors.password && (
                 <p className="text-sm text-red-600">{form.formState.errors.password.message}</p>
@@ -356,6 +441,7 @@ const ConsultationServerForm = ({
                 className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
                 type="password"
                 {...form.register("confirmPassword")}
+                required={requirePassword}
               />
               {form.formState.errors.confirmPassword && (
                 <p className="text-sm text-red-600">{form.formState.errors.confirmPassword.message}</p>
@@ -378,7 +464,7 @@ const ConsultationServerForm = ({
       <Button type="submit" disabled={isSubmitting} className="w-full">
         {isSubmitting
           ? dictionary?.form?.submitting ?? "Booking…"
-          : wantsAccount
+          : mustCreateAccount
             ? dictionary?.form?.createAccountSubmit ?? "Create account & book"
             : dictionary?.form?.submit ?? "Book consultation"}
       </Button>
