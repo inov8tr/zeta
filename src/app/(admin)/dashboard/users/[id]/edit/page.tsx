@@ -12,7 +12,7 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
   const { id } = await params;
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => Promise.resolve(cookieStore),
   });
 
   const { data: profile, error } = await supabase

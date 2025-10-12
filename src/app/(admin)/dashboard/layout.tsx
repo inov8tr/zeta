@@ -13,7 +13,7 @@ interface AdminDashboardLayoutProps {
 const AdminDashboardLayout = async ({ children }: AdminDashboardLayoutProps) => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => Promise.resolve(cookieStore),
   });
 
   const {

@@ -15,7 +15,7 @@ interface StatItem {
 const AdminDashboardPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => Promise.resolve(cookieStore),
   });
 
   const [{ count: consultationCount }, { count: pendingConsultations }, { count: userCount }, { count: classCount }, { count: testCount }] =

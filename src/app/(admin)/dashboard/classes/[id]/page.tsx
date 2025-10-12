@@ -13,7 +13,7 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
   const { id } = await params;
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => Promise.resolve(cookieStore),
   });
 
   const classPromise = supabase

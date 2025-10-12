@@ -8,7 +8,7 @@ import { Database } from "@/lib/database.types";
 const ClassesPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => Promise.resolve(cookieStore),
   });
 
   const classesPromise = supabase
