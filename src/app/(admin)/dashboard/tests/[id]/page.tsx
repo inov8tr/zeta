@@ -31,24 +31,24 @@ const TestDetailPage = async ({ params }: TestDetailPageProps) => {
     notFound();
   }
 
-  const { data: consultationsData } = await supabase
-    .from("consultations")
-    .select("id, status, created_at")
-    .eq("user_id", test.student_id)
-    .order("created_at", { ascending: false })
-    .limit(5);
+  let consultations: ConsultationRow[] = [];
+  if (test.student_id) {
+    const { data: consultationsData } = await supabase
+      .from("consultations")
+      .select("id, status, created_at")
+      .eq("user_id", test.student_id)
+      .order("created_at", { ascending: false })
+      .limit(5);
+    consultations = (consultationsData as ConsultationRow[] | null) ?? [];
+  }
 
-  const consultations =
-    (consultationsData as ConsultationRow[] | null) ?? [];
-
-  const { data: profile } =
-    test.student_id
-      ? await supabase
-          .from("profiles")
-          .select("full_name")
-          .eq("user_id", test.student_id)
-          .maybeSingle<ProfileRow>()
-      : { data: null };
+  const { data: profile } = test.student_id
+    ? await supabase
+        .from("profiles")
+        .select("full_name")
+        .eq("user_id", test.student_id)
+        .maybeSingle<ProfileRow>()
+    : { data: null };
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
