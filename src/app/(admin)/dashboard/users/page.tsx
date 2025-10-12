@@ -80,20 +80,12 @@ const UsersPage = async () => {
                       </td>
                       <td className="px-6 py-4 text-sm text-neutral-700">{user.test_status ?? "none"}</td>
                       <td className="px-6 py-4">
-                        <div className="flex flex-wrap gap-2 text-xs">
-                          <Link
-                            href={`/dashboard/users/${user.user_id}`}
-                            className="rounded-full border border-neutral-300 px-3 py-1 font-medium text-neutral-600 transition hover:border-neutral-400 hover:text-neutral-900"
-                          >
-                            View
-                          </Link>
-                          <Link
-                            href={`/dashboard/users/${user.user_id}/edit`}
-                            className="rounded-full border border-neutral-300 px-3 py-1 font-medium text-neutral-600 transition hover:border-neutral-400 hover:text-neutral-900"
-                          >
-                            Edit
-                          </Link>
-                        </div>
+                        <Link
+                          href={`/dashboard/users/${user.user_id}`}
+                          className="inline-flex rounded-full border border-neutral-300 px-3 py-1 text-xs font-medium text-neutral-600 transition hover:border-neutral-400 hover:text-neutral-900"
+                        >
+                          View
+                        </Link>
                       </td>
                     </tr>
                   );
