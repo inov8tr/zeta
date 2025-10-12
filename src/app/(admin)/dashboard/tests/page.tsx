@@ -5,6 +5,9 @@ import { format } from "date-fns";
 
 import { Database } from "@/lib/database.types";
 
+type TestRow = Database["public"]["Tables"]["tests"]["Row"];
+type ProfileRow = Pick<Database["public"]["Tables"]["profiles"]["Row"], "user_id" | "full_name">;
+
 const TestsPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
@@ -25,7 +28,7 @@ const TestsPage = async () => {
     );
   }
 
-  const tests = data ?? [];
+  const tests = (data as TestRow[] | null) ?? [];
 
   const studentIds = Array.from(new Set(tests.map((test) => test.student_id).filter((id): id is string => !!id)));
   const profileMap = new Map<string, string>();
@@ -36,7 +39,8 @@ const TestsPage = async () => {
       .select("user_id, full_name")
       .in("user_id", studentIds);
 
-    profilesData?.forEach((profile) => {
+    const profiles = (profilesData as ProfileRow[] | null) ?? [];
+    profiles.forEach((profile) => {
       profileMap.set(profile.user_id, profile.full_name ?? "");
     });
   }
