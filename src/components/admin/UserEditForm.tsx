@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useFormStatus } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { updateUserProfileAction, type UpdateUserProfileState } from "@/app/(server)/user-actions";
 
 const ROLE_OPTIONS = [
@@ -44,7 +44,7 @@ const SubmitButton = () => {
 };
 
 const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
-  const [state, formAction] = useActionState(updateUserProfileAction, initialState);
+  const [state, formAction] = useFormState(updateUserProfileAction, initialState);
 
   return (
     <form action={formAction} className="space-y-6">
