@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import * as React from "react";
+import { useFormState as useFormStateDom, useFormStatus } from "react-dom";
 import { updateUserProfileAction, type UpdateUserProfileState } from "@/app/(server)/user-actions";
 
 const ROLE_OPTIONS = [
@@ -43,8 +44,18 @@ const SubmitButton = () => {
   );
 };
 
+const useFormStateCompat: typeof useFormStateDom = ((action: unknown, initialState: unknown) => {
+  const useActionState = (React as unknown as { useActionState?: typeof useFormStateDom }).useActionState;
+  if (typeof useActionState === "function") {
+    // @ts-expect-error -- React.useActionState matches useFormState signature when available
+    return useActionState(action, initialState);
+  }
+  // @ts-expect-error -- upstream typings don't exactly match generic inference
+  return useFormStateDom(action, initialState);
+}) as typeof useFormStateDom;
+
 const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
-  const [state, formAction] = useFormState(updateUserProfileAction, initialState);
+  const [state, formAction] = useFormStateCompat(updateUserProfileAction, initialState);
 
   return (
     <form action={formAction} className="space-y-6">
