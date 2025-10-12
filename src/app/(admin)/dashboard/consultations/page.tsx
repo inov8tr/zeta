@@ -16,9 +16,7 @@ const ConsultationsPage = async () => {
 
   const { data, error } = await supabase
     .from("consultations")
-    .select(
-      "id, full_name, email, phone, status, created_at, message, consultation_slots(slot_date, start_time, end_time)"
-    )
+    .select("id, full_name, email, phone, status, created_at, notes, consultation_slots(slot_date, start_time, end_time)")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -80,7 +78,7 @@ const ConsultationsPage = async () => {
                     <tr key={item.id} className="hover:bg-neutral-50">
                       <td className="px-6 py-4">
                         <div className="font-medium text-neutral-900">{item.full_name ?? "Unknown"}</div>
-                        <div className="text-xs text-neutral-500">{item.message}</div>
+                        <div className="text-xs text-neutral-500">{item.notes}</div>
                       </td>
                       <td className="px-6 py-4">
                         <StatusBadge status={item.status ?? "pending"} />
