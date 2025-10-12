@@ -5,6 +5,9 @@ import { format } from "date-fns";
 
 import { Database } from "@/lib/database.types";
 
+type ClassRow = Database["public"]["Tables"]["classes"]["Row"];
+type MemberRow = Pick<Database["public"]["Tables"]["profiles"]["Row"], "user_id" | "class_id" | "role" | "full_name">;
+
 const ClassesPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
@@ -16,7 +19,7 @@ const ClassesPage = async () => {
     .select("id, name, level, teacher_id, schedule, created_at")
     .order("created_at", { ascending: false });
 
-  const { data: members } = await supabase
+  const { data: membersData } = await supabase
     .from("profiles")
     .select("user_id, full_name, class_id, role")
     .not("class_id", "is", null);
@@ -30,8 +33,10 @@ const ClassesPage = async () => {
     );
   }
 
+  const members = (membersData as MemberRow[] | null) ?? [];
+
   const enrollment = new Map<string, number>();
-  (members ?? []).forEach((member) => {
+  members.forEach((member) => {
     if (member.class_id) {
       enrollment.set(member.class_id, (enrollment.get(member.class_id) ?? 0) + 1);
     }
@@ -47,12 +52,12 @@ const ClassesPage = async () => {
       </header>
 
       <section className="grid gap-4 md:grid-cols-2">
-        {(classes ?? []).length === 0 ? (
+        {((classes as ClassRow[] | null) ?? []).length === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 bg-white p-10 text-center text-neutral-500">
             No classes yet. Create them with a Supabase migration or admin action.
           </div>
         ) : (
-          (classes ?? []).map((item) => (
+          ((classes as ClassRow[] | null) ?? []).map((item) => (
             <article key={item.id} className="flex flex-col gap-4 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
               <div className="flex items-start justify-between gap-3">
                 <div>
