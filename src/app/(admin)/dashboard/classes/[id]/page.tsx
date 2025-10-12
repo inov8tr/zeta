@@ -32,14 +32,7 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
     .from("profiles")
     .select("user_id, full_name, role, username, test_status")
     .eq("class_id", id)
-    .order("full_name", { ascending: true }) as Promise<{
-    data: Array<Database["public"]["Tables"]["profiles"]["Row"] & {
-      full_name: string | null;
-      username: string | null;
-      role: string | null;
-      test_status: string | null;
-    }> | null;
-  }>;
+    .order("full_name", { ascending: true });
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
@@ -63,7 +56,7 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
               No students assigned yet. Use the user edit page to add them.
             </div>
           ) : (
-            (roster ?? []).map((student) => (
+            ((roster as ProfileRow[] | null) ?? []).map((student) => (
               <article key={student.user_id} className="flex items-center justify-between px-6 py-4 text-sm">
                 <div>
                   <div className="font-medium text-neutral-900">{student.full_name ?? "Unnamed student"}</div>
@@ -89,3 +82,4 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
 };
 
 export default ClassDetailPage;
+  type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
