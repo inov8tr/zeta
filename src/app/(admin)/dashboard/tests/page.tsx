@@ -16,7 +16,7 @@ const TestsPage = async () => {
 
   const { data, error } = await supabase
     .from("tests")
-    .select("id, student_id, type, status, score, assigned_at, completed_at")
+    .select("id, student_id, type, status, total_score, assigned_at, completed_at")
     .order("assigned_at", { ascending: false });
 
   if (error) {
@@ -83,7 +83,7 @@ const TestsPage = async () => {
                       <StatusBadge status={test.status} />
                     </td>
                     <td className="px-6 py-4 text-sm text-neutral-700">
-                      {test.score !== null ? test.score : "Pending"}
+                      {test.total_score !== null ? test.total_score : "Pending"}
                     </td>
                     <td className="px-6 py-4 text-xs text-neutral-500">
                       {test.assigned_at ? format(new Date(test.assigned_at), "MMM d, yyyy") : "—"}

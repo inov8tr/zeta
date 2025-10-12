@@ -23,7 +23,7 @@ const TestDetailPage = async ({ params }: TestDetailPageProps) => {
 
   const { data: test, error } = await supabase
     .from("tests")
-    .select("id, student_id, type, status, score, assigned_at, completed_at")
+    .select("id, student_id, type, status, total_score, assigned_at, completed_at")
     .eq("id", id)
     .maybeSingle<TestRow>();
 
@@ -70,7 +70,7 @@ const TestDetailPage = async ({ params }: TestDetailPageProps) => {
           </div>
           <div>
             <dt className="text-xs uppercase text-brand-primary/70">Score</dt>
-            <dd className="mt-1 text-brand-primary-dark">{test.score ?? "Pending"}</dd>
+            <dd className="mt-1 text-brand-primary-dark">{test.total_score ?? "Pending"}</dd>
           </div>
           <div>
             <dt className="text-xs uppercase text-brand-primary/70">Assigned</dt>

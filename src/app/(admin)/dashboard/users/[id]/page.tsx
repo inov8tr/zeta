@@ -35,7 +35,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
 
   const testsPromise = supabase
     .from("tests")
-    .select("id, type, status, score, assigned_at, completed_at")
+    .select("id, type, status, total_score, assigned_at, completed_at")
     .eq("student_id", id)
     .order("assigned_at", { ascending: false })
     .returns<TestRow[]>();
@@ -139,7 +139,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-wide text-brand-primary/70">Score</div>
-                  <div className="text-brand-primary-dark">{test.score ?? "Pending"}</div>
+                  <div className="text-brand-primary-dark">{test.total_score ?? "Pending"}</div>
                 </div>
               </article>
             ))

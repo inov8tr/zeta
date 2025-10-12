@@ -348,6 +348,8 @@ export type Database = {
           score: number | null;
           final_level: number | null;
           created_at: string;
+          current_passage_id: string | null;
+          current_passage_question_count: number;
         };
         Insert: {
           id?: string;
@@ -364,6 +366,8 @@ export type Database = {
           score?: number | null;
           final_level?: number | null;
           created_at?: string;
+          current_passage_id?: string | null;
+          current_passage_question_count?: number;
         };
         Update: {
           id?: string;
@@ -380,6 +384,8 @@ export type Database = {
           score?: number | null;
           final_level?: number | null;
           created_at?: string;
+          current_passage_id?: string | null;
+          current_passage_question_count?: number;
         };
         Relationships: [
           {
