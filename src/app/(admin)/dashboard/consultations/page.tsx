@@ -5,6 +5,9 @@ import { format } from "date-fns";
 
 import { Database } from "@/lib/database.types";
 
+type ConsultationRow = Database["public"]["Tables"]["consultations"]["Row"];
+type SlotRow = Database["public"]["Tables"]["consultation_slots"]["Row"];
+
 const ConsultationsPage = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
@@ -29,7 +32,8 @@ const ConsultationsPage = async () => {
     );
   }
 
-  const consultations = data ?? [];
+  const consultations =
+    (data as (ConsultationRow & { consultation_slots: SlotRow | SlotRow[] | null })[] | null) ?? [];
 
   return (
     <main className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-12">
