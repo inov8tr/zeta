@@ -5,10 +5,11 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/database.types";
 
 interface EditUserPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const EditUserPage = async ({ params }: EditUserPageProps) => {
+  const { id } = await params;
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore,
@@ -17,7 +18,7 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("user_id, full_name, role, class_id, test_status")
-    .eq("user_id", params.id)
+    .eq("user_id", id)
     .single();
 
   const { data: classes } = await supabase

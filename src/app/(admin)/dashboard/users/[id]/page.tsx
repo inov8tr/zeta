@@ -9,10 +9,11 @@ import { format } from "date-fns";
 import { Database } from "@/lib/database.types";
 
 interface UserDetailPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const UserDetailPage = async ({ params }: UserDetailPageProps) => {
+  const { id } = await params;
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore,
@@ -21,19 +22,19 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const profilePromise = supabase
     .from("profiles")
     .select("user_id, full_name, username, role, phone, class_id, test_status, classes(name, level)")
-    .eq("user_id", params.id)
+    .eq("user_id", id)
     .single();
 
   const testsPromise = supabase
     .from("tests")
     .select("id, type, status, score, assigned_at, completed_at")
-    .eq("student_id", params.id)
+    .eq("student_id", id)
     .order("assigned_at", { ascending: false });
 
   const consultationsPromise = supabase
     .from("consultations")
     .select("id, status, created_at")
-    .eq("user_id", params.id)
+    .eq("user_id", id)
     .order("created_at", { ascending: false });
 
   const [{ data: profile, error: profileError }, { data: tests }, { data: consultations }] = await Promise.all([

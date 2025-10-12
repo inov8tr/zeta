@@ -7,10 +7,11 @@ import { format } from "date-fns";
 import { Database } from "@/lib/database.types";
 
 interface TestDetailPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const TestDetailPage = async ({ params }: TestDetailPageProps) => {
+  const { id } = await params;
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore,
@@ -19,7 +20,7 @@ const TestDetailPage = async ({ params }: TestDetailPageProps) => {
   const { data: test, error } = await supabase
     .from("tests")
     .select("id, student_id, type, status, score, assigned_at, completed_at")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (error || !test) {

@@ -6,10 +6,11 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/database.types";
 
 interface ClassDetailPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
+  const { id } = await params;
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore,
@@ -18,13 +19,13 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
   const classPromise = supabase
     .from("classes")
     .select("id, name, level, schedule, teacher_id, created_at")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   const rosterPromise = supabase
     .from("profiles")
     .select("user_id, full_name, role, username, test_status")
-    .eq("class_id", params.id)
+    .eq("class_id", id)
     .order("full_name", { ascending: true });
 
   const [{ data: classInfo, error }, { data: roster }] = await Promise.all([classPromise, rosterPromise]);
