@@ -53,7 +53,7 @@ export async function updateUserProfileAction(
 
   const cookieStore = await cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: () => cookieStore,
+    cookies: async () => cookieStore,
   });
   const {
     data: { session },
