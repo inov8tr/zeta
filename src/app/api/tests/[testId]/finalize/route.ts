@@ -6,12 +6,8 @@ import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/database.types";
 import { finalizeTest } from "@/lib/tests/finalize";
 
-type RouteContext = {
-  params: { testId: string };
-};
-
-export async function POST(_req: NextRequest, context: RouteContext) {
-  const { testId } = context.params;
+export async function POST(_req: NextRequest, { params }: { params: { testId: string } }) {
+  const { testId } = params;
   const cookieStore = cookies();
   const supabase = createRouteHandlerClient<Database>({ cookies: () => cookieStore });
 
