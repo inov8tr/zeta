@@ -16,23 +16,23 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
     cookies: () => Promise.resolve(cookieStore),
   });
 
-  const classPromise = supabase
+  type ClassRow = Database["public"]["Tables"]["classes"]["Row"];
+
+  const { data: classInfo, error } = await supabase
     .from("classes")
     .select("id, name, level, schedule, teacher_id, created_at")
     .eq("id", id)
-    .single();
-
-  const rosterPromise = supabase
-    .from("profiles")
-    .select("user_id, full_name, role, username, test_status")
-    .eq("class_id", id)
-    .order("full_name", { ascending: true });
-
-  const [{ data: classInfo, error }, { data: roster }] = await Promise.all([classPromise, rosterPromise]);
+    .maybeSingle<ClassRow>();
 
   if (error || !classInfo) {
     notFound();
   }
+
+  const { data: roster } = await supabase
+    .from("profiles")
+    .select("user_id, full_name, role, username, test_status")
+    .eq("class_id", id)
+    .order("full_name", { ascending: true });
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
@@ -56,7 +56,7 @@ const ClassDetailPage = async ({ params }: ClassDetailPageProps) => {
               No students assigned yet. Use the user edit page to add them.
             </div>
           ) : (
-            roster!.map((student) => (
+            (roster ?? []).map((student) => (
               <article key={student.user_id} className="flex items-center justify-between px-6 py-4 text-sm">
                 <div>
                   <div className="font-medium text-neutral-900">{student.full_name ?? "Unnamed student"}</div>
