@@ -65,6 +65,7 @@ export async function bookConsultation(input: Input) {
 
     const admin = createAdminClient();
     const normalizedUsername = input.username.trim().toLowerCase();
+    const usernameValue = normalizedUsername.length > 0 ? normalizedUsername : null;
     const normalizedPhone = input.phone.trim();
     const requestedRole = input.user_type;
     const role: UserRole = isUserRole(requestedRole) ? requestedRole : "student";
@@ -135,7 +136,7 @@ export async function bookConsultation(input: Input) {
           user_id: userId,
           full_name: input.full_name,
           phone: normalizedPhone || null,
-          username: normalizedUsername,
+          username: usernameValue,
           role,
         },
         { onConflict: "user_id" }
@@ -144,9 +145,26 @@ export async function bookConsultation(input: Input) {
     if (profileError) {
       console.error("Failed to upsert profile", profileError);
       if (typeof profileError.code === "string" && profileError.code === "23505") {
-        throw new Error("That test ID is already in use. Please choose a different one.");
+        const { error: fallbackError } = await admin
+          .from("profiles")
+          .upsert(
+            {
+              user_id: userId,
+              full_name: input.full_name,
+              phone: normalizedPhone || null,
+              username: null,
+              role,
+            },
+            { onConflict: "user_id" }
+          );
+
+        if (fallbackError) {
+          console.error("Fallback profile upsert failed", fallbackError);
+          throw new Error("That username is already taken. Please choose a different one.");
+        }
+      } else {
+        throw new Error("Unable to save your profile right now. Please try again.");
       }
-      throw new Error("Unable to save your profile right now. Please try again.");
     }
 
     const start = parseISO(input.preferred_start);
@@ -168,7 +186,7 @@ export async function bookConsultation(input: Input) {
         timezone: input.timezone ?? "Asia/Seoul",
         status: "pending",
         notes: input.notes ?? null,
-        username: normalizedUsername,
+        username: usernameValue,
         user_type: role,
       })
       .select("id")
