@@ -8,6 +8,8 @@ import { format } from "date-fns";
 
 import { Database } from "@/lib/database.types";
 import AssignTestButton from "@/components/admin/AssignTestButton";
+import VerifyUserButton from "@/components/admin/VerifyUserButton";
+import { createAdminClient } from "@/lib/supabaseAdmin";
 
 type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
 type ProfileWithRelations = ProfileRow & {
@@ -26,6 +28,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
+  const admin = createAdminClient();
 
   const profilePromise = supabase
     .from("profiles")
@@ -47,11 +50,19 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     .order("created_at", { ascending: false })
     .returns<ConsultationRow[]>();
 
-  const [profileResult, testsResult, consultationsResult] = await Promise.all([
+  const authUserPromise = admin.auth.admin.getUserById(id);
+
+  const [profileResult, testsResult, consultationsResult, authUserResult] = await Promise.all([
     profilePromise,
     testsPromise,
     consultationsPromise,
+    authUserPromise,
   ]);
+
+  const { data: authUserData } = authUserResult;
+  const authUser = authUserData?.user ?? null;
+  const emailConfirmed = Boolean(authUser?.email_confirmed_at);
+  const emailAddress = authUser?.email ?? null;
 
   const { data: profile, error: profileError } = profileResult;
   const tests = (testsResult.data as TestRow[] | null) ?? [];
@@ -83,6 +94,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
             Edit user
           </Link>
           <AssignTestButton studentId={id} />
+          <VerifyUserButton userId={id} emailConfirmed={emailConfirmed} />
         </div>
       </div>
 
@@ -92,6 +104,21 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
             <div>
               <dt className="font-medium text-brand-primary-dark">Username</dt>
               <dd>{profile.username ?? "—"}</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-brand-primary-dark">Email</dt>
+              <dd className="flex items-center gap-2">
+                <span>{emailAddress ?? "—"}</span>
+                <span
+                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${
+                    emailConfirmed
+                      ? "bg-emerald-100 text-emerald-700"
+                      : "bg-amber-100 text-amber-700"
+                  }`}
+                >
+                  {emailConfirmed ? "Verified" : "Pending"}
+                </span>
+              </dd>
             </div>
             <div>
               <dt className="font-medium text-brand-primary-dark">Phone</dt>
