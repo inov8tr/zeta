@@ -51,9 +51,9 @@ export async function updateUserProfileAction(
 
   const { user_id, full_name, phone, role, class_id, test_status } = parsed.data;
 
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: async () => cookieStore,
+    cookies: () => cookieStore,
   });
   const {
     data: { session },
@@ -108,9 +108,9 @@ export async function verifyUserEmailAction(formData: FormData): Promise<{ error
     return { error: "Missing user id." };
   }
 
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: async () => cookieStore,
+    cookies: () => cookieStore,
   });
   const {
     data: { session },
