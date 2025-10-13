@@ -55,10 +55,32 @@ interface Input {
 
 const DEFAULT_DURATION_MINUTES = 45;
 
+type SupabaseErrorShape = {
+  message?: string;
+  code?: string;
+  details?: string;
+};
+
+function extractError(err: unknown): { message: string; code?: string; details?: string } {
+  if (typeof err === "string") {
+    return { message: err };
+  }
+  if (err instanceof Error) {
+    return { message: err.message };
+  }
+  if (err && typeof err === "object") {
+    const { message, code, details } = err as SupabaseErrorShape;
+    if (message) {
+      return { message, code, details };
+    }
+  }
+  return { message: "Booking failed" };
+}
+
 export async function bookConsultation(input: Input) {
   try {
-    const cookieStore = await cookies();
-    const supabase = createServerActionClient({ cookies: async () => cookieStore });
+    const cookieStore = cookies();
+    const supabase = createServerActionClient({ cookies: () => cookieStore });
     const {
       data: { session },
     } = await supabase.auth.getSession();
@@ -172,11 +194,11 @@ export async function bookConsultation(input: Input) {
             },
             { onConflict: "user_id" }
           );
-
         if (fallbackError) {
           console.error("Fallback profile upsert failed", fallbackError);
           throw new Error("That username is already taken. Please choose a different one.");
         }
+        usernameValue = null;
       } else {
         throw new Error("Unable to save your profile right now. Please try again.");
       }
@@ -219,6 +241,8 @@ export async function bookConsultation(input: Input) {
       const startText = start.toLocaleString("en-US", { hour12: false });
       const endText = end.toLocaleString("en-US", { hour12: false });
       const tz = input.timezone ?? "Asia/Seoul";
+      const resolvedUsername = usernameValue ?? (normalizedUsername || "(not set)");
+
       await Promise.all([
         resend.emails.send({
           from: process.env.ALERT_FROM!,
@@ -226,28 +250,24 @@ export async function bookConsultation(input: Input) {
           subject: "Your booking request — Zeta English",
           text: `Hi ${input.full_name},\n\nThanks for booking a ${
             input.appointment_type === "entrance_test" ? "placement test" : "consultation"
-          }. We tentatively reserved: ${startText} → ${endText} (${tz}).\n\nYour username is ${normalizedUsername}.\n\nWe’ll confirm shortly.`,
+          }. We tentatively reserved: ${startText} → ${endText} (${tz}).\n\nYour username is ${resolvedUsername}.\n\nWe’ll confirm shortly.`,
         }),
         process.env.ALERT_TO
           ? resend.emails.send({
               from: process.env.ALERT_FROM!,
               to: process.env.ALERT_TO!,
               subject: `New ${input.appointment_type} request — ${input.full_name}`,
-              text: `Type: ${input.appointment_type}\nRole: ${role}\nUsername: ${normalizedUsername}\nName: ${input.full_name}\nEmail: ${email}\nPhone: ${normalizedPhone || "-"}\nWhen: ${startText} → ${endText} (${tz})\nNotes: ${input.notes ?? "-"}\nBooking ID: ${booking.id}`,
+              text: `Type: ${input.appointment_type}\nRole: ${role}\nUsername: ${resolvedUsername}\nName: ${input.full_name}\nEmail: ${email}\nPhone: ${normalizedPhone || "-"}\nWhen: ${startText} → ${endText} (${tz})\nNotes: ${input.notes ?? "-"}\nBooking ID: ${booking.id}`,
             })
           : Promise.resolve(),
       ]);
     }
 
     return { ok: true, id: booking?.id, invitedUser };
-    return { ok: true, id: booking?.id, invitedUser };
-  } catch (e: unknown) {
-    console.error("bookConsultation error", e);
-    const message =
-      (typeof e === "object" && e !== null && "message" in e && typeof (e as { message?: string }).message === "string"
-        ? (e as { message: string }).message
-        : null) ?? "Booking failed";
-    return { error: message };
+  } catch (err: unknown) {
+    const { message, code, details } = extractError(err);
+    console.error("bookConsultation error", { err, message, code, details });
+    return { error: message, code, details };
   }
 }
 

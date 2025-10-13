@@ -19,8 +19,8 @@ type StartableTestRow = Pick<
 >;
 
 export async function assignEntranceTestAction({ studentId }: AssignEntranceTestInput) {
-  const cookieStore = await cookies();
-  const supabase = createServerActionClient<Database>({ cookies: async () => cookieStore });
+  const cookieStore = cookies();
+  const supabase = createServerActionClient<Database>({ cookies: () => cookieStore });
 
   const {
     data: { session },
@@ -62,8 +62,8 @@ interface StartTestInput {
 }
 
 export async function startTestAction({ testId }: StartTestInput) {
-  const cookieStore = await cookies();
-  const supabase = createServerActionClient<Database>({ cookies: async () => cookieStore });
+  const cookieStore = cookies();
+  const supabase = createServerActionClient<Database>({ cookies: () => cookieStore });
 
   const {
     data: { session },

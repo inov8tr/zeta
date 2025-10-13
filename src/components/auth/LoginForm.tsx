@@ -31,6 +31,9 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(initialError);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [needsConfirmation, setNeedsConfirmation] = useState(false);
+  const [resendMessage, setResendMessage] = useState<string | null>(null);
+  const [isResending, setIsResending] = useState(false);
   const supabase = useMemo(() => {
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
       console.warn("Supabase is not configured.");
@@ -38,10 +41,13 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
     }
     return createClientComponentClient();
   }, []);
+  const strings = dictionary as unknown as Record<string, string | undefined>;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+    setResendMessage(null);
+    setNeedsConfirmation(false);
 
     if (!supabase) {
       setError("Supabase is not configured.");
@@ -86,6 +92,11 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
       router.push(redirectPath);
     } catch (err: unknown) {
       console.error(err);
+      const messageLower =
+        err instanceof Error ? err.message.toLowerCase() : typeof err === "string" ? err.toLowerCase() : "";
+      if (messageLower.includes("email not confirmed") || messageLower.includes("email_not_confirmed")) {
+        setNeedsConfirmation(true);
+      }
       const message =
         err instanceof Error && err.message.toLowerCase().includes("invalid login credentials")
           ? dictionary.errorGeneric
@@ -95,6 +106,40 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
       setError(message);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleResendConfirmation = async () => {
+    if (!supabase) {
+      setResendMessage("Supabase is not configured.");
+      return;
+    }
+    if (!email) {
+      setResendMessage(dictionary.emailPlaceholder ?? "Enter your email first.");
+      return;
+    }
+    setIsResending(true);
+    setResendMessage(null);
+    try {
+      const { error: resendError } = await supabase.auth.resend({
+        type: "signup",
+        email,
+      });
+      if (resendError) {
+        throw resendError;
+      }
+      setResendMessage(
+        strings.confirmationResent ?? "Verification email sent. Please check your inbox (and spam folder)."
+      );
+    } catch (resendErr) {
+      console.error(resendErr);
+      const msg =
+        resendErr instanceof Error
+          ? resendErr.message
+          : dictionary.errorGeneric ?? "Unable to resend confirmation email.";
+      setResendMessage(msg);
+    } finally {
+      setIsResending(false);
     }
   };
 
@@ -163,6 +208,25 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
         </div>
 
         {error && <p className="text-sm text-red-600">{error}</p>}
+        {needsConfirmation ? (
+          <div className="rounded-2xl bg-amber-50 px-4 py-3 text-xs text-amber-700">
+            <p>
+              {strings.emailConfirmationNeeded ??
+                "Please confirm your email before signing in. We can resend the confirmation email if you need it."}
+            </p>
+            <button
+              type="button"
+              className="mt-2 inline-flex items-center rounded-full bg-brand-primary px-3 py-1 text-xs font-semibold uppercase text-white transition hover:bg-brand-primary-dark disabled:cursor-not-allowed disabled:opacity-70"
+              onClick={handleResendConfirmation}
+              disabled={isResending}
+            >
+              {isResending
+                ? strings.resendingLabel ?? "Resending…"
+                : strings.resendConfirmationLabel ?? "Resend confirmation email"}
+            </button>
+            {resendMessage ? <p className="mt-2 text-xs text-brand-primary-dark">{resendMessage}</p> : null}
+          </div>
+        ) : null}
 
         <Button type="submit" disabled={isSubmitting} className="w-full px-6 py-3 text-sm font-semibold">
           {isSubmitting ? "…" : dictionary.signIn}

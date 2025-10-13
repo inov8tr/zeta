@@ -51,9 +51,9 @@ export async function updateUserProfileAction(
 
   const { user_id, full_name, phone, role, class_id, test_status } = parsed.data;
 
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: async () => cookieStore,
+    cookies: () => cookieStore,
   });
   const {
     data: { session },
@@ -99,4 +99,58 @@ export async function updateUserProfileAction(
   revalidatePath("/dashboard/users");
   revalidatePath(`/dashboard/users/${user_id}`);
   redirect(`/dashboard/users/${user_id}`);
+}
+
+export async function verifyUserEmailAction(formData: FormData): Promise<{ error?: string; success?: string }> {
+  const rawUserId = formData.get("user_id");
+  const userId = typeof rawUserId === "string" ? rawUserId.trim() : "";
+  if (!userId) {
+    return { error: "Missing user id." };
+  }
+
+  const cookieStore = cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore,
+  });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return { error: "You must be signed in." };
+  }
+
+  const { data: actorProfile, error: actorError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", session.user.id)
+    .maybeSingle<{ role: string }>();
+
+  if (actorError) {
+    console.error("verifyUserEmailAction: failed to load actor profile", actorError);
+    return { error: "Unable to verify permissions." };
+  }
+
+  if (actorProfile?.role !== "admin") {
+    return { error: "Only admins can verify users." };
+  }
+
+  try {
+    const admin = createAdminClient();
+    const { error } = await admin.auth.admin.updateUserById(userId, {
+      email_confirm: true,
+    });
+    if (error) {
+      console.error("verifyUserEmailAction: updateUserById failed", error);
+      return { error: error.message ?? "Failed to verify email." };
+    }
+  } catch (err) {
+    console.error("verifyUserEmailAction: unexpected error", err);
+    const message = err instanceof Error ? err.message : "Failed to verify email.";
+    return { error: message };
+  }
+
+  revalidatePath(`/dashboard/users/${userId}`);
+  revalidatePath("/dashboard/users");
+  return { success: "Email marked as verified." };
 }
