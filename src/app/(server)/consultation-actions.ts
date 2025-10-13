@@ -79,8 +79,8 @@ function extractError(err: unknown): { message: string; code?: string; details?:
 
 export async function bookConsultation(input: Input) {
   try {
-    const cookieStore = await cookies();
-    const supabase = createServerActionClient({ cookies: async () => cookieStore });
+    const cookieStore = cookies();
+    const supabase = createServerActionClient({ cookies: () => cookieStore });
     const {
       data: { session },
     } = await supabase.auth.getSession();
