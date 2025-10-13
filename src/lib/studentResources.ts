@@ -61,8 +61,9 @@ const RESOURCES_BY_STATUS: Record<string, StudentResource[]> = {
 };
 
 export function getStudentResources(testStatus: string | null): StudentResource[] {
-  if (!testStatus) return DEFAULT_RESOURCES;
+  if (!testStatus) {
+    return DEFAULT_RESOURCES;
+  }
   const key = testStatus.toLowerCase();
   return RESOURCES_BY_STATUS[key] ?? DEFAULT_RESOURCES;
 }
-

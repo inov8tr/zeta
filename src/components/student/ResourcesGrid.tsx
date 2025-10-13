@@ -11,7 +11,7 @@ interface ResourcesGridProps {
   resources: StudentResource[];
 }
 
-export default function ResourcesGrid({ resources }: ResourcesGridProps) {
+const ResourcesGrid = ({ resources }: ResourcesGridProps) => {
   if (!resources.length) {
     return null;
   }
@@ -49,5 +49,6 @@ export default function ResourcesGrid({ resources }: ResourcesGridProps) {
       </ul>
     </section>
   );
-}
+};
 
+export default ResourcesGrid;

@@ -13,7 +13,7 @@ interface ConsultationCardProps {
   consultation: Consultation | null;
 }
 
-export default function ConsultationCard({ consultation }: ConsultationCardProps) {
+const ConsultationCard = ({ consultation }: ConsultationCardProps) => {
   if (!consultation) {
     return (
       <section className="h-full rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm">
@@ -62,5 +62,6 @@ export default function ConsultationCard({ consultation }: ConsultationCardProps
       </Link>
     </section>
   );
-}
+};
 
+export default ConsultationCard;

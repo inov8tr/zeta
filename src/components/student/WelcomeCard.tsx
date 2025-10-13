@@ -29,7 +29,7 @@ const statusCopy: Record<string, { label: string; description: string }> = {
   },
 };
 
-export default function WelcomeCard({ fullName, testStatus, className }: WelcomeCardProps) {
+const WelcomeCard = ({ fullName, testStatus, className }: WelcomeCardProps) => {
   const normalizedStatus = (testStatus ?? "none").toLowerCase();
   const copy = statusCopy[normalizedStatus] ?? statusCopy.none;
 
@@ -70,5 +70,6 @@ export default function WelcomeCard({ fullName, testStatus, className }: Welcome
       </div>
     </section>
   );
-}
+};
 
+export default WelcomeCard;

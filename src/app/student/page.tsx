@@ -10,10 +10,17 @@ import ConsultationCard from "@/components/student/ConsultationCard";
 import ResourcesGrid from "@/components/student/ResourcesGrid";
 import { getStudentResources } from "@/lib/studentResources";
 
+type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
+type ProfileWithClassName = {
+  full_name: ProfileRow["full_name"];
+  test_status: ProfileRow["test_status"];
+  classes: { name: string | null } | { name: string | null }[] | null;
+};
+
 const StudentPortal = async () => {
   const cookieStore = await cookies();
   const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
 
   const {
@@ -28,7 +35,7 @@ const StudentPortal = async () => {
     .from("profiles")
     .select("full_name, test_status, classes(name)")
     .eq("user_id", user.id)
-    .maybeSingle();
+    .maybeSingle<ProfileWithClassName>();
 
   const testsPromise = supabase
     .from("tests")

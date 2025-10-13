@@ -17,10 +17,14 @@ export interface ActiveAssessmentCardProps {
 }
 
 function formatRemainingTime(timeLimitSeconds: number | null, elapsedMs: number | null) {
-  if (!timeLimitSeconds) return null;
+  if (!timeLimitSeconds) {
+    return null;
+  }
   const totalMs = timeLimitSeconds * 1000;
   const remaining = Math.max(0, totalMs - (elapsedMs ?? 0));
-  if (remaining <= 0) return "Time limit reached";
+  if (remaining <= 0) {
+    return "Time limit reached";
+  }
   const minutes = Math.floor(remaining / 60000);
   const seconds = Math.floor((remaining % 60000) / 1000);
   if (minutes === 0) {
@@ -29,7 +33,7 @@ function formatRemainingTime(timeLimitSeconds: number | null, elapsedMs: number 
   return `${minutes}m ${seconds.toString().padStart(2, "0")}s remaining`;
 }
 
-export default function ActiveAssessmentCard({ test }: ActiveAssessmentCardProps) {
+const ActiveAssessmentCard = ({ test }: ActiveAssessmentCardProps) => {
   const friendlyType = test.type === "entrance" ? "Entrance Test" : test.type ?? "Assessment";
   const assignedLabel = test.assigned_at
     ? formatDistanceToNow(new Date(test.assigned_at), { addSuffix: true })
@@ -79,5 +83,6 @@ export default function ActiveAssessmentCard({ test }: ActiveAssessmentCardProps
       </div>
     </section>
   );
-}
+};
 
+export default ActiveAssessmentCard;

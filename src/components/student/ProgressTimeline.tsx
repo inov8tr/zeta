@@ -12,7 +12,7 @@ interface ProgressTimelineProps {
   tests: ProgressItem[];
 }
 
-export default function ProgressTimeline({ tests }: ProgressTimelineProps) {
+const ProgressTimeline = ({ tests }: ProgressTimelineProps) => {
   if (tests.length === 0) {
     return (
       <section className="rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm">
@@ -67,5 +67,6 @@ export default function ProgressTimeline({ tests }: ProgressTimelineProps) {
       </ol>
     </section>
   );
-}
+};
 
+export default ProgressTimeline;
