@@ -252,7 +252,14 @@ const ConsultationServerForm = ({
         authUserId: signupUserId ?? undefined,
       });
       if (res?.error) {
-        setErr(res.error);
+        const pieces = [res.error];
+        if (res.code) {
+          pieces.push(`(${res.code})`);
+        }
+        if (res.details && res.details !== res.error) {
+          pieces.push(`– ${res.details}`);
+        }
+        setErr(pieces.filter(Boolean).join(" "));
       } else {
         if (res?.invitedUser) {
           setAuthMessage(

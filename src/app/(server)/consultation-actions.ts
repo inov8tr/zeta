@@ -55,6 +55,28 @@ interface Input {
 
 const DEFAULT_DURATION_MINUTES = 45;
 
+type SupabaseErrorShape = {
+  message?: string;
+  code?: string;
+  details?: string;
+};
+
+function extractError(err: unknown): { message: string; code?: string; details?: string } {
+  if (typeof err === "string") {
+    return { message: err };
+  }
+  if (err instanceof Error) {
+    return { message: err.message };
+  }
+  if (err && typeof err === "object") {
+    const { message, code, details } = err as SupabaseErrorShape;
+    if (message) {
+      return { message, code, details };
+    }
+  }
+  return { message: "Booking failed" };
+}
+
 export async function bookConsultation(input: Input) {
   try {
     const cookieStore = await cookies();
@@ -65,6 +87,7 @@ export async function bookConsultation(input: Input) {
 
     const admin = createAdminClient();
     const normalizedUsername = input.username.trim().toLowerCase();
+    let usernameValue = normalizedUsername.length > 0 ? normalizedUsername : null;
     const normalizedPhone = input.phone.trim();
     const requestedRole = input.user_type;
     const role: UserRole = isUserRole(requestedRole) ? requestedRole : "student";
@@ -128,6 +151,21 @@ export async function bookConsultation(input: Input) {
       throw new Error("Unable to resolve Supabase user for booking");
     }
 
+    if (usernameValue) {
+      try {
+        const { data: existingUsername } = await admin
+          .from("profiles")
+          .select("user_id")
+          .eq("username", usernameValue)
+          .maybeSingle();
+        if (existingUsername && existingUsername.user_id !== userId) {
+          usernameValue = null;
+        }
+      } catch (lookupError) {
+        console.error("Failed to check username availability", lookupError);
+      }
+    }
+
     const { error: profileError } = await admin
       .from("profiles")
       .upsert(
@@ -135,7 +173,7 @@ export async function bookConsultation(input: Input) {
           user_id: userId,
           full_name: input.full_name,
           phone: normalizedPhone || null,
-          username: normalizedUsername,
+          username: usernameValue,
           role,
         },
         { onConflict: "user_id" }
@@ -144,9 +182,26 @@ export async function bookConsultation(input: Input) {
     if (profileError) {
       console.error("Failed to upsert profile", profileError);
       if (typeof profileError.code === "string" && profileError.code === "23505") {
-        throw new Error("That test ID is already in use. Please choose a different one.");
+        const { error: fallbackError } = await admin
+          .from("profiles")
+          .upsert(
+            {
+              user_id: userId,
+              full_name: input.full_name,
+              phone: normalizedPhone || null,
+              username: null,
+              role,
+            },
+            { onConflict: "user_id" }
+          );
+        if (fallbackError) {
+          console.error("Fallback profile upsert failed", fallbackError);
+          throw new Error("That username is already taken. Please choose a different one.");
+        }
+        usernameValue = null;
+      } else {
+        throw new Error("Unable to save your profile right now. Please try again.");
       }
-      throw new Error("Unable to save your profile right now. Please try again.");
     }
 
     const start = parseISO(input.preferred_start);
@@ -168,7 +223,7 @@ export async function bookConsultation(input: Input) {
         timezone: input.timezone ?? "Asia/Seoul",
         status: "pending",
         notes: input.notes ?? null,
-        username: normalizedUsername,
+        username: usernameValue,
         user_type: role,
       })
       .select("id")
@@ -186,6 +241,8 @@ export async function bookConsultation(input: Input) {
       const startText = start.toLocaleString("en-US", { hour12: false });
       const endText = end.toLocaleString("en-US", { hour12: false });
       const tz = input.timezone ?? "Asia/Seoul";
+      const resolvedUsername = usernameValue ?? (normalizedUsername || "(not set)");
+
       await Promise.all([
         resend.emails.send({
           from: process.env.ALERT_FROM!,
@@ -193,24 +250,24 @@ export async function bookConsultation(input: Input) {
           subject: "Your booking request — Zeta English",
           text: `Hi ${input.full_name},\n\nThanks for booking a ${
             input.appointment_type === "entrance_test" ? "placement test" : "consultation"
-          }. We tentatively reserved: ${startText} → ${endText} (${tz}).\n\nYour username is ${normalizedUsername}.\n\nWe’ll confirm shortly.`,
+          }. We tentatively reserved: ${startText} → ${endText} (${tz}).\n\nYour username is ${resolvedUsername}.\n\nWe’ll confirm shortly.`,
         }),
         process.env.ALERT_TO
           ? resend.emails.send({
               from: process.env.ALERT_FROM!,
               to: process.env.ALERT_TO!,
               subject: `New ${input.appointment_type} request — ${input.full_name}`,
-              text: `Type: ${input.appointment_type}\nRole: ${role}\nUsername: ${normalizedUsername}\nName: ${input.full_name}\nEmail: ${email}\nPhone: ${normalizedPhone || "-"}\nWhen: ${startText} → ${endText} (${tz})\nNotes: ${input.notes ?? "-"}\nBooking ID: ${booking.id}`,
+              text: `Type: ${input.appointment_type}\nRole: ${role}\nUsername: ${resolvedUsername}\nName: ${input.full_name}\nEmail: ${email}\nPhone: ${normalizedPhone || "-"}\nWhen: ${startText} → ${endText} (${tz})\nNotes: ${input.notes ?? "-"}\nBooking ID: ${booking.id}`,
             })
           : Promise.resolve(),
       ]);
     }
 
     return { ok: true, id: booking?.id, invitedUser };
-  } catch (e: unknown) {
-    console.error(e);
-    const message = e instanceof Error ? e.message : "Booking failed";
-    return { error: message };
+  } catch (err: unknown) {
+    const { message, code, details } = extractError(err);
+    console.error("bookConsultation error", { err, message, code, details });
+    return { error: message, code, details };
   }
 }
 
