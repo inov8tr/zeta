@@ -65,7 +65,7 @@ export async function bookConsultation(input: Input) {
 
     const admin = createAdminClient();
     const normalizedUsername = input.username.trim().toLowerCase();
-    const usernameValue = normalizedUsername.length > 0 ? normalizedUsername : null;
+    let usernameValue = normalizedUsername.length > 0 ? normalizedUsername : null;
     const normalizedPhone = input.phone.trim();
     const requestedRole = input.user_type;
     const role: UserRole = isUserRole(requestedRole) ? requestedRole : "student";
@@ -127,6 +127,21 @@ export async function bookConsultation(input: Input) {
 
     if (!userId) {
       throw new Error("Unable to resolve Supabase user for booking");
+    }
+
+    if (usernameValue) {
+      try {
+        const { data: existingUsername } = await admin
+          .from("profiles")
+          .select("user_id")
+          .eq("username", usernameValue)
+          .maybeSingle();
+        if (existingUsername && existingUsername.user_id !== userId) {
+          usernameValue = null;
+        }
+      } catch (lookupError) {
+        console.error("Failed to check username availability", lookupError);
+      }
     }
 
     const { error: profileError } = await admin
@@ -225,9 +240,13 @@ export async function bookConsultation(input: Input) {
     }
 
     return { ok: true, id: booking?.id, invitedUser };
+    return { ok: true, id: booking?.id, invitedUser };
   } catch (e: unknown) {
-    console.error(e);
-    const message = e instanceof Error ? e.message : "Booking failed";
+    console.error("bookConsultation error", e);
+    const message =
+      (typeof e === "object" && e !== null && "message" in e && typeof (e as { message?: string }).message === "string"
+        ? (e as { message: string }).message
+        : null) ?? "Booking failed";
     return { error: message };
   }
 }
