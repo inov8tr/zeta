@@ -9,6 +9,11 @@ interface AssessmentPageProps {
   params: Promise<{ testId: string }>;
 }
 
+type AssessmentTestRow = Pick<
+  Database["public"]["Tables"]["tests"]["Row"],
+  "id" | "student_id" | "status"
+>;
+
 const AssessmentPage = async ({ params }: AssessmentPageProps) => {
   const { testId } = await params;
   const cookieStore = await cookies();
@@ -28,20 +33,22 @@ const AssessmentPage = async ({ params }: AssessmentPageProps) => {
     .from("tests")
     .select("id, student_id, status")
     .eq("id", testId)
-    .maybeSingle();
+    .maybeSingle<AssessmentTestRow>();
 
   if (error || !test) {
     redirect("/student");
   }
 
-  if (test.student_id !== session.user.id) {
+  const testRow = test as AssessmentTestRow;
+
+  if (testRow.student_id !== session.user.id) {
     redirect("/student");
   }
 
   return (
     <AssessmentRunner
       testId={testId}
-      initialStatus={test.status}
+      initialStatus={testRow.status}
       studentId={session.user.id}
     />
   );

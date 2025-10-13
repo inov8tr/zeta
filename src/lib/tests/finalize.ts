@@ -11,12 +11,13 @@ const DEFAULT_WEIGHTS: Record<string, number> = {
 };
 
 export async function finalizeTest(
-  supabase: SupabaseClient<Database>,
+  supabaseClient: unknown,
   testId: string
 ): Promise<{
   weightedLevel: number | null;
   totalScore: number | null;
 }> {
+  const supabase = supabaseClient as SupabaseClient<Database>;
   const { data: test, error: testError } = await supabase
     .from("tests")
     .select("student_id")
@@ -27,14 +28,22 @@ export async function finalizeTest(
     throw new Error("Unable to finalize test");
   }
 
+  const studentId = test.student_id;
+  if (!studentId) {
+    throw new Error("Test missing student");
+  }
+
   const { data: sections, error: sectionsError } = await supabase
     .from("test_sections")
     .select("*")
-    .eq("test_id", testId);
+    .eq("test_id", testId)
+    .returns<Database["public"]["Tables"]["test_sections"]["Row"][]>();
 
   if (sectionsError || !sections || sections.length === 0) {
     throw new Error("Missing section data");
   }
+
+  const sectionRows = sections as Database["public"]["Tables"]["test_sections"]["Row"][];
 
   const { data: settings } = await supabase
     .from("analytics_settings")
@@ -52,7 +61,7 @@ export async function finalizeTest(
 
   const updates: { id: string; score: number | null; final_level: number | null; completed: boolean }[] = [];
 
-  sections.forEach((section) => {
+  sectionRows.forEach((section) => {
     const served = section.questions_served;
     const correct = section.correct_count;
     const score = served > 0 ? Math.round((correct / served) * 1000) / 10 : 0;
@@ -69,11 +78,14 @@ export async function finalizeTest(
 
   await Promise.all(
     updates.map((payload) =>
-      supabase.from("test_sections").update({
-        score: payload.score,
-        final_level: payload.final_level,
-        completed: payload.completed,
-      }).eq("id", payload.id)
+      supabase
+        .from("test_sections")
+        .update({
+          score: payload.score,
+          final_level: payload.final_level,
+          completed: payload.completed,
+        } as never)
+        .eq("id", payload.id)
     )
   );
 
@@ -87,7 +99,7 @@ export async function finalizeTest(
       completed_at: new Date().toISOString(),
       total_score: finalScore,
       weighted_level: finalWeighted,
-    })
+    } as never)
     .eq("id", testId);
 
   if (updateTest.error) {
@@ -96,8 +108,8 @@ export async function finalizeTest(
 
   await supabase
     .from("profiles")
-    .update({ test_status: "completed" })
-    .eq("user_id", test.student_id);
+    .update({ test_status: "completed" } as never)
+    .eq("user_id", studentId);
 
   return { weightedLevel: finalWeighted, totalScore: finalScore };
 }

@@ -5,7 +5,19 @@ import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/database.types";
 import { finalizeTest } from "@/lib/tests/finalize";
 
-export async function POST(req: Request, { params }: { params: { testId: string } }) {
+type RouteParams = Record<string, string | string[] | undefined>;
+
+export async function POST(
+  req: Request,
+  context: { params: Promise<RouteParams> }
+) {
+  const params = await context.params;
+  const rawTestId = params?.testId;
+  const testId = Array.isArray(rawTestId) ? rawTestId[0] : rawTestId;
+  if (typeof testId !== "string" || testId.length === 0) {
+    return NextResponse.json({ error: "Invalid test id" }, { status: 400 });
+  }
+
   const { elapsedMs } = await req.json();
 
   if (typeof elapsedMs !== "number" || elapsedMs < 0) {
@@ -26,8 +38,13 @@ export async function POST(req: Request, { params }: { params: { testId: string 
   const { data: test, error } = await supabase
     .from("tests")
     .select("student_id, time_limit_seconds, elapsed_ms")
-    .eq("id", params.testId)
-    .maybeSingle();
+    .eq("id", testId)
+    .maybeSingle<
+      Pick<
+        Database["public"]["Tables"]["tests"]["Row"],
+        "student_id" | "time_limit_seconds" | "elapsed_ms"
+      >
+    >();
 
   if (error || !test) {
     return NextResponse.json({ error: "Test not found" }, { status: 404 });
@@ -42,8 +59,8 @@ export async function POST(req: Request, { params }: { params: { testId: string 
 
   const updateResult = await supabase
     .from("tests")
-    .update({ elapsed_ms: newElapsed, last_seen_at: new Date().toISOString() })
-    .eq("id", params.testId);
+    .update({ elapsed_ms: newElapsed, last_seen_at: new Date().toISOString() } as never)
+    .eq("id", testId);
 
   if (updateResult.error) {
     console.error("heartbeat route: failed", updateResult.error);
@@ -53,7 +70,7 @@ export async function POST(req: Request, { params }: { params: { testId: string 
   const timeRemainingSeconds = Math.max(0, Math.floor((limitMs - newElapsed) / 1000));
 
   if (newElapsed >= limitMs) {
-    const summary = await finalizeTest(supabase, params.testId);
+    const summary = await finalizeTest(supabase, testId);
     return NextResponse.json({ timeRemainingSeconds: 0, expired: true, summary });
   }
 

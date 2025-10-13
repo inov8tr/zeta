@@ -21,14 +21,21 @@ const StudentPortal = async () => {
     redirect("/login");
   }
 
-  const { data: tests, error } = await supabase
+  type StudentTestRow = Pick<
+    Database["public"]["Tables"]["tests"]["Row"],
+    "id" | "type" | "status" | "assigned_at" | "completed_at"
+  >;
+
+  const { data: testsData, error } = await supabase
     .from("tests")
     .select("id, type, status, assigned_at, completed_at")
     .eq("student_id", session.user.id)
     .order("assigned_at", { ascending: false });
 
-  const assigned = (tests ?? []).filter((test) => test.status === "assigned" || test.status === "in_progress");
-  const completed = (tests ?? []).filter((test) => test.status === "completed");
+  const tests = (testsData ?? []) as StudentTestRow[];
+
+  const assigned = tests.filter((test) => test.status === "assigned" || test.status === "in_progress");
+  const completed = tests.filter((test) => test.status === "completed");
 
   return (
     <main className="mx-auto flex min-h-screen max-w-4xl flex-col gap-8 px-6 py-12">

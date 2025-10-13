@@ -5,6 +5,8 @@ import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/database.types";
 import { SECTION_ORDER, generateLevelCandidates } from "@/lib/tests/adaptiveConfig";
 
+type RouteParams = Record<string, string | string[] | undefined>;
+
 interface QuestionRow {
   id: string;
   stem: string;
@@ -15,7 +17,16 @@ interface QuestionRow {
   question_passages: { title: string; body: string }[] | { title: string; body: string } | null;
 }
 
-export async function POST(_req: Request, { params }: { params: { testId: string } }) {
+export async function POST(
+  _req: Request,
+  context: { params: Promise<RouteParams> }
+) {
+  const params = await context.params;
+  const rawTestId = params?.testId;
+  const testId = Array.isArray(rawTestId) ? rawTestId[0] : rawTestId;
+  if (typeof testId !== "string" || testId.length === 0) {
+    return NextResponse.json({ error: "Invalid test id" }, { status: 400 });
+  }
   const cookieStore = cookies();
   const supabase = createRouteHandlerClient<Database>({ cookies: () => cookieStore });
 
@@ -30,8 +41,13 @@ export async function POST(_req: Request, { params }: { params: { testId: string
   const { data: test, error: testError } = await supabase
     .from("tests")
     .select("id, student_id, status, time_limit_seconds, elapsed_ms")
-    .eq("id", params.testId)
-    .maybeSingle();
+    .eq("id", testId)
+    .maybeSingle<
+      Pick<
+        Database["public"]["Tables"]["tests"]["Row"],
+        "id" | "student_id" | "status" | "time_limit_seconds" | "elapsed_ms"
+      >
+    >();
 
   if (testError || !test) {
     return NextResponse.json({ error: "Test not found" }, { status: 404 });
@@ -55,14 +71,16 @@ export async function POST(_req: Request, { params }: { params: { testId: string
   const { data: sectionRows, error: sectionsError } = await supabase
     .from("test_sections")
     .select("*")
-    .eq("test_id", params.testId);
+    .eq("test_id", testId);
 
   if (sectionsError || !sectionRows || sectionRows.length === 0) {
     return NextResponse.json({ error: "Test sections missing" }, { status: 422 });
   }
 
+  const sectionRowsList = sectionRows as Database["public"]["Tables"]["test_sections"]["Row"][];
+
   const orderedSections = SECTION_ORDER.map((section) =>
-    sectionRows.find((row) => row.section === section)
+    sectionRowsList.find((row) => row.section === section)
   ).filter((row): row is NonNullable<typeof row> => Boolean(row));
 
   const activeSection = orderedSections.find((row) => !row.completed);
@@ -73,14 +91,17 @@ export async function POST(_req: Request, { params }: { params: { testId: string
   const sectionResponses = await supabase
     .from("responses")
     .select("question_id")
-    .eq("test_id", params.testId)
+    .eq("test_id", testId)
     .eq("section", activeSection.section);
 
   if (sectionResponses.error) {
     console.error("next route: failed to fetch responses", sectionResponses.error);
   }
 
-  const answeredIds = new Set(sectionResponses.data?.map((row) => row.question_id) ?? []);
+  const responseRows = (sectionResponses.data ?? []) as Array<
+    Pick<Database["public"]["Tables"]["responses"]["Row"], "question_id">
+  >;
+  const answeredIds = new Set(responseRows.map((row) => row.question_id));
 
   const currentLevelState = {
     level: activeSection.current_level,
@@ -97,8 +118,12 @@ export async function POST(_req: Request, { params }: { params: { testId: string
           .in("id", Array.from(answeredIds))
       : { data: [], error: null };
 
+  const answeredReadingRows = (answeredReading.data ?? []) as Array<
+    Pick<Database["public"]["Tables"]["questions"]["Row"], "id" | "passage_id">
+  >;
+
   const passageUsage = new Map<string, number>();
-  answeredReading.data?.forEach((row) => {
+  answeredReadingRows.forEach((row) => {
     if (row.passage_id) {
       passageUsage.set(row.passage_id, (passageUsage.get(row.passage_id) ?? 0) + 1);
     }
@@ -119,7 +144,7 @@ export async function POST(_req: Request, { params }: { params: { testId: string
       const levelChanged =
         candidate.level !== currentLevelState.level || candidate.sublevel !== currentLevelState.sublevel;
       if (levelChanged || !passageId || passageCount >= 5) {
-        const { data: passages, error: passagesError } = await supabase
+        const { data: passagesData, error: passagesError } = await supabase
           .from("question_passages")
           .select("id, title, body")
           .eq("section", "reading")
@@ -132,7 +157,11 @@ export async function POST(_req: Request, { params }: { params: { testId: string
           continue;
         }
 
-        const availablePassage = passages?.find((row) => (passageUsage.get(row.id) ?? 0) < 5);
+        const passages = (passagesData ?? []) as Array<
+          Pick<Database["public"]["Tables"]["question_passages"]["Row"], "id" | "title" | "body">
+        >;
+
+        const availablePassage = passages.find((row) => (passageUsage.get(row.id) ?? 0) < 5);
         if (!availablePassage) {
           continue;
         }
@@ -155,13 +184,15 @@ export async function POST(_req: Request, { params }: { params: { testId: string
       questionQuery = questionQuery.eq("passage_id", passageId);
     }
 
-    const { data: candidateQuestions, error: questionError } = await questionQuery;
+    const { data: candidateQuestionsData, error: questionError } = await questionQuery;
     if (questionError) {
       console.error("next route: failed to load questions", questionError);
       continue;
     }
 
-    const nextQuestion = candidateQuestions?.find((row) => !answeredIds.has(row.id));
+    const candidateQuestions = (candidateQuestionsData ?? []) as QuestionRow[];
+
+    const nextQuestion = candidateQuestions.find((row) => !answeredIds.has(row.id));
 
     if (nextQuestion) {
       selectedQuestion = nextQuestion as QuestionRow;
@@ -183,7 +214,7 @@ export async function POST(_req: Request, { params }: { params: { testId: string
   if (!selectedQuestion) {
     await supabase
       .from("test_sections")
-      .update({ completed: true })
+      .update({ completed: true } as never)
       .eq("id", activeSection.id);
     return NextResponse.json({ done: false, sectionCompleted: true });
   }
@@ -203,7 +234,7 @@ export async function POST(_req: Request, { params }: { params: { testId: string
   if (Object.keys(sectionUpdate).length > 0) {
     const { error: syncError } = await supabase
       .from("test_sections")
-      .update(sectionUpdate)
+      .update(sectionUpdate as never)
       .eq("id", activeSection.id);
     if (syncError) {
       console.error("next route: failed to sync section state", syncError);
@@ -211,7 +242,7 @@ export async function POST(_req: Request, { params }: { params: { testId: string
   }
 
   const responsePayload: Record<string, unknown> = {
-    testId: params.testId,
+    testId,
     section: activeSection.section,
     timeRemainingSeconds,
     level: `${selectedCandidate.level}.${selectedCandidate.sublevel}`,

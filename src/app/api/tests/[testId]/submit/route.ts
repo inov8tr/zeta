@@ -13,7 +13,27 @@ import {
 } from "@/lib/tests/adaptiveConfig";
 import { finalizeTest } from "@/lib/tests/finalize";
 
-export async function POST(req: Request, { params }: { params: { testId: string } }) {
+type RouteParams = Record<string, string | string[] | undefined>;
+type SubmitTestRow = Pick<
+  Database["public"]["Tables"]["tests"]["Row"],
+  "id" | "student_id" | "status" | "time_limit_seconds" | "elapsed_ms"
+>;
+type SubmitQuestionRow = Pick<
+  Database["public"]["Tables"]["questions"]["Row"],
+  "id" | "section" | "level" | "sublevel" | "answer_index" | "passage_id"
+>;
+type SubmitSectionRow = Database["public"]["Tables"]["test_sections"]["Row"];
+
+export async function POST(
+  req: Request,
+  context: { params: Promise<RouteParams> }
+) {
+  const paramsObject = await context.params;
+  const rawTestId = paramsObject?.testId;
+  const testId = Array.isArray(rawTestId) ? rawTestId[0] : rawTestId;
+  if (typeof testId !== "string" || testId.length === 0) {
+    return NextResponse.json({ error: "Invalid test id" }, { status: 400 });
+  }
   const body = await req.json();
   const { questionId, selectedIndex, timeSpentMs } = body ?? {};
 
@@ -35,14 +55,16 @@ export async function POST(req: Request, { params }: { params: { testId: string 
   const { data: test, error: testError } = await supabase
     .from("tests")
     .select("id, student_id, status, time_limit_seconds, elapsed_ms")
-    .eq("id", params.testId)
-    .maybeSingle();
+    .eq("id", testId)
+    .maybeSingle<SubmitTestRow>();
 
   if (testError || !test) {
     return NextResponse.json({ error: "Test not found" }, { status: 404 });
   }
 
-  if (test.student_id !== session.user.id) {
+  const testRow = test as SubmitTestRow;
+
+  if (testRow.student_id !== session.user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -50,7 +72,7 @@ export async function POST(req: Request, { params }: { params: { testId: string 
     .from("questions")
     .select("id, section, level, sublevel, answer_index, passage_id")
     .eq("id", questionId)
-    .maybeSingle();
+    .maybeSingle<SubmitQuestionRow>();
 
   if (questionError || !question) {
     return NextResponse.json({ error: "Question not found" }, { status: 404 });
@@ -59,27 +81,29 @@ export async function POST(req: Request, { params }: { params: { testId: string 
   const { data: sectionRow, error: sectionError } = await supabase
     .from("test_sections")
     .select("*")
-    .eq("test_id", params.testId)
+    .eq("test_id", testId)
     .eq("section", question.section)
-    .maybeSingle();
+    .maybeSingle<SubmitSectionRow>();
 
   if (sectionError || !sectionRow) {
     return NextResponse.json({ error: "Section state missing" }, { status: 422 });
   }
 
-  const limitMs = (test.time_limit_seconds ?? 3000) * 1000;
+  const limitMs = (testRow.time_limit_seconds ?? 3000) * 1000;
   const timeSpent = typeof timeSpentMs === "number" && timeSpentMs > 0 ? timeSpentMs : 0;
 
   const correct = question.answer_index === selectedIndex;
 
-  const responseInsert = await supabase.from("responses").insert({
-    test_id: params.testId,
+  const responsePayload: Database["public"]["Tables"]["responses"]["Insert"] = {
+    test_id: testId,
     section: question.section,
     question_id: question.id,
     selected_index: selectedIndex,
     correct,
     time_spent_ms: timeSpent,
-  });
+  };
+
+  const responseInsert = await supabase.from("responses").insert(responsePayload as never);
 
   if (responseInsert.error && responseInsert.error.code !== "23505") {
     console.error("submit route: failed to record response", responseInsert.error);
@@ -150,7 +174,7 @@ export async function POST(req: Request, { params }: { params: { testId: string 
 
   const { error: updateSectionError } = await supabase
     .from("test_sections")
-    .update(sectionUpdatePayload)
+    .update(sectionUpdatePayload as never)
     .eq("id", sectionRow.id);
 
   if (updateSectionError) {
@@ -158,7 +182,7 @@ export async function POST(req: Request, { params }: { params: { testId: string 
     return NextResponse.json({ error: "Unable to update section" }, { status: 500 });
   }
 
-  const newElapsed = Math.min(limitMs, (test.elapsed_ms ?? 0) + timeSpent);
+  const newElapsed = Math.min(limitMs, (testRow.elapsed_ms ?? 0) + timeSpent);
   const testUpdate: Partial<Database["public"]["Tables"]["tests"]["Update"]> = {
     elapsed_ms: newElapsed,
     last_seen_at: new Date().toISOString(),
@@ -171,25 +195,27 @@ export async function POST(req: Request, { params }: { params: { testId: string 
 
   const { error: testUpdateError } = await supabase
     .from("tests")
-    .update(testUpdate)
-    .eq("id", params.testId);
+    .update(testUpdate as never)
+    .eq("id", testId);
 
   if (testUpdateError) {
     console.error("submit route: failed to update test", testUpdateError);
     return NextResponse.json({ error: "Unable to update test" }, { status: 500 });
   }
 
-  const { data: sectionsAfter } = await supabase
+  const { data: sectionsAfterData } = await supabase
     .from("test_sections")
     .select("completed")
-    .eq("test_id", params.testId);
-  const allCompleted =
-    (sectionsAfter ?? []).length > 0 && (sectionsAfter ?? []).every((row) => row.completed);
+    .eq("test_id", testId);
+  const sectionsAfter = (sectionsAfterData ?? []) as Array<
+    Pick<Database["public"]["Tables"]["test_sections"]["Row"], "completed">
+  >;
+  const allCompleted = sectionsAfter.length > 0 && sectionsAfter.every((row) => row.completed);
 
   let finalizedSummary: Awaited<ReturnType<typeof finalizeTest>> | null = null;
 
   if (timeExpired || allCompleted) {
-    finalizedSummary = await finalizeTest(supabase, params.testId);
+    finalizedSummary = await finalizeTest(supabase, testId);
   }
 
   return NextResponse.json({

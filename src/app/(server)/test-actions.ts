@@ -13,6 +13,11 @@ interface AssignEntranceTestInput {
   studentId: string;
 }
 
+type StartableTestRow = Pick<
+  Database["public"]["Tables"]["tests"]["Row"],
+  "id" | "student_id" | "status" | "seed_start" | "time_limit_seconds" | "elapsed_ms"
+>;
+
 export async function assignEntranceTestAction({ studentId }: AssignEntranceTestInput) {
   const cookieStore = await cookies();
   const supabase = createServerActionClient<Database>({ cookies: async () => cookieStore });
@@ -72,7 +77,7 @@ export async function startTestAction({ testId }: StartTestInput) {
     .from("tests")
     .select("id, student_id, status, seed_start, time_limit_seconds, elapsed_ms")
     .eq("id", testId)
-    .maybeSingle();
+    .maybeSingle<StartableTestRow>();
 
   if (error || !test) {
     console.error("startTestAction: failed to load test", error);
@@ -88,10 +93,15 @@ export async function startTestAction({ testId }: StartTestInput) {
     .select("section")
     .eq("test_id", testId);
 
-  const existing = new Set(existingSections?.map((row) => row.section) ?? []);
+  const existingSectionRows = (existingSections ?? []) as Array<
+    Pick<Database["public"]["Tables"]["test_sections"]["Row"], "section">
+  >;
+  const existing = new Set(existingSectionRows.map((row) => row.section));
   const seeds = (test.seed_start as Record<string, string> | null) ?? {};
 
-  const sectionsToInsert = SECTION_ORDER.filter((section) => !existing.has(section)).map((section) => {
+  const sectionsToInsert: Database["public"]["Tables"]["test_sections"]["Insert"][] = SECTION_ORDER.filter(
+    (section) => !existing.has(section)
+  ).map((section) => {
     const levelState = parseSeed(seeds[section]);
     return {
       test_id: testId,
@@ -100,11 +110,13 @@ export async function startTestAction({ testId }: StartTestInput) {
       current_sublevel: levelState.sublevel,
       current_passage_id: null,
       current_passage_question_count: 0,
-    };
+    } satisfies Database["public"]["Tables"]["test_sections"]["Insert"];
   });
 
   if (sectionsToInsert.length > 0) {
-    const insertResult = await supabase.from("test_sections").insert(sectionsToInsert);
+    const insertResult = await supabase
+      .from("test_sections")
+      .insert(sectionsToInsert as unknown as never);
     if (insertResult.error) {
       console.error("startTestAction: failed to prepare sections", insertResult.error);
       throw new Error("Unable to start test.");
