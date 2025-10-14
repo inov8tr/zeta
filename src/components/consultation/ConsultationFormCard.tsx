@@ -6,9 +6,10 @@ import type { EnrollmentDictionary } from "@/lib/i18n";
 
 type Props = {
   dictionary: EnrollmentDictionary;
+  contactPhone?: string | null;
 };
 
-const ConsultationFormCard = ({ dictionary }: Props) => {
+const ConsultationFormCard = ({ dictionary, contactPhone }: Props) => {
   const { session, loading, supabase } = useSupabaseSession();
   const card = dictionary.card;
   const metadata = (session?.user.user_metadata ?? {}) as Record<string, unknown>;
@@ -48,6 +49,7 @@ const ConsultationFormCard = ({ dictionary }: Props) => {
             )}
             <ConsultationServerForm
               dictionary={dictionary}
+              contactPhone={contactPhone ?? undefined}
               initialFullName={initialFullName}
               initialEmail={session?.user.email ?? undefined}
               readOnlyEmail={Boolean(session?.user.email)}

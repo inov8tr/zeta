@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useTransition, useState } from "react";
+import { useCallback, useEffect, useMemo, useTransition, useState } from "react";
 import { useForm, type Resolver } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +11,7 @@ import type { EnrollmentDictionary } from "@/lib/i18n";
 import type { IconType } from "react-icons";
 import { FaGoogle, FaApple } from "react-icons/fa";
 import { SiKakaotalk } from "react-icons/si";
+import ConsultationSlotPicker from "@/components/consultation/ConsultationSlotPicker";
 
 const oauthProviders: { key: "google" | "apple" | "kakao"; label: string; icon: IconType }[] = [
   { key: "google", label: "Google", icon: FaGoogle },
@@ -100,6 +101,7 @@ type FormValues = z.infer<ReturnType<typeof buildSchema>>;
 
 interface Props {
   dictionary?: EnrollmentDictionary;
+  contactPhone?: string;
   initialFullName?: string;
   initialEmail?: string;
   initialPhone?: string;
@@ -111,6 +113,7 @@ interface Props {
 
 const ConsultationServerForm = ({
   dictionary,
+  contactPhone,
   initialFullName,
   initialEmail,
   initialPhone,
@@ -148,6 +151,20 @@ const ConsultationServerForm = ({
       confirmPassword: "",
     },
   });
+  useEffect(() => {
+    form.register("preferred_start");
+  }, [form]);
+  const preferredStartValue = form.watch("preferred_start");
+  const handleSlotChange = useCallback(
+    (isoString: string | null) => {
+      form.setValue("preferred_start", isoString ?? "", {
+        shouldDirty: true,
+        shouldValidate: true,
+        shouldTouch: true,
+      });
+    },
+    [form],
+  );
 
   const getRedirectUrl = () => {
     const base = typeof window !== "undefined" ? window.location : undefined;
@@ -388,7 +405,7 @@ const ConsultationServerForm = ({
         </label>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="space-y-4">
         <label>
           <span className="block text-sm font-medium text-neutral-800">{dictionary?.form?.phone ?? "Phone"}</span>
           <input
@@ -399,19 +416,13 @@ const ConsultationServerForm = ({
             <p className="text-sm text-red-600">{form.formState.errors.phone.message}</p>
           )}
         </label>
-        <label>
-          <span className="block text-sm font-medium text-neutral-800">
-            {dictionary?.form?.start ?? "Preferred start (local time)"}
-          </span>
-          <input
-            className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
-            type="datetime-local"
-            {...form.register("preferred_start")}
-          />
-          {form.formState.errors.preferred_start && (
-            <p className="text-sm text-red-600">{form.formState.errors.preferred_start.message}</p>
-          )}
-        </label>
+        <ConsultationSlotPicker
+          label={dictionary?.form?.start ?? "Preferred start (local time)"}
+          value={preferredStartValue}
+          onChange={handleSlotChange}
+          contactPhone={contactPhone}
+          error={form.formState.errors.preferred_start?.message}
+        />
       </div>
 
       {!session && (

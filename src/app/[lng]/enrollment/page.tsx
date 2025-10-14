@@ -67,7 +67,7 @@ const EnrollmentPage = async ({ params }: { params: Promise<PageParams> }) => {
         <p className="mt-4 text-lg text-neutral-700">{enrollment.intro}</p>
 
         <div className="mt-10 max-w-3xl space-y-6">
-          <ConsultationFormCard dictionary={enrollment} />
+          <ConsultationFormCard dictionary={enrollment} contactPhone={common.footer?.phoneValue} />
 
           {naverCard && smartPlaceMapUrl ? (
             <section className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
