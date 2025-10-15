@@ -23,10 +23,9 @@ const STATIC_ROUTES: RouteConfig[] = [
   { path: "/search", changeFrequency: "weekly", priority: 0.5 },
 ];
 
-// ✅ FIX 1: Use full valid RSS feed URL
-const BLOG_RSS_URL = "https://rss.blog.naver.com/zeta-eng.xml"; // Correct format for Naver RSS
+const BLOG_RSS_URL = "https://rss.blog.naver.com/zeta-eng.xml"; // ✅ Correct RSS URL
 
-export async function GET(): Promise<Response> {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
   const localizedRoutes: MetadataRoute.Sitemap = SUPPORTED_LANGUAGES.flatMap((lang) =>
@@ -65,6 +64,5 @@ export async function GET(): Promise<Response> {
     console.error("Failed to parse blog RSS feed:", error);
   }
 
-  // ✅ FIX 2: Wrap result in JSON response for Next.js App Router
-  return Response.json([rootEntry, ...localizedRoutes, ...blogEntries]);
+  return [rootEntry, ...localizedRoutes, ...blogEntries];
 }
