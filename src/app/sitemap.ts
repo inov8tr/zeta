@@ -23,7 +23,17 @@ const STATIC_ROUTES: RouteConfig[] = [
   { path: "/search", changeFrequency: "weekly", priority: 0.5 },
 ];
 
-const BLOG_RSS_URL = "https://rss.blog.naver.com/zeta-eng.xml"; // ✅ Correct RSS URL
+const BLOG_RSS_URL = "https://rss.blog.naver.com/zeta-eng.xml";
+
+// ✅ Utility: escape XML entities
+function escapeXml(unsafe: string) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
@@ -55,7 +65,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     blogEntries = feed.items
       .filter((item): item is Required<typeof item> => !!item.link)
       .map((item) => ({
-        url: item.link!,
+        url: escapeXml(item.link!), // ✅ escape XML entities
         lastModified: item.pubDate ? new Date(item.pubDate) : lastModified,
         changeFrequency: "monthly" as ChangeFreq,
         priority: 0.5,
