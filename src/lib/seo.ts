@@ -2,19 +2,41 @@ import type { Metadata } from "next";
 import { SUPPORTED_LANGUAGES, type SupportedLanguage, getDictionaries } from "@/lib/i18n";
 
 const SITE_NAME = "Zeta English Academy";
-const FALLBACK_URL = "https://www.zeta-eng.co.kr";
 
+// ✅ Updated fallback domain to .com
+const FALLBACK_URL = "https://www.zeta-eng.com";
+
+// ✅ Uses env var if defined (recommended for Vercel)
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? FALLBACK_URL).replace(/\/$/, "");
 export const DEFAULT_OG_IMAGE = "/opengraph-image";
 
+// ✅ English + Korean SEO keywords
 const DEFAULT_KEYWORDS = [
+  // English
   "English academy Seoul",
   "English classes for kids",
   "Reading lab",
   "Grammar lessons",
   "Discussion class",
   "Writing workshop",
-  "Zeta English Academy"
+  "Zeta English Academy",
+  "ESL programs Korea",
+  "Academic English",
+  "K-12 English education",
+  "English speaking practice",
+
+  // Korean
+  "서울 영어학원",
+  "아이 영어수업",
+  "리딩 학습",
+  "문법 수업",
+  "토론 수업",
+  "영어 글쓰기 워크숍",
+  "제타 영어학원",
+  "초중고 영어교육",
+  "어린이 영어학원",
+  "영어 말하기 연습",
+  "국제학교 영어",
 ];
 
 const OG_LOCALE_MAP: Record<SupportedLanguage, string> = {
@@ -24,11 +46,13 @@ const OG_LOCALE_MAP: Record<SupportedLanguage, string> = {
 
 export const defaultKeywords = DEFAULT_KEYWORDS;
 
+// ✅ Builds full absolute URL
 export function absoluteUrl(path = ""): string {
   const normalizedPath = path ? (path.startsWith("/") ? path : `/${path}`) : "";
   return `${SITE_URL}${normalizedPath}`;
 }
 
+// ✅ Merge page-specific keywords with defaults
 function mergeKeywords(custom?: string[]): string[] | undefined {
   if (!custom || custom.length === 0) {
     return DEFAULT_KEYWORDS;
@@ -37,6 +61,7 @@ function mergeKeywords(custom?: string[]): string[] | undefined {
   return Array.from(merged);
 }
 
+// ✅ Language-specific alternates for canonical and hreflang
 function getAlternateLanguages(pathSegment: string, current: SupportedLanguage) {
   const languages: Record<string, string> = {};
   for (const lng of SUPPORTED_LANGUAGES) {
@@ -49,11 +74,12 @@ function getAlternateLanguages(pathSegment: string, current: SupportedLanguage) 
   };
 }
 
+// ✅ Builds OpenGraph locale settings
 function getOpenGraphLocales(current: SupportedLanguage) {
   const currentLocale = OG_LOCALE_MAP[current] ?? "en_US";
-  const alternateLocales = SUPPORTED_LANGUAGES.filter((lng) => lng !== current).map(
-    (lng) => OG_LOCALE_MAP[lng] ?? "en_US"
-  );
+  const alternateLocales = SUPPORTED_LANGUAGES
+    .filter((lng) => lng !== current)
+    .map((lng) => OG_LOCALE_MAP[lng] ?? "en_US");
   return { currentLocale, alternateLocales };
 }
 
@@ -69,6 +95,7 @@ type LocalizedMetadataOptions = {
   robots?: Metadata["robots"];
 };
 
+// ✅ Localized Metadata Builder
 export function buildLocalizedMetadata(options: LocalizedMetadataOptions): Metadata {
   const { lng, title, description, useTitleTemplate, keywords, robots } = options;
   const pathSegment = options.path ? (options.path.startsWith("/") ? options.path : `/${options.path}`) : "";
@@ -114,6 +141,7 @@ export function buildLocalizedMetadata(options: LocalizedMetadataOptions): Metad
   return baseMetadata;
 }
 
+// ✅ Default Metadata Builder (for static / non-localized pages)
 type BasicMetadataOptions = {
   path?: string;
   title: string;
@@ -136,9 +164,7 @@ export function buildBasicMetadata(options: BasicMetadataOptions): Metadata {
     title: useTitleTemplate === false ? { absolute: title } : title,
     description,
     keywords: mergeKeywords(keywords),
-    alternates: {
-      canonical: pageUrl,
-    },
+    alternates: { canonical: pageUrl },
     openGraph: {
       title,
       description,
@@ -170,6 +196,7 @@ export function buildBasicMetadata(options: BasicMetadataOptions): Metadata {
   return baseMetadata;
 }
 
+// ✅ Schema.org structured data
 export function getOrganizationStructuredData() {
   const { common } = getDictionaries("en");
   const footer = common.footer ?? {};
