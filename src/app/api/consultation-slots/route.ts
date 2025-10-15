@@ -109,9 +109,11 @@ const mapRowsToResponse = (rows: SlotRow[]) =>
   }));
 
 export async function GET(request: NextRequest) {
-  const authError = await assertAdmin(request);
-  if (authError) {
-    return authError;
+  const authResult = await assertAdmin(request);
+  const isAdminRequest = !authResult;
+
+  if (authResult && authResult.status !== 401) {
+    return authResult;
   }
 
   const url = new URL(request.url);
@@ -121,7 +123,7 @@ export async function GET(request: NextRequest) {
   const startDate = isValidDateString(startParam) ? new Date(startParam as string) : startOfDay(new Date());
   const endDate = isValidDateString(endParam) ? new Date(endParam as string) : endOfDay(startDate);
 
-  const { data, error } = await adminClient
+  let query = adminClient
     .from("consultation_slots")
     .select("id, slot_date, start_time, end_time, is_booked, booked_by, created_at")
     .gte("slot_date", format(startOfDay(startDate), "yyyy-MM-dd"))
@@ -129,11 +131,19 @@ export async function GET(request: NextRequest) {
     .order("slot_date", { ascending: true })
     .order("start_time", { ascending: true });
 
+  if (!isAdminRequest) {
+    query = query.eq("is_booked", false);
+  }
+
+  const { data, error } = await query;
+
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  return NextResponse.json({ slots: (data ?? []) as SlotRow[] });
+  const payload = isAdminRequest ? (data ?? []) : mapRowsToResponse((data ?? []) as SlotRow[]);
+
+  return NextResponse.json({ slots: payload });
 }
 
 export async function POST(request: NextRequest) {

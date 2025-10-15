@@ -28,7 +28,10 @@ import type { Database } from "@/lib/database.types";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-type ConsultationSlot = Database["public"]["Tables"]["consultation_slots"]["Row"];
+type ConsultationSlot = Pick<
+  Database["public"]["Tables"]["consultation_slots"]["Row"],
+  "id" | "slot_date" | "start_time" | "end_time" | "is_booked"
+>;
 
 type SlotEvent = {
   id: string;
@@ -150,7 +153,7 @@ const ConsultationSlotPicker = ({ label, value, onChange, contactPhone, error }:
         }
 
         const payload: { slots?: ConsultationSlot[] } = await response.json();
-        setEvents(buildEvents((payload.slots ?? []) as ConsultationSlot[]));
+        setEvents(buildEvents(payload.slots ?? []));
       } catch (err) {
         console.error(err);
         setFeedback("We couldn't load availability right now. Please try again.");
