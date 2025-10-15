@@ -6,6 +6,8 @@ import {
   dateFnsLocalizer,
   type CalendarProps,
   type DateRange,
+  type Messages,
+  type SlotInfo,
   Views,
   type View,
 } from "react-big-calendar";
@@ -94,6 +96,16 @@ const buildEvents = (rows: ConsultationSlot[]): SlotEvent[] =>
     .sort((a, b) => a.start.getTime() - b.start.getTime());
 
 const RBCalendar = BigCalendar as React.ComponentType<CalendarProps<SlotEvent>>;
+
+const CALENDAR_VIEWS: Partial<Record<View, boolean>> = {
+  [Views.MONTH]: true,
+  [Views.WEEK]: true,
+};
+
+const CALENDAR_MESSAGES: Partial<Messages> = {
+  next: ">",
+  previous: "<",
+};
 
 const deriveRangeForView = (currentView: View, referenceDate: Date) => {
   const baseDate = referenceDate instanceof Date ? referenceDate : new Date();
@@ -232,6 +244,30 @@ const ConsultationSlotPicker = ({ label, value, onChange, contactPhone, error }:
     return `${events.length} open slot${events.length === 1 ? "" : "s"} in view`;
   }, [events.length, loading]);
 
+  const handleDrillDown = useCallback(
+    (date: Date) => {
+      setView(Views.WEEK);
+      setCurrentDate(date);
+      const nextRange = deriveRangeForView(Views.WEEK, date);
+      void fetchSlots(nextRange);
+    },
+    [fetchSlots],
+  );
+
+  const handleSelectSlot = useCallback(
+    (slot: SlotInfo) => {
+      if (view !== Views.MONTH) {
+        return;
+      }
+      const slotDate = new Date(slot.start.getTime());
+      setView(Views.WEEK);
+      setCurrentDate(slotDate);
+      const nextRange = deriveRangeForView(Views.WEEK, slotDate);
+      void fetchSlots(nextRange);
+    },
+    [fetchSlots, view],
+  );
+
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-neutral-200 p-4">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -252,12 +288,14 @@ const ConsultationSlotPicker = ({ label, value, onChange, contactPhone, error }:
             localizer={localizer}
             events={events}
             view={view}
+            views={CALENDAR_VIEWS}
             onView={setView}
             date={currentDate}
             onNavigate={setCurrentDate}
             onRangeChange={handleRangeChange}
-            selectable={false}
+            selectable={view === Views.MONTH}
             onSelectEvent={handleSelectEvent}
+            onSelectSlot={handleSelectSlot}
             startAccessor="start"
             endAccessor="end"
             style={{ height: 420 }}
@@ -266,6 +304,9 @@ const ConsultationSlotPicker = ({ label, value, onChange, contactPhone, error }:
             min={new Date(1970, 0, 1, 8)}
             max={new Date(1970, 0, 1, 20)}
             eventPropGetter={eventPropGetter}
+            messages={CALENDAR_MESSAGES}
+            drilldownView={Views.WEEK}
+            onDrillDown={handleDrillDown}
           />
         ) : (
           <div className="flex h-[420px] items-center justify-center text-sm text-neutral-600">Loading calendar…</div>

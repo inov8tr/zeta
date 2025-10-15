@@ -423,6 +423,17 @@ const ConsultationServerForm = ({
           contactPhone={contactPhone}
           error={form.formState.errors.preferred_start?.message}
         />
+        <label>
+          <span className="block text-sm font-medium text-neutral-800">
+            {dictionary?.form?.notes ?? "Notes"}
+          </span>
+          <textarea
+            className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+            rows={4}
+            placeholder={card?.notesPlaceholder ?? "Anything specific you want to cover?"}
+            {...form.register("notes")}
+          />
+        </label>
       </div>
 
       {!session && (
@@ -468,16 +479,6 @@ const ConsultationServerForm = ({
           </div>
         </div>
       )}
-
-      <label>
-        <span className="block text-sm font-medium text-neutral-800">{dictionary?.form?.notes ?? "Notes"}</span>
-        <textarea
-          className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
-          rows={4}
-          placeholder={card?.notesPlaceholder ?? "Anything specific you want to cover?"}
-          {...form.register("notes")}
-        />
-      </label>
 
       <Button type="submit" disabled={isSubmitting} className="w-full">
         {isSubmitting
