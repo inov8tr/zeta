@@ -6,8 +6,8 @@ import { SITE_URL, absoluteUrl, defaultKeywords, getOrganizationStructuredData }
 import "../styles/globals.css";
 
 const siteDescription = "Zeta English Academy guides K-12 learners through joyful English experiences that build confidence, curiosity, and future-ready skills.";
-const naverSiteVerification = process.env.NAVER_SITE_VERIFICATION;
-const naverMetaVerification = process.env.NAVER_VERIFICATION_ALT;
+const NAVER_META_VERIFICATION_DEFAULT = "79da8c9c19be03f26dfd784e7501379059349a52";
+const naverMetaVerification = process.env.NAVER_VERIFICATION_ALT ?? NAVER_META_VERIFICATION_DEFAULT;
 const googleTagManagerId = process.env.NEXT_PUBLIC_GTM_ID;
 
 export const metadata: Metadata = {
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "lYIgsNGnEpFny_l7OzLgaQMgnpkfqjrKMNx1z_DGBRM",
-    other: naverSiteVerification
+    other: naverMetaVerification
       ? {
-          "naver-site-verification": naverSiteVerification,
+          "naver-site-verification": naverMetaVerification,
         }
       : undefined,
   },
