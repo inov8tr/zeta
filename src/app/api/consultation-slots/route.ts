@@ -1,4 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { cookies } from "next/headers";
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { createClient } from "@supabase/supabase-js";
 import { endOfDay, format, startOfDay } from "date-fns";
 
@@ -13,19 +15,14 @@ type SlotPayload = {
 };
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-if (!SUPABASE_URL || !SUPABASE_ANON_KEY || !SUPABASE_SERVICE_ROLE_KEY) {
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
   throw new Error("Supabase environment variables are not fully configured.");
 }
 
 const SUPABASE_URL_STR = SUPABASE_URL as string;
-const SUPABASE_ANON_KEY_STR = SUPABASE_ANON_KEY as string;
 const SUPABASE_SERVICE_ROLE_KEY_STR = SUPABASE_SERVICE_ROLE_KEY as string;
-
-const SUPABASE_PROJECT_REF = new URL(SUPABASE_URL_STR).hostname.split(".")[0];
-const AUTH_COOKIE_NAME = `sb-${SUPABASE_PROJECT_REF}-auth-token`;
 
 const adminClient = createClient<Database>(SUPABASE_URL_STR, SUPABASE_SERVICE_ROLE_KEY_STR, {
   auth: {
@@ -35,38 +32,23 @@ const adminClient = createClient<Database>(SUPABASE_URL_STR, SUPABASE_SERVICE_RO
   },
 });
 
-async function assertAdmin(request: NextRequest) {
-  const authCookie = request.cookies.get(AUTH_COOKIE_NAME)?.value;
-  if (!authCookie) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  let accessToken: string | null = null;
-  try {
-    const parsed = JSON.parse(authCookie);
-    accessToken = typeof parsed?.access_token === "string" ? parsed.access_token : null;
-  } catch {
-    accessToken = null;
-  }
-
-  if (!accessToken) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const userResponse = await fetch(`${SUPABASE_URL_STR}/auth/v1/user`, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      apikey: SUPABASE_ANON_KEY_STR,
-    },
-    cache: "no-store",
+async function assertAdmin() {
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient<Database>({
+    cookies: () => cookieStore,
   });
 
-  if (!userResponse.ok) {
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError) {
+    console.error("consultation-slots: failed to load user session", userError);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { user } = (await userResponse.json()) as { user: { id: string } | null };
-  if (!user?.id) {
+  if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -109,7 +91,7 @@ const mapRowsToResponse = (rows: SlotRow[]) =>
   }));
 
 export async function GET(request: NextRequest) {
-  const authResult = await assertAdmin(request);
+  const authResult = await assertAdmin();
   const isAdminRequest = !authResult;
 
   if (authResult && authResult.status !== 401) {
@@ -147,7 +129,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const authError = await assertAdmin(request);
+  const authError = await assertAdmin();
   if (authError) {
     return authError;
   }
@@ -218,7 +200,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const authError = await assertAdmin(request);
+  const authError = await assertAdmin();
   if (authError) {
     return authError;
   }
