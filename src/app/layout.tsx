@@ -7,6 +7,7 @@ import "../styles/globals.css";
 
 const siteDescription = "Zeta English Academy guides K-12 learners through joyful English experiences that build confidence, curiosity, and future-ready skills.";
 const naverSiteVerification = process.env.NAVER_SITE_VERIFICATION;
+const naverMetaVerification = process.env.NAVER_VERIFICATION_ALT;
 const googleTagManagerId = process.env.NEXT_PUBLIC_GTM_ID;
 
 export const metadata: Metadata = {
@@ -70,6 +71,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en">
       <head>
+        {naverMetaVerification ? (
+          <meta name="naver-site-verification" content={naverMetaVerification} />
+        ) : null}
         {googleTagManagerId ? (
           <Script id="gtm-base" strategy="beforeInteractive">
             {`
