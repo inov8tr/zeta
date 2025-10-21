@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SUPPORTED_LANGUAGES } from "@/lib/i18n";
-import { SITE_URL, absoluteUrl } from "@/lib/seo";
-import Parser from "rss-parser";
+import { absoluteUrl } from "@/lib/seo";
 
 type ChangeFreq = MetadataRoute.Sitemap[number]["changeFrequency"];
 type Priority = MetadataRoute.Sitemap[number]["priority"];
@@ -23,17 +22,7 @@ const STATIC_ROUTES: RouteConfig[] = [
   { path: "/search", changeFrequency: "weekly", priority: 0.5 },
 ];
 
-const BLOG_RSS_URL = "https://rss.blog.naver.com/zeta-eng.xml";
-
-// ✅ Utility: escape XML entities
-function escapeXml(unsafe: string) {
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-}
+// (External blog URLs removed from sitemap to keep only site URLs)
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
@@ -50,29 +39,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   );
 
-  const rootEntry: MetadataRoute.Sitemap[number] = {
-    url: SITE_URL,
-    lastModified,
-    changeFrequency: "weekly",
-    priority: 1,
-  };
-
-  const parser = new Parser();
-  let blogEntries: MetadataRoute.Sitemap = [];
-
-  try {
-    const feed = await parser.parseURL(BLOG_RSS_URL);
-    blogEntries = feed.items
-      .filter((item): item is Required<typeof item> => !!item.link)
-      .map((item) => ({
-        url: escapeXml(item.link!), // ✅ escape XML entities
-        lastModified: item.pubDate ? new Date(item.pubDate) : lastModified,
-        changeFrequency: "monthly" as ChangeFreq,
-        priority: 0.5,
-      }));
-  } catch (error) {
-    console.error("Failed to parse blog RSS feed:", error);
-  }
-
-  return [rootEntry, ...localizedRoutes, ...blogEntries];
+  // Only include locale-specific homepages and internal routes.
+  return [...localizedRoutes];
 }

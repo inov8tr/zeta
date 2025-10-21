@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
     description,
     useTitleTemplate: false,
     keywords: keywordCandidates,
-    image: "/images/pages/home/SSA.svg",
+    image: "/images/pages/home/SSA.webp",
     imageAlt: home.hero?.imageAlt ?? "Students learning at Zeta English Academy",
   });
 }

@@ -317,9 +317,9 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
         </div>
       ) : null}
 
-      <div className="grid gap-6 sm:grid-cols-[minmax(0,1fr)]">
+      <div className={passage ? "grid gap-6 lg:grid-cols-2" : "grid gap-6 sm:grid-cols-[minmax(0,1fr)]"}>
         {passage ? (
-          <article className="rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm">
+          <article className="rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm lg:sticky lg:top-6 lg:h-fit">
             <h2 className="text-lg font-semibold text-brand-primary-dark">{passage.title}</h2>
             <div className="mt-4 space-y-3 text-sm leading-relaxed text-neutral-700">
               {passage.body.split("\n\n").map((paragraph, idx) => (

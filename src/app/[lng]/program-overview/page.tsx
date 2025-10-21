@@ -217,7 +217,9 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   const { programOverview } = getDictionaries(lng);
   const title = programOverview?.hero?.title ?? "Program Overview";
   const description =
-    programOverview?.hero?.description ?? "A concise overview of Zeta's LAB, Grammar, and Discussion classes.";
+    programOverview?.metadata?.description ??
+    programOverview?.hero?.description ??
+    "A concise overview of Zeta's LAB, Grammar, and Discussion classes.";
   const keywords = [
     programOverview?.sections?.lab?.title,
     programOverview?.sections?.grammar?.title,

@@ -11,6 +11,7 @@ interface FooterProps {
 const quickLinkPaths = {
   home: "",
   program: "/program",
+  programOverview: "/program-overview",
   about: "/about",
   book: "/enrollment",
   search: "/search",

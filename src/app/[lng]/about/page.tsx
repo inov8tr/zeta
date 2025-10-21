@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
       about.metadata?.description ??
       "Learn about Zeta English Academy's mission, levels, and educational philosophy.",
     keywords,
-    image: "/images/pages/home/SSA.svg",
+    image: "/images/pages/home/SSA.webp",
     imageAlt: about.hero?.title ?? "About Zeta English Academy",
     useTitleTemplate: about.metadata?.title ? false : undefined,
   });

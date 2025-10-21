@@ -1,8 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { normalizeLanguage, SUPPORTED_LANGUAGES } from "@/lib/i18n";
+import { SITE_URL } from "@/lib/seo";
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, search } = request.nextUrl;
+
+  // Enforce canonical host in production
+  try {
+    const canonicalHostname = new URL(SITE_URL).hostname;
+    const requestHostname = request.nextUrl.hostname;
+    if (
+      process.env.NODE_ENV === "production" &&
+      requestHostname &&
+      canonicalHostname &&
+      requestHostname !== canonicalHostname &&
+      requestHostname !== "localhost"
+    ) {
+      const url = new URL(`${pathname}${search}`, SITE_URL);
+      return NextResponse.redirect(url, 308);
+    }
+  } catch {
+    // ignore malformed SITE_URL
+  }
   const cookieLang = request.cookies.get("lang")?.value;
   const acceptLanguage = request.headers.get("accept-language")?.split(",")[0];
   const language = normalizeLanguage(cookieLang ?? acceptLanguage ?? "en");

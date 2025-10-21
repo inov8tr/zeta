@@ -1,0 +1,51 @@
+id,created_at,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,section,question_type,level,difficulty,random_order,type,manual_review,media_url,updated_at,used_count
+1,2025-10-16,"If I ___ to bed now, I wouldn’t sleep.",go,went,had gone,I had,went,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+2,2025-10-16,"If I were rich, I ___ a yacht.",I’ll have,I can have,I’d have,I had,I’d have,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+3,2025-10-16,"I wish I ___ have to work tomorrow, but unfortunately I do.",don’t,didn’t,wouldn’t,won’t,didn’t,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+4,2025-10-16,"If I ___ a camera, I would have taken photos.",had,would have,would have had,I’d had,had,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+5,2025-10-16,The weather is horrible. I wish it ___ raining.,would stop,stopped,stops,will stop,would stop,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+6,2025-10-16,I’d be frightened if somebody ___ a gun at me.,pointed,has pointed,had pointed,was pointing,pointed,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+7,2025-10-16,What would you do ___ you were bitten by a snake?,if,when,unless,whether,if,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+8,2025-10-16,"If I were rich, I would ___ a luxury mansion.",buy,go to,rob,visit,buy,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+9,2025-10-16,"If I ___ you, I would have said hello.",had seen,saw,was seen,see,had seen,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+10,2025-10-16,I wish I hadn’t eaten so much. Now I ___ sick.,feel,felt,am,become,feel,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0
+11,2025-10-16,She is the ___ in her group. No one is taller than her.,tallest,shortest,biggest,smallest,tallest,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+12,2025-10-16,___ house is the party at?,whose,whom,who,where,whose,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+13,2025-10-16,Do you think you could help me carry these books?,do,can,should,may,can,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+14,2025-10-16,This is ___ an expensive area to live in.,quite,very,so,too,quite,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+15,2025-10-16,I’m absolutely ___ so I’m off to bed.,exhausted,glad,delighted,frightened,exhausted,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+16,2025-10-16,The test was pretty easy. = The test was ___ I expected.,easier than,harder than,more easy than,more hard than,easier than,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+17,2025-10-16,___ answer is the correct one?,which,what,who,why,which,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+18,2025-10-16,Let’s go eat. We have ___ time before the bus leaves.,a little,little,a few,few,a little,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+19,2025-10-16,Going to the party?,how about,shall we,do you want to,can you,how about,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+20,2025-10-16,___ restaurant is expensive. They both cost a lot.,both,either,neither,neither of,both,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0
+21,2025-10-16,Do you ___ God?,believe in,believe,think,exist,believe in,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+22,2025-10-16,A thief broke into our house yesterday. = Our house ___ a few days ago.,was broken into,broken into,was broken,had been broken,was broken into,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+23,2025-10-16,You’re walking too fast. I can’t ___ you.,keep up with,look forward to,get along,get by,keep up with,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+24,2025-10-16,We ___ of milk. Please go to the store.,ran out,break down,run away,fill with,ran out,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+25,2025-10-16,I hope everything works out = everything will ___ well.,develop,do physical exercises,solve,produce a plan,develop,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+26,2025-10-16,Scientists are expected to carry out ___.,experiments,orders,surveys,investigations,experiments,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+27,2025-10-16,"No one believed him at first, but he ___ to be right.",turned out,turned away,worked out,put out,turned out,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+28,2025-10-16,What’s ___? = What’s happening?,going on,calling off,go on,put on,going on,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+29,2025-10-16,I’m ___ Paris tonight. I am leaving alone.,off to,heading,coming,take off,off to,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+30,2025-10-16,My mom always ___ me off first to school.,drops,goes,dozes,rips,drops,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0
+31,2025-10-16,Amy does not work here ___.,anymore,no longer,forever,still,anymore,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+32,2025-10-16,Is he here ___? We need to start the meeting ___.,yet / soon,soon / yet,still / already,already / still,yet / soon,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+33,2025-10-16,He always wears long sleeves ___ the hot weather.,even in,even,not even,even so,even in,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+34,2025-10-16,"Though he doesn’t have a driver’s license, he still bought a car.",even,if,still,when,still,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+35,2025-10-16,"Although it rained a lot, ___ played outside.",we,they,he,she,we,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+36,2025-10-16,We’ll buy more snacks ___ more friends come to the party.,in case,in case of,unless,whether,in case,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+37,2025-10-16,"___, please write this number in your notepad.",in case of emergency,in case of party,in case emergency,in case of class time,in case of emergency,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+38,2025-10-16,She won’t eat vegetables ___ it is fully cooked.,unless,in case,if,when,unless,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+39,2025-10-16,You can borrow my computer ___ you don’t stay up all night.,as long as,when,in case,except,as long as,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+40,2025-10-16,"The day went on, the coronavirus got worse.",as,when,if,unless,as,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0
+41,2025-10-16,Our company employs 300 people → 300 people ___ by our company.,are employed,employed,had employed,have employed,are employed,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+42,2025-10-16,A car hit my friend on the street → My friend ___ by a car.,got hit,hit,be hit,got hitted,got hit,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+43,2025-10-16,"I don’t have many friends, so I ___ often invited to parties.",am not,am,was not,was,am not,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+44,2025-10-16,Somebody should have cleaned this room. It is so dirty.,should have cleaned,would have cleaned,could have cleaned,must have cleaned,should have cleaned,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+45,2025-10-16,I wonder how Susan is these days. I ___ her for ages.,haven’t seen,never seen,have seen,hadn’t seen,haven’t seen,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+46,2025-10-16,I don’t like ___ what to do. I prefer choosing by myself.,being told,being,be told,told,being told,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+47,2025-10-16,"I ___ a nice position, but I refused it.",was offered,offered,was provided,provided,was offered,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+48,2025-10-16,Very little ___ about the new neighbor.,was known,known,had been known,was knowing,was known,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+49,2025-10-16,You should ___ quickly. We need to leave soon.,get dressed,get married,get lost,get off,get dressed,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0
+50,2025-10-16,I hate ___ waiting. I have other plans too.,being kept,kept,keeping,been kept,being kept,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0

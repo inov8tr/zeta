@@ -88,6 +88,12 @@ export async function startTestAction({ testId }: StartTestInput) {
     throw new Error("You can only start your own tests.");
   }
 
+  // Do not allow starting/resuming a completed or reviewed test
+  if (test.status === "completed" || test.status === "reviewed") {
+    revalidatePath("/student");
+    redirect("/student");
+  }
+
   const { data: existingSections } = await supabase
     .from("test_sections")
     .select("section")

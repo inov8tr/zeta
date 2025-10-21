@@ -5,6 +5,9 @@
     "description": "At Zeta English Academy, we take a strategic approach to learning, offering diverse educational experiences and providing in-depth training. This ensures a dynamic and effective learning journey, equipping students with the skills and knowledge for future success. Our academy focuses on English language learning, English education, effective learning strategies, language skills development, and student success.",
     "imageAlt": "Students collaborating in the classroom"
   },
+  "metadata": {
+    "description": "A concise overview of Zeta’s LAB, Grammar, and Discussion classes that build comprehension, accuracy, and confident expression."
+  },
   "sections": {
     "lab": {
       "title": "LAB",
@@ -17,7 +20,7 @@
       ],
       "ctaLabel": "Read More",
       "ctaHref": "/program#lab",
-      "image": "/images/pages/home/SA.svg",
+      "image": "/images/pages/home/SA.webp",
       "imageAlt": "Students reading together"
     },
     "grammar": {

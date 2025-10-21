@@ -3,7 +3,8 @@ import { cookies } from "next/headers";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
-import { SECTION_ORDER, generateLevelCandidates } from "@/lib/tests/adaptiveConfig";
+import { SECTION_ORDER, generateLevelCandidates, READING_PASSAGE_SET_SIZE } from "@/lib/tests/adaptiveConfig";
+import { finalizeTest } from "@/lib/tests/finalize";
 
 type RouteParams = Record<string, string | string[] | undefined>;
 
@@ -65,7 +66,8 @@ export async function POST(
   const elapsedMs = test.elapsed_ms ?? 0;
   const timeRemainingSeconds = Math.max(0, Math.floor((limitMs - elapsedMs) / 1000));
   if (timeRemainingSeconds <= 0) {
-    return NextResponse.json({ timeExpired: true, done: true });
+    const summary = await finalizeTest(supabase, testId);
+    return NextResponse.json({ timeExpired: true, done: true, finalized: summary });
   }
 
   const { data: sectionRows, error: sectionsError } = await supabase
@@ -85,7 +87,8 @@ export async function POST(
 
   const activeSection = orderedSections.find((row) => !row.completed);
   if (!activeSection) {
-    return NextResponse.json({ done: true });
+    const summary = await finalizeTest(supabase, testId);
+    return NextResponse.json({ done: true, finalized: summary });
   }
 
   const sectionResponses = await supabase
@@ -143,7 +146,7 @@ export async function POST(
     if (activeSection.section === "reading") {
       const levelChanged =
         candidate.level !== currentLevelState.level || candidate.sublevel !== currentLevelState.sublevel;
-      if (levelChanged || !passageId || passageCount >= 5) {
+      if (levelChanged || !passageId || passageCount >= READING_PASSAGE_SET_SIZE) {
         const { data: passagesData, error: passagesError } = await supabase
           .from("question_passages")
           .select("id, title, body")
@@ -161,7 +164,7 @@ export async function POST(
           Pick<Database["public"]["Tables"]["question_passages"]["Row"], "id" | "title" | "body">
         >;
 
-        const availablePassage = passages.find((row) => (passageUsage.get(row.id) ?? 0) < 5);
+        const availablePassage = passages.find((row) => (passageUsage.get(row.id) ?? 0) < READING_PASSAGE_SET_SIZE);
         if (!availablePassage) {
           continue;
         }

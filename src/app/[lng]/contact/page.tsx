@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   return buildLocalizedMetadata({
     lng,
     path: "/contact",
-    title: "Contact",
+    title: "Contact Zeta English Academy",
     description,
     keywords: ["contact", "visit", "consultation"],
     image: "/images/ZetaLogo.svg",

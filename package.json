@@ -10,7 +10,9 @@
     "dev": "NEXT_NO_TURBOPACK=1 next dev",
     "lint": "next lint",
     "apple:secret": "dotenv -e .env.local -- node scripts/mint-apple-client-secret.cjs",
-    "analyze": "next build --analyze"
+    "analyze": "next build --analyze",
+    "import:grammar:dry": "dotenv -e .env.local -- node scripts/import-grammar-csv.mjs entrancetest/Grammar\\ Level\\ *.csv entrancetest/Grammar_Level_*.csv --dry-run",
+    "import:grammar:commit": "dotenv -e .env.local -- node scripts/import-grammar-csv.mjs entrancetest/Grammar\\ Level\\ *.csv entrancetest/Grammar_Level_*.csv --commit"
   },
   "dependencies": {
     "@flags-sdk/growthbook": "^0.1.0",

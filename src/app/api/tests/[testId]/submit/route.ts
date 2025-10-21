@@ -9,6 +9,10 @@ import {
   STREAK_SKIP_DELTA,
   STREAK_SKIP_THRESHOLD,
   STREAK_UP_THRESHOLD,
+  READING_PASSAGE_SET_SIZE,
+  READING_SET_PROMOTE_THRESHOLD,
+  READING_SET_DEMOTE_THRESHOLD,
+  READING_SET_SKIP_STEPS,
   adjustLevel,
 } from "@/lib/tests/adaptiveConfig";
 import { finalizeTest } from "@/lib/tests/finalize";
@@ -125,19 +129,21 @@ export async function POST(
   let newLevelState = { ...currentLevelState };
 
   if (!responseInsert.error) {
-    if (correct) {
-      if (streakUp >= STREAK_SKIP_THRESHOLD) {
-        newLevelState = adjustLevel(newLevelState, "up", STREAK_SKIP_DELTA);
-        streakUp = 0;
-      } else if (streakUp >= STREAK_UP_THRESHOLD) {
-        newLevelState = adjustLevel(newLevelState, "up", 1);
-      }
-    } else {
-      if (streakDown >= STREAK_SKIP_THRESHOLD) {
-        newLevelState = adjustLevel(newLevelState, "down", STREAK_SKIP_DELTA);
-        streakDown = 0;
-      } else if (streakDown >= STREAK_DOWN_THRESHOLD) {
-        newLevelState = adjustLevel(newLevelState, "down", 1);
+    if (question.section !== "reading") {
+      if (correct) {
+        if (streakUp >= STREAK_SKIP_THRESHOLD) {
+          newLevelState = adjustLevel(newLevelState, "up", STREAK_SKIP_DELTA);
+          streakUp = 0;
+        } else if (streakUp >= STREAK_UP_THRESHOLD) {
+          newLevelState = adjustLevel(newLevelState, "up", 1);
+        }
+      } else {
+        if (streakDown >= STREAK_SKIP_THRESHOLD) {
+          newLevelState = adjustLevel(newLevelState, "down", STREAK_SKIP_DELTA);
+          streakDown = 0;
+        } else if (streakDown >= STREAK_DOWN_THRESHOLD) {
+          newLevelState = adjustLevel(newLevelState, "down", 1);
+        }
       }
     }
   }
@@ -146,7 +152,37 @@ export async function POST(
   let passageCount = sectionRow.current_passage_question_count ?? 0;
   if (!responseInsert.error && question.section === "reading") {
     passageCount += 1;
-    if (passageCount >= 5) {
+    if (passageCount >= READING_PASSAGE_SET_SIZE) {
+      // Evaluate performance for the completed passage set
+      const { data: setRows, error: setErr } = await supabase
+        .from("responses")
+        .select("correct, questions(passage_id)")
+        .eq("test_id", testId)
+        .eq("section", "reading");
+      if (setErr) {
+        console.error("submit route: failed to compute reading set score", setErr);
+      } else {
+        type ResponseWithQuestion = { correct: boolean; questions: { passage_id: string | null } | null };
+        const typedRows = (setRows ?? []) as ResponseWithQuestion[];
+        const forPassage = typedRows.filter((row) => row.questions?.passage_id === question.passage_id);
+        const total = forPassage.length;
+        const correctNum = forPassage.reduce((acc: number, r: ResponseWithQuestion) => acc + (r.correct ? 1 : 0), 0);
+        const ratio = total > 0 ? correctNum / total : 0;
+
+        // Adjust level based on set accuracy
+        if (ratio >= 1) {
+          newLevelState = adjustLevel(newLevelState, "up", READING_SET_SKIP_STEPS);
+        } else if (ratio >= READING_SET_PROMOTE_THRESHOLD) {
+          newLevelState = adjustLevel(newLevelState, "up", 1);
+        } else if (ratio < READING_SET_DEMOTE_THRESHOLD) {
+          newLevelState = adjustLevel(newLevelState, "down", 1);
+        }
+        // reset streaks for reading path
+        streakUp = 0;
+        streakDown = 0;
+      }
+
+      // reset passage state to trigger a new passage on next fetch
       currentPassageId = null;
       passageCount = 0;
     }

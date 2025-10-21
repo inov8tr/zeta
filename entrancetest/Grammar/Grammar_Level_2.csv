@@ -1,0 +1,51 @@
+id,created_at,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,section,question_type,level,difficulty,random_order,type,manual_review,media_url,updated_at,used_count
+1,2025-10-16,She has a cat. → She ___ a cat.,doesn’t have,don’t has,doesn’t has,don’t have,doesn’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+2,2025-10-16,He likes basketball. → He ___ basketball.,doesn’t like,don’t like,doesn’t likes,don’t likes,doesn’t like,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+3,2025-10-16,Do you play soccer? → ___ you play soccer?,Don’t,Doesn’t,Does,Dosn’t,Don’t,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+4,2025-10-16,Tom has short hair. → Tom ___ short hair.,doesn’t have,don’t have,doesn’t has,don’t has,doesn’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+5,2025-10-16,The dog has a long tail. → The dog ___ a long tail.,doesn’t have,don’t have,doesn’t has,don’t has,doesn’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+6,2025-10-16,It is an egg. → It ___ an egg.,isn’t,are,aren’t,am not,isn’t,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+7,2025-10-16,They are boxes. → They ___ boxes.,aren’t,isn’t,am not,ares not,aren’t,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+8,2025-10-16,We have many cookies. → We ___ many cookies.,don’t have,doesn’t have,don’t has,doesn’t has,don’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+9,2025-10-16,She can read letters. → She ___ letters.,can’t read,can’t reads,cannot reads,can reads,can’t read,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+10,2025-10-16,Jesse works on Mondays. → Jesse ___ on Mondays.,doesn’t work,don’t work,doesn’t works,don’t works,doesn’t work,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+11,2025-10-16,I take the bus. → I ___ the bus.,don’t take,doesn’t take,don’t takes,doesn’t takes,don’t take,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+12,2025-10-16,Ariana gives candy to her friends. → Ariana ___ candy to her friends.,doesn’t give,don’t give,doesn’t gives,don’t gives,doesn’t give,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+13,2025-10-16,We know the answer. → We ___ the answer.,don’t know,doesn’t know,don’t knows,doesn’t knows,don’t know,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+14,2025-10-16,The teacher asks questions. → The teacher ___ questions.,doesn’t ask,don’t ask,doesn’t asks,don’t asks,doesn’t ask,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+15,2025-10-16,They try their best. → They ___ their best.,don’t try,doesn’t try,don’t tries,don’t trys,don’t try,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+16,2025-10-16,He does his homework. → He ___ his homework.,doesn’t do,don’t do,doesn’t does,don’t does,doesn’t do,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+17,2025-10-16,The boy can swim. → The boy ___ swim.,can’t,can,can’t swims,can swims,can’t,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+18,2025-10-16,They have apples. → They ___ apples.,don’t have,doesn’t have,don’t has,doesn’t has,don’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+19,2025-10-16,I eat breakfast. → I ___ breakfast.,don’t eat,doesn’t eat,don’t eats,doesn’t eats,don’t eat,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+20,2025-10-16,She goes to school. → She ___ to school.,doesn’t go,don’t go,doesn’t goes,don’t goes,doesn’t go,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0
+21,2025-10-16,Whose bag is this? → It’s ___ bag.,my,me,mine,I,my,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+22,2025-10-16,These are ___ books.,our,ours,we,us,our,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+23,2025-10-16,This is my sister. ___ is the tallest girl in her class.,She,It,Her,Hers,She,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+24,2025-10-16,That cat is big. ___ tail is long.,Its,It’s,It,Their,Its,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+25,2025-10-16,"A: Is this case yours? B: Yes, that case is ___ case.",my,mine,me,I,mine,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+26,2025-10-16,___ wants to meet her.,He,His,Him,He’s,He,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+27,2025-10-16,Which is ___ pencil? The red one or the blue one?,your,you,we,they,your,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+28,2025-10-16,___ are our bags.,Those,This,That,Their,Those,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+29,2025-10-16,"This is Jessica’s file. So it’s not ___, but ___ hers.",mine,me,my,I,mine,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+30,2025-10-16,When is ___ birthday?,her,she,hers,she’s,her,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+31,2025-10-16,The ball is over ___.,there,their,these,those,there,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+32,2025-10-16,___ scissors are yours.,these,this,that,they,these,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+33,2025-10-16,I lost my father’s wallet. = I lost ___ wallet.,his,him,he’s,hes,his,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+34,2025-10-16,The house is big. ___ windows are beautiful.,its,their,they’re,they,its,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+35,2025-10-16,This is not mine. This is ___ book.,her,him,I,we,her,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0
+36,2025-10-16,The book is ___ the table.,on,in,under,beside,on,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+37,2025-10-16,I am ___ the bus stop.,next to,behind,in front of,on,next to,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+38,2025-10-16,The ring is ___ the box.,in,for,to,between,in,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+39,2025-10-16,Her painting is ___ the desk.,under,above,by,next to,under,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+40,2025-10-16,My gift was hidden ___ the closet.,in,on,below,next to,in,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+41,2025-10-16,Her car was ___ my car.,behind,on,in,in front of,behind,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+42,2025-10-16,My pencil was ___ the floor.,on,in,by,at,on,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+43,2025-10-16,They are ___ me.,in front of,behind,next to,beside,in front of,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+44,2025-10-16,The supermarket is ___ the street.,across,on,close,under,across,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+45,2025-10-16,It takes 15 minutes ___ my home to school.,from,for,under,next to,from,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+46,2025-10-16,Don’t forget to clean ___ your bed.,under,by,down,on,under,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+47,2025-10-16,There is a noise ___ the kitchen.,in,on,to,for,in,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+48,2025-10-16,I have a surprise ___ you.,for,to,in,with,for,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+49,2025-10-16,I am going ___ to take the bus.,outside,inside,to,from,outside,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0
+50,2025-10-16,She is ___ the classroom.,in,by,beyond,after,in,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0

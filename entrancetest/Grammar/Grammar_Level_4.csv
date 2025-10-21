@@ -1,0 +1,51 @@
+id,created_at,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,section,question_type,level,difficulty,random_order,type,manual_review,media_url,updated_at,used_count
+1,2025-10-16,My dad ___ me with my homework every night.,helps,help,helped,helping,helps,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+2,2025-10-16,Many people ___ to see our new puppies yesterday.,came,come,comes,comed,came,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+3,2025-10-16,Helen ___ late for school yesterday.,was,is,were,will be,was,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+4,2025-10-16,It ___ outside. We can’t go to the park now.,is raining,rains,raining,rained,is raining,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+5,2025-10-16,We ___ math and science yesterday.,studied,studies,will study,study,studied,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+6,2025-10-16,I ___ the first place in the speech contest last year.,won,win,will win,wins,won,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+7,2025-10-16,We used to ___ sandcastles whenever we went to the beach.,build,built,builds,building,build,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+8,2025-10-16,"Last week, he ___ a nice necklace for his grandmother.",bought,buy,will buy,buyed,bought,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+9,2025-10-16,Did you ___ your room yesterday?,clean,cleans,is cleaning,cleaned,clean,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+10,2025-10-16,We ___ badminton right now.,are playing,play,plays,played,are playing,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+11,2025-10-16,My dad ___ at work yesterday afternoon.,was,is,were,will be,was,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+12,2025-10-16,We ___ to write letters to our grandparents.,are going,will,should,must,are going,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+13,2025-10-16,Our uncle ___ visit us tomorrow.,will,is going,doesn’t,don’t,will,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+14,2025-10-16,Ms. Walker is ___ book a reservation tonight.,going to,will,going,will be,going to,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+15,2025-10-16,I have ___ for my violin lessons tomorrow.,to practice,practice,practicing,practiced,to practice,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0
+16,2025-10-16,My friend ___ a toy robot today. I will build one tomorrow.,built,build,will built,builds,built,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+17,2025-10-16,"Alex ___ the ball, Hank swung the bat and hit a home run.",threw,throwing,throws,threwed,threw,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+18,2025-10-16,"I studied hard for the test last night. However, I ___ a bad score.",got,get,will get,gets,got,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+19,2025-10-16,I ___ lunch an hour ago. So I have to take my medicine soon.,had,have,will have,has,had,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+20,2025-10-16,"I had a meeting today, but I ___ about it and slept late.",forgot,forget,forgetted,sleeped,forgot,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+21,2025-10-16,She ___ like a butterfly and landed perfectly.,flew,flied,flies,landed,flew,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+22,2025-10-16,"He ___ to school to take his daughter, but she wasn’t there.",came,comes,come,coming,came,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+23,2025-10-16,"Since the weather was freezing, I ___ my closet and grabbed my coat.",opened,opens,open,openned,opened,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+24,2025-10-16,We ___ lunch an hour ago and then watched TV.,had,have,will have,has,had,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+25,2025-10-16,"I ___ hard yesterday, but I still feel tired.",worked,work,working,works,worked,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0
+26,2025-10-16,My sister brushes her teeth three times a day. She ___ brushes her teeth.,always,usually,sometimes,rarely,always,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0
+27,2025-10-16,I have only lived in Korea. I have ___ been to other countries.,never,usually,sometimes,always,never,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0
+28,2025-10-16,Susan never forgets her medicine. She ___ carries the pills in her bag.,always,sometimes,usually,never,always,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0
+29,2025-10-16,My family visits my grandparents once a month. They ___ visit them.,usually,always,sometimes,never,usually,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0
+30,2025-10-16,"He lives far away, so I ___ meet him.",sometimes,never,always,often,sometimes,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0
+31,2025-10-16,"My friend bought a new game, ___ we played it together.",so,but,because,however,so,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0
+32,2025-10-16,"I woke up late today, ___ I missed the train.",so,but,whereas,however,so,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0
+33,2025-10-16,Peter bought a new lock ___ someone broke into his house.,because,for,to,however,because,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0
+34,2025-10-16,"I was on the phone, ___ he sent me an e-mail.",while,when,and,so,while,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0
+35,2025-10-16,"Mike had a lot of money. ___, it didn’t make him happy.",however,so,or,yet,however,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0
+36,2025-10-16,I’ll meet you ___ 2 P.M. tomorrow.,at,on,in,of,at,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0
+37,2025-10-16,That accident broke out ___ 1999.,in,on,at,of,in,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0
+38,2025-10-16,She comes to the library ___ Saturdays.,on,in,at,to,on,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0
+39,2025-10-16,I can’t talk to you ___ the moment.,at,in,on,for,at,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0
+40,2025-10-16,You promised to meet me ___ my birthday.,on,in,at,when,on,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0
+41,2025-10-16,I will close the windows ___ the dust from coming in.,to prevent,prevent,to let,let,to prevent,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0
+42,2025-10-16,___ in the deep sea would be very dangerous.,to swim,swim,to fly,fly,to swim,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0
+43,2025-10-16,I like ___ in English with my family.,to speak,speak,to speaking,spoke,to speak,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0
+44,2025-10-16,"She tried ___ him from going, but it didn’t work.",to stop,stop,to start,start,to stop,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0
+45,2025-10-16,We refused ___ the greedy principal’s order.,to follow,follow,to command,command,to follow,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0
+46,2025-10-16,I promise you that I ___ finish my task by 5 P.M.,can,won’t,can’t,shouldn’t,can,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0
+47,2025-10-16,You ___ leave the classroom once you have finished your exam.,may,may not,will,won’t,may,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0
+48,2025-10-16,I ___ abroad and study next year.,will go,can went,going to,must went,will go,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0
+49,2025-10-16,You ___ go see a doctor before it gets worse.,should,can,will,are going to,should,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0
+50,2025-10-16,Tina ___ come see you in a minute.,will,must,have to,can,will,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0

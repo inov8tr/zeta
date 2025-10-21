@@ -18,6 +18,14 @@ export const STREAK_SKIP_DELTA = 2; // represents two sublevel steps (0.2)
 
 export const DEFAULT_SEED = "2.1";
 
+// Reading-specific configuration
+// How many questions constitute one passage set before evaluating performance
+export const READING_PASSAGE_SET_SIZE = 4;
+// Thresholds to adjust level after completing a passage set
+export const READING_SET_PROMOTE_THRESHOLD = 0.7; // >= 70% correct -> up one sublevel
+export const READING_SET_DEMOTE_THRESHOLD = 0.4; // < 40% correct -> down one sublevel
+export const READING_SET_SKIP_STEPS = 2; // 100% correct -> jump two sublevels
+
 export interface LevelState {
   level: number;
   sublevel: "1" | "2" | "3";

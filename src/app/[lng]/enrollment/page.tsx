@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
     title: "Book a Consultation",
     description,
     keywords: ["consultation", "enrollment", "English academy"],
-    image: "/images/pages/home/SS.svg",
+    image: "/images/pages/home/SS.webp",
     imageAlt: "Book a consultation at Zeta English Academy",
   });
 }

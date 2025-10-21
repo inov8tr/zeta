@@ -1,0 +1,51 @@
+id,created_at,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,section,question_type,level,difficulty,random_order,type,manual_review,media_url,updated_at,used_count
+1,2025-10-16,I showed my picture album ___ my friend.,to,for,of,with,to,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+2,2025-10-16,My dad bought flowers ___ my mom on her birthday.,for,to,on,and,for,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+3,2025-10-16,Did you finish ___ the dishes?,washing,to wash,for washing,wash,washing,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+4,2025-10-16,They decided ___ camping next weekend.,to go,going,go,for going,to go,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+5,2025-10-16,Do you enjoy ___ your dog?,walking,to walk,for walking,to walking,walking,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+6,2025-10-16,Ted wants ___ his project today.,to finish,finishing,finish,to be finished,to finish,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+7,2025-10-16,My mom promised ___ a special cake for me.,to make,making,for making,to making,to make,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+8,2025-10-16,Most citizens are opposed ___ more taxes.,to paying,to pay,paying,pay,to paying,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+9,2025-10-16,I didn’t expect ___ you here.,to meet,to lose,to meeting,to losing,to meet,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+10,2025-10-16,He was definitely ___ video games.,addicted to,loved to,expected to,wanted to,addicted to,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0
+11,2025-10-16,They ___ the dishes since last night.,haven’t done,have done,did,didn’t do,haven’t done,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+12,2025-10-16,We ___ for you for two days now.,have waited,haven’t waited,has waited,waited,have waited,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+13,2025-10-16,Mary and Jake ___ friends since last year.,have been,were,haven’t been,weren’t,have been,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+14,2025-10-16,Jack is hungry. He ___ lunch yet.,hasn’t eaten,have eaten,ate,didn’t eat,hasn’t eaten,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+15,2025-10-16,___ you ___ my cat today?,have / seen,have / saw,haven’t / seen,did / see,have / seen,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+16,2025-10-16,I ___ to Switzerland.,haven’t been,have been,wasn’t,weren’t,haven’t been,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+17,2025-10-16,She ___ in that company for five years.,has worked,hasn’t worked,worked,have working,has worked,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+18,2025-10-16,He ___ Korean food.,hasn’t tried,haven’t tried,didn’t try,not tried,hasn’t tried,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+19,2025-10-16,___ she ___ anyone yesterday?,has / met,have / met,hasn’t / met,haven’t / met,has / met,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+20,2025-10-16,My mom ___ never ___ this device.,has / used,have / used,hasn’t / using,haven’t / using,has / used,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0
+21,2025-10-16,We are used to ___ early in the morning.,getting up,get up,gets up,have get up,getting up,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+22,2025-10-16,I often enjoy ___.,singing,to sing,to song,in singing,singing,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+23,2025-10-16,My house needs ___.,painting,to paint,being painted,paint,painting,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+24,2025-10-16,I am looking forward ___ you in Seoul.,to meeting,have meet,to meet,meeting,to meeting,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+25,2025-10-16,He avoids ___ with his rivals.,arguing,to argue,to be argued,argue,arguing,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+26,2025-10-16,"I bought a map, ___ helped me during the trip.",which,who,whom,where,which,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+27,2025-10-16,My parents have made me ___ I am.,who,which,that,what,who,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+28,2025-10-16,How can I forget the day ___ we had our first date?,when,where,which,how,when,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+29,2025-10-16,The house ___ I bought last year has a pool.,which,were,when,in which,which,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+30,2025-10-16,This is ___ we want to know.,what,which,for what,that,what,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0
+31,2025-10-16,Math is the much difficult subject of all.,much,the,math,of,much,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+32,2025-10-16,My illness was much more serious as I thought.,much,more,as,at,as,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+33,2025-10-16,Nothing is more exciting as bungee jumping.,nothing,is,exciting,as,as,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+34,2025-10-16,No other cities in England is larger than Seoul.,no,cities,larger,is,is,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+35,2025-10-16,That tower is the most tallest tower in our city.,most,the,that,in,most,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+36,2025-10-16,She is way more smallest than my brother.,smallest,more,way,my,smallest,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+37,2025-10-16,The bag was more expensiver than the wallet.,expensiver,was,more,than,expensiver,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+38,2025-10-16,China has the more people than any other country.,more,the,people,any,the,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+39,2025-10-16,The task was many more difficult than I thought.,many,more,difficult,thought,many,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+40,2025-10-16,This river is longer than any other rivers in this country.,longer,any,rivers,in,rivers,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0
+41,2025-10-16,People speak Chinese in Hong Kong. → Chinese ___ in Hong Kong.,is spoken,spoken,is speaked,spoke,is spoken,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0
+42,2025-10-16,The students will clean the window. → The window ___ by the students.,will be cleaned,is cleaned,be cleaned,was cleaned,will be cleaned,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0
+43,2025-10-16,My father is making a dog house. → A dog house ___ by my father.,is being made,is made,was being made,was made,is being made,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0
+44,2025-10-16,They laughed at Judy. → Judy ___ by them.,was laughed at,was laughed,is being laughed,is laughed,was laughed at,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0
+45,2025-10-16,You must keep your words. → Your words ___ by you.,must be kept,should be kept,must kept,should kept,must be kept,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0
+46,2025-10-16,My bicycle was stealed yesterday.,stealed,bicycle,was,yesterday,stealed,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0
+47,2025-10-16,The building is own by my sister.,own,is,building,by,own,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0
+48,2025-10-16,I let him to clean my room.,to,clean,let,room,to,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0
+49,2025-10-16,She got to stuck in the traffic.,to,stuck,in,traffic,to,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0
+50,2025-10-16,He was heard cry by the policemen.,cry,heard,by,was,cry,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0

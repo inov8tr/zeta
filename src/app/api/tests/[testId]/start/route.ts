@@ -83,6 +83,39 @@ export async function POST(
     }
   }
 
+  // Mark sections with no questions as completed to avoid dangling "in_progress" tests
+  const { data: sectionStateData } = await supabase
+    .from("test_sections")
+    .select("id, section, completed")
+    .eq("test_id", testId);
+  const sectionState = (sectionStateData ?? []) as Array<
+    Pick<Database["public"]["Tables"]["test_sections"]["Row"], "id" | "section" | "completed">
+  >;
+  const pendingSections = sectionState.filter((s) => !s.completed).map((s) => s.section);
+  if (pendingSections.length > 0) {
+    const { data: questionsData, error: qErr } = await supabase
+      .from("questions")
+      .select("section")
+      .in("section", pendingSections);
+    if (qErr) {
+      console.error("start route: failed to check question availability", qErr);
+    } else {
+      const available = new Set((questionsData ?? []).map((q) => (q as { section: string }).section));
+      const toCompleteIds = sectionState
+        .filter((s) => !s.completed && !available.has(s.section))
+        .map((s) => s.id);
+      if (toCompleteIds.length > 0) {
+        const { error: completeErr } = await supabase
+          .from("test_sections")
+          .update({ completed: true } as never)
+          .in("id", toCompleteIds);
+        if (completeErr) {
+          console.error("start route: failed to auto-complete empty sections", completeErr);
+        }
+      }
+    }
+  }
+
   const now = new Date().toISOString();
   const updates: Partial<Database["public"]["Tables"]["tests"]["Update"]> = {
     last_seen_at: now,

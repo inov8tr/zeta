@@ -1,0 +1,51 @@
+id,created_at,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,section,question_type,level,difficulty,random_order,type,manual_review,media_url,updated_at,used_count
+1,2025-10-16,Kathy ___ her brother with his homework now.,helps,help,helped,helping,helps,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+2,2025-10-16,Amy always ___ a water bottle to school.,takes,take,taked,taking,takes,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+3,2025-10-16,My mom always ___ jeans on weekends.,wears,wear,wearing,weared,wears,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+4,2025-10-16,I usually ___ the piano after school.,practice,practices,practicing,to practice,practice,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+5,2025-10-16,My grandfather ___ to me every week.,writes,write,writing,writed,writes,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+6,2025-10-16,I can ___ in English.,speak,speaks,spoke,speaking,speak,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+7,2025-10-16,She ___ her grandparents every week.,calls,call,calling,to call,calls,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+8,2025-10-16,My mom ___ the vase to the window.,moves,move,moving,to move,moves,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+9,2025-10-16,The game ___ and I feel excited.,starts,start,to start,starting,starts,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+10,2025-10-16,What is ___ in here?,happening,happen,happens,happened,happening,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+11,2025-10-16,Children ___ how to write and read.,learn,learns,learning,to learn,learn,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+12,2025-10-16,We ___ our teacher on the field trip.,follow,follows,to follow,following,follow,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+13,2025-10-16,They will ___ their project.,continue,continued,continuing,continues,continue,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+14,2025-10-16,My mom doesn’t ___ my hobbies.,understand,understands,understanding,understood,understand,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+15,2025-10-16,Our tree was ___ fast.,growing,grow,grows,growed,growing,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+16,2025-10-16,My sister ___ her hair now.,brushes,brush,brushed,brushing,brushes,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+17,2025-10-16,Mr. Smith ___ my words.,believes,believe,to believe,believing,believes,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+18,2025-10-16,Jack ___ the door for me.,opens,open,opening,to open,opens,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+19,2025-10-16,I have to ___ for the test.,study,studies,studyed,studying,study,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+20,2025-10-16,My cousin ___ at 3 o’clock.,arrives,arrive,to arrive,arriving,arrives,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0
+21,2025-10-16,Have (?) your brother ___ a computer?,does / have,do / have,does / has,do / has,does / have,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+22,2025-10-16,Do (?) you ___ your homework now?,are / doing,are / do,do / doing,do / do,are / doing,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+23,2025-10-16,Wear (X) I ___ my school uniform next week.,don’t wear,doesn’t wear,don’t wears,doesn’t wears,don’t wear,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+24,2025-10-16,Dance (X) Billy ___ now. He is sleeping.,isn’t dancing,is dancing,aren’t dancing,are dancing,isn’t dancing,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+25,2025-10-16,Snow (O) It ___ a lot tomorrow.,will snow,snow,snows,snowed,will snow,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+26,2025-10-16,Need (O) He ___ a paper to do his homework.,needs,need,needing,to need,needs,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+27,2025-10-16,Go (X) I ___ to the library on weekends.,don’t go,doesn’t go,don’t goes,doesn’t goes,don’t go,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+28,2025-10-16,Walk (O) My mom ___ to the supermarket.,walks,walk,walking,to walk,walks,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+29,2025-10-16,Read (?) you ___ the textbook yesterday?,did / read,did / reads,do / read,do / reads,did / read,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+30,2025-10-16,Build (X) They ___ new houses by the mountain.,build,builds,builded,building,build,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+31,2025-10-16,Choose (O) Sally ___ the red shirt.,chooses,choose,choosing,choosed,chooses,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+32,2025-10-16,Buy (X) They ___ vegetables.,don’t buy,doesn’t buy,don’t buys,doesn’t buys,don’t buy,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+33,2025-10-16,Drink (?) you ___ milk every day?,do / drink,do / drinks,does / drink,does / drinks,do / drink,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+34,2025-10-16,Listen (X) He ___ to any music.,doesn’t listen,don’t listen,doesn’t listens,don’t listens,doesn’t listen,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+35,2025-10-16,Leave (?) you ___ right now?,are / leaving,are / leave,is / leaving,is / leave,are / leaving,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0
+36,2025-10-16,Jack is sick. So he ___ to school.,can’t come,can’t comes,came,will come,can’t come,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+37,2025-10-16,Jerry finished his homework. So he ___ with his friends.,will play,will plays,played,play,will play,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+38,2025-10-16,Luke hurt his legs. So he ___ well.,can’t run,can’t runs,can’t go,can’t goes,can’t run,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+39,2025-10-16,I ___ in my bedroom last night.,was,is,will be,am,was,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+40,2025-10-16,Yesterday Tina ___ to my house.,came,come,will come,comes,came,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+41,2025-10-16,My family ___ to the beach last month.,went,go,will go,goes,went,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+42,2025-10-16,I ___ some cookies in the kitchen.,have,haves,haved,has,have,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+43,2025-10-16,I like our neighbor. But my brother ___ our neighbor.,doesn’t like,don’t like,don’t hate,doesn’t hate,doesn’t like,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+44,2025-10-16,It ___ rainy yesterday. But it is sunny today.,was,will be,is,am,was,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+45,2025-10-16,She ___ good grades next year.,will get,will lose,will buy,will write,will get,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+46,2025-10-16,Who ___ my pencil case?,took,get,will take,will get,took,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+47,2025-10-16,Will you ___ some eggs when you come home?,buy,buys,buyes,bought,buy,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+48,2025-10-16,Olivia ___ for her test.,is preparing,prepare,read,say,is preparing,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+49,2025-10-16,Tim likes video games. And Andy also ___ video games.,likes,hates,like,hate,likes,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0
+50,2025-10-16,"Pete went up the stairs. Steve went up, too. So Steve ___ Pete.",followed,follow,go,goed,followed,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0

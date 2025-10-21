@@ -2,6 +2,8 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { ReactNode } from "react";
+import { cookies, headers } from "next/headers";
+import { normalizeLanguage } from "@/lib/i18n";
 import { SITE_URL, absoluteUrl, defaultKeywords, getOrganizationStructuredData } from "@/lib/seo";
 import "../styles/globals.css";
 
@@ -67,9 +69,15 @@ export const metadata: Metadata = {
 
 const organizationStructuredData = getOrganizationStructuredData();
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const cookieStore = await cookies();
+  const headerStore = await headers();
+  const cookieLang = cookieStore.get("lang")?.value;
+  const acceptLanguage = headerStore.get("accept-language")?.split(",")[0];
+  const docLang = normalizeLanguage(cookieLang ?? acceptLanguage ?? "en");
+
   return (
-    <html lang="en">
+    <html lang={docLang} suppressHydrationWarning>
       <head>
         {naverMetaVerification ? (
           <meta name="naver-site-verification" content={naverMetaVerification} />
@@ -118,7 +126,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           `}
         </Script>
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-neutral-950">
+      <body suppressHydrationWarning className="min-h-screen flex flex-col bg-white text-neutral-950">
         {googleTagManagerId ? (
           <noscript
             dangerouslySetInnerHTML={{
@@ -135,7 +143,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         <noscript
           dangerouslySetInnerHTML={{
             __html:
-              '<p><img referrerpolicy="no-referrer-when-downgrade" src="https://zetaeng.matomo.cloud/matomo.php?idsite=1&rec=1" style="border:0;" alt="" /></p>',
+              '<p><img referrerpolicy="no-referrer-when-downgrade" src="https://zetaeng.matomo.cloud/matomo.php?idsite=1&rec=1" style="border:0;" alt="Analytics pixel" /></p>',
           }}
         />
       </body>
