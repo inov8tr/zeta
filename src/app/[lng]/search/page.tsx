@@ -44,6 +44,10 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
       search.page?.description ??
       "Search Zeta English Academy programs, blog posts, and enrollment resources.",
     keywords: ["search", "Zeta English Academy"],
+    robots: {
+      index: false,
+      follow: true,
+    },
   });
 }
 
