@@ -13,9 +13,12 @@ import {
   READING_SET_PROMOTE_THRESHOLD,
   READING_SET_DEMOTE_THRESHOLD,
   READING_SET_SKIP_STEPS,
+  SECTION_PARALLEL_DEPENDENTS,
+  TestSection,
   adjustLevel,
 } from "@/lib/tests/adaptiveConfig";
 import { finalizeTest } from "@/lib/tests/finalize";
+import { syncParallelSectionLevels } from "@/lib/tests/parallel";
 
 type RouteParams = Record<string, string | string[] | undefined>;
 type SubmitTestRow = Pick<
@@ -217,6 +220,9 @@ export async function POST(
     }
   }
 
+  const levelChanged =
+    newLevelState.level !== currentLevelState.level || newLevelState.sublevel !== currentLevelState.sublevel;
+
   const sectionCompleted =
     served >= (SECTION_MAX_QUESTIONS[question.section as keyof typeof SECTION_MAX_QUESTIONS] ?? Number.MAX_SAFE_INTEGER);
 
@@ -245,6 +251,11 @@ export async function POST(
   if (updateSectionError) {
     console.error("submit route: failed to update section", updateSectionError);
     return NextResponse.json({ error: "Unable to update section" }, { status: 500 });
+  }
+
+  const baseSection = sectionRow.section as TestSection;
+  if (levelChanged && (SECTION_PARALLEL_DEPENDENTS[baseSection] ?? []).length > 0) {
+    await syncParallelSectionLevels(supabase, testId, baseSection, newLevelState);
   }
 
   const newElapsed = Math.min(limitMs, (testRow.elapsed_ms ?? 0) + timeSpent);

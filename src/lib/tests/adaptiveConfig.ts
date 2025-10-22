@@ -1,5 +1,32 @@
 export const SECTION_ORDER = ["reading", "grammar", "listening", "dialog"] as const;
-export type TestSection = typeof SECTION_ORDER[number];
+export type TestSection = (typeof SECTION_ORDER)[number];
+
+export interface ParallelRule {
+  base: TestSection;
+  offset: number; // positive = steps up, negative = steps down
+}
+
+const RAW_PARALLEL_RULES: Partial<Record<TestSection, ParallelRule>> = {
+  grammar: { base: "reading", offset: -1 },
+  listening: { base: "grammar", offset: -1 },
+  dialog: { base: "listening", offset: -1 },
+};
+
+export const SECTION_PARALLEL_RULES = RAW_PARALLEL_RULES;
+
+export const SECTION_PARALLEL_DEPENDENTS: Record<TestSection, Array<{ section: TestSection; offset: number }>> =
+  SECTION_ORDER.reduce((acc, section) => {
+    acc[section] = [];
+    return acc;
+  }, {} as Record<TestSection, Array<{ section: TestSection; offset: number }>>);
+
+for (const sectionKey of Object.keys(RAW_PARALLEL_RULES) as TestSection[]) {
+  const rule = RAW_PARALLEL_RULES[sectionKey];
+  if (!rule) {
+    continue;
+  }
+  SECTION_PARALLEL_DEPENDENTS[rule.base].push({ section: sectionKey, offset: rule.offset });
+}
 
 export const SECTION_MAX_QUESTIONS: Record<TestSection, number> = {
   reading: 20,
@@ -90,6 +117,14 @@ export function adjustLevel(
     sublevel = next.sublevel;
   }
   return clampLevel(level, sublevel);
+}
+
+export function shiftLevelBy(state: LevelState, steps: number): LevelState {
+  if (steps === 0) {
+    return { ...state };
+  }
+  const direction = steps > 0 ? "up" : "down";
+  return adjustLevel(state, direction, Math.abs(steps));
 }
 
 export function clampStreak(value: number): number {

@@ -1,453 +1,304 @@
-question_id,passage_id,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
-L1-1,L1-1,Where is Tom?,at home,in the car,at school,in the park,at school,Literal,1,False,0
-L1-2,L1-1,What does Tom read?,a menu,a map,a book,a note,a book,Detail,1,False,0
-L1-3,L1-1,Who helps Tom?,his friend,his father,his teacher,his sister,his teacher,Detail,1,False,0
-L1-4,L1-1,What is Tom learning?,old songs,math,new words,drawing,new words,Inference,1,False,0
-L1-5,L1-2,What is the dog’s name?,Tom,Sam,Leo,Max,Max,Literal,1,False,0
-L1-6,L1-2,What does Max like to do?,sleep,run and play,eat,bark loudly,run and play,Detail,1,False,0
-L1-7,L1-2,Where does Max play?,on the road,in the park,at school,in the house,in the park,Detail,1,False,0
-L1-8,L1-2,How often does Max play?,in winter,every day,once a week,never,every day,Vocabulary,1,False,0
-L1-9,L1-3,Placeholder question?,D,C,A,B,A,Literal,1,False,0
-L1-10,L1-3,Placeholder question?,C,D,B,A,A,Literal,1,False,0
-L1-11,L1-3,Placeholder question?,D,C,A,B,A,Literal,1,False,0
-L1-12,L1-3,Placeholder question?,A,C,D,B,A,Literal,1,False,0
-L1-13,L1-4,Placeholder question?,D,C,B,A,A,Literal,2,False,0
-L1-14,L1-4,Placeholder question?,A,C,D,B,A,Literal,2,False,0
-L1-15,L1-4,Placeholder question?,C,A,B,D,A,Literal,2,False,0
-L1-16,L1-4,Placeholder question?,A,D,B,C,A,Literal,2,False,0
-L1-17,L1-5,Placeholder question?,D,A,C,B,A,Literal,2,False,0
-L1-18,L1-5,Placeholder question?,C,B,A,D,A,Literal,2,False,0
-L1-19,L1-5,Placeholder question?,B,A,D,C,A,Literal,2,False,0
-L1-20,L1-5,Placeholder question?,C,A,D,B,A,Literal,2,False,0
-L1-21,L1-6,Placeholder question?,D,C,B,A,A,Literal,2,False,0
-L1-22,L1-6,Placeholder question?,D,A,B,C,A,Literal,2,False,0
-L1-23,L1-6,Placeholder question?,C,D,B,A,A,Literal,2,False,0
-L1-24,L1-6,Placeholder question?,A,D,B,C,A,Literal,2,False,0
-L1-25,L1-7,Placeholder question?,D,C,A,B,A,Literal,2,False,0
-L1-26,L1-7,Placeholder question?,D,A,C,B,A,Literal,2,False,0
-L1-27,L1-7,Placeholder question?,B,C,D,A,A,Literal,2,False,0
-L1-28,L1-7,Placeholder question?,B,C,D,A,A,Literal,2,False,0
-L1-29,L1-8,Placeholder question?,D,A,B,C,A,Literal,3,False,0
-L1-30,L1-8,Placeholder question?,B,A,D,C,A,Literal,3,False,0
-L1-31,L1-8,Placeholder question?,D,A,C,B,A,Literal,3,False,0
-L1-32,L1-8,Placeholder question?,C,B,D,A,A,Literal,3,False,0
-L1-33,L1-9,Placeholder question?,A,B,C,D,A,Literal,3,False,0
-L1-34,L1-9,Placeholder question?,B,A,D,C,A,Literal,3,False,0
-L1-35,L1-9,Placeholder question?,C,D,A,B,A,Literal,3,False,0
-L1-36,L1-9,Placeholder question?,C,D,A,B,A,Literal,3,False,0
-L1-37,L1-10,Placeholder question?,C,D,A,B,A,Literal,3,False,0
-L1-38,L1-10,Placeholder question?,D,A,B,C,A,Literal,3,False,0
-L1-39,L1-10,Placeholder question?,B,D,A,C,A,Literal,3,False,0
-L1-40,L1-10,Placeholder question?,A,C,D,B,A,Literal,3,False,0
-L1-41,L1-11,Placeholder question?,A,B,D,C,A,Literal,3,False,0
-L1-42,L1-11,Placeholder question?,C,B,D,A,A,Literal,3,False,0
-L1-43,L1-11,Placeholder question?,D,C,B,A,A,Literal,3,False,0
-L1-44,L1-11,Placeholder question?,D,C,A,B,A,Literal,3,False,0
-L1-45,L1-12,Placeholder question?,C,D,B,A,A,Literal,4,False,0
-L1-46,L1-12,Placeholder question?,A,D,B,C,A,Literal,4,False,0
-L1-47,L1-12,Placeholder question?,B,D,C,A,A,Literal,4,False,0
-L1-48,L1-12,Placeholder question?,C,B,D,A,A,Literal,4,False,0
-L2-1,L2-1,What color was the pencil?,black,red,green,blue,red,Literal,1,False,0
-L2-2,L2-1,Where did the writer look for the pencil?,in the bag,on the bed,in the desk,in the garden,in the desk,Detail,1,False,0
-L2-3,L2-1,Who found the pencil?,Tom,Mom,Sam,Lucy,Sam,Detail,1,False,0
-L2-4,L2-1,How did the writer feel after finding the pencil?,angry,tired,happy,sad,happy,Inference,1,False,0
-L2-5,L2-2,Who is the new student?,Tom,Sam,Mia,Lucy,Lucy,Literal,1,False,0
-L2-6,L2-2,How did Lucy feel at first?,happy,angry,shy,tired,shy,Detail,1,False,0
-L2-7,L2-2,What did they share?,sandwiches,toys,books,crayons,crayons,Detail,1,False,0
-L2-8,L2-2,What happened at lunch?,They studied,They read,They played together,They went home,They played together,Sequence,1,False,0
-L2-9,L2-3,What broke the kite string?,the wind,a bird,Tom,a tree,the wind,Literal,1,False,0
-L2-10,L2-3,Where did the kite fall?,on the roof,on the ground,into the water,into a tree,into a tree,Detail,1,False,0
-L2-11,L2-3,Who helped Tom fix the kite?,his mom,his teacher,his dad,his friend,his dad,Detail,1,False,0
-L2-12,L2-3,What did they do after fixing it?,flew it again,went home,sold it,painted it,flew it again,Sequence,1,False,0
-L2-13,L2-4,Why was the writer in a hurry?,woke up late,was hungry,had homework,lost the backpack,woke up late,Literal,1,False,0
-L2-14,L2-4,Who reminded the writer about the backpack?,Teacher,Friend,Dad,Mom,Mom,Detail,1,False,0
-L2-15,L2-4,What did the writer almost forget?,shoes,backpack,homework,jacket,backpack,Detail,1,False,0
-L2-16,L2-4,Did the writer arrive on time?,we don’t know,no,maybe,yes,yes,Inference,1,False,0
-L2-17,L2-5,Who is Mrs. Lee?,neighbor,friend,aunt,teacher,neighbor,Literal,2,False,0
-L2-18,L2-5,What does she have in her garden?,trees,vegetables,fruits,flowers,flowers,Detail,2,False,0
-L2-19,L2-5,What does the writer do when Mrs. Lee is away?,picks apples,feeds cats,cleans house,waters plants,waters plants,Detail,2,False,0
-L2-20,L2-5,How does Mrs. Lee feel about the writer?,sad,angry,happy,bored,happy,Inference,2,False,0
-L2-21,L2-6,Placeholder question 21?,D,B,A,C,A,Literal,1,False,0
-L2-22,L2-6,Placeholder question 22?,C,B,A,D,A,Literal,1,False,0
-L2-23,L2-6,Placeholder question 23?,D,C,B,A,A,Literal,1,False,0
-L2-24,L2-6,Placeholder question 24?,C,A,D,B,A,Literal,1,False,0
-L2-25,L2-7,Placeholder question 25?,B,D,A,C,A,Literal,1,False,0
-L2-26,L2-7,Placeholder question 26?,C,A,B,D,A,Literal,1,False,0
-L2-27,L2-7,Placeholder question 27?,D,C,B,A,A,Literal,1,False,0
-L2-28,L2-7,Placeholder question 28?,D,B,C,A,A,Literal,1,False,0
-L2-29,L2-8,Placeholder question 29?,D,B,A,C,A,Literal,1,False,0
-L2-30,L2-8,Placeholder question 30?,D,A,C,B,A,Literal,1,False,0
-L2-31,L2-8,Placeholder question 31?,C,B,D,A,A,Literal,1,False,0
-L2-32,L2-8,Placeholder question 32?,B,D,A,C,A,Literal,1,False,0
-L2-33,L2-9,Placeholder question 33?,B,D,A,C,A,Literal,1,False,0
-L2-34,L2-9,Placeholder question 34?,C,B,D,A,A,Literal,1,False,0
-L2-35,L2-9,Placeholder question 35?,B,D,C,A,A,Literal,1,False,0
-L2-36,L2-9,Placeholder question 36?,A,B,D,C,A,Literal,1,False,0
-L2-37,L2-10,Placeholder question 37?,D,A,B,C,A,Literal,1,False,0
-L2-38,L2-10,Placeholder question 38?,D,A,C,B,A,Literal,1,False,0
-L2-39,L2-10,Placeholder question 39?,A,C,B,D,A,Literal,1,False,0
-L2-40,L2-10,Placeholder question 40?,C,D,A,B,A,Literal,1,False,0
-L2-41,L2-11,Placeholder question 41?,B,D,A,C,A,Literal,1,False,0
-L2-42,L2-11,Placeholder question 42?,C,D,B,A,A,Literal,1,False,0
-L2-43,L2-11,Placeholder question 43?,C,B,D,A,A,Literal,1,False,0
-L2-44,L2-11,Placeholder question 44?,D,B,C,A,A,Literal,1,False,0
-L2-45,L2-12,Placeholder question 45?,D,C,B,A,A,Literal,1,False,0
-L2-46,L2-12,Placeholder question 46?,A,B,D,C,A,Literal,1,False,0
-L2-47,L2-12,Placeholder question 47?,C,B,D,A,A,Literal,1,False,0
-L2-48,L2-12,Placeholder question 48?,C,D,B,A,A,Literal,1,False,0
-L2-49,L2-12,Placeholder question 49?,D,B,C,A,A,Literal,1,False,0
-L2-50,L2-12,Placeholder question 50?,D,B,A,C,A,Literal,1,False,0
-L3-1,L3-1,What is the main idea of this story?,Cooking food,Visiting friends,Working together,Doing homework,Working together,Main Idea,1,False,0
-L3-2,L3-1,Where does the story take place?,in a store,at school,at home,at the park,at school,Literal,1,False,0
-L3-3,L3-1,What happens first?,They meet friends,They get ready,They find something,They clean up,They find something,Sequence,1,False,0
-L3-4,L3-1,What does the word 'bright' mean in the passage?,heavy,fast,quiet,full of light,full of light,Vocabulary,1,False,0
-L3-5,L3-1,How does the main character feel at the end?,happy,sad,tired,angry,happy,Inference,1,False,0
-L3-6,L3-2,What is the main idea of this story?,Doing homework,Visiting friends,Working together,Cooking food,Working together,Main Idea,1,False,0
-L3-7,L3-2,Where does the story take place?,at the park,at school,at home,in a store,at school,Literal,1,False,0
-L3-8,L3-2,What happens first?,They clean up,They find something,They meet friends,They get ready,They find something,Sequence,1,False,0
-L3-9,L3-2,What does the word 'bright' mean in the passage?,quiet,full of light,fast,heavy,full of light,Vocabulary,1,False,0
-L3-10,L3-2,How does the main character feel at the end?,tired,angry,happy,sad,happy,Inference,1,False,0
-L3-11,L3-3,What is the main idea of this story?,Cooking food,Visiting friends,Doing homework,Working together,Working together,Main Idea,1,False,0
-L3-12,L3-3,Where does the story take place?,at home,in a store,at the park,at school,at school,Literal,1,False,0
-L3-13,L3-3,What happens first?,They get ready,They meet friends,They find something,They clean up,They find something,Sequence,1,False,0
-L3-14,L3-3,What does the word 'bright' mean in the passage?,fast,full of light,heavy,quiet,full of light,Vocabulary,1,False,0
-L3-15,L3-3,How does the main character feel at the end?,happy,sad,angry,tired,happy,Inference,1,False,0
-L3-16,L3-4,What is the main idea of this story?,Cooking food,Doing homework,Working together,Visiting friends,Working together,Main Idea,1,False,0
-L3-17,L3-4,Where does the story take place?,in a store,at the park,at home,at school,at school,Literal,1,False,0
-L3-18,L3-4,What happens first?,They meet friends,They get ready,They find something,They clean up,They find something,Sequence,1,False,0
-L3-19,L3-4,What does the word 'bright' mean in the passage?,heavy,full of light,quiet,fast,full of light,Vocabulary,1,False,0
-L3-20,L3-4,How does the main character feel at the end?,angry,happy,tired,sad,happy,Inference,1,False,0
-L3-21,L3-5,What is the main idea of this story?,Working together,Cooking food,Doing homework,Visiting friends,Working together,Main Idea,2,False,0
-L3-22,L3-5,Where does the story take place?,at the park,in a store,at school,at home,at school,Literal,2,False,0
-L3-23,L3-5,What happens first?,They find something,They get ready,They meet friends,They clean up,They find something,Sequence,2,False,0
-L3-24,L3-5,What does the word 'bright' mean in the passage?,full of light,quiet,fast,heavy,full of light,Vocabulary,2,False,0
-L3-25,L3-5,How does the main character feel at the end?,tired,happy,sad,angry,happy,Inference,2,False,0
-L3-26,L3-6,What is the main idea of this story?,Working together,Cooking food,Visiting friends,Doing homework,Working together,Main Idea,2,False,0
-L3-27,L3-6,Where does the story take place?,in a store,at the park,at school,at home,at school,Literal,2,False,0
-L3-28,L3-6,What happens first?,They clean up,They find something,They meet friends,They get ready,They find something,Sequence,2,False,0
-L3-29,L3-6,What does the word 'bright' mean in the passage?,quiet,heavy,full of light,fast,full of light,Vocabulary,2,False,0
-L3-30,L3-6,How does the main character feel at the end?,angry,happy,tired,sad,happy,Inference,2,False,0
-L3-31,L3-7,What is the main idea of this story?,Working together,Doing homework,Visiting friends,Cooking food,Working together,Main Idea,2,False,0
-L3-32,L3-7,Where does the story take place?,in a store,at school,at the park,at home,at school,Literal,2,False,0
-L3-33,L3-7,What happens first?,They clean up,They find something,They get ready,They meet friends,They find something,Sequence,2,False,0
-L3-34,L3-7,What does the word 'bright' mean in the passage?,heavy,full of light,quiet,fast,full of light,Vocabulary,2,False,0
-L3-35,L3-7,How does the main character feel at the end?,tired,happy,sad,angry,happy,Inference,2,False,0
-L3-36,L3-8,What is the main idea of this story?,Cooking food,Doing homework,Working together,Visiting friends,Working together,Main Idea,2,False,0
-L3-37,L3-8,Where does the story take place?,at the park,at school,at home,in a store,at school,Literal,2,False,0
-L3-38,L3-8,What happens first?,They clean up,They find something,They get ready,They meet friends,They find something,Sequence,2,False,0
-L3-39,L3-8,What does the word 'bright' mean in the passage?,quiet,fast,full of light,heavy,full of light,Vocabulary,2,False,0
-L3-40,L3-8,How does the main character feel at the end?,sad,angry,happy,tired,happy,Inference,2,False,0
-L3-41,L3-9,What is the main idea of this story?,Visiting friends,Cooking food,Doing homework,Working together,Working together,Main Idea,3,False,0
-L3-42,L3-9,Where does the story take place?,in a store,at the park,at home,at school,at school,Literal,3,False,0
-L3-43,L3-9,What happens first?,They clean up,They meet friends,They get ready,They find something,They find something,Sequence,3,False,0
-L3-44,L3-9,What does the word 'bright' mean in the passage?,quiet,full of light,heavy,fast,full of light,Vocabulary,3,False,0
-L3-45,L3-9,How does the main character feel at the end?,angry,sad,tired,happy,happy,Inference,3,False,0
-L3-46,L3-10,What is the main idea of this story?,Cooking food,Visiting friends,Doing homework,Working together,Working together,Main Idea,3,False,0
-L3-47,L3-10,Where does the story take place?,at home,in a store,at school,at the park,at school,Literal,3,False,0
-L3-48,L3-10,What happens first?,They meet friends,They clean up,They find something,They get ready,They find something,Sequence,3,False,0
-L3-49,L3-10,What does the word 'bright' mean in the passage?,full of light,heavy,quiet,fast,full of light,Vocabulary,3,False,0
-L3-50,L3-10,How does the main character feel at the end?,sad,angry,happy,tired,happy,Inference,3,False,0
-L3-51,L3-11,What is the main idea of this story?,Visiting friends,Working together,Doing homework,Cooking food,Working together,Main Idea,3,False,0
-L3-52,L3-11,Where does the story take place?,at the park,at school,at home,in a store,at school,Literal,3,False,0
-L3-53,L3-11,What happens first?,They find something,They meet friends,They clean up,They get ready,They find something,Sequence,3,False,0
-L3-54,L3-11,What does the word 'bright' mean in the passage?,heavy,full of light,quiet,fast,full of light,Vocabulary,3,False,0
-L3-55,L3-11,How does the main character feel at the end?,sad,tired,happy,angry,happy,Inference,3,False,0
-L3-56,L3-12,What is the main idea of this story?,Cooking food,Visiting friends,Doing homework,Working together,Working together,Main Idea,3,False,0
-L3-57,L3-12,Where does the story take place?,at school,at home,in a store,at the park,at school,Literal,3,False,0
-L3-58,L3-12,What happens first?,They find something,They clean up,They meet friends,They get ready,They find something,Sequence,3,False,0
-L3-59,L3-12,What does the word 'bright' mean in the passage?,full of light,quiet,heavy,fast,full of light,Vocabulary,3,False,0
-L3-60,L3-12,How does the main character feel at the end?,happy,tired,sad,angry,happy,Inference,3,False,0
-L4-1,L4-1,Where does the story mainly take place?,in a park,at school,in a store,at home,at school,Literal,1,False,0
-L4-2,L4-1,What important decision does the main character make?,to hide the truth,to skip homework,to help someone,to travel,to help someone,Detail,1,False,0
-L4-3,L4-1,What does the word 'bright' most likely mean in this story?,fast,quiet,angry,full of light,full of light,Vocabulary,1,False,0
-L4-4,L4-1,Why does the character act this way near the end?,they were angry,they were afraid,they forgot something,they learned a lesson,they learned a lesson,Inference,1,False,0
-L4-5,L4-1,What is the main lesson or theme of the story?,kindness,honesty,teamwork,bravery,kindness,Theme,1,False,0
-L4-6,L4-2,Where does the story mainly take place?,at school,in a park,at home,in a store,at school,Literal,1,False,0
-L4-7,L4-2,What important decision does the main character make?,to skip homework,to help someone,to travel,to hide the truth,to help someone,Detail,1,False,0
-L4-8,L4-2,What does the word 'bright' most likely mean in this story?,full of light,fast,quiet,angry,full of light,Vocabulary,1,False,0
-L4-9,L4-2,Why does the character act this way near the end?,they were angry,they learned a lesson,they forgot something,they were afraid,they learned a lesson,Inference,1,False,0
-L4-10,L4-2,What is the main lesson or theme of the story?,teamwork,bravery,honesty,kindness,kindness,Theme,1,False,0
-L4-11,L4-3,Where does the story mainly take place?,in a store,at home,at school,in a park,at school,Literal,1,False,0
-L4-12,L4-3,What important decision does the main character make?,to skip homework,to travel,to help someone,to hide the truth,to help someone,Detail,1,False,0
-L4-13,L4-3,What does the word 'bright' most likely mean in this story?,full of light,quiet,fast,angry,full of light,Vocabulary,1,False,0
-L4-14,L4-3,Why does the character act this way near the end?,they forgot something,they learned a lesson,they were angry,they were afraid,they learned a lesson,Inference,1,False,0
-L4-15,L4-3,What is the main lesson or theme of the story?,honesty,teamwork,kindness,bravery,kindness,Theme,1,False,0
-L4-16,L4-4,Where does the story mainly take place?,in a store,at school,in a park,at home,at school,Literal,1,False,0
-L4-17,L4-4,What important decision does the main character make?,to help someone,to hide the truth,to skip homework,to travel,to help someone,Detail,1,False,0
-L4-18,L4-4,What does the word 'bright' most likely mean in this story?,fast,angry,quiet,full of light,full of light,Vocabulary,1,False,0
-L4-19,L4-4,Why does the character act this way near the end?,they learned a lesson,they were angry,they were afraid,they forgot something,they learned a lesson,Inference,1,False,0
-L4-20,L4-4,What is the main lesson or theme of the story?,bravery,kindness,teamwork,honesty,kindness,Theme,1,False,0
-L4-21,L4-5,Where does the story mainly take place?,at school,in a park,at home,in a store,at school,Literal,2,False,0
-L4-22,L4-5,What important decision does the main character make?,to travel,to help someone,to skip homework,to hide the truth,to help someone,Detail,2,False,0
-L4-23,L4-5,What does the word 'bright' most likely mean in this story?,full of light,quiet,fast,angry,full of light,Vocabulary,2,False,0
-L4-24,L4-5,Why does the character act this way near the end?,they were angry,they were afraid,they learned a lesson,they forgot something,they learned a lesson,Inference,2,False,0
-L4-25,L4-5,What is the main lesson or theme of the story?,honesty,kindness,teamwork,bravery,kindness,Theme,2,False,0
-L4-26,L4-6,Where does the story mainly take place?,at school,at home,in a park,in a store,at school,Literal,2,False,0
-L4-27,L4-6,What important decision does the main character make?,to hide the truth,to travel,to skip homework,to help someone,to help someone,Detail,2,False,0
-L4-28,L4-6,What does the word 'bright' most likely mean in this story?,angry,quiet,full of light,fast,full of light,Vocabulary,2,False,0
-L4-29,L4-6,Why does the character act this way near the end?,they were afraid,they were angry,they forgot something,they learned a lesson,they learned a lesson,Inference,2,False,0
-L4-30,L4-6,What is the main lesson or theme of the story?,bravery,honesty,kindness,teamwork,kindness,Theme,2,False,0
-L4-31,L4-7,Where does the story mainly take place?,in a store,at school,at home,in a park,at school,Literal,2,False,0
-L4-32,L4-7,What important decision does the main character make?,to skip homework,to travel,to help someone,to hide the truth,to help someone,Detail,2,False,0
-L4-33,L4-7,What does the word 'bright' most likely mean in this story?,angry,full of light,quiet,fast,full of light,Vocabulary,2,False,0
-L4-34,L4-7,Why does the character act this way near the end?,they were angry,they learned a lesson,they were afraid,they forgot something,they learned a lesson,Inference,2,False,0
-L4-35,L4-7,What is the main lesson or theme of the story?,bravery,kindness,teamwork,honesty,kindness,Theme,2,False,0
-L4-36,L4-8,Where does the story mainly take place?,at home,at school,in a park,in a store,at school,Literal,2,False,0
-L4-37,L4-8,What important decision does the main character make?,to help someone,to skip homework,to hide the truth,to travel,to help someone,Detail,2,False,0
-L4-38,L4-8,What does the word 'bright' most likely mean in this story?,full of light,quiet,fast,angry,full of light,Vocabulary,2,False,0
-L4-39,L4-8,Why does the character act this way near the end?,they were angry,they were afraid,they learned a lesson,they forgot something,they learned a lesson,Inference,2,False,0
-L4-40,L4-8,What is the main lesson or theme of the story?,honesty,kindness,teamwork,bravery,kindness,Theme,2,False,0
-L4-41,L4-9,Where does the story mainly take place?,in a store,in a park,at home,at school,at school,Literal,3,False,0
-L4-42,L4-9,What important decision does the main character make?,to help someone,to skip homework,to travel,to hide the truth,to help someone,Detail,3,False,0
-L4-43,L4-9,What does the word 'bright' most likely mean in this story?,quiet,angry,fast,full of light,full of light,Vocabulary,3,False,0
-L4-44,L4-9,Why does the character act this way near the end?,they were afraid,they forgot something,they learned a lesson,they were angry,they learned a lesson,Inference,3,False,0
-L4-45,L4-9,What is the main lesson or theme of the story?,kindness,bravery,teamwork,honesty,kindness,Theme,3,False,0
-L4-46,L4-10,Where does the story mainly take place?,at home,at school,in a store,in a park,at school,Literal,3,False,0
-L4-47,L4-10,What important decision does the main character make?,to skip homework,to help someone,to travel,to hide the truth,to help someone,Detail,3,False,0
-L4-48,L4-10,What does the word 'bright' most likely mean in this story?,full of light,angry,fast,quiet,full of light,Vocabulary,3,False,0
-L4-49,L4-10,Why does the character act this way near the end?,they learned a lesson,they were angry,they were afraid,they forgot something,they learned a lesson,Inference,3,False,0
-L4-50,L4-10,What is the main lesson or theme of the story?,teamwork,bravery,kindness,honesty,kindness,Theme,3,False,0
-L4-51,L4-11,Where does the story mainly take place?,at home,in a store,at school,in a park,at school,Literal,3,False,0
-L4-52,L4-11,What important decision does the main character make?,to hide the truth,to travel,to help someone,to skip homework,to help someone,Detail,3,False,0
-L4-53,L4-11,What does the word 'bright' most likely mean in this story?,fast,angry,quiet,full of light,full of light,Vocabulary,3,False,0
-L4-54,L4-11,Why does the character act this way near the end?,they learned a lesson,they were angry,they were afraid,they forgot something,they learned a lesson,Inference,3,False,0
-L4-55,L4-11,What is the main lesson or theme of the story?,kindness,bravery,honesty,teamwork,kindness,Theme,3,False,0
-L4-56,L4-12,Where does the story mainly take place?,in a park,in a store,at school,at home,at school,Literal,3,False,0
-L4-57,L4-12,What important decision does the main character make?,to skip homework,to hide the truth,to travel,to help someone,to help someone,Detail,3,False,0
-L4-58,L4-12,What does the word 'bright' most likely mean in this story?,angry,fast,quiet,full of light,full of light,Vocabulary,3,False,0
-L4-59,L4-12,Why does the character act this way near the end?,they forgot something,they were afraid,they were angry,they learned a lesson,they learned a lesson,Inference,3,False,0
-L4-60,L4-12,What is the main lesson or theme of the story?,bravery,honesty,kindness,teamwork,kindness,Theme,3,False,0
-L5-1,L5-1,Where does most of the story 'The Promise at the River' take place?,inside a house,in a city square,by the river,at school,by the river,Literal,1,False,0
-L5-2,L5-1,What decision changes the main character’s path in 'The Promise at the River'?,to give up,to run away,to hide the truth,to help another person,to help another person,Detail,1,False,0
-L5-3,L5-1,"In 'The Promise at the River', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,wealth and power,sadness and regret,hope and renewal,Vocabulary,1,False,0
-L5-4,L5-1,Why does the main character act differently near the end of 'The Promise at the River'?,they are punished,they understand a deeper truth,they forget their goal,they are afraid,they understand a deeper truth,Inference,1,False,0
-L5-5,L5-1,What is the central theme of 'The Promise at the River'?,luck and chance,courage and empathy,competition and victory,mystery and fear,courage and empathy,Theme,1,False,0
-L5-6,L5-1,How does the author make the ending of 'The Promise at the River' powerful?,by ending in a joke,by changing the narrator,by adding a surprise villain,by using vivid imagery and reflection,by using vivid imagery and reflection,Evaluation,1,False,0
-L5-7,L5-2,Where does most of the story 'The Secret Notebook' take place?,at school,inside a house,in a city square,by the river,by the river,Literal,1,False,0
-L5-8,L5-2,What decision changes the main character’s path in 'The Secret Notebook'?,to give up,to run away,to help another person,to hide the truth,to help another person,Detail,1,False,0
-L5-9,L5-2,"In 'The Secret Notebook', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",anger and fear,wealth and power,hope and renewal,sadness and regret,hope and renewal,Vocabulary,1,False,0
-L5-10,L5-2,Why does the main character act differently near the end of 'The Secret Notebook'?,they understand a deeper truth,they forget their goal,they are afraid,they are punished,they understand a deeper truth,Inference,1,False,0
-L5-11,L5-2,What is the central theme of 'The Secret Notebook'?,mystery and fear,courage and empathy,competition and victory,luck and chance,courage and empathy,Theme,1,False,0
-L5-12,L5-2,How does the author make the ending of 'The Secret Notebook' powerful?,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,by adding a surprise villain,by using vivid imagery and reflection,Evaluation,1,False,0
-L5-13,L5-3,Where does most of the story 'The Music Box' take place?,by the river,in a city square,at school,inside a house,by the river,Literal,1,False,0
-L5-14,L5-3,What decision changes the main character’s path in 'The Music Box'?,to hide the truth,to run away,to help another person,to give up,to help another person,Detail,1,False,0
-L5-15,L5-3,"In 'The Music Box', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",sadness and regret,wealth and power,anger and fear,hope and renewal,hope and renewal,Vocabulary,1,False,0
-L5-16,L5-3,Why does the main character act differently near the end of 'The Music Box'?,they are punished,they understand a deeper truth,they are afraid,they forget their goal,they understand a deeper truth,Inference,1,False,0
-L5-17,L5-3,What is the central theme of 'The Music Box'?,competition and victory,courage and empathy,mystery and fear,luck and chance,courage and empathy,Theme,1,False,0
-L5-18,L5-3,How does the author make the ending of 'The Music Box' powerful?,by ending in a joke,by changing the narrator,by using vivid imagery and reflection,by adding a surprise villain,by using vivid imagery and reflection,Evaluation,1,False,0
-L5-19,L5-4,Where does most of the story 'The Bridge at East Gate' take place?,by the river,inside a house,at school,in a city square,by the river,Literal,2,False,0
-L5-20,L5-4,What decision changes the main character’s path in 'The Bridge at East Gate'?,to help another person,to hide the truth,to give up,to run away,to help another person,Detail,2,False,0
-L5-21,L5-4,"In 'The Bridge at East Gate', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,wealth and power,sadness and regret,anger and fear,hope and renewal,Vocabulary,2,False,0
-L5-22,L5-4,Why does the main character act differently near the end of 'The Bridge at East Gate'?,they are punished,they forget their goal,they understand a deeper truth,they are afraid,they understand a deeper truth,Inference,2,False,0
-L5-23,L5-4,What is the central theme of 'The Bridge at East Gate'?,mystery and fear,courage and empathy,luck and chance,competition and victory,courage and empathy,Theme,2,False,0
-L5-24,L5-4,How does the author make the ending of 'The Bridge at East Gate' powerful?,by adding a surprise villain,by ending in a joke,by using vivid imagery and reflection,by changing the narrator,by using vivid imagery and reflection,Evaluation,2,False,0
-L5-25,L5-5,Where does most of the story 'The Protest Tree' take place?,in a city square,by the river,at school,inside a house,by the river,Literal,2,False,0
-L5-26,L5-5,What decision changes the main character’s path in 'The Protest Tree'?,to help another person,to give up,to hide the truth,to run away,to help another person,Detail,2,False,0
-L5-27,L5-5,"In 'The Protest Tree', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",sadness and regret,wealth and power,anger and fear,hope and renewal,hope and renewal,Vocabulary,2,False,0
-L5-28,L5-5,Why does the main character act differently near the end of 'The Protest Tree'?,they understand a deeper truth,they are punished,they forget their goal,they are afraid,they understand a deeper truth,Inference,2,False,0
-L5-29,L5-5,What is the central theme of 'The Protest Tree'?,luck and chance,mystery and fear,competition and victory,courage and empathy,courage and empathy,Theme,2,False,0
-L5-30,L5-5,How does the author make the ending of 'The Protest Tree' powerful?,by adding a surprise villain,by ending in a joke,by using vivid imagery and reflection,by changing the narrator,by using vivid imagery and reflection,Evaluation,2,False,0
-L5-31,L5-6,Where does most of the story 'The Tunnel Light' take place?,by the river,at school,inside a house,in a city square,by the river,Literal,3,False,0
-L5-32,L5-6,What decision changes the main character’s path in 'The Tunnel Light'?,to give up,to run away,to hide the truth,to help another person,to help another person,Detail,3,False,0
-L5-33,L5-6,"In 'The Tunnel Light', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",sadness and regret,wealth and power,anger and fear,hope and renewal,hope and renewal,Vocabulary,3,False,0
-L5-34,L5-6,Why does the main character act differently near the end of 'The Tunnel Light'?,they are punished,they understand a deeper truth,they forget their goal,they are afraid,they understand a deeper truth,Inference,3,False,0
-L5-35,L5-6,What is the central theme of 'The Tunnel Light'?,courage and empathy,competition and victory,luck and chance,mystery and fear,courage and empathy,Theme,3,False,0
-L5-36,L5-6,How does the author make the ending of 'The Tunnel Light' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,3,False,0
-L5-37,L5-7,Where does most of the story 'The Letter from Winter Hill' take place?,at school,in a city square,by the river,inside a house,by the river,Literal,3,False,0
-L5-38,L5-7,What decision changes the main character’s path in 'The Letter from Winter Hill'?,to help another person,to hide the truth,to give up,to run away,to help another person,Detail,3,False,0
-L5-39,L5-7,"In 'The Letter from Winter Hill', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,sadness and regret,wealth and power,anger and fear,hope and renewal,Vocabulary,3,False,0
-L5-40,L5-7,Why does the main character act differently near the end of 'The Letter from Winter Hill'?,they forget their goal,they are afraid,they understand a deeper truth,they are punished,they understand a deeper truth,Inference,3,False,0
-L5-41,L5-7,What is the central theme of 'The Letter from Winter Hill'?,competition and victory,luck and chance,mystery and fear,courage and empathy,courage and empathy,Theme,3,False,0
-L5-42,L5-7,How does the author make the ending of 'The Letter from Winter Hill' powerful?,by adding a surprise villain,by ending in a joke,by using vivid imagery and reflection,by changing the narrator,by using vivid imagery and reflection,Evaluation,3,False,0
-L5-43,L5-8,Where does most of the story 'The Stone Lantern' take place?,in a city square,by the river,at school,inside a house,by the river,Literal,3,False,0
-L5-44,L5-8,What decision changes the main character’s path in 'The Stone Lantern'?,to hide the truth,to run away,to help another person,to give up,to help another person,Detail,3,False,0
-L5-45,L5-8,"In 'The Stone Lantern', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",wealth and power,sadness and regret,hope and renewal,anger and fear,hope and renewal,Vocabulary,3,False,0
-L5-46,L5-8,Why does the main character act differently near the end of 'The Stone Lantern'?,they are punished,they understand a deeper truth,they forget their goal,they are afraid,they understand a deeper truth,Inference,3,False,0
-L5-47,L5-8,What is the central theme of 'The Stone Lantern'?,luck and chance,mystery and fear,competition and victory,courage and empathy,courage and empathy,Theme,3,False,0
-L5-48,L5-8,How does the author make the ending of 'The Stone Lantern' powerful?,by changing the narrator,by adding a surprise villain,by ending in a joke,by using vivid imagery and reflection,by using vivid imagery and reflection,Evaluation,3,False,0
-L5-49,L5-9,Where does most of the story 'The Signal Tower' take place?,inside a house,in a city square,by the river,at school,by the river,Literal,3,False,0
-L5-50,L5-9,What decision changes the main character’s path in 'The Signal Tower'?,to give up,to run away,to help another person,to hide the truth,to help another person,Detail,3,False,0
-L5-51,L5-9,"In 'The Signal Tower', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",wealth and power,anger and fear,hope and renewal,sadness and regret,hope and renewal,Vocabulary,3,False,0
-L5-52,L5-9,Why does the main character act differently near the end of 'The Signal Tower'?,they understand a deeper truth,they are punished,they forget their goal,they are afraid,they understand a deeper truth,Inference,3,False,0
-L5-53,L5-9,What is the central theme of 'The Signal Tower'?,competition and victory,mystery and fear,courage and empathy,luck and chance,courage and empathy,Theme,3,False,0
-L5-54,L5-9,How does the author make the ending of 'The Signal Tower' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,3,False,0
-L5-55,L5-10,Where does most of the story 'The Invisible Line' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,2,False,0
-L5-56,L5-10,What decision changes the main character’s path in 'The Invisible Line'?,to help another person,to hide the truth,to run away,to give up,to help another person,Detail,2,False,0
-L5-57,L5-10,"In 'The Invisible Line', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",sadness and regret,hope and renewal,wealth and power,anger and fear,hope and renewal,Vocabulary,2,False,0
-L5-58,L5-10,Why does the main character act differently near the end of 'The Invisible Line'?,they forget their goal,they are afraid,they are punished,they understand a deeper truth,they understand a deeper truth,Inference,2,False,0
-L5-59,L5-10,What is the central theme of 'The Invisible Line'?,luck and chance,mystery and fear,competition and victory,courage and empathy,courage and empathy,Theme,2,False,0
-L5-60,L5-10,How does the author make the ending of 'The Invisible Line' powerful?,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,by adding a surprise villain,by using vivid imagery and reflection,Evaluation,2,False,0
-L5-61,L5-11,Where does most of the story 'The Debate Club' take place?,inside a house,by the river,in a city square,at school,by the river,Literal,2,False,0
-L5-62,L5-11,What decision changes the main character’s path in 'The Debate Club'?,to run away,to give up,to hide the truth,to help another person,to help another person,Detail,2,False,0
-L5-63,L5-11,"In 'The Debate Club', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",wealth and power,hope and renewal,anger and fear,sadness and regret,hope and renewal,Vocabulary,2,False,0
-L5-64,L5-11,Why does the main character act differently near the end of 'The Debate Club'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,2,False,0
-L5-65,L5-11,What is the central theme of 'The Debate Club'?,courage and empathy,competition and victory,luck and chance,mystery and fear,courage and empathy,Theme,2,False,0
-L5-66,L5-11,How does the author make the ending of 'The Debate Club' powerful?,by ending in a joke,by changing the narrator,by using vivid imagery and reflection,by adding a surprise villain,by using vivid imagery and reflection,Evaluation,2,False,0
-L5-67,L5-12,Where does most of the story 'The Late Swimmer' take place?,at school,by the river,in a city square,inside a house,by the river,Literal,1,False,0
-L5-68,L5-12,What decision changes the main character’s path in 'The Late Swimmer'?,to help another person,to run away,to give up,to hide the truth,to help another person,Detail,1,False,0
-L5-69,L5-12,"In 'The Late Swimmer', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",wealth and power,hope and renewal,sadness and regret,anger and fear,hope and renewal,Vocabulary,1,False,0
-L5-70,L5-12,Why does the main character act differently near the end of 'The Late Swimmer'?,they are afraid,they forget their goal,they are punished,they understand a deeper truth,they understand a deeper truth,Inference,1,False,0
-L5-71,L5-12,What is the central theme of 'The Late Swimmer'?,mystery and fear,luck and chance,courage and empathy,competition and victory,courage and empathy,Theme,1,False,0
-L5-72,L5-12,How does the author make the ending of 'The Late Swimmer' powerful?,by adding a surprise villain,by using vivid imagery and reflection,by ending in a joke,by changing the narrator,by using vivid imagery and reflection,Evaluation,1,False,0
-L6-1,L6-1,What is the main setting of 'The Harvest Debt'?,a river valley,a city,a house,a tower,a city,Literal,1,False,0
-L6-2,L6-1,What action changes the direction of events in 'The Harvest Debt'?,a letter found,a lie told by a friend,an accident,a brave decision,a brave decision,Detail,1,False,0
-L6-3,L6-1,"In 'The Harvest Debt', what does a repeated image or object symbolize?",confusion,hope,wealth,fear,hope,Vocabulary,1,False,0
-L6-4,L6-1,Why does the main character act differently near the end of 'The Harvest Debt'?,they are forced,they win a prize,they run away,they realize a truth,they realize a truth,Inference,1,False,0
-L6-5,L6-1,What is the central theme of 'The Harvest Debt'?,freedom and responsibility,technology and control,luck and chance,friendship and humor,freedom and responsibility,Theme,1,False,0
-L6-6,L6-1,How does the author make the ending of 'The Harvest Debt' powerful?,by ending in a question,by adding a twist,by using imagery and reflection,by introducing a new character,by using imagery and reflection,Evaluation,1,False,0
-L6-7,L6-2,What is the main setting of 'The Bridge Shift'?,a city,a tower,a river valley,a house,a city,Literal,1,False,0
-L6-8,L6-2,What action changes the direction of events in 'The Bridge Shift'?,a lie told by a friend,a brave decision,an accident,a letter found,a brave decision,Detail,1,False,0
-L6-9,L6-2,"In 'The Bridge Shift', what does a repeated image or object symbolize?",fear,wealth,hope,confusion,hope,Vocabulary,1,False,0
-L6-10,L6-2,Why does the main character act differently near the end of 'The Bridge Shift'?,they realize a truth,they win a prize,they run away,they are forced,they realize a truth,Inference,1,False,0
-L6-11,L6-2,What is the central theme of 'The Bridge Shift'?,technology and control,luck and chance,freedom and responsibility,friendship and humor,freedom and responsibility,Theme,1,False,0
-L6-12,L6-2,How does the author make the ending of 'The Bridge Shift' powerful?,by introducing a new character,by ending in a question,by adding a twist,by using imagery and reflection,by using imagery and reflection,Evaluation,1,False,0
-L6-13,L6-3,What is the main setting of 'The Last Contract'?,a city,a house,a river valley,a tower,a city,Literal,1,False,0
-L6-14,L6-3,What action changes the direction of events in 'The Last Contract'?,an accident,a brave decision,a lie told by a friend,a letter found,a brave decision,Detail,1,False,0
-L6-15,L6-3,"In 'The Last Contract', what does a repeated image or object symbolize?",hope,wealth,fear,confusion,hope,Vocabulary,1,False,0
-L6-16,L6-3,Why does the main character act differently near the end of 'The Last Contract'?,they win a prize,they run away,they are forced,they realize a truth,they realize a truth,Inference,1,False,0
-L6-17,L6-3,What is the central theme of 'The Last Contract'?,friendship and humor,technology and control,freedom and responsibility,luck and chance,freedom and responsibility,Theme,1,False,0
-L6-18,L6-3,How does the author make the ending of 'The Last Contract' powerful?,by adding a twist,by ending in a question,by using imagery and reflection,by introducing a new character,by using imagery and reflection,Evaluation,1,False,0
-L6-19,L6-4,What is the main setting of 'The Cage Keeper'?,a house,a city,a tower,a river valley,a city,Literal,1,False,0
-L6-20,L6-4,What action changes the direction of events in 'The Cage Keeper'?,an accident,a lie told by a friend,a brave decision,a letter found,a brave decision,Detail,1,False,0
-L6-21,L6-4,"In 'The Cage Keeper', what does a repeated image or object symbolize?",wealth,hope,fear,confusion,hope,Vocabulary,1,False,0
-L6-22,L6-4,Why does the main character act differently near the end of 'The Cage Keeper'?,they are forced,they run away,they win a prize,they realize a truth,they realize a truth,Inference,1,False,0
-L6-23,L6-4,What is the central theme of 'The Cage Keeper'?,friendship and humor,technology and control,luck and chance,freedom and responsibility,freedom and responsibility,Theme,1,False,0
-L6-24,L6-4,How does the author make the ending of 'The Cage Keeper' powerful?,by using imagery and reflection,by adding a twist,by ending in a question,by introducing a new character,by using imagery and reflection,Evaluation,1,False,0
-L6-25,L6-5,What is the main setting of 'The Night Market of Hours'?,a tower,a city,a house,a river valley,a city,Literal,2,False,0
-L6-26,L6-5,What action changes the direction of events in 'The Night Market of Hours'?,a lie told by a friend,an accident,a brave decision,a letter found,a brave decision,Detail,2,False,0
-L6-27,L6-5,"In 'The Night Market of Hours', what does a repeated image or object symbolize?",wealth,confusion,hope,fear,hope,Vocabulary,2,False,0
-L6-28,L6-5,Why does the main character act differently near the end of 'The Night Market of Hours'?,they realize a truth,they run away,they are forced,they win a prize,they realize a truth,Inference,2,False,0
-L6-29,L6-5,What is the central theme of 'The Night Market of Hours'?,luck and chance,freedom and responsibility,friendship and humor,technology and control,freedom and responsibility,Theme,2,False,0
-L6-30,L6-5,How does the author make the ending of 'The Night Market of Hours' powerful?,by adding a twist,by introducing a new character,by using imagery and reflection,by ending in a question,by using imagery and reflection,Evaluation,2,False,0
-L6-31,L6-6,What is the main setting of 'The Archivist of Endings'?,a tower,a river valley,a house,a city,a city,Literal,2,False,0
-L6-32,L6-6,What action changes the direction of events in 'The Archivist of Endings'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,2,False,0
-L6-33,L6-6,"In 'The Archivist of Endings', what does a repeated image or object symbolize?",wealth,fear,confusion,hope,hope,Vocabulary,2,False,0
-L6-34,L6-6,Why does the main character act differently near the end of 'The Archivist of Endings'?,they are forced,they realize a truth,they win a prize,they run away,they realize a truth,Inference,2,False,0
-L6-35,L6-6,What is the central theme of 'The Archivist of Endings'?,luck and chance,freedom and responsibility,friendship and humor,technology and control,freedom and responsibility,Theme,2,False,0
-L6-36,L6-6,How does the author make the ending of 'The Archivist of Endings' powerful?,by introducing a new character,by using imagery and reflection,by ending in a question,by adding a twist,by using imagery and reflection,Evaluation,2,False,0
-L6-37,L6-7,What is the main setting of 'The Immortal on the Bench'?,a house,a river valley,a city,a tower,a city,Literal,2,False,0
-L6-38,L6-7,What action changes the direction of events in 'The Immortal on the Bench'?,an accident,a brave decision,a letter found,a lie told by a friend,a brave decision,Detail,2,False,0
-L6-39,L6-7,"In 'The Immortal on the Bench', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,2,False,0
-L6-40,L6-7,Why does the main character act differently near the end of 'The Immortal on the Bench'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,2,False,0
-L6-41,L6-7,What is the central theme of 'The Immortal on the Bench'?,luck and chance,freedom and responsibility,friendship and humor,technology and control,freedom and responsibility,Theme,2,False,0
-L6-42,L6-7,How does the author make the ending of 'The Immortal on the Bench' powerful?,by adding a twist,by ending in a question,by introducing a new character,by using imagery and reflection,by using imagery and reflection,Evaluation,2,False,0
-L6-43,L6-8,What is the main setting of 'The House That Refused to End'?,a river valley,a house,a city,a tower,a city,Literal,2,False,0
-L6-44,L6-8,What action changes the direction of events in 'The House That Refused to End'?,a letter found,an accident,a brave decision,a lie told by a friend,a brave decision,Detail,2,False,0
-L6-45,L6-8,"In 'The House That Refused to End', what does a repeated image or object symbolize?",confusion,hope,wealth,fear,hope,Vocabulary,2,False,0
-L6-46,L6-8,Why does the main character act differently near the end of 'The House That Refused to End'?,they run away,they are forced,they win a prize,they realize a truth,they realize a truth,Inference,2,False,0
-L6-47,L6-8,What is the central theme of 'The House That Refused to End'?,luck and chance,freedom and responsibility,technology and control,friendship and humor,freedom and responsibility,Theme,2,False,0
-L6-48,L6-8,How does the author make the ending of 'The House That Refused to End' powerful?,by ending in a question,by introducing a new character,by using imagery and reflection,by adding a twist,by using imagery and reflection,Evaluation,2,False,0
-L6-49,L6-9,What is the main setting of 'The Glass City'?,a city,a river valley,a tower,a house,a city,Literal,3,False,0
-L6-50,L6-9,What action changes the direction of events in 'The Glass City'?,a lie told by a friend,a brave decision,an accident,a letter found,a brave decision,Detail,3,False,0
-L6-51,L6-9,"In 'The Glass City', what does a repeated image or object symbolize?",confusion,fear,wealth,hope,hope,Vocabulary,3,False,0
-L6-52,L6-9,Why does the main character act differently near the end of 'The Glass City'?,they realize a truth,they run away,they are forced,they win a prize,they realize a truth,Inference,3,False,0
-L6-53,L6-9,What is the central theme of 'The Glass City'?,freedom and responsibility,luck and chance,friendship and humor,technology and control,freedom and responsibility,Theme,3,False,0
-L6-54,L6-9,How does the author make the ending of 'The Glass City' powerful?,by ending in a question,by adding a twist,by introducing a new character,by using imagery and reflection,by using imagery and reflection,Evaluation,3,False,0
-L6-55,L6-10,What is the main setting of 'The Paper Rebellion'?,a tower,a river valley,a house,a city,a city,Literal,3,False,0
-L6-56,L6-10,What action changes the direction of events in 'The Paper Rebellion'?,a letter found,an accident,a lie told by a friend,a brave decision,a brave decision,Detail,3,False,0
-L6-57,L6-10,"In 'The Paper Rebellion', what does a repeated image or object symbolize?",confusion,fear,hope,wealth,hope,Vocabulary,3,False,0
-L6-58,L6-10,Why does the main character act differently near the end of 'The Paper Rebellion'?,they run away,they are forced,they win a prize,they realize a truth,they realize a truth,Inference,3,False,0
-L6-59,L6-10,What is the central theme of 'The Paper Rebellion'?,luck and chance,technology and control,freedom and responsibility,friendship and humor,freedom and responsibility,Theme,3,False,0
-L6-60,L6-10,How does the author make the ending of 'The Paper Rebellion' powerful?,by adding a twist,by introducing a new character,by using imagery and reflection,by ending in a question,by using imagery and reflection,Evaluation,3,False,0
-L6-61,L6-11,What is the main setting of 'The Algorithm’s Garden'?,a house,a city,a river valley,a tower,a city,Literal,3,False,0
-L6-62,L6-11,What action changes the direction of events in 'The Algorithm’s Garden'?,a lie told by a friend,a brave decision,an accident,a letter found,a brave decision,Detail,3,False,0
-L6-63,L6-11,"In 'The Algorithm’s Garden', what does a repeated image or object symbolize?",confusion,fear,wealth,hope,hope,Vocabulary,3,False,0
-L6-64,L6-11,Why does the main character act differently near the end of 'The Algorithm’s Garden'?,they realize a truth,they run away,they win a prize,they are forced,they realize a truth,Inference,3,False,0
-L6-65,L6-11,What is the central theme of 'The Algorithm’s Garden'?,luck and chance,freedom and responsibility,friendship and humor,technology and control,freedom and responsibility,Theme,3,False,0
-L6-66,L6-11,How does the author make the ending of 'The Algorithm’s Garden' powerful?,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,by using imagery and reflection,Evaluation,3,False,0
-L6-67,L6-12,What is the main setting of 'The Tower of Silence'?,a tower,a house,a river valley,a city,a city,Literal,3,False,0
-L6-68,L6-12,What action changes the direction of events in 'The Tower of Silence'?,a lie told by a friend,a letter found,a brave decision,an accident,a brave decision,Detail,3,False,0
-L6-69,L6-12,"In 'The Tower of Silence', what does a repeated image or object symbolize?",fear,wealth,hope,confusion,hope,Vocabulary,3,False,0
-L6-70,L6-12,Why does the main character act differently near the end of 'The Tower of Silence'?,they are forced,they win a prize,they run away,they realize a truth,they realize a truth,Inference,3,False,0
-L6-71,L6-12,What is the central theme of 'The Tower of Silence'?,friendship and humor,freedom and responsibility,luck and chance,technology and control,freedom and responsibility,Theme,3,False,0
-L6-72,L6-12,How does the author make the ending of 'The Tower of Silence' powerful?,by using imagery and reflection,by introducing a new character,by ending in a question,by adding a twist,by using imagery and reflection,Evaluation,3,False,0
-L7-1,L7-1,What is the central idea of 'The Rest Note'?,The text defends technological dominance.,The text explores balance between emotion and reason.,The text argues for the end of tradition.,The text describes a personal failure.,The text explores balance between emotion and reason.,Central Idea,2,False,0
-L7-2,L7-1,Which detail best supports the main idea in 'The Rest Note'?,A reference to an unrelated event,A description of a building,A statistical comparison of costs,A quote illustrating moral balance,A quote illustrating moral balance,Evidence,2,False,0
-L7-3,L7-1,"In 'The Rest Note', the word 'reflection' most nearly means—",criticism,serious thought,mirror image,light bounce,serious thought,Vocabulary,2,False,0
-L7-4,L7-1,What can be inferred about the author’s tone in 'The Rest Note'?,sarcastic and dismissive,joyful and nostalgic,balanced and contemplative,coldly scientific,balanced and contemplative,Inference,2,False,0
-L7-5,L7-1,How does the author develop the main argument in 'The Rest Note'?,by defining technical terms,by contrasting ideals with outcomes,by listing statistics,by mocking opponents,by contrasting ideals with outcomes,Structure,2,False,0
-L7-6,L7-1,Which statement best describes the author’s purpose in 'The Rest Note'?,to advocate for policy change,to entertain through humor,to examine human motivation through abstract analysis,to document historical data,to examine human motivation through abstract analysis,Purpose,2,False,0
-L7-7,L7-1,What is the effect of the imagery used in 'The Rest Note'?,It adds humor,It clarifies technical processes,It distracts from key ideas,It deepens emotional impact,It deepens emotional impact,Style,2,False,0
-L7-8,L7-1,Which phrase from 'The Rest Note' best supports the answer to the previous question?,a figure of speech unrelated to theme,a line describing contrast or silence,a line about weather,a numerical fact,a line describing contrast or silence,Evidence,2,False,0
-L7-9,L7-1,"Based on 'The Rest Note', which assumption does the author challenge?",that art is obsolete,that emotion is superior to reason,that science is flawless,that progress is always positive,that progress is always positive,Inference,2,False,0
-L7-10,L7-1,What is the tone of the concluding paragraph in 'The Rest Note'?,sarcastic,resigned yet hopeful,angry and urgent,indifferent,resigned yet hopeful,Tone,2,False,0
-L7-11,L7-1,What rhetorical device is most evident in 'The Rest Note'?,irony,contrast,hyperbole,metaphor,metaphor,Rhetoric,2,False,0
-L7-12,L7-1,What evidence would most strengthen the author’s argument in 'The Rest Note'?,a list of names,data illustrating long-term impact,a historical coincidence,an emotional anecdote,data illustrating long-term impact,Synthesis,2,False,0
-L7-13,L7-1,Which choice best describes how paragraph 3 functions in 'The Rest Note'?,It provides comic relief,It summarizes all prior claims,It transitions from example to interpretation,It shifts focus to unrelated data,It transitions from example to interpretation,Function,2,False,0
-L7-14,L7-1,"According to 'The Rest Note', what broader principle can be drawn?",Beauty guarantees truth,"Ethical insight arises from reflection, not haste",Failure defines genius,Power inevitably corrupts systems,"Ethical insight arises from reflection, not haste",Theme,2,False,0
-L7-15,L7-1,How does the author’s conclusion in 'The Rest Note' relate to the introduction?,It leaves the issue unanswered,It contradicts the original claim,It resolves initial tension by redefining success,It changes topic entirely,It resolves initial tension by redefining success,Evaluation,2,False,0
-L7-16,L7-2,"What is the central idea of 'The Republic of Letters, Revisited'?",The text describes a personal failure.,The text defends technological dominance.,The text argues for the end of tradition.,The text explores balance between emotion and reason.,The text explores balance between emotion and reason.,Central Idea,3,False,0
-L7-17,L7-2,"Which detail best supports the main idea in 'The Republic of Letters, Revisited'?",A statistical comparison of costs,A quote illustrating moral balance,A description of a building,A reference to an unrelated event,A quote illustrating moral balance,Evidence,3,False,0
-L7-18,L7-2,"In 'The Republic of Letters, Revisited', the word 'reflection' most nearly means—",serious thought,light bounce,mirror image,criticism,serious thought,Vocabulary,3,False,0
-L7-19,L7-2,"What can be inferred about the author’s tone in 'The Republic of Letters, Revisited'?",sarcastic and dismissive,joyful and nostalgic,coldly scientific,balanced and contemplative,balanced and contemplative,Inference,3,False,0
-L7-20,L7-2,"How does the author develop the main argument in 'The Republic of Letters, Revisited'?",by listing statistics,by defining technical terms,by contrasting ideals with outcomes,by mocking opponents,by contrasting ideals with outcomes,Structure,3,False,0
-L7-21,L7-2,"Which statement best describes the author’s purpose in 'The Republic of Letters, Revisited'?",to advocate for policy change,to document historical data,to entertain through humor,to examine human motivation through abstract analysis,to examine human motivation through abstract analysis,Purpose,3,False,0
-L7-22,L7-2,"What is the effect of the imagery used in 'The Republic of Letters, Revisited'?",It deepens emotional impact,It adds humor,It clarifies technical processes,It distracts from key ideas,It deepens emotional impact,Style,3,False,0
-L7-23,L7-2,"Which phrase from 'The Republic of Letters, Revisited' best supports the answer to the previous question?",a numerical fact,a line describing contrast or silence,a line about weather,a figure of speech unrelated to theme,a line describing contrast or silence,Evidence,3,False,0
-L7-24,L7-2,"Based on 'The Republic of Letters, Revisited', which assumption does the author challenge?",that progress is always positive,that science is flawless,that art is obsolete,that emotion is superior to reason,that progress is always positive,Inference,3,False,0
-L7-25,L7-2,"What is the tone of the concluding paragraph in 'The Republic of Letters, Revisited'?",sarcastic,angry and urgent,indifferent,resigned yet hopeful,resigned yet hopeful,Tone,3,False,0
-L7-26,L7-2,"What rhetorical device is most evident in 'The Republic of Letters, Revisited'?",contrast,irony,hyperbole,metaphor,metaphor,Rhetoric,3,False,0
-L7-27,L7-2,"What evidence would most strengthen the author’s argument in 'The Republic of Letters, Revisited'?",data illustrating long-term impact,an emotional anecdote,a historical coincidence,a list of names,data illustrating long-term impact,Synthesis,3,False,0
-L7-28,L7-2,"Which choice best describes how paragraph 3 functions in 'The Republic of Letters, Revisited'?",It provides comic relief,It transitions from example to interpretation,It shifts focus to unrelated data,It summarizes all prior claims,It transitions from example to interpretation,Function,3,False,0
-L7-29,L7-2,"According to 'The Republic of Letters, Revisited', what broader principle can be drawn?",Beauty guarantees truth,Failure defines genius,"Ethical insight arises from reflection, not haste",Power inevitably corrupts systems,"Ethical insight arises from reflection, not haste",Theme,3,False,0
-L7-30,L7-2,"How does the author’s conclusion in 'The Republic of Letters, Revisited' relate to the introduction?",It leaves the issue unanswered,It changes topic entirely,It contradicts the original claim,It resolves initial tension by redefining success,It resolves initial tension by redefining success,Evaluation,3,False,0
-L7-31,L7-3,What is the central idea of 'The Map of an Unseen Forest'?,The text defends technological dominance.,The text argues for the end of tradition.,The text describes a personal failure.,The text explores balance between emotion and reason.,The text explores balance between emotion and reason.,Central Idea,2,False,0
-L7-32,L7-3,Which detail best supports the main idea in 'The Map of an Unseen Forest'?,A quote illustrating moral balance,A description of a building,A statistical comparison of costs,A reference to an unrelated event,A quote illustrating moral balance,Evidence,2,False,0
-L7-33,L7-3,"In 'The Map of an Unseen Forest', the word 'reflection' most nearly means—",light bounce,serious thought,criticism,mirror image,serious thought,Vocabulary,2,False,0
-L7-34,L7-3,What can be inferred about the author’s tone in 'The Map of an Unseen Forest'?,coldly scientific,joyful and nostalgic,sarcastic and dismissive,balanced and contemplative,balanced and contemplative,Inference,2,False,0
-L7-35,L7-3,How does the author develop the main argument in 'The Map of an Unseen Forest'?,by listing statistics,by mocking opponents,by contrasting ideals with outcomes,by defining technical terms,by contrasting ideals with outcomes,Structure,2,False,0
-L7-36,L7-3,Which statement best describes the author’s purpose in 'The Map of an Unseen Forest'?,to examine human motivation through abstract analysis,to document historical data,to advocate for policy change,to entertain through humor,to examine human motivation through abstract analysis,Purpose,2,False,0
-L7-37,L7-3,What is the effect of the imagery used in 'The Map of an Unseen Forest'?,It clarifies technical processes,It deepens emotional impact,It adds humor,It distracts from key ideas,It deepens emotional impact,Style,2,False,0
-L7-38,L7-3,Which phrase from 'The Map of an Unseen Forest' best supports the answer to the previous question?,a figure of speech unrelated to theme,a numerical fact,a line describing contrast or silence,a line about weather,a line describing contrast or silence,Evidence,2,False,0
-L7-39,L7-3,"Based on 'The Map of an Unseen Forest', which assumption does the author challenge?",that art is obsolete,that emotion is superior to reason,that progress is always positive,that science is flawless,that progress is always positive,Inference,2,False,0
-L7-40,L7-3,What is the tone of the concluding paragraph in 'The Map of an Unseen Forest'?,sarcastic,resigned yet hopeful,indifferent,angry and urgent,resigned yet hopeful,Tone,2,False,0
-L7-41,L7-3,What rhetorical device is most evident in 'The Map of an Unseen Forest'?,metaphor,hyperbole,irony,contrast,metaphor,Rhetoric,2,False,0
-L7-42,L7-3,What evidence would most strengthen the author’s argument in 'The Map of an Unseen Forest'?,data illustrating long-term impact,a historical coincidence,an emotional anecdote,a list of names,data illustrating long-term impact,Synthesis,2,False,0
-L7-43,L7-3,Which choice best describes how paragraph 3 functions in 'The Map of an Unseen Forest'?,It transitions from example to interpretation,It provides comic relief,It shifts focus to unrelated data,It summarizes all prior claims,It transitions from example to interpretation,Function,2,False,0
-L7-44,L7-3,"According to 'The Map of an Unseen Forest', what broader principle can be drawn?","Ethical insight arises from reflection, not haste",Power inevitably corrupts systems,Beauty guarantees truth,Failure defines genius,"Ethical insight arises from reflection, not haste",Theme,2,False,0
-L7-45,L7-3,How does the author’s conclusion in 'The Map of an Unseen Forest' relate to the introduction?,It resolves initial tension by redefining success,It changes topic entirely,It contradicts the original claim,It leaves the issue unanswered,It resolves initial tension by redefining success,Evaluation,2,False,0
-L7-46,L7-4,What is the central idea of 'The Arithmetic of Regret'?,The text argues for the end of tradition.,The text defends technological dominance.,The text describes a personal failure.,The text explores balance between emotion and reason.,The text explores balance between emotion and reason.,Central Idea,3,False,0
-L7-47,L7-4,Which detail best supports the main idea in 'The Arithmetic of Regret'?,A statistical comparison of costs,A quote illustrating moral balance,A reference to an unrelated event,A description of a building,A quote illustrating moral balance,Evidence,3,False,0
-L7-48,L7-4,"In 'The Arithmetic of Regret', the word 'reflection' most nearly means—",mirror image,serious thought,criticism,light bounce,serious thought,Vocabulary,3,False,0
-L7-49,L7-4,What can be inferred about the author’s tone in 'The Arithmetic of Regret'?,coldly scientific,joyful and nostalgic,sarcastic and dismissive,balanced and contemplative,balanced and contemplative,Inference,3,False,0
-L7-50,L7-4,How does the author develop the main argument in 'The Arithmetic of Regret'?,by contrasting ideals with outcomes,by mocking opponents,by defining technical terms,by listing statistics,by contrasting ideals with outcomes,Structure,3,False,0
-L7-51,L7-4,Which statement best describes the author’s purpose in 'The Arithmetic of Regret'?,to examine human motivation through abstract analysis,to entertain through humor,to document historical data,to advocate for policy change,to examine human motivation through abstract analysis,Purpose,3,False,0
-L7-52,L7-4,What is the effect of the imagery used in 'The Arithmetic of Regret'?,It adds humor,It deepens emotional impact,It clarifies technical processes,It distracts from key ideas,It deepens emotional impact,Style,3,False,0
-L7-53,L7-4,Which phrase from 'The Arithmetic of Regret' best supports the answer to the previous question?,a numerical fact,a line describing contrast or silence,a line about weather,a figure of speech unrelated to theme,a line describing contrast or silence,Evidence,3,False,0
-L7-54,L7-4,"Based on 'The Arithmetic of Regret', which assumption does the author challenge?",that emotion is superior to reason,that art is obsolete,that science is flawless,that progress is always positive,that progress is always positive,Inference,3,False,0
-L7-55,L7-4,What is the tone of the concluding paragraph in 'The Arithmetic of Regret'?,indifferent,resigned yet hopeful,sarcastic,angry and urgent,resigned yet hopeful,Tone,3,False,0
-L7-56,L7-4,What rhetorical device is most evident in 'The Arithmetic of Regret'?,hyperbole,contrast,metaphor,irony,metaphor,Rhetoric,3,False,0
-L7-57,L7-4,What evidence would most strengthen the author’s argument in 'The Arithmetic of Regret'?,a list of names,an emotional anecdote,a historical coincidence,data illustrating long-term impact,data illustrating long-term impact,Synthesis,3,False,0
-L7-58,L7-4,Which choice best describes how paragraph 3 functions in 'The Arithmetic of Regret'?,It transitions from example to interpretation,It summarizes all prior claims,It provides comic relief,It shifts focus to unrelated data,It transitions from example to interpretation,Function,3,False,0
-L7-59,L7-4,"According to 'The Arithmetic of Regret', what broader principle can be drawn?",Power inevitably corrupts systems,"Ethical insight arises from reflection, not haste",Failure defines genius,Beauty guarantees truth,"Ethical insight arises from reflection, not haste",Theme,3,False,0
-L7-60,L7-4,How does the author’s conclusion in 'The Arithmetic of Regret' relate to the introduction?,It leaves the issue unanswered,It changes topic entirely,It contradicts the original claim,It resolves initial tension by redefining success,It resolves initial tension by redefining success,Evaluation,3,False,0
-L7-61,L7-5,What is the central idea of 'Letters to the Future (A Paired Passage)'?,The text describes a personal failure.,The text explores balance between emotion and reason.,The text argues for the end of tradition.,The text defends technological dominance.,The text explores balance between emotion and reason.,Central Idea,3,False,0
-L7-62,L7-5,Which detail best supports the main idea in 'Letters to the Future (A Paired Passage)'?,A description of a building,A statistical comparison of costs,A reference to an unrelated event,A quote illustrating moral balance,A quote illustrating moral balance,Evidence,3,False,0
-L7-63,L7-5,"In 'Letters to the Future (A Paired Passage)', the word 'reflection' most nearly means—",serious thought,light bounce,mirror image,criticism,serious thought,Vocabulary,3,False,0
-L7-64,L7-5,What can be inferred about the author’s tone in 'Letters to the Future (A Paired Passage)'?,joyful and nostalgic,balanced and contemplative,sarcastic and dismissive,coldly scientific,balanced and contemplative,Inference,3,False,0
-L7-65,L7-5,How does the author develop the main argument in 'Letters to the Future (A Paired Passage)'?,by contrasting ideals with outcomes,by mocking opponents,by defining technical terms,by listing statistics,by contrasting ideals with outcomes,Structure,3,False,0
-L7-66,L7-5,Which statement best describes the author’s purpose in 'Letters to the Future (A Paired Passage)'?,to examine human motivation through abstract analysis,to advocate for policy change,to document historical data,to entertain through humor,to examine human motivation through abstract analysis,Purpose,3,False,0
-L7-67,L7-5,What is the effect of the imagery used in 'Letters to the Future (A Paired Passage)'?,It clarifies technical processes,It adds humor,It deepens emotional impact,It distracts from key ideas,It deepens emotional impact,Style,3,False,0
-L7-68,L7-5,Which phrase from 'Letters to the Future (A Paired Passage)' best supports the answer to the previous question?,a line about weather,a figure of speech unrelated to theme,a line describing contrast or silence,a numerical fact,a line describing contrast or silence,Evidence,3,False,0
-L7-69,L7-5,"Based on 'Letters to the Future (A Paired Passage)', which assumption does the author challenge?",that emotion is superior to reason,that progress is always positive,that science is flawless,that art is obsolete,that progress is always positive,Inference,3,False,0
-L7-70,L7-5,What is the tone of the concluding paragraph in 'Letters to the Future (A Paired Passage)'?,sarcastic,resigned yet hopeful,angry and urgent,indifferent,resigned yet hopeful,Tone,3,False,0
-L7-71,L7-5,What rhetorical device is most evident in 'Letters to the Future (A Paired Passage)'?,irony,hyperbole,contrast,metaphor,metaphor,Rhetoric,3,False,0
-L7-72,L7-5,What evidence would most strengthen the author’s argument in 'Letters to the Future (A Paired Passage)'?,data illustrating long-term impact,a list of names,a historical coincidence,an emotional anecdote,data illustrating long-term impact,Synthesis,3,False,0
-L7-73,L7-5,Which choice best describes how paragraph 3 functions in 'Letters to the Future (A Paired Passage)'?,It summarizes all prior claims,It transitions from example to interpretation,It shifts focus to unrelated data,It provides comic relief,It transitions from example to interpretation,Function,3,False,0
-L7-74,L7-5,"According to 'Letters to the Future (A Paired Passage)', what broader principle can be drawn?",Failure defines genius,Beauty guarantees truth,Power inevitably corrupts systems,"Ethical insight arises from reflection, not haste","Ethical insight arises from reflection, not haste",Theme,3,False,0
-L7-75,L7-5,How does the author’s conclusion in 'Letters to the Future (A Paired Passage)' relate to the introduction?,It contradicts the original claim,It resolves initial tension by redefining success,It changes topic entirely,It leaves the issue unanswered,It resolves initial tension by redefining success,Evaluation,3,False,0
-L7-76,L7-6,What is the central idea of 'The Equation of the Crowd'?,The text argues for the end of tradition.,The text describes a personal failure.,The text explores balance between emotion and reason.,The text defends technological dominance.,The text explores balance between emotion and reason.,Central Idea,2,False,0
-L7-77,L7-6,Which detail best supports the main idea in 'The Equation of the Crowd'?,A description of a building,A quote illustrating moral balance,A statistical comparison of costs,A reference to an unrelated event,A quote illustrating moral balance,Evidence,2,False,0
-L7-78,L7-6,"In 'The Equation of the Crowd', the word 'reflection' most nearly means—",mirror image,serious thought,criticism,light bounce,serious thought,Vocabulary,2,False,0
-L7-79,L7-6,What can be inferred about the author’s tone in 'The Equation of the Crowd'?,balanced and contemplative,joyful and nostalgic,coldly scientific,sarcastic and dismissive,balanced and contemplative,Inference,2,False,0
-L7-80,L7-6,How does the author develop the main argument in 'The Equation of the Crowd'?,by contrasting ideals with outcomes,by mocking opponents,by defining technical terms,by listing statistics,by contrasting ideals with outcomes,Structure,2,False,0
-L7-81,L7-6,Which statement best describes the author’s purpose in 'The Equation of the Crowd'?,to examine human motivation through abstract analysis,to document historical data,to entertain through humor,to advocate for policy change,to examine human motivation through abstract analysis,Purpose,2,False,0
-L7-82,L7-6,What is the effect of the imagery used in 'The Equation of the Crowd'?,It distracts from key ideas,It deepens emotional impact,It clarifies technical processes,It adds humor,It deepens emotional impact,Style,2,False,0
-L7-83,L7-6,Which phrase from 'The Equation of the Crowd' best supports the answer to the previous question?,a line describing contrast or silence,a numerical fact,a line about weather,a figure of speech unrelated to theme,a line describing contrast or silence,Evidence,2,False,0
-L7-84,L7-6,"Based on 'The Equation of the Crowd', which assumption does the author challenge?",that progress is always positive,that emotion is superior to reason,that science is flawless,that art is obsolete,that progress is always positive,Inference,2,False,0
-L7-85,L7-6,What is the tone of the concluding paragraph in 'The Equation of the Crowd'?,sarcastic,resigned yet hopeful,angry and urgent,indifferent,resigned yet hopeful,Tone,2,False,0
-L7-86,L7-6,What rhetorical device is most evident in 'The Equation of the Crowd'?,hyperbole,contrast,irony,metaphor,metaphor,Rhetoric,2,False,0
-L7-87,L7-6,What evidence would most strengthen the author’s argument in 'The Equation of the Crowd'?,a historical coincidence,data illustrating long-term impact,an emotional anecdote,a list of names,data illustrating long-term impact,Synthesis,2,False,0
-L7-88,L7-6,Which choice best describes how paragraph 3 functions in 'The Equation of the Crowd'?,It transitions from example to interpretation,It summarizes all prior claims,It shifts focus to unrelated data,It provides comic relief,It transitions from example to interpretation,Function,2,False,0
-L7-89,L7-6,"According to 'The Equation of the Crowd', what broader principle can be drawn?",Power inevitably corrupts systems,Beauty guarantees truth,"Ethical insight arises from reflection, not haste",Failure defines genius,"Ethical insight arises from reflection, not haste",Theme,2,False,0
-L7-90,L7-6,How does the author’s conclusion in 'The Equation of the Crowd' relate to the introduction?,It contradicts the original claim,It leaves the issue unanswered,It resolves initial tension by redefining success,It changes topic entirely,It resolves initial tension by redefining success,Evaluation,2,False,0
+question_id,passage_id,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count,level,global_question_id,global_passage_id
+L1-1,L1-1,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It argues that homework should be banned.,It tells a fantasy story about dragons.,It explains tom is at school..,It explains tom is at school..,Literal,1,False,0,1,1,101
+L1-2,L1-1,Which statement best summarizes this passage?,It argues that homework should be banned.,It tells a fantasy story about dragons.,It explains tom is at school..,"It lists random, unrelated facts.",It explains tom is at school..,Literal,1,False,0,1,2,101
+L1-3,L1-1,Who helps Tom?,his friend,his sister,his father,his teacher,his teacher,Detail,1,False,0,1,3,101
+L1-4,L1-1,What is the author's main purpose in this passage?,To persuade readers to buy a product.,To inform readers about a topic.,To give step-by-step instructions for a craft.,To entertain with a fantasy story.,To inform readers about a topic.,Inference,1,False,0,1,4,101
+L1-5,L1-2,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,It explains i have a dog..,It argues that homework should be banned.,"It lists random, unrelated facts.",It explains i have a dog..,Literal,1,False,0,1,5,102
+L1-6,L1-2,What does Max like to do?,sleep,eat,run and play,bark loudly,run and play,Detail,1,False,0,1,6,102
+L1-7,L1-2,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,It explains i have a dog..,"It lists random, unrelated facts.",It argues that homework should be banned.,It explains i have a dog..,Literal,1,False,0,1,7,102
+L1-8,L1-2,What is the best title for this passage?,I Have a dog.,A Day at the Beach,Why Rules Matter,How to Build a Robot,I Have a dog.,Vocabulary,1,False,0,1,8,102
+L1-9,L1-3,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It argues that homework should be banned.,It tells a fantasy story about dragons.,It explains the sun is yellow..,It explains the sun is yellow..,Literal,1,False,0,1,9,103
+L2-1,L2-1,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It explains i had a red pencil i liked very much..,It argues that homework should be banned.,It tells a fantasy story about dragons.,It explains i had a red pencil i liked very much..,Literal,1,False,0,2,10,201
+L2-2,L2-1,Where did the writer look for the pencil?,in the garden,on the bed,in the bag,in the desk,in the desk,Detail,1,False,0,2,11,201
+L2-3,L2-1,Who found the pencil?,Tom,Mom,Sam,Lucy,Sam,Detail,1,False,0,2,12,201
+L2-4,L2-1,What is the author's main purpose in this passage?,To give step-by-step instructions for a craft.,To inform readers about a topic.,To persuade readers to buy a product.,To entertain with a fantasy story.,To inform readers about a topic.,Inference,1,False,0,2,13,201
+L2-5,L2-2,Which statement best summarizes this passage?,It explains a new student came to our class today..,It tells a fantasy story about dragons.,It argues that homework should be banned.,"It lists random, unrelated facts.",It explains a new student came to our class today..,Literal,1,False,0,2,14,202
+L2-6,L2-2,How did Lucy feel at first?,shy,happy,angry,tired,shy,Detail,1,False,0,2,15,202
+L2-7,L2-2,Which statement best summarizes this passage?,It argues that homework should be banned.,It tells a fantasy story about dragons.,It explains a new student came to our class today..,"It lists random, unrelated facts.",It explains a new student came to our class today..,Literal,1,False,0,2,16,202
+L2-8,L2-2,What is the best title for this passage?,How to Build a Robot,Why Rules Matter,A Day at the Beach,A New student came to our,A New student came to our,Literal,1,False,0,2,17,202
+L2-9,L2-3,What broke the kite string?,a tree,a bird,Tom,the wind,the wind,Literal,1,False,0,2,18,203
+L2-10,L2-3,Where did the kite fall?,into the water,into a tree,on the roof,on the ground,into a tree,Detail,1,False,0,2,19,203
+L2-11,L2-3,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,"It lists random, unrelated facts.",It explains tom’s kite flew high in the sky..,It argues that homework should be banned.,It explains tom’s kite flew high in the sky..,Literal,1,False,0,2,20,203
+L2-12,L2-3,What did they do after fixing it?,sold it,went home,flew it again,painted it,flew it again,Sequence,1,False,0,2,21,203
+L2-13,L2-4,Which statement best summarizes this passage?,It explains i woke up late this morning..,It argues that homework should be banned.,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,It explains i woke up late this morning..,Literal,1,False,0,2,22,204
+L2-14,L2-4,Who reminded the writer about the backpack?,Mom,Teacher,Dad,Friend,Mom,Detail,1,False,0,2,23,204
+L2-15,L2-4,What did the writer almost forget?,jacket,backpack,shoes,homework,backpack,Detail,1,False,0,2,24,204
+L2-16,L2-4,What is the author's main purpose in this passage?,To inform readers about a topic.,To entertain with a fantasy story.,To give step-by-step instructions for a craft.,To persuade readers to buy a product.,To inform readers about a topic.,Inference,1,False,0,2,25,204
+L2-17,L2-5,Who is Mrs. Lee?,aunt,friend,neighbor,teacher,neighbor,Literal,2,False,0,2,26,205
+L2-18,L2-5,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,It argues that homework should be banned.,It explains mrs..,It explains mrs..,Literal,2,False,0,2,27,205
+L2-19,L2-5,What does the writer do when Mrs. Lee is away?,picks apples,cleans house,feeds cats,waters plants,waters plants,Detail,2,False,0,2,28,205
+L2-20,L2-5,How does Mrs. Lee feel about the writer?,angry,happy,sad,bored,happy,Inference,2,False,0,2,29,205
+L2-21,L2-6,Which statement best summarizes this passage?,It explains there is a small library on our street..,It argues that homework should be banned.,It tells a fantasy story about dragons.,"It lists random, unrelated facts.",It explains there is a small library on our street..,Literal,1,False,0,2,30,206
+L2-22,L2-6,Which statement best summarizes this passage?,It explains there is a small library on our street..,It tells a fantasy story about dragons.,"It lists random, unrelated facts.",It argues that homework should be banned.,It explains there is a small library on our street..,Literal,1,False,0,2,31,206
+L2-23,L2-6,Which statement best summarizes this passage?,It explains there is a small library on our street..,"It lists random, unrelated facts.",It argues that homework should be banned.,It tells a fantasy story about dragons.,It explains there is a small library on our street..,Literal,1,False,0,2,32,206
+L2-24,L2-6,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It explains there is a small library on our street..,It tells a fantasy story about dragons.,It argues that homework should be banned.,It explains there is a small library on our street..,Literal,1,False,0,2,33,206
+L2-25,L2-7,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It argues that homework should be banned.,It tells a fantasy story about dragons.,"It explains our cat, ginger, was missing one night..","It explains our cat, ginger, was missing one night..",Literal,1,False,0,2,34,207
+L2-26,L2-7,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,It argues that homework should be banned.,"It lists random, unrelated facts.","It explains our cat, ginger, was missing one night..","It explains our cat, ginger, was missing one night..",Literal,1,False,0,2,35,207
+L2-27,L2-7,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,"It lists random, unrelated facts.",It argues that homework should be banned.,"It explains our cat, ginger, was missing one night..","It explains our cat, ginger, was missing one night..",Literal,1,False,0,2,36,207
+L2-28,L2-7,Which statement best summarizes this passage?,It argues that homework should be banned.,"It lists random, unrelated facts.","It explains our cat, ginger, was missing one night..",It tells a fantasy story about dragons.,"It explains our cat, ginger, was missing one night..",Literal,1,False,0,2,37,207
+L2-29,L2-8,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,It explains our class planted seeds in the school garden..,It argues that homework should be banned.,"It lists random, unrelated facts.",It explains our class planted seeds in the school garden..,Literal,1,False,0,2,38,208
+L2-30,L2-8,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,It argues that homework should be banned.,It explains our class planted seeds in the school garden..,It explains our class planted seeds in the school garden..,Literal,1,False,0,2,39,208
+L2-31,L2-8,Which statement best summarizes this passage?,It argues that homework should be banned.,It tells a fantasy story about dragons.,It explains our class planted seeds in the school garden..,"It lists random, unrelated facts.",It explains our class planted seeds in the school garden..,Literal,1,False,0,2,40,208
+L2-32,L2-8,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,It explains our class planted seeds in the school garden..,It argues that homework should be banned.,It explains our class planted seeds in the school garden..,Literal,1,False,0,2,41,208
+L2-33,L2-9,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It argues that homework should be banned.,"It explains it rained all day, but i still wanted to go.",It tells a fantasy story about dragons.,"It explains it rained all day, but i still wanted to go.",Literal,1,False,0,2,42,209
+L2-34,L2-9,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,It argues that homework should be banned.,"It lists random, unrelated facts.","It explains it rained all day, but i still wanted to go.","It explains it rained all day, but i still wanted to go.",Literal,1,False,0,2,43,209
+L2-35,L2-9,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,"It lists random, unrelated facts.",It argues that homework should be banned.,"It explains it rained all day, but i still wanted to go.","It explains it rained all day, but i still wanted to go.",Literal,1,False,0,2,44,209
+L2-36,L2-9,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,It argues that homework should be banned.,"It explains it rained all day, but i still wanted to go.","It explains it rained all day, but i still wanted to go.",Literal,1,False,0,2,45,209
+L2-37,L2-10,Which statement best summarizes this passage?,It explains i found a small box near the playground..,It argues that homework should be banned.,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,It explains i found a small box near the playground..,Literal,1,False,0,2,46,210
+L2-38,L2-10,Which statement best summarizes this passage?,It argues that homework should be banned.,It tells a fantasy story about dragons.,"It lists random, unrelated facts.",It explains i found a small box near the playground..,It explains i found a small box near the playground..,Literal,1,False,0,2,47,210
+L2-39,L2-10,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,It argues that homework should be banned.,It explains i found a small box near the playground..,"It lists random, unrelated facts.",It explains i found a small box near the playground..,Literal,1,False,0,2,48,210
+L2-40,L2-10,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It explains i found a small box near the playground..,It tells a fantasy story about dragons.,It argues that homework should be banned.,It explains i found a small box near the playground..,Literal,1,False,0,2,49,210
+L2-41,L2-11,Which statement best summarizes this passage?,It argues that homework should be banned.,It tells a fantasy story about dragons.,"It explains every sunday, i visit grandma..","It lists random, unrelated facts.","It explains every sunday, i visit grandma..",Literal,1,False,0,2,50,211
+L2-42,L2-11,Which statement best summarizes this passage?,"It explains every sunday, i visit grandma..",It argues that homework should be banned.,It tells a fantasy story about dragons.,"It lists random, unrelated facts.","It explains every sunday, i visit grandma..",Literal,1,False,0,2,51,211
+L2-43,L2-11,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,It argues that homework should be banned.,"It lists random, unrelated facts.","It explains every sunday, i visit grandma..","It explains every sunday, i visit grandma..",Literal,1,False,0,2,52,211
+L2-44,L2-11,Which statement best summarizes this passage?,"It explains every sunday, i visit grandma..",It argues that homework should be banned.,It tells a fantasy story about dragons.,"It lists random, unrelated facts.","It explains every sunday, i visit grandma..",Literal,1,False,0,2,53,211
+L2-45,L2-12,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,"It explains one night, i heard a sound outside my window..","It lists random, unrelated facts.",It argues that homework should be banned.,"It explains one night, i heard a sound outside my window..",Literal,1,False,0,2,54,212
+L2-46,L2-12,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It argues that homework should be banned.,It tells a fantasy story about dragons.,"It explains one night, i heard a sound outside my window..","It explains one night, i heard a sound outside my window..",Literal,1,False,0,2,55,212
+L2-47,L2-12,Which statement best summarizes this passage?,It argues that homework should be banned.,"It explains one night, i heard a sound outside my window..",It tells a fantasy story about dragons.,"It lists random, unrelated facts.","It explains one night, i heard a sound outside my window..",Literal,1,False,0,2,56,212
+L2-48,L2-12,Which statement best summarizes this passage?,"It explains one night, i heard a sound outside my window..",It argues that homework should be banned.,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,"It explains one night, i heard a sound outside my window..",Literal,1,False,0,2,57,212
+L2-49,L2-13,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,It argues that homework should be banned.,It explains the passage.,It explains the passage.,Literal,1,False,0,2,58,213
+L2-50,L2-13,Which statement best summarizes this passage?,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,It explains the passage.,It argues that homework should be banned.,It explains the passage.,Literal,1,False,0,2,59,213
+L3-1,L3-1,What is the best title for this passage?,How to Build a Robot,A Day at the Beach,Mina And Alex worked hard on,Why Rules Matter,Mina And Alex worked hard on,Literal,1,False,0,3,60,301
+L3-2,L3-1,Which statement best summarizes this passage?,It argues that homework should be banned.,"It lists random, unrelated facts.",It explains mina and alex worked hard on their science project..,It tells a fantasy story about dragons.,It explains mina and alex worked hard on their science project..,Literal,1,False,0,3,61,301
+L3-3,L3-1,What is the best title for this passage?,A Day at the Beach,How to Build a Robot,Why Rules Matter,Mina And Alex worked hard on,Mina And Alex worked hard on,Literal,1,False,0,3,62,301
+L3-4,L3-1,What is the best title for this passage?,A Day at the Beach,How to Build a Robot,Mina And Alex worked hard on,Why Rules Matter,Mina And Alex worked hard on,Vocabulary,1,False,0,3,63,301
+L3-5,L3-1,What is the author's main purpose in this passage?,To give step-by-step instructions for a craft.,To persuade readers to buy a product.,To entertain with a fantasy story.,To inform readers about a topic.,To inform readers about a topic.,Inference,1,False,0,3,64,301
+L4-1,L4-1,Which statement best summarizes this passage?,"It explains ben sat at the lunch table, staring at the yellow.",It tells a fantasy story about dragons.,It argues that homework should be banned.,"It lists random, unrelated facts.","It explains ben sat at the lunch table, staring at the yellow.",Literal,1,False,0,4,65,401
+L4-2,L4-1,What important decision does the main character make?,to help someone,to travel,to skip homework,to hide the truth,to help someone,Detail,1,False,0,4,66,401
+L4-3,L4-1,What does the word 'bright' most likely mean in this story?,fast,quiet,angry,full of light,full of light,Vocabulary,1,False,0,4,67,401
+L4-4,L4-1,What is the author's main purpose in this passage?,To persuade readers to buy a product.,To inform readers about a topic.,To give step-by-step instructions for a craft.,To entertain with a fantasy story.,To inform readers about a topic.,Inference,1,False,0,4,68,401
+L4-5,L4-1,What is the main lesson or theme of the story?,honesty,bravery,teamwork,kindness,kindness,Theme,1,False,0,4,69,401
+L5-1,L5-1,Where does most of the story 'The Promise at the River' take place?,inside a house,at school,by the river,in a city square,by the river,Literal,1,False,0,5,70,501
+L5-2,L5-1,What decision changes the main character’s path in 'The Promise at the River'?,to run away,to give up,to hide the truth,to help another person,to help another person,Detail,1,False,0,5,71,501
+L5-3,L5-1,"In 'The Promise at the River', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,1,False,0,5,72,501
+L5-4,L5-1,Why does the main character act differently near the end of 'The Promise at the River'?,they are afraid,they understand a deeper truth,they forget their goal,they are punished,they understand a deeper truth,Inference,1,False,0,5,73,501
+L5-5,L5-1,What is the central theme of 'The Promise at the River'?,courage and empathy,competition and victory,luck and chance,mystery and fear,courage and empathy,Theme,1,False,0,5,74,501
+L5-6,L5-1,How does the author make the ending of 'The Promise at the River' powerful?,by adding a surprise villain,by using vivid imagery and reflection,by ending in a joke,by changing the narrator,by using vivid imagery and reflection,Evaluation,1,False,0,5,75,501
+L5-7,L5-2,Where does most of the story 'The Secret Notebook' take place?,by the river,at school,inside a house,in a city square,by the river,Literal,1,False,0,5,76,502
+L5-8,L5-2,Which statement best summarizes this passage?,"It explains when leenaõs grandfather passed away, the house felt full of.","It lists random, unrelated facts.",It tells a fantasy story about dragons.,It argues that homework should be banned.,"It explains when leenaõs grandfather passed away, the house felt full of.",Literal,1,False,0,5,77,502
+L5-9,L5-2,What is the best title for this passage?,Why Rules Matter,"When LeenaÕs Grandfather passed away, the",How to Build a Robot,A Day at the Beach,"When LeenaÕs Grandfather passed away, the",Vocabulary,1,False,0,5,78,502
+L5-10,L5-2,What is the author's main purpose in this passage?,To inform readers about a topic.,To give step-by-step instructions for a craft.,To entertain with a fantasy story.,To persuade readers to buy a product.,To inform readers about a topic.,Inference,1,False,0,5,79,502
+L5-11,L5-2,What is the best title for this passage?,Why Rules Matter,How to Build a Robot,A Day at the Beach,"When LeenaÕs Grandfather passed away, the","When LeenaÕs Grandfather passed away, the",Literal,1,False,0,5,80,502
+L5-12,L5-2,What is the best title for this passage?,"When LeenaÕs Grandfather passed away, the",A Day at the Beach,How to Build a Robot,Why Rules Matter,"When LeenaÕs Grandfather passed away, the",Literal,1,False,0,5,81,502
+L5-13,L5-3,Where does most of the story 'The Music Box' take place?,in a city square,inside a house,by the river,at school,by the river,Literal,1,False,0,5,82,503
+L5-14,L5-3,What decision changes the main character’s path in 'The Music Box'?,to give up,to hide the truth,to run away,to help another person,to help another person,Detail,1,False,0,5,83,503
+L5-15,L5-3,"In 'The Music Box', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",sadness and regret,wealth and power,hope and renewal,anger and fear,hope and renewal,Vocabulary,1,False,0,5,84,503
+L5-16,L5-3,Why does the main character act differently near the end of 'The Music Box'?,they are punished,they understand a deeper truth,they are afraid,they forget their goal,they understand a deeper truth,Inference,1,False,0,5,85,503
+L5-17,L5-3,What is the central theme of 'The Music Box'?,mystery and fear,luck and chance,competition and victory,courage and empathy,courage and empathy,Theme,1,False,0,5,86,503
+L5-18,L5-3,How does the author make the ending of 'The Music Box' powerful?,by using vivid imagery and reflection,by ending in a joke,by adding a surprise villain,by changing the narrator,by using vivid imagery and reflection,Evaluation,1,False,0,5,87,503
+L5-19,L5-4,Where does most of the story 'The Bridge at East Gate' take place?,in a city square,inside a house,at school,by the river,by the river,Literal,2,False,0,5,88,504
+L5-20,L5-4,What decision changes the main character’s path in 'The Bridge at East Gate'?,to give up,to help another person,to hide the truth,to run away,to help another person,Detail,2,False,0,5,89,504
+L5-21,L5-4,"In 'The Bridge at East Gate', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,wealth and power,sadness and regret,hope and renewal,Vocabulary,2,False,0,5,90,504
+L5-22,L5-4,Why does the main character act differently near the end of 'The Bridge at East Gate'?,they are punished,they forget their goal,they are afraid,they understand a deeper truth,they understand a deeper truth,Inference,2,False,0,5,91,504
+L5-23,L5-4,What is the central theme of 'The Bridge at East Gate'?,mystery and fear,competition and victory,luck and chance,courage and empathy,courage and empathy,Theme,2,False,0,5,92,504
+L5-24,L5-4,How does the author make the ending of 'The Bridge at East Gate' powerful?,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,by using vivid imagery and reflection,Evaluation,2,False,0,5,93,504
+L5-25,L5-5,Where does most of the story 'The Protest Tree' take place?,in a city square,at school,by the river,inside a house,by the river,Literal,2,False,0,5,94,505
+L5-26,L5-5,What decision changes the main character’s path in 'The Protest Tree'?,to hide the truth,to give up,to run away,to help another person,to help another person,Detail,2,False,0,5,95,505
+L5-27,L5-5,"In 'The Protest Tree', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,2,False,0,5,96,505
+L5-28,L5-5,Why does the main character act differently near the end of 'The Protest Tree'?,they forget their goal,they are afraid,they understand a deeper truth,they are punished,they understand a deeper truth,Inference,2,False,0,5,97,505
+L5-29,L5-5,What is the central theme of 'The Protest Tree'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,2,False,0,5,98,505
+L5-30,L5-5,What is the best title for this passage?,How to Build a Robot,Why Rules Matter,"In The summer of 1963, the",A Day at the Beach,"In The summer of 1963, the",Literal,2,False,0,5,99,505
+L5-31,L5-6,Where does most of the story 'The Tunnel Light' take place?,by the river,inside a house,in a city square,at school,by the river,Literal,3,False,0,5,100,506
+L5-32,L5-6,What decision changes the main character’s path in 'The Tunnel Light'?,to run away,to help another person,to give up,to hide the truth,to help another person,Detail,3,False,0,5,101,506
+L5-33,L5-6,"In 'The Tunnel Light', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",sadness and regret,wealth and power,hope and renewal,anger and fear,hope and renewal,Vocabulary,3,False,0,5,102,506
+L5-34,L5-6,What is the author's main purpose in this passage?,To persuade readers to buy a product.,To give step-by-step instructions for a craft.,To inform readers about a topic.,To entertain with a fantasy story.,To inform readers about a topic.,Inference,3,False,0,5,103,506
+L5-35,L5-6,What is the central theme of 'The Tunnel Light'?,courage and empathy,competition and victory,mystery and fear,luck and chance,courage and empathy,Theme,3,False,0,5,104,506
+L5-36,L5-6,What is the best title for this passage?,A Day at the Beach,Why Rules Matter,How to Build a Robot,The Engineers said the city still,The Engineers said the city still,Literal,3,False,0,5,105,506
+L5-37,L5-7,Where does most of the story 'The Letter from Winter Hill' take place?,at school,inside a house,in a city square,by the river,by the river,Literal,3,False,0,5,106,507
+L5-38,L5-7,What decision changes the main character’s path in 'The Letter from Winter Hill'?,to hide the truth,to help another person,to give up,to run away,to help another person,Detail,3,False,0,5,107,507
+L5-39,L5-7,"In 'The Letter from Winter Hill', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",anger and fear,hope and renewal,wealth and power,sadness and regret,hope and renewal,Vocabulary,3,False,0,5,108,507
+L5-40,L5-7,Why does the main character act differently near the end of 'The Letter from Winter Hill'?,they are punished,they are afraid,they understand a deeper truth,they forget their goal,they understand a deeper truth,Inference,3,False,0,5,109,507
+L5-41,L5-7,What is the central theme of 'The Letter from Winter Hill'?,courage and empathy,competition and victory,mystery and fear,luck and chance,courage and empathy,Theme,3,False,0,5,110,507
+L5-42,L5-7,How does the author make the ending of 'The Letter from Winter Hill' powerful?,by ending in a joke,by adding a surprise villain,by using vivid imagery and reflection,by changing the narrator,by using vivid imagery and reflection,Evaluation,3,False,0,5,111,507
+L5-43,L5-8,Where does most of the story 'The Stone Lantern' take place?,inside a house,at school,in a city square,by the river,by the river,Literal,3,False,0,5,112,508
+L5-44,L5-8,What decision changes the main character’s path in 'The Stone Lantern'?,to give up,to run away,to help another person,to hide the truth,to help another person,Detail,3,False,0,5,113,508
+L5-45,L5-8,"In 'The Stone Lantern', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",sadness and regret,anger and fear,wealth and power,hope and renewal,hope and renewal,Vocabulary,3,False,0,5,114,508
+L5-46,L5-8,Why does the main character act differently near the end of 'The Stone Lantern'?,they forget their goal,they are punished,they are afraid,they understand a deeper truth,they understand a deeper truth,Inference,3,False,0,5,115,508
+L5-47,L5-8,What is the central theme of 'The Stone Lantern'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,3,False,0,5,116,508
+L5-48,L5-8,How does the author make the ending of 'The Stone Lantern' powerful?,by ending in a joke,by changing the narrator,by using vivid imagery and reflection,by adding a surprise villain,by using vivid imagery and reflection,Evaluation,3,False,0,5,117,508
+L5-49,L5-9,Where does most of the story 'The Signal Tower' take place?,inside a house,at school,by the river,in a city square,by the river,Literal,3,False,0,5,118,509
+L5-50,L5-9,What decision changes the main character’s path in 'The Signal Tower'?,to give up,to hide the truth,to help another person,to run away,to help another person,Detail,3,False,0,5,119,509
+L5-51,L5-9,"In 'The Signal Tower', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",sadness and regret,hope and renewal,anger and fear,wealth and power,hope and renewal,Vocabulary,3,False,0,5,120,509
+L5-52,L5-9,Why does the main character act differently near the end of 'The Signal Tower'?,they are afraid,they understand a deeper truth,they forget their goal,they are punished,they understand a deeper truth,Inference,3,False,0,5,121,509
+L5-53,L5-9,What is the central theme of 'The Signal Tower'?,competition and victory,courage and empathy,luck and chance,mystery and fear,courage and empathy,Theme,3,False,0,5,122,509
+L5-54,L5-9,How does the author make the ending of 'The Signal Tower' powerful?,by adding a surprise villain,by using vivid imagery and reflection,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,3,False,0,5,123,509
+L5-55,L5-10,Where does most of the story 'The Invisible Line' take place?,at school,in a city square,by the river,inside a house,by the river,Literal,2,False,0,5,124,510
+L5-56,L5-10,What decision changes the main character’s path in 'The Invisible Line'?,to give up,to hide the truth,to run away,to help another person,to help another person,Detail,2,False,0,5,125,510
+L5-57,L5-10,"In 'The Invisible Line', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",anger and fear,wealth and power,sadness and regret,hope and renewal,hope and renewal,Vocabulary,2,False,0,5,126,510
+L5-58,L5-10,Why does the main character act differently near the end of 'The Invisible Line'?,they are afraid,they forget their goal,they are punished,they understand a deeper truth,they understand a deeper truth,Inference,2,False,0,5,127,510
+L5-59,L5-10,What is the central theme of 'The Invisible Line'?,luck and chance,courage and empathy,competition and victory,mystery and fear,courage and empathy,Theme,2,False,0,5,128,510
+L5-60,L5-10,How does the author make the ending of 'The Invisible Line' powerful?,by ending in a joke,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by using vivid imagery and reflection,Evaluation,2,False,0,5,129,510
+L5-61,L5-11,Where does most of the story 'The Debate Club' take place?,by the river,in a city square,at school,inside a house,by the river,Literal,2,False,0,5,130,511
+L5-62,L5-11,What decision changes the main character’s path in 'The Debate Club'?,to run away,to hide the truth,to give up,to help another person,to help another person,Detail,2,False,0,5,131,511
+L5-63,L5-11,"In 'The Debate Club', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",anger and fear,sadness and regret,hope and renewal,wealth and power,hope and renewal,Vocabulary,2,False,0,5,132,511
+L5-64,L5-11,Why does the main character act differently near the end of 'The Debate Club'?,they are afraid,they forget their goal,they are punished,they understand a deeper truth,they understand a deeper truth,Inference,2,False,0,5,133,511
+L5-65,L5-11,What is the central theme of 'The Debate Club'?,courage and empathy,mystery and fear,luck and chance,competition and victory,courage and empathy,Theme,2,False,0,5,134,511
+L5-66,L5-11,How does the author make the ending of 'The Debate Club' powerful?,by using vivid imagery and reflection,by changing the narrator,by adding a surprise villain,by ending in a joke,by using vivid imagery and reflection,Evaluation,2,False,0,5,135,511
+L5-67,L5-12,Where does most of the story 'The Late Swimmer' take place?,by the river,inside a house,in a city square,at school,by the river,Literal,1,False,0,5,136,512
+L5-68,L5-12,What decision changes the main character’s path in 'The Late Swimmer'?,to run away,to help another person,to hide the truth,to give up,to help another person,Detail,1,False,0,5,137,512
+L5-69,L5-12,"In 'The Late Swimmer', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",anger and fear,wealth and power,sadness and regret,hope and renewal,hope and renewal,Vocabulary,1,False,0,5,138,512
+L5-70,L5-12,Why does the main character act differently near the end of 'The Late Swimmer'?,they are afraid,they are punished,they forget their goal,they understand a deeper truth,they understand a deeper truth,Inference,1,False,0,5,139,512
+L5-71,L5-12,What is the central theme of 'The Late Swimmer'?,mystery and fear,courage and empathy,competition and victory,luck and chance,courage and empathy,Theme,1,False,0,5,140,512
+L5-72,L5-12,How does the author make the ending of 'The Late Swimmer' powerful?,by adding a surprise villain,by using vivid imagery and reflection,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,1,False,0,5,141,512
+L6-1,L6-1,Which statement best summarizes this passage?,It argues that homework should be banned.,"It lists random, unrelated facts.",It tells a fantasy story about dragons.,"It explains the dust fields stretched to the horizon, brown waves under.","It explains the dust fields stretched to the horizon, brown waves under.",Literal,1,False,0,6,142,601
+L6-2,L6-1,Which statement best summarizes this passage?,It tells a fantasy story about dragons.,"It lists random, unrelated facts.","It explains the dust fields stretched to the horizon, brown waves under.",It argues that homework should be banned.,"It explains the dust fields stretched to the horizon, brown waves under.",Literal,1,False,0,6,143,601
+L6-3,L6-1,"In 'The Harvest Debt', what does a repeated image or object symbolize?",hope,fear,wealth,confusion,hope,Vocabulary,1,False,0,6,144,601
+L6-4,L6-1,Why does the main character act differently near the end of 'The Harvest Debt'?,they win a prize,they are forced,they realize a truth,they run away,they realize a truth,Inference,1,False,0,6,145,601
+L6-5,L6-1,What is the best title for this passage?,How to Build a Robot,A Day at the Beach,The Dust fields stretched to the,Why Rules Matter,The Dust fields stretched to the,Literal,1,False,0,6,146,601
+L6-6,L6-1,How does the author make the ending of 'The Harvest Debt' powerful?,by introducing a new character,by ending in a question,by using imagery and reflection,by adding a twist,by using imagery and reflection,Evaluation,1,False,0,6,147,601
+L6-7,L6-2,What is the main setting of 'The Bridge Shift'?,a city,a house,a river valley,a tower,a city,Literal,1,False,0,6,148,602
+L6-8,L6-2,What action changes the direction of events in 'The Bridge Shift'?,a brave decision,a letter found,an accident,a lie told by a friend,a brave decision,Detail,1,False,0,6,149,602
+L6-9,L6-2,"In 'The Bridge Shift', what does a repeated image or object symbolize?",fear,hope,wealth,confusion,hope,Vocabulary,1,False,0,6,150,602
+L6-10,L6-2,Why does the main character act differently near the end of 'The Bridge Shift'?,they win a prize,they are forced,they run away,they realize a truth,they realize a truth,Inference,1,False,0,6,151,602
+L6-11,L6-2,What is the central theme of 'The Bridge Shift'?,technology and control,freedom and responsibility,luck and chance,friendship and humor,freedom and responsibility,Theme,1,False,0,6,152,602
+L6-12,L6-2,How does the author make the ending of 'The Bridge Shift' powerful?,by adding a twist,by using imagery and reflection,by ending in a question,by introducing a new character,by using imagery and reflection,Evaluation,1,False,0,6,153,602
+L6-13,L6-3,What is the main setting of 'The Last Contract'?,a river valley,a house,a tower,a city,a city,Literal,1,False,0,6,154,603
+L6-14,L6-3,What action changes the direction of events in 'The Last Contract'?,a letter found,a lie told by a friend,an accident,a brave decision,a brave decision,Detail,1,False,0,6,155,603
+L6-15,L6-3,"In 'The Last Contract', what does a repeated image or object symbolize?",wealth,confusion,hope,fear,hope,Vocabulary,1,False,0,6,156,603
+L6-16,L6-3,Why does the main character act differently near the end of 'The Last Contract'?,they are forced,they run away,they win a prize,they realize a truth,they realize a truth,Inference,1,False,0,6,157,603
+L6-17,L6-3,What is the central theme of 'The Last Contract'?,technology and control,friendship and humor,freedom and responsibility,luck and chance,freedom and responsibility,Theme,1,False,0,6,158,603
+L6-18,L6-3,How does the author make the ending of 'The Last Contract' powerful?,by using imagery and reflection,by introducing a new character,by adding a twist,by ending in a question,by using imagery and reflection,Evaluation,1,False,0,6,159,603
+L6-19,L6-4,What is the main setting of 'The Cage Keeper'?,a river valley,a tower,a house,a city,a city,Literal,1,False,0,6,160,604
+L6-20,L6-4,What action changes the direction of events in 'The Cage Keeper'?,a brave decision,a lie told by a friend,an accident,a letter found,a brave decision,Detail,1,False,0,6,161,604
+L6-21,L6-4,"In 'The Cage Keeper', what does a repeated image or object symbolize?",confusion,fear,hope,wealth,hope,Vocabulary,1,False,0,6,162,604
+L6-22,L6-4,Why does the main character act differently near the end of 'The Cage Keeper'?,they are forced,they win a prize,they realize a truth,they run away,they realize a truth,Inference,1,False,0,6,163,604
+L6-23,L6-4,What is the central theme of 'The Cage Keeper'?,friendship and humor,freedom and responsibility,luck and chance,technology and control,freedom and responsibility,Theme,1,False,0,6,164,604
+L6-24,L6-4,How does the author make the ending of 'The Cage Keeper' powerful?,by introducing a new character,by ending in a question,by using imagery and reflection,by adding a twist,by using imagery and reflection,Evaluation,1,False,0,6,165,604
+L6-25,L6-5,What is the main setting of 'The Night Market of Hours'?,a city,a house,a river valley,a tower,a city,Literal,2,False,0,6,166,605
+L6-26,L6-5,What action changes the direction of events in 'The Night Market of Hours'?,an accident,a letter found,a brave decision,a lie told by a friend,a brave decision,Detail,2,False,0,6,167,605
+L6-27,L6-5,"In 'The Night Market of Hours', what does a repeated image or object symbolize?",wealth,confusion,hope,fear,hope,Vocabulary,2,False,0,6,168,605
+L6-28,L6-5,Why does the main character act differently near the end of 'The Night Market of Hours'?,they run away,they are forced,they win a prize,they realize a truth,they realize a truth,Inference,2,False,0,6,169,605
+L6-29,L6-5,What is the central theme of 'The Night Market of Hours'?,friendship and humor,luck and chance,technology and control,freedom and responsibility,freedom and responsibility,Theme,2,False,0,6,170,605
+L6-30,L6-5,How does the author make the ending of 'The Night Market of Hours' powerful?,by ending in a question,by introducing a new character,by adding a twist,by using imagery and reflection,by using imagery and reflection,Evaluation,2,False,0,6,171,605
+L6-31,L6-6,What is the main setting of 'The Archivist of Endings'?,a tower,a house,a city,a river valley,a city,Literal,2,False,0,6,172,606
+L6-32,L6-6,What action changes the direction of events in 'The Archivist of Endings'?,a lie told by a friend,an accident,a brave decision,a letter found,a brave decision,Detail,2,False,0,6,173,606
+L6-33,L6-6,"In 'The Archivist of Endings', what does a repeated image or object symbolize?",wealth,hope,confusion,fear,hope,Vocabulary,2,False,0,6,174,606
+L6-34,L6-6,Why does the main character act differently near the end of 'The Archivist of Endings'?,they win a prize,they run away,they realize a truth,they are forced,they realize a truth,Inference,2,False,0,6,175,606
+L6-35,L6-6,What is the central theme of 'The Archivist of Endings'?,friendship and humor,freedom and responsibility,technology and control,luck and chance,freedom and responsibility,Theme,2,False,0,6,176,606
+L6-36,L6-6,How does the author make the ending of 'The Archivist of Endings' powerful?,by introducing a new character,by ending in a question,by using imagery and reflection,by adding a twist,by using imagery and reflection,Evaluation,2,False,0,6,177,606
+L6-37,L6-7,What is the main setting of 'The Immortal on the Bench'?,a house,a tower,a river valley,a city,a city,Literal,2,False,0,6,178,607
+L6-38,L6-7,What action changes the direction of events in 'The Immortal on the Bench'?,a brave decision,an accident,a letter found,a lie told by a friend,a brave decision,Detail,2,False,0,6,179,607
+L6-39,L6-7,"In 'The Immortal on the Bench', what does a repeated image or object symbolize?",wealth,fear,hope,confusion,hope,Vocabulary,2,False,0,6,180,607
+L6-40,L6-7,Why does the main character act differently near the end of 'The Immortal on the Bench'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,2,False,0,6,181,607
+L6-41,L6-7,What is the central theme of 'The Immortal on the Bench'?,luck and chance,technology and control,friendship and humor,freedom and responsibility,freedom and responsibility,Theme,2,False,0,6,182,607
+L6-42,L6-7,How does the author make the ending of 'The Immortal on the Bench' powerful?,by adding a twist,by ending in a question,by using imagery and reflection,by introducing a new character,by using imagery and reflection,Evaluation,2,False,0,6,183,607
+L6-43,L6-8,What is the main setting of 'The House That Refused to End'?,a tower,a river valley,a city,a house,a city,Literal,2,False,0,6,184,608
+L6-44,L6-8,What action changes the direction of events in 'The House That Refused to End'?,a lie told by a friend,an accident,a brave decision,a letter found,a brave decision,Detail,2,False,0,6,185,608
+L6-45,L6-8,"In 'The House That Refused to End', what does a repeated image or object symbolize?",wealth,fear,confusion,hope,hope,Vocabulary,2,False,0,6,186,608
+L6-46,L6-8,Why does the main character act differently near the end of 'The House That Refused to End'?,they are forced,they realize a truth,they win a prize,they run away,they realize a truth,Inference,2,False,0,6,187,608
+L6-47,L6-8,What is the central theme of 'The House That Refused to End'?,technology and control,friendship and humor,luck and chance,freedom and responsibility,freedom and responsibility,Theme,2,False,0,6,188,608
+L6-48,L6-8,How does the author make the ending of 'The House That Refused to End' powerful?,by introducing a new character,by using imagery and reflection,by ending in a question,by adding a twist,by using imagery and reflection,Evaluation,2,False,0,6,189,608
+L6-49,L6-9,What is the main setting of 'The Glass City'?,a tower,a house,a river valley,a city,a city,Literal,3,False,0,6,190,609
+L6-50,L6-9,What action changes the direction of events in 'The Glass City'?,an accident,a lie told by a friend,a letter found,a brave decision,a brave decision,Detail,3,False,0,6,191,609
+L6-51,L6-9,"In 'The Glass City', what does a repeated image or object symbolize?",hope,confusion,wealth,fear,hope,Vocabulary,3,False,0,6,192,609
+L6-52,L6-9,Why does the main character act differently near the end of 'The Glass City'?,they run away,they are forced,they win a prize,they realize a truth,they realize a truth,Inference,3,False,0,6,193,609
+L6-53,L6-9,What is the central theme of 'The Glass City'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,3,False,0,6,194,609
+L6-54,L6-9,How does the author make the ending of 'The Glass City' powerful?,by ending in a question,by using imagery and reflection,by adding a twist,by introducing a new character,by using imagery and reflection,Evaluation,3,False,0,6,195,609
+L6-55,L6-10,What is the main setting of 'The Paper Rebellion'?,a river valley,a house,a tower,a city,a city,Literal,3,False,0,6,196,610
+L6-56,L6-10,What action changes the direction of events in 'The Paper Rebellion'?,an accident,a letter found,a brave decision,a lie told by a friend,a brave decision,Detail,3,False,0,6,197,610
+L6-57,L6-10,"In 'The Paper Rebellion', what does a repeated image or object symbolize?",fear,hope,wealth,confusion,hope,Vocabulary,3,False,0,6,198,610
+L6-58,L6-10,Why does the main character act differently near the end of 'The Paper Rebellion'?,they win a prize,they run away,they are forced,they realize a truth,they realize a truth,Inference,3,False,0,6,199,610
+L6-59,L6-10,What is the central theme of 'The Paper Rebellion'?,technology and control,luck and chance,freedom and responsibility,friendship and humor,freedom and responsibility,Theme,3,False,0,6,200,610
+L6-60,L6-10,How does the author make the ending of 'The Paper Rebellion' powerful?,by using imagery and reflection,by ending in a question,by introducing a new character,by adding a twist,by using imagery and reflection,Evaluation,3,False,0,6,201,610
+L6-61,L6-11,What is the main setting of 'The Algorithm’s Garden'?,a city,a river valley,a tower,a house,a city,Literal,3,False,0,6,202,611
+L6-62,L6-11,Which statement best summarizes this passage?,It argues that homework should be banned.,"It explains when the machines began planting trees, humans applauded..","It lists random, unrelated facts.",It tells a fantasy story about dragons.,"It explains when the machines began planting trees, humans applauded..",Literal,3,False,0,6,203,611
+L6-63,L6-11,"In 'The Algorithm’s Garden', what does a repeated image or object symbolize?",hope,fear,wealth,confusion,hope,Vocabulary,3,False,0,6,204,611
+L6-64,L6-11,Why does the main character act differently near the end of 'The Algorithm’s Garden'?,they win a prize,they realize a truth,they are forced,they run away,they realize a truth,Inference,3,False,0,6,205,611
+L6-65,L6-11,What is the best title for this passage?,Why Rules Matter,How to Build a Robot,"When The machines began planting trees,",A Day at the Beach,"When The machines began planting trees,",Literal,3,False,0,6,206,611
+L6-66,L6-11,How does the author make the ending of 'The Algorithm’s Garden' powerful?,by adding a twist,by ending in a question,by using imagery and reflection,by introducing a new character,by using imagery and reflection,Evaluation,3,False,0,6,207,611
+L6-67,L6-12,What is the main setting of 'The Tower of Silence'?,a tower,a city,a river valley,a house,a city,Literal,3,False,0,6,208,612
+L6-68,L6-12,What action changes the direction of events in 'The Tower of Silence'?,a letter found,a lie told by a friend,an accident,a brave decision,a brave decision,Detail,3,False,0,6,209,612
+L6-69,L6-12,"In 'The Tower of Silence', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,3,False,0,6,210,612
+L6-70,L6-12,Why does the main character act differently near the end of 'The Tower of Silence'?,they are forced,they win a prize,they realize a truth,they run away,they realize a truth,Inference,3,False,0,6,211,612
+L6-71,L6-12,What is the central theme of 'The Tower of Silence'?,friendship and humor,technology and control,freedom and responsibility,luck and chance,freedom and responsibility,Theme,3,False,0,6,212,612
+L6-72,L6-12,How does the author make the ending of 'The Tower of Silence' powerful?,by introducing a new character,by using imagery and reflection,by ending in a question,by adding a twist,by using imagery and reflection,Evaluation,3,False,0,6,213,612
+L7-1,L7-1,What is the central idea of 'The Rest Note'?,The text defends technological dominance.,The text argues for the end of tradition.,The text explores balance between emotion and reason.,The text describes a personal failure.,The text explores balance between emotion and reason.,Central Idea,2,False,0,7,214,701
+L7-2,L7-1,Which detail best supports the main idea in 'The Rest Note'?,A quote illustrating moral balance,A statistical comparison of costs,A reference to an unrelated event,A description of a building,A quote illustrating moral balance,Evidence,2,False,0,7,215,701
+L7-3,L7-1,"In 'The Rest Note', the word 'reflection' most nearly means—",light bounce,criticism,serious thought,mirror image,serious thought,Vocabulary,2,False,0,7,216,701
+L7-4,L7-1,What can be inferred about the author’s tone in 'The Rest Note'?,coldly scientific,sarcastic and dismissive,joyful and nostalgic,balanced and contemplative,balanced and contemplative,Inference,2,False,0,7,217,701
+L7-5,L7-1,How does the author develop the main argument in 'The Rest Note'?,by mocking opponents,by listing statistics,by defining technical terms,by contrasting ideals with outcomes,by contrasting ideals with outcomes,Structure,2,False,0,7,218,701
+L7-6,L7-1,Which statement best describes the author’s purpose in 'The Rest Note'?,to examine human motivation through abstract analysis,to document historical data,to entertain through humor,to advocate for policy change,to examine human motivation through abstract analysis,Purpose,2,False,0,7,219,701
+L7-7,L7-1,What is the effect of the imagery used in 'The Rest Note'?,It deepens emotional impact,It adds humor,It distracts from key ideas,It clarifies technical processes,It deepens emotional impact,Style,2,False,0,7,220,701
+L7-8,L7-1,Which phrase from 'The Rest Note' best supports the answer to the previous question?,a numerical fact,a line describing contrast or silence,a figure of speech unrelated to theme,a line about weather,a line describing contrast or silence,Evidence,2,False,0,7,221,701
+L7-9,L7-1,"Based on 'The Rest Note', which assumption does the author challenge?",that science is flawless,that emotion is superior to reason,that art is obsolete,that progress is always positive,that progress is always positive,Inference,2,False,0,7,222,701
+L7-10,L7-1,What is the tone of the concluding paragraph in 'The Rest Note'?,angry and urgent,sarcastic,indifferent,resigned yet hopeful,resigned yet hopeful,Tone,2,False,0,7,223,701
+L7-11,L7-1,What rhetorical device is most evident in 'The Rest Note'?,irony,hyperbole,metaphor,contrast,metaphor,Rhetoric,2,False,0,7,224,701
+L7-12,L7-1,What evidence would most strengthen the author’s argument in 'The Rest Note'?,a list of names,data illustrating long-term impact,an emotional anecdote,a historical coincidence,data illustrating long-term impact,Synthesis,2,False,0,7,225,701
+L7-13,L7-1,Which choice best describes how paragraph 3 functions in 'The Rest Note'?,It transitions from example to interpretation,It provides comic relief,It summarizes all prior claims,It shifts focus to unrelated data,It transitions from example to interpretation,Function,2,False,0,7,226,701
+L7-14,L7-1,"According to 'The Rest Note', what broader principle can be drawn?",Failure defines genius,"Ethical insight arises from reflection, not haste",Power inevitably corrupts systems,Beauty guarantees truth,"Ethical insight arises from reflection, not haste",Theme,2,False,0,7,227,701
+L7-15,L7-1,How does the author’s conclusion in 'The Rest Note' relate to the introduction?,It contradicts the original claim,It resolves initial tension by redefining success,It changes topic entirely,It leaves the issue unanswered,It resolves initial tension by redefining success,Evaluation,2,False,0,7,228,701
+L7-16,L7-2,"What is the central idea of 'The Republic of Letters, Revisited'?",The text defends technological dominance.,The text argues for the end of tradition.,The text explores balance between emotion and reason.,The text describes a personal failure.,The text explores balance between emotion and reason.,Central Idea,3,False,0,7,229,702
+L7-17,L7-2,"Which detail best supports the main idea in 'The Republic of Letters, Revisited'?",A description of a building,A quote illustrating moral balance,A reference to an unrelated event,A statistical comparison of costs,A quote illustrating moral balance,Evidence,3,False,0,7,230,702
+L7-18,L7-2,"In 'The Republic of Letters, Revisited', the word 'reflection' most nearly means—",serious thought,light bounce,criticism,mirror image,serious thought,Vocabulary,3,False,0,7,231,702
+L7-19,L7-2,"What can be inferred about the author’s tone in 'The Republic of Letters, Revisited'?",joyful and nostalgic,balanced and contemplative,coldly scientific,sarcastic and dismissive,balanced and contemplative,Inference,3,False,0,7,232,702
+L7-20,L7-2,"How does the author develop the main argument in 'The Republic of Letters, Revisited'?",by defining technical terms,by contrasting ideals with outcomes,by listing statistics,by mocking opponents,by contrasting ideals with outcomes,Structure,3,False,0,7,233,702
+L7-21,L7-2,"Which statement best describes the author’s purpose in 'The Republic of Letters, Revisited'?",to advocate for policy change,to entertain through humor,to document historical data,to examine human motivation through abstract analysis,to examine human motivation through abstract analysis,Purpose,3,False,0,7,234,702
+L7-22,L7-2,"What is the effect of the imagery used in 'The Republic of Letters, Revisited'?",It deepens emotional impact,It distracts from key ideas,It clarifies technical processes,It adds humor,It deepens emotional impact,Style,3,False,0,7,235,702
+L7-23,L7-2,"Which phrase from 'The Republic of Letters, Revisited' best supports the answer to the previous question?",a line describing contrast or silence,a line about weather,a figure of speech unrelated to theme,a numerical fact,a line describing contrast or silence,Evidence,3,False,0,7,236,702
+L7-24,L7-2,"Based on 'The Republic of Letters, Revisited', which assumption does the author challenge?",that progress is always positive,that art is obsolete,that science is flawless,that emotion is superior to reason,that progress is always positive,Inference,3,False,0,7,237,702
+L7-25,L7-2,"What is the tone of the concluding paragraph in 'The Republic of Letters, Revisited'?",sarcastic,angry and urgent,resigned yet hopeful,indifferent,resigned yet hopeful,Tone,3,False,0,7,238,702
+L7-26,L7-2,"What rhetorical device is most evident in 'The Republic of Letters, Revisited'?",hyperbole,metaphor,irony,contrast,metaphor,Rhetoric,3,False,0,7,239,702
+L7-27,L7-2,"What evidence would most strengthen the author’s argument in 'The Republic of Letters, Revisited'?",data illustrating long-term impact,a list of names,a historical coincidence,an emotional anecdote,data illustrating long-term impact,Synthesis,3,False,0,7,240,702
+L7-28,L7-2,"Which choice best describes how paragraph 3 functions in 'The Republic of Letters, Revisited'?",It provides comic relief,It summarizes all prior claims,It transitions from example to interpretation,It shifts focus to unrelated data,It transitions from example to interpretation,Function,3,False,0,7,241,702
+L7-29,L7-2,"According to 'The Republic of Letters, Revisited', what broader principle can be drawn?",Beauty guarantees truth,Power inevitably corrupts systems,Failure defines genius,"Ethical insight arises from reflection, not haste","Ethical insight arises from reflection, not haste",Theme,3,False,0,7,242,702
+L7-30,L7-2,"How does the author’s conclusion in 'The Republic of Letters, Revisited' relate to the introduction?",It contradicts the original claim,It leaves the issue unanswered,It changes topic entirely,It resolves initial tension by redefining success,It resolves initial tension by redefining success,Evaluation,3,False,0,7,243,702
+L7-31,L7-3,What is the central idea of 'The Map of an Unseen Forest'?,The text describes a personal failure.,The text defends technological dominance.,The text argues for the end of tradition.,The text explores balance between emotion and reason.,The text explores balance between emotion and reason.,Central Idea,2,False,0,7,244,703
+L7-32,L7-3,What is the best title for this passage?,A Day at the Beach,Why Rules Matter,How to Build a Robot,Deep Beneath the canopy of the,Deep Beneath the canopy of the,Literal,2,False,0,7,245,703
+L7-33,L7-3,"In 'The Map of an Unseen Forest', the word 'reflection' most nearly means—",mirror image,serious thought,criticism,light bounce,serious thought,Vocabulary,2,False,0,7,246,703
+L7-34,L7-3,What can be inferred about the author’s tone in 'The Map of an Unseen Forest'?,balanced and contemplative,coldly scientific,joyful and nostalgic,sarcastic and dismissive,balanced and contemplative,Inference,2,False,0,7,247,703
+L7-35,L7-3,What is the best title for this passage?,How to Build a Robot,A Day at the Beach,Why Rules Matter,Deep Beneath the canopy of the,Deep Beneath the canopy of the,Literal,2,False,0,7,248,703
+L7-36,L7-3,What is the best title for this passage?,How to Build a Robot,Why Rules Matter,A Day at the Beach,Deep Beneath the canopy of the,Deep Beneath the canopy of the,Literal,2,False,0,7,249,703
+L7-37,L7-3,What is the effect of the imagery used in 'The Map of an Unseen Forest'?,It adds humor,It distracts from key ideas,It deepens emotional impact,It clarifies technical processes,It deepens emotional impact,Style,2,False,0,7,250,703
+L7-38,L7-3,What is the best title for this passage?,Deep Beneath the canopy of the,A Day at the Beach,Why Rules Matter,How to Build a Robot,Deep Beneath the canopy of the,Literal,2,False,0,7,251,703
+L7-39,L7-3,What is the author's main purpose in this passage?,To persuade readers to buy a product.,To entertain with a fantasy story.,To give step-by-step instructions for a craft.,To inform readers about a topic.,To inform readers about a topic.,Inference,2,False,0,7,252,703
+L7-40,L7-3,What is the tone of the concluding paragraph in 'The Map of an Unseen Forest'?,indifferent,sarcastic,angry and urgent,resigned yet hopeful,resigned yet hopeful,Tone,2,False,0,7,253,703
+L7-41,L7-3,What rhetorical device is most evident in 'The Map of an Unseen Forest'?,metaphor,hyperbole,irony,contrast,metaphor,Rhetoric,2,False,0,7,254,703
+L7-42,L7-3,What evidence would most strengthen the author’s argument in 'The Map of an Unseen Forest'?,data illustrating long-term impact,a list of names,a historical coincidence,an emotional anecdote,data illustrating long-term impact,Synthesis,2,False,0,7,255,703
+L7-43,L7-3,What is the best title for this passage?,Deep Beneath the canopy of the,How to Build a Robot,A Day at the Beach,Why Rules Matter,Deep Beneath the canopy of the,Literal,2,False,0,7,256,703
+L7-44,L7-3,"According to 'The Map of an Unseen Forest', what broader principle can be drawn?",Beauty guarantees truth,Power inevitably corrupts systems,"Ethical insight arises from reflection, not haste",Failure defines genius,"Ethical insight arises from reflection, not haste",Theme,2,False,0,7,257,703
+L7-45,L7-3,What is the best title for this passage?,Deep Beneath the canopy of the,How to Build a Robot,Why Rules Matter,A Day at the Beach,Deep Beneath the canopy of the,Literal,2,False,0,7,258,703
+L7-46,L7-4,What is the central idea of 'The Arithmetic of Regret'?,The text argues for the end of tradition.,The text explores balance between emotion and reason.,The text describes a personal failure.,The text defends technological dominance.,The text explores balance between emotion and reason.,Central Idea,3,False,0,7,259,704
+L7-47,L7-4,Which detail best supports the main idea in 'The Arithmetic of Regret'?,A statistical comparison of costs,A description of a building,A reference to an unrelated event,A quote illustrating moral balance,A quote illustrating moral balance,Evidence,3,False,0,7,260,704
+L7-48,L7-4,"In 'The Arithmetic of Regret', the word 'reflection' most nearly means—",light bounce,mirror image,criticism,serious thought,serious thought,Vocabulary,3,False,0,7,261,704
+L7-49,L7-4,What can be inferred about the author’s tone in 'The Arithmetic of Regret'?,joyful and nostalgic,sarcastic and dismissive,balanced and contemplative,coldly scientific,balanced and contemplative,Inference,3,False,0,7,262,704
+L7-50,L7-4,How does the author develop the main argument in 'The Arithmetic of Regret'?,by contrasting ideals with outcomes,by defining technical terms,by listing statistics,by mocking opponents,by contrasting ideals with outcomes,Structure,3,False,0,7,263,704
+L7-51,L7-4,Which statement best describes the author’s purpose in 'The Arithmetic of Regret'?,to document historical data,to examine human motivation through abstract analysis,to entertain through humor,to advocate for policy change,to examine human motivation through abstract analysis,Purpose,3,False,0,7,264,704
+L7-52,L7-4,What is the effect of the imagery used in 'The Arithmetic of Regret'?,It distracts from key ideas,It deepens emotional impact,It clarifies technical processes,It adds humor,It deepens emotional impact,Style,3,False,0,7,265,704
+L7-53,L7-4,Which phrase from 'The Arithmetic of Regret' best supports the answer to the previous question?,a numerical fact,a line describing contrast or silence,a figure of speech unrelated to theme,a line about weather,a line describing contrast or silence,Evidence,3,False,0,7,266,704
+L7-54,L7-4,"Based on 'The Arithmetic of Regret', which assumption does the author challenge?",that art is obsolete,that emotion is superior to reason,that science is flawless,that progress is always positive,that progress is always positive,Inference,3,False,0,7,267,704
+L7-55,L7-4,What is the tone of the concluding paragraph in 'The Arithmetic of Regret'?,indifferent,angry and urgent,sarcastic,resigned yet hopeful,resigned yet hopeful,Tone,3,False,0,7,268,704
+L7-56,L7-4,What rhetorical device is most evident in 'The Arithmetic of Regret'?,contrast,metaphor,irony,hyperbole,metaphor,Rhetoric,3,False,0,7,269,704
+L7-57,L7-4,What evidence would most strengthen the author’s argument in 'The Arithmetic of Regret'?,an emotional anecdote,a list of names,a historical coincidence,data illustrating long-term impact,data illustrating long-term impact,Synthesis,3,False,0,7,270,704
+L7-58,L7-4,Which choice best describes how paragraph 3 functions in 'The Arithmetic of Regret'?,It provides comic relief,It summarizes all prior claims,It shifts focus to unrelated data,It transitions from example to interpretation,It transitions from example to interpretation,Function,3,False,0,7,271,704
+L7-59,L7-4,"According to 'The Arithmetic of Regret', what broader principle can be drawn?",Failure defines genius,Beauty guarantees truth,Power inevitably corrupts systems,"Ethical insight arises from reflection, not haste","Ethical insight arises from reflection, not haste",Theme,3,False,0,7,272,704
+L7-60,L7-4,How does the author’s conclusion in 'The Arithmetic of Regret' relate to the introduction?,It resolves initial tension by redefining success,It leaves the issue unanswered,It contradicts the original claim,It changes topic entirely,It resolves initial tension by redefining success,Evaluation,3,False,0,7,273,704
+L7-61,L7-5,What is the central idea of 'Letters to the Future (A Paired Passage)'?,The text explores balance between emotion and reason.,The text defends technological dominance.,The text describes a personal failure.,The text argues for the end of tradition.,The text explores balance between emotion and reason.,Central Idea,3,False,0,7,274,705
+L7-62,L7-5,What is the best title for this passage?,How to Build a Robot,Why Rules Matter,Passage A – A Letter From,A Day at the Beach,Passage A – A Letter From,Literal,3,False,0,7,275,705
+L7-63,L7-5,"In 'Letters to the Future (A Paired Passage)', the word 'reflection' most nearly means—",mirror image,serious thought,light bounce,criticism,serious thought,Vocabulary,3,False,0,7,276,705
+L7-64,L7-5,What can be inferred about the author’s tone in 'Letters to the Future (A Paired Passage)'?,coldly scientific,joyful and nostalgic,sarcastic and dismissive,balanced and contemplative,balanced and contemplative,Inference,3,False,0,7,277,705
+L7-65,L7-5,How does the author develop the main argument in 'Letters to the Future (A Paired Passage)'?,by listing statistics,by mocking opponents,by defining technical terms,by contrasting ideals with outcomes,by contrasting ideals with outcomes,Structure,3,False,0,7,278,705
+L7-66,L7-5,What is the best title for this passage?,Why Rules Matter,How to Build a Robot,Passage A – A Letter From,A Day at the Beach,Passage A – A Letter From,Literal,3,False,0,7,279,705
+L7-67,L7-5,What is the effect of the imagery used in 'Letters to the Future (A Paired Passage)'?,It deepens emotional impact,It distracts from key ideas,It adds humor,It clarifies technical processes,It deepens emotional impact,Style,3,False,0,7,280,705
+L7-68,L7-5,Which phrase from 'Letters to the Future (A Paired Passage)' best supports the answer to the previous question?,a line describing contrast or silence,a numerical fact,a figure of speech unrelated to theme,a line about weather,a line describing contrast or silence,Evidence,3,False,0,7,281,705
+L7-69,L7-5,What is the author's main purpose in this passage?,To give step-by-step instructions for a craft.,To inform readers about a topic.,To entertain with a fantasy story.,To persuade readers to buy a product.,To inform readers about a topic.,Inference,3,False,0,7,282,705
+L7-70,L7-5,What is the tone of the concluding paragraph in 'Letters to the Future (A Paired Passage)'?,indifferent,resigned yet hopeful,angry and urgent,sarcastic,resigned yet hopeful,Tone,3,False,0,7,283,705
+L7-71,L7-5,What rhetorical device is most evident in 'Letters to the Future (A Paired Passage)'?,hyperbole,metaphor,irony,contrast,metaphor,Rhetoric,3,False,0,7,284,705
+L7-72,L7-5,What evidence would most strengthen the author’s argument in 'Letters to the Future (A Paired Passage)'?,data illustrating long-term impact,a historical coincidence,a list of names,an emotional anecdote,data illustrating long-term impact,Synthesis,3,False,0,7,285,705
+L7-73,L7-5,What is the best title for this passage?,Passage A – A Letter From,How to Build a Robot,Why Rules Matter,A Day at the Beach,Passage A – A Letter From,Literal,3,False,0,7,286,705
+L7-74,L7-5,"According to 'Letters to the Future (A Paired Passage)', what broader principle can be drawn?",Failure defines genius,Beauty guarantees truth,Power inevitably corrupts systems,"Ethical insight arises from reflection, not haste","Ethical insight arises from reflection, not haste",Theme,3,False,0,7,287,705
+L7-75,L7-5,What is the best title for this passage?,Passage A – A Letter From,How to Build a Robot,A Day at the Beach,Why Rules Matter,Passage A – A Letter From,Literal,3,False,0,7,288,705
+L7-76,L7-6,What is the best title for this passage?,A Day at the Beach,"In 1895, Sociologist Gustave Le Bon",How to Build a Robot,Why Rules Matter,"In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,289,706
+L7-77,L7-6,What is the best title for this passage?,How to Build a Robot,A Day at the Beach,Why Rules Matter,"In 1895, Sociologist Gustave Le Bon","In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,290,706
+L7-78,L7-6,What is the best title for this passage?,"In 1895, Sociologist Gustave Le Bon",How to Build a Robot,A Day at the Beach,Why Rules Matter,"In 1895, Sociologist Gustave Le Bon",Vocabulary,2,False,0,7,291,706
+L7-79,L7-6,What is the author's main purpose in this passage?,To entertain with a fantasy story.,To inform readers about a topic.,To persuade readers to buy a product.,To give step-by-step instructions for a craft.,To inform readers about a topic.,Inference,2,False,0,7,292,706
+L7-80,L7-6,How does the author develop the main argument in 'The Equation of the Crowd'?,by contrasting ideals with outcomes,by mocking opponents,by listing statistics,by defining technical terms,by contrasting ideals with outcomes,Structure,2,False,0,7,293,706
+L7-81,L7-6,What is the best title for this passage?,How to Build a Robot,A Day at the Beach,Why Rules Matter,"In 1895, Sociologist Gustave Le Bon","In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,294,706
+L7-82,L7-6,What is the best title for this passage?,How to Build a Robot,"In 1895, Sociologist Gustave Le Bon",Why Rules Matter,A Day at the Beach,"In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,295,706
+L7-83,L7-6,What is the best title for this passage?,"In 1895, Sociologist Gustave Le Bon",How to Build a Robot,A Day at the Beach,Why Rules Matter,"In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,296,706
+L7-84,L7-6,"Based on 'The Equation of the Crowd', which assumption does the author challenge?",that science is flawless,that progress is always positive,that art is obsolete,that emotion is superior to reason,that progress is always positive,Inference,2,False,0,7,297,706
+L7-85,L7-6,What is the tone of the concluding paragraph in 'The Equation of the Crowd'?,resigned yet hopeful,angry and urgent,indifferent,sarcastic,resigned yet hopeful,Tone,2,False,0,7,298,706
+L7-86,L7-6,What is the best title for this passage?,How to Build a Robot,A Day at the Beach,"In 1895, Sociologist Gustave Le Bon",Why Rules Matter,"In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,299,706
+L7-87,L7-6,What is the best title for this passage?,A Day at the Beach,Why Rules Matter,How to Build a Robot,"In 1895, Sociologist Gustave Le Bon","In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,300,706
+L7-88,L7-6,Which choice best describes how paragraph 3 functions in 'The Equation of the Crowd'?,It shifts focus to unrelated data,It provides comic relief,It transitions from example to interpretation,It summarizes all prior claims,It transitions from example to interpretation,Function,2,False,0,7,301,706
+L7-89,L7-6,What is the best title for this passage?,A Day at the Beach,How to Build a Robot,Why Rules Matter,"In 1895, Sociologist Gustave Le Bon","In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,302,706
+L7-90,L7-6,What is the best title for this passage?,Why Rules Matter,"In 1895, Sociologist Gustave Le Bon",How to Build a Robot,A Day at the Beach,"In 1895, Sociologist Gustave Le Bon",Literal,2,False,0,7,303,706

@@ -3,7 +3,13 @@ import { cookies } from "next/headers";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
-import { SECTION_ORDER, parseSeed, levelToSeed } from "@/lib/tests/adaptiveConfig";
+import {
+  SECTION_ORDER,
+  parseSeed,
+  levelToSeed,
+  LevelState,
+} from "@/lib/tests/adaptiveConfig";
+import { syncParallelSectionLevels } from "@/lib/tests/parallel";
 
 type RouteParams = Record<string, string | string[] | undefined>;
 type StartTestRow = Pick<
@@ -83,6 +89,27 @@ export async function POST(
     }
   }
 
+  const { data: readingSectionRow, error: readingSectionError } = await supabase
+    .from("test_sections")
+    .select("current_level, current_sublevel")
+    .eq("test_id", testId)
+    .eq("section", "reading")
+    .maybeSingle<{ current_level: number | null; current_sublevel: "1" | "2" | "3" | null }>();
+
+  if (readingSectionError) {
+    console.error("start route: failed to load reading section", readingSectionError);
+  }
+
+  if (readingSectionRow) {
+    const fallbackSeed = parseSeed(seed.reading);
+    const sublevel = readingSectionRow.current_sublevel ?? fallbackSeed.sublevel;
+    const readingState: LevelState = {
+      level: readingSectionRow.current_level ?? fallbackSeed.level,
+      sublevel,
+    };
+    await syncParallelSectionLevels(supabase, testId, "reading", readingState);
+  }
+
   // Mark sections with no questions as completed to avoid dangling "in_progress" tests
   const { data: sectionStateData } = await supabase
     .from("test_sections")
@@ -135,14 +162,43 @@ export async function POST(
     return NextResponse.json({ error: "Unable to start test" }, { status: 500 });
   }
 
+  const { data: seedSectionsData, error: seedSectionsError } = await supabase
+    .from("test_sections")
+    .select("section, current_level, current_sublevel")
+    .eq("test_id", testId);
+
+  if (seedSectionsError) {
+    console.error("start route: failed to load section seeds", seedSectionsError);
+  }
+
+  const seedRows = (seedSectionsData ?? []) as Array<
+    Pick<Database["public"]["Tables"]["test_sections"]["Row"], "section" | "current_level" | "current_sublevel">
+  >;
+  const seedsFromSections = new Map<string, string>();
+  seedRows.forEach((row) => {
+    if (row.current_level == null) {
+      return;
+    }
+    const sectionKey = row.section;
+    const sublevel = row.current_sublevel === "2" ? "2" : row.current_sublevel === "3" ? "3" : "1";
+    seedsFromSections.set(sectionKey, levelToSeed({ level: row.current_level, sublevel }));
+  });
+
+  const seedsResponse = SECTION_ORDER.reduce<Record<string, string>>((acc, section) => {
+    const fromDb = seedsFromSections.get(section);
+    if (fromDb) {
+      acc[section] = fromDb;
+    } else {
+      const levelState = parseSeed(seed[section]);
+      acc[section] = levelToSeed(levelState);
+    }
+    return acc;
+  }, {});
+
   return NextResponse.json({
     status: updates.status ?? testRow.status,
     timeLimitSeconds: testRow.time_limit_seconds,
     elapsedMs: testRow.elapsed_ms ?? 0,
-    seeds: SECTION_ORDER.reduce<Record<string, string>>((acc, section) => {
-      const levelState = parseSeed(seed[section]);
-      acc[section] = levelToSeed(levelState);
-      return acc;
-    }, {}),
+    seeds: seedsResponse,
   });
 }

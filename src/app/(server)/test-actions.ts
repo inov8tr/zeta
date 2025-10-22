@@ -7,7 +7,8 @@ import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
 import { createAdminClient } from "@/lib/supabaseAdmin";
-import { SECTION_ORDER, parseSeed } from "@/lib/tests/adaptiveConfig";
+import { SECTION_ORDER, parseSeed, LevelState } from "@/lib/tests/adaptiveConfig";
+import { syncParallelSectionLevels } from "@/lib/tests/parallel";
 
 interface AssignEntranceTestInput {
   studentId: string;
@@ -127,6 +128,27 @@ export async function startTestAction({ testId }: StartTestInput) {
       console.error("startTestAction: failed to prepare sections", insertResult.error);
       throw new Error("Unable to start test.");
     }
+  }
+
+  const { data: readingSectionRow, error: readingSectionError } = await supabase
+    .from("test_sections")
+    .select("current_level, current_sublevel")
+    .eq("test_id", testId)
+    .eq("section", "reading")
+    .maybeSingle<{ current_level: number | null; current_sublevel: "1" | "2" | "3" | null }>();
+
+  if (readingSectionError) {
+    console.error("startTestAction: failed to load reading section", readingSectionError);
+  }
+
+  if (readingSectionRow) {
+    const fallbackSeed = parseSeed(seeds.reading);
+    const sublevel = readingSectionRow.current_sublevel ?? fallbackSeed.sublevel;
+    const readingState: LevelState = {
+      level: readingSectionRow.current_level ?? fallbackSeed.level,
+      sublevel,
+    };
+    await syncParallelSectionLevels(supabase, testId, "reading", readingState);
   }
 
   const now = new Date().toISOString();
