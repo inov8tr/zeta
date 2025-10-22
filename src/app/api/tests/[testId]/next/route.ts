@@ -164,7 +164,26 @@ export async function POST(
           Pick<Database["public"]["Tables"]["question_passages"]["Row"], "id" | "title" | "body">
         >;
 
-        const availablePassage = passages.find((row) => (passageUsage.get(row.id) ?? 0) < READING_PASSAGE_SET_SIZE);
+        // Compute per-passage unanswered availability at this level/sublevel
+        const { data: candQs } = await supabase
+          .from("questions")
+          .select("id, passage_id")
+          .eq("section", "reading")
+          .eq("level", candidate.level)
+          .eq("sublevel", candidate.sublevel);
+        const unansweredByPassage = new Map<string, number>();
+        (candQs ?? []).forEach((q) => {
+          const qid = (q as { id: string }).id;
+          const pid = (q as { passage_id: string | null }).passage_id;
+          if (!pid) return;
+          if (!answeredIds.has(qid)) {
+            unansweredByPassage.set(pid, (unansweredByPassage.get(pid) ?? 0) + 1);
+          }
+        });
+
+        const availablePassage = passages.find(
+          (row) => (unansweredByPassage.get(row.id) ?? 0) > 0 && (passageUsage.get(row.id) ?? 0) < READING_PASSAGE_SET_SIZE
+        );
         if (!availablePassage) {
           continue;
         }

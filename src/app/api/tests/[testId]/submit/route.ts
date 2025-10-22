@@ -152,35 +152,47 @@ export async function POST(
   let passageCount = sectionRow.current_passage_question_count ?? 0;
   if (!responseInsert.error && question.section === "reading") {
     passageCount += 1;
-    if (passageCount >= READING_PASSAGE_SET_SIZE) {
-      // Evaluate performance for the completed passage set
-      const { data: setRows, error: setErr } = await supabase
-        .from("responses")
-        .select("correct, questions(passage_id)")
-        .eq("test_id", testId)
-        .eq("section", "reading");
-      if (setErr) {
-        console.error("submit route: failed to compute reading set score", setErr);
-      } else {
-        type ResponseWithQuestion = { correct: boolean; questions: { passage_id: string | null } | null };
-        const typedRows = (setRows ?? []) as ResponseWithQuestion[];
-        const forPassage = typedRows.filter((row) => row.questions?.passage_id === question.passage_id);
-        const total = forPassage.length;
-        const correctNum = forPassage.reduce((acc: number, r: ResponseWithQuestion) => acc + (r.correct ? 1 : 0), 0);
-        const ratio = total > 0 ? correctNum / total : 0;
 
-        // Adjust level based on set accuracy
-        if (ratio >= 1) {
-          newLevelState = adjustLevel(newLevelState, "up", READING_SET_SKIP_STEPS);
-        } else if (ratio >= READING_SET_PROMOTE_THRESHOLD) {
-          newLevelState = adjustLevel(newLevelState, "up", 1);
-        } else if (ratio < READING_SET_DEMOTE_THRESHOLD) {
-          newLevelState = adjustLevel(newLevelState, "down", 1);
-        }
-        // reset streaks for reading path
-        streakUp = 0;
-        streakDown = 0;
+    // Compute whether the passage set is complete (either reached target size
+    // or no more unanswered questions remain for this passage)
+    const [{ data: qList, error: qErr }, { data: respRows, error: rErr }] = await Promise.all([
+      supabase.from("questions").select("id").eq("section", "reading").eq("passage_id", question.passage_id),
+      supabase
+        .from("responses")
+        .select("correct, question_id")
+        .eq("test_id", testId)
+        .eq("section", "reading"),
+    ]);
+    if (qErr) {
+      console.error("submit route: failed to load passage questions", qErr);
+    }
+    if (rErr) {
+      console.error("submit route: failed to load reading responses", rErr);
+    }
+    const allQIds = new Set((qList ?? []).map((q) => (q as { id: string }).id));
+    const respForPassage = (respRows ?? []).filter((r) => allQIds.has((r as { question_id: string }).question_id));
+    const totalForPassage = allQIds.size;
+    const answeredForPassage = respForPassage.length;
+
+    const reachedSetSize = passageCount >= READING_PASSAGE_SET_SIZE;
+    const noMoreForPassage = totalForPassage > 0 && answeredForPassage >= totalForPassage;
+
+    if (reachedSetSize || noMoreForPassage) {
+      const correctNum = respForPassage.reduce((acc: number, r: any) => acc + (r.correct ? 1 : 0), 0);
+      const denom = answeredForPassage || passageCount || 1;
+      const ratio = correctNum / denom;
+
+      // Adjust level based on set accuracy
+      if (ratio >= 1) {
+        newLevelState = adjustLevel(newLevelState, "up", READING_SET_SKIP_STEPS);
+      } else if (ratio >= READING_SET_PROMOTE_THRESHOLD) {
+        newLevelState = adjustLevel(newLevelState, "up", 1);
+      } else if (ratio < READING_SET_DEMOTE_THRESHOLD) {
+        newLevelState = adjustLevel(newLevelState, "down", 1);
       }
+      // reset streaks for reading path
+      streakUp = 0;
+      streakDown = 0;
 
       // reset passage state to trigger a new passage on next fetch
       currentPassageId = null;
