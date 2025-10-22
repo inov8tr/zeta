@@ -1,0 +1,85 @@
+question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+1,1,4,first conditional,"A: If it rains tomorrow, we’ll have to cancel the picnic.
+B: That’s too bad! What will we do instead?
+A: Maybe we can go to the museum.",What will they do if it rains?,Stay home,Go to the museum,Go to the park,Still have a picnic,Go to the museum,Comprehension,4,False,0
+2,1,4,first conditional,"A: If it rains tomorrow, we’ll have to cancel the picnic.
+B: That’s too bad! What will we do instead?
+A: Maybe we can go to the museum.",Which word introduces a condition?,If,When,Because,So,If,Grammar,4,False,0
+3,1,4,first conditional,"A: If it rains tomorrow, we’ll have to cancel the picnic.
+B: That’s too bad! What will we do instead?
+A: Maybe we can go to the museum.",Why will they cancel the picnic?,Because of rain,Because it’s too hot,Because of traffic,Because of time,Because of rain,Inference,4,False,0
+4,2,4,modals (might/could),"A: What are you doing this weekend?
+B: I might visit my cousin, or I could just relax at home.
+A: Sounds like a good plan.",What might the boy do?,Visit his cousin,Go to school,Work,Travel abroad,Visit his cousin,Comprehension,4,False,0
+5,2,4,modals (might/could),"A: What are you doing this weekend?
+B: I might visit my cousin, or I could just relax at home.
+A: Sounds like a good plan.",Which modal shows possibility?,Must,Can,Might,Will,Might,Grammar,4,False,0
+6,2,4,modals (might/could),"A: What are you doing this weekend?
+B: I might visit my cousin, or I could just relax at home.
+A: Sounds like a good plan.",What does 'could' mean here?,A future plan,A possibility,A request,An order,A possibility,Vocabulary,4,False,0
+7,3,4,relative clauses,"A: Who’s that man talking to Mr. Kim?
+B: That’s the engineer who designed the new bridge.
+A: Wow, it looks amazing!",Who is the man?,A teacher,An engineer,A driver,A student,An engineer,Comprehension,4,False,0
+8,3,4,relative clauses,"A: Who’s that man talking to Mr. Kim?
+B: That’s the engineer who designed the new bridge.
+A: Wow, it looks amazing!",Which word joins the clause?,Who,That,Where,When,Who,Grammar,4,False,0
+9,3,4,relative clauses,"A: Who’s that man talking to Mr. Kim?
+B: That’s the engineer who designed the new bridge.
+A: Wow, it looks amazing!",What did the engineer design?,A car,A bridge,A building,A plane,A bridge,Detail,4,False,0
+10,4,4,gerunds,"A: I enjoy swimming in the morning.
+B: Really? I prefer running at night.
+A: Both are good exercise!",What activity does the girl enjoy?,Swimming,Running,Walking,Reading,Swimming,Comprehension,4,False,0
+11,4,4,gerunds,"A: I enjoy swimming in the morning.
+B: Really? I prefer running at night.
+A: Both are good exercise!",What type of word is 'swimming'?,Gerund,Noun,Verb,Adjective,Gerund,Grammar,4,False,0
+12,4,4,gerunds,"A: I enjoy swimming in the morning.
+B: Really? I prefer running at night.
+A: Both are good exercise!",When does the boy run?,Morning,Night,Afternoon,Evening,Night,Detail,4,False,0
+13,5,4,modals (have to),"A: We have to finish this project by Friday.
+B: That’s a lot of work!
+A: Don’t worry. If we start today, we can do it.",When must they finish the project?,Thursday,Friday,Saturday,Sunday,Friday,Comprehension,4,False,0
+14,5,4,modals (have to),"A: We have to finish this project by Friday.
+B: That’s a lot of work!
+A: Don’t worry. If we start today, we can do it.",What does 'have to' show?,Obligation,Ability,Possibility,Habit,Obligation,Grammar,4,False,0
+15,5,4,modals (have to),"A: We have to finish this project by Friday.
+B: That’s a lot of work!
+A: Don’t worry. If we start today, we can do it.",What advice does the speaker give?,Start today,Take a break,Wait until Friday,Ask for help,Start today,Function,4,False,0
+16,6,4,comparatives of degree,"A: This test is harder than the last one!
+B: I agree, but it’s also more interesting.",How is the test different?,It’s harder,It’s easier,It’s shorter,It’s boring,It’s harder,Comprehension,4,False,0
+17,6,4,comparatives of degree,"A: This test is harder than the last one!
+B: I agree, but it’s also more interesting.",Which word compares two things?,Harder,Test,Also,One,Harder,Grammar,4,False,0
+18,6,4,comparatives of degree,"A: This test is harder than the last one!
+B: I agree, but it’s also more interesting.",What is also true about the test?,It’s more interesting,It’s longer,It’s worse,It’s the same,It’s more interesting,Inference,4,False,0
+19,7,4,functional language (preferences),"A: Do you prefer reading books or watching movies?
+B: I prefer watching movies because I can relax.",What does the boy prefer?,Reading books,Watching movies,Playing games,Sleeping,Watching movies,Comprehension,4,False,0
+20,7,4,functional language (preferences),"A: Do you prefer reading books or watching movies?
+B: I prefer watching movies because I can relax.",What word shows reason?,Because,Or,And,But,Because,Grammar,4,False,0
+21,7,4,functional language (preferences),"A: Do you prefer reading books or watching movies?
+B: I prefer watching movies because I can relax.",Why does he prefer movies?,They are relaxing,They are short,They are funny,They are cheap,They are relaxing,Inference,4,False,0
+22,8,4,second conditional,"A: If I had more time, I would learn to play guitar.
+B: Me too! Music is amazing.",What would the speaker do with more time?,Learn guitar,Play soccer,Study math,Travel,Learn guitar,Comprehension,4,False,0
+23,8,4,second conditional,"A: If I had more time, I would learn to play guitar.
+B: Me too! Music is amazing.",Which word shows an unreal situation?,If,Had,Would,More,Would,Grammar,4,False,0
+24,8,4,second conditional,"A: If I had more time, I would learn to play guitar.
+B: Me too! Music is amazing.",What do they both think about music?,It’s amazing,It’s boring,It’s easy,It’s expensive,It’s amazing,Inference,4,False,0
+25,9,4,present perfect,"A: Have you ever been to Japan?
+B: Yes, I’ve been there twice.
+A: Did you like it?
+B: I loved it!",How many times has the boy been to Japan?,Once,Twice,Three times,Never,Twice,Comprehension,4,False,0
+26,9,4,present perfect,"A: Have you ever been to Japan?
+B: Yes, I’ve been there twice.
+A: Did you like it?
+B: I loved it!",Which form is present perfect?,Have been,Was,Went,Go,Have been,Grammar,4,False,0
+27,9,4,present perfect,"A: Have you ever been to Japan?
+B: Yes, I’ve been there twice.
+A: Did you like it?
+B: I loved it!",What did he think of Japan?,He loved it,He didn’t like it,He forgot,He was bored,He loved it,Inference,4,False,0
+28,10,4,functional language (advice),"A: I’m worried about my exam tomorrow.
+B: Don’t worry. Just review your notes and sleep early.
+A: Thanks. I’ll do that.",What is the girl worried about?,Her exam,Her trip,Her friend,Her health,Her exam,Comprehension,4,False,0
+29,10,4,functional language (advice),"A: I’m worried about my exam tomorrow.
+B: Don’t worry. Just review your notes and sleep early.
+A: Thanks. I’ll do that.",What advice does the boy give?,Review and sleep early,Watch TV,Eat dinner,Go out,Review and sleep early,Function,4,False,0
+30,10,4,functional language (advice),"A: I’m worried about my exam tomorrow.
+B: Don’t worry. Just review your notes and sleep early.
+A: Thanks. I’ll do that.",What does 'Don’t worry' express?,Encouragement,Anger,Surprise,Sadness,Encouragement,Vocabulary,4,False,0

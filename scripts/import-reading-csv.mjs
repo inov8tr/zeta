@@ -26,36 +26,65 @@ function parseArgs(argv) {
   return args;
 }
 
-function parseCSVRow(line) {
-  const out = [];
-  let cur = '';
+function parseCSV(text) {
+  // Robust CSV parser supporting multi-line quoted fields and escaped quotes
+  const rows = [];
+  let row = [];
+  let field = '';
   let inQuotes = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const ch = line[i];
+  for (let i = 0; i < text.length; i += 1) {
+    const ch = text[i];
     if (ch === '"') {
-      if (inQuotes && line[i + 1] === '"') { cur += '"'; i += 1; }
-      else { inQuotes = !inQuotes; }
+      if (inQuotes && text[i + 1] === '"') {
+        field += '"';
+        i += 1; // skip escaped quote
+      } else {
+        inQuotes = !inQuotes;
+      }
       continue;
     }
-    if (ch === ',' && !inQuotes) { out.push(cur); cur = ''; }
-    else { cur += ch; }
+    if (ch === ',' && !inQuotes) {
+      row.push(field);
+      field = '';
+      continue;
+    }
+    if ((ch === '\n' || ch === '\r') && !inQuotes) {
+      // finalize row (skip empty trailing CR in CRLF)
+      if (ch === '\r' && text[i + 1] === '\n') {
+        // handle CRLF -> we'll let the next iteration handle \n as well, but we want to finalize at CRLF boundary only once
+      }
+      row.push(field);
+      field = '';
+      if (row.length > 1 || (row.length === 1 && row[0].trim().length > 0)) {
+        rows.push(row);
+      }
+      row = [];
+      // normalize consecutive CRLF: if we saw \r\n, skip the \n here by checking next char
+      if (ch === '\r' && text[i + 1] === '\n') {
+        // the loop will increment to \n next; we let it continue
+      }
+      continue;
+    }
+    field += ch;
   }
-  out.push(cur);
-  return out.map((s) => s.replace(/\r$/, ''));
-}
-
-function parseCSV(text) {
-  const lines = text.split(/\n/).filter((l) => l.length > 0);
-  if (lines.length === 0) return [];
-  const headers = parseCSVRow(lines[0]);
-  const rows = [];
-  for (let i = 1; i < lines.length; i += 1) {
-    const cols = parseCSVRow(lines[i]);
-    const row = {};
-    headers.forEach((h, idx) => (row[h] = cols[idx] ?? ''));
+  // push last field/row if any
+  if (field.length > 0 || row.length > 0) {
+    row.push(field);
     rows.push(row);
   }
-  return rows;
+  if (rows.length === 0) return [];
+  const headers = rows[0].map((h) => h.replace(/\r$/, ''));
+  const out = [];
+  for (let i = 1; i < rows.length; i += 1) {
+    const r = rows[i];
+    if (r.length === 1 && r[0].trim() === '') continue; // skip blank lines
+    const obj = {};
+    headers.forEach((h, idx) => {
+      obj[h] = (r[idx] ?? '').replace(/\r$/, '');
+    });
+    out.push(obj);
+  }
+  return out;
 }
 
 function parseLevelSublevel(seed) {

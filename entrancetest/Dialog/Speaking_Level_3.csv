@@ -1,0 +1,88 @@
+question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+1,1,3,past tense,"A: What did you do yesterday?
+B: I visited my grandmother and helped her cook dinner.
+A: That’s nice! Did she like it?
+B: Yes, she did.",What did the boy do yesterday?,Visited his grandmother,Went to school,Played soccer,Slept all day,Visited his grandmother,Comprehension,3,False,0
+2,1,3,past tense,"A: What did you do yesterday?
+B: I visited my grandmother and helped her cook dinner.
+A: That’s nice! Did she like it?
+B: Yes, she did.",What verb shows the past?,Visited,Cook,Like,Help,Visited,Grammar,3,False,0
+3,1,3,past tense,"A: What did you do yesterday?
+B: I visited my grandmother and helped her cook dinner.
+A: That’s nice! Did she like it?
+B: Yes, she did.",Who did he visit?,His friend,His teacher,His grandmother,His sister,His grandmother,Detail,3,False,0
+4,2,3,modals (should),"A: I have a headache.
+B: You should take some rest and drink water.
+A: Thanks, I will.",What problem does the girl have?,A cold,A headache,A stomachache,A sore throat,A headache,Comprehension,3,False,0
+5,2,3,modals (should),"A: I have a headache.
+B: You should take some rest and drink water.
+A: Thanks, I will.",What advice does the boy give?,Take rest and drink water,Go running,Eat candy,Study more,Take rest and drink water,Function,3,False,0
+6,2,3,modals (should),"A: I have a headache.
+B: You should take some rest and drink water.
+A: Thanks, I will.",Which modal verb gives advice?,Can,Should,Must,Do,Should,Grammar,3,False,0
+7,3,3,conjunctions,"A: Why are you late?
+B: Because the bus broke down.
+A: Oh no! So you walked here?
+B: Yes, it took twenty minutes.",Why was the boy late?,He missed the bus,The bus broke down,He woke up late,He forgot his bag,The bus broke down,Comprehension,3,False,0
+8,3,3,conjunctions,"A: Why are you late?
+B: Because the bus broke down.
+A: Oh no! So you walked here?
+B: Yes, it took twenty minutes.",What conjunction explains a reason?,Because,So,And,But,Because,Grammar,3,False,0
+9,3,3,conjunctions,"A: Why are you late?
+B: Because the bus broke down.
+A: Oh no! So you walked here?
+B: Yes, it took twenty minutes.",How long did it take to walk?,10 minutes,15 minutes,20 minutes,30 minutes,20 minutes,Detail,3,False,0
+10,4,3,adverbs of frequency,"A: How often do you go to the gym?
+B: I go three times a week, but I sometimes skip Sunday.",How often does she go to the gym?,Every day,Three times a week,Once a week,Never,Three times a week,Comprehension,3,False,0
+11,4,3,adverbs of frequency,"A: How often do you go to the gym?
+B: I go three times a week, but I sometimes skip Sunday.",What word shows frequency?,Sometimes,Go,Week,Skip,Sometimes,Grammar,3,False,0
+12,4,3,adverbs of frequency,"A: How often do you go to the gym?
+B: I go three times a week, but I sometimes skip Sunday.",What day does she skip?,Saturday,Sunday,Monday,Friday,Sunday,Detail,3,False,0
+13,5,3,prepositions of time,"A: When is your birthday?
+B: It’s on March 15th.
+A: Mine is in May!",When is her birthday?,March 15th,May 15th,April 15th,June 15th,March 15th,Comprehension,3,False,0
+14,5,3,prepositions of time,"A: When is your birthday?
+B: It’s on March 15th.
+A: Mine is in May!",Which preposition is used with dates?,On,In,At,From,On,Grammar,3,False,0
+15,5,3,prepositions of time,"A: When is your birthday?
+B: It’s on March 15th.
+A: Mine is in May!",When is the boy’s birthday?,In May,In March,In April,In June,In May,Detail,3,False,0
+16,6,3,functional language (opinions),"A: What do you think about the new cafeteria?
+B: It’s better than before, but the food is still cold.
+A: Yeah, I agree.",What does the boy think about the cafeteria?,It’s worse,It’s better,It’s closed,It’s new,It’s better,Comprehension,3,False,0
+17,6,3,functional language (opinions),"A: What do you think about the new cafeteria?
+B: It’s better than before, but the food is still cold.
+A: Yeah, I agree.",What phrase shows agreement?,I agree,I think,It’s better,New cafeteria,I agree,Grammar,3,False,0
+18,6,3,functional language (opinions),"A: What do you think about the new cafeteria?
+B: It’s better than before, but the food is still cold.
+A: Yeah, I agree.",What is still cold?,The drink,The food,The table,The room,The food,Detail,3,False,0
+19,7,3,sequence words,"A: First, we mix the flour and sugar. Then, we add eggs.
+B: Finally, we bake it for 30 minutes.",What are they making?,Cookies,Cake,Pasta,Salad,Cake,Inference,3,False,0
+20,7,3,sequence words,"A: First, we mix the flour and sugar. Then, we add eggs.
+B: Finally, we bake it for 30 minutes.",What word shows the last step?,Finally,Then,Add,Mix,Finally,Grammar,3,False,0
+21,7,3,sequence words,"A: First, we mix the flour and sugar. Then, we add eggs.
+B: Finally, we bake it for 30 minutes.",How long do they bake it?,10 minutes,20 minutes,30 minutes,40 minutes,30 minutes,Detail,3,False,0
+22,8,3,past continuous,"A: What were you doing at 8 last night?
+B: I was watching TV with my family.
+A: Me too!",What was he doing last night?,Reading,Sleeping,Watching TV,Cooking,Watching TV,Comprehension,3,False,0
+23,8,3,past continuous,"A: What were you doing at 8 last night?
+B: I was watching TV with my family.
+A: Me too!",Which tense describes ongoing past action?,Past Continuous,Simple Past,Present,Future,Past Continuous,Grammar,3,False,0
+24,8,3,past continuous,"A: What were you doing at 8 last night?
+B: I was watching TV with my family.
+A: Me too!",Who was he with?,His friends,His family,His teacher,Alone,His family,Detail,3,False,0
+25,9,3,modals (must),"A: You must wear your seatbelt in the car.
+B: Yes, safety first!",What must the person do?,Drive fast,Wear a seatbelt,Use the phone,Turn off lights,Wear a seatbelt,Comprehension,3,False,0
+26,9,3,modals (must),"A: You must wear your seatbelt in the car.
+B: Yes, safety first!",What modal verb shows rule or obligation?,Can,Should,Must,May,Must,Grammar,3,False,0
+27,9,3,modals (must),"A: You must wear your seatbelt in the car.
+B: Yes, safety first!",Why must they wear it?,For safety,For style,For comfort,For fun,For safety,Inference,3,False,0
+28,10,3,functional language (requests/offers),"A: Can you help me carry these books?
+B: Of course! Let me take some.
+A: Thanks a lot.",What does the girl ask for?,Help,Money,Advice,Permission,Help,Comprehension,3,False,0
+29,10,3,functional language (requests/offers),"A: Can you help me carry these books?
+B: Of course! Let me take some.
+A: Thanks a lot.",What phrase shows an offer?,Let me take some,Can you help,Thanks a lot,Carry these,Let me take some,Grammar,3,False,0
+30,10,3,functional language (requests/offers),"A: Can you help me carry these books?
+B: Of course! Let me take some.
+A: Thanks a lot.",How does the boy respond?,He refuses,He agrees to help,He ignores her,He laughs,He agrees to help,Function,3,False,0

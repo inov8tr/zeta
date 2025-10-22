@@ -1,0 +1,73 @@
+question_id,passage_id,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+1,1,What is the main setting of 'The Harvest Debt'?,a river valley,a city,a house,a tower,a city,Literal,1,False,0
+2,1,What action changes the direction of events in 'The Harvest Debt'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,1,False,0
+3,1,"In 'The Harvest Debt', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,1,False,0
+4,1,Why does the main character act differently near the end of 'The Harvest Debt'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,1,False,0
+5,1,What is the central theme of 'The Harvest Debt'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,1,False,0
+6,1,How does the author make the ending of 'The Harvest Debt' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,1,False,0
+7,2,What is the main setting of 'The Bridge Shift'?,a river valley,a city,a house,a tower,a city,Literal,1,False,0
+8,2,What action changes the direction of events in 'The Bridge Shift'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,1,False,0
+9,2,"In 'The Bridge Shift', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,1,False,0
+10,2,Why does the main character act differently near the end of 'The Bridge Shift'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,1,False,0
+11,2,What is the central theme of 'The Bridge Shift'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,1,False,0
+12,2,How does the author make the ending of 'The Bridge Shift' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,1,False,0
+13,3,What is the main setting of 'The Last Contract'?,a river valley,a city,a house,a tower,a city,Literal,1,False,0
+14,3,What action changes the direction of events in 'The Last Contract'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,1,False,0
+15,3,"In 'The Last Contract', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,1,False,0
+16,3,Why does the main character act differently near the end of 'The Last Contract'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,1,False,0
+17,3,What is the central theme of 'The Last Contract'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,1,False,0
+18,3,How does the author make the ending of 'The Last Contract' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,1,False,0
+19,4,What is the main setting of 'The Cage Keeper'?,a river valley,a city,a house,a tower,a city,Literal,1,False,0
+20,4,What action changes the direction of events in 'The Cage Keeper'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,1,False,0
+21,4,"In 'The Cage Keeper', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,1,False,0
+22,4,Why does the main character act differently near the end of 'The Cage Keeper'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,1,False,0
+23,4,What is the central theme of 'The Cage Keeper'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,1,False,0
+24,4,How does the author make the ending of 'The Cage Keeper' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,1,False,0
+25,5,What is the main setting of 'The Night Market of Hours'?,a river valley,a city,a house,a tower,a city,Literal,2,False,0
+26,5,What action changes the direction of events in 'The Night Market of Hours'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,2,False,0
+27,5,"In 'The Night Market of Hours', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,2,False,0
+28,5,Why does the main character act differently near the end of 'The Night Market of Hours'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,2,False,0
+29,5,What is the central theme of 'The Night Market of Hours'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,2,False,0
+30,5,How does the author make the ending of 'The Night Market of Hours' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,2,False,0
+31,6,What is the main setting of 'The Archivist of Endings'?,a river valley,a city,a house,a tower,a city,Literal,2,False,0
+32,6,What action changes the direction of events in 'The Archivist of Endings'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,2,False,0
+33,6,"In 'The Archivist of Endings', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,2,False,0
+34,6,Why does the main character act differently near the end of 'The Archivist of Endings'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,2,False,0
+35,6,What is the central theme of 'The Archivist of Endings'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,2,False,0
+36,6,How does the author make the ending of 'The Archivist of Endings' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,2,False,0
+37,7,What is the main setting of 'The Immortal on the Bench'?,a river valley,a city,a house,a tower,a city,Literal,2,False,0
+38,7,What action changes the direction of events in 'The Immortal on the Bench'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,2,False,0
+39,7,"In 'The Immortal on the Bench', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,2,False,0
+40,7,Why does the main character act differently near the end of 'The Immortal on the Bench'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,2,False,0
+41,7,What is the central theme of 'The Immortal on the Bench'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,2,False,0
+42,7,How does the author make the ending of 'The Immortal on the Bench' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,2,False,0
+43,8,What is the main setting of 'The House That Refused to End'?,a river valley,a city,a house,a tower,a city,Literal,2,False,0
+44,8,What action changes the direction of events in 'The House That Refused to End'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,2,False,0
+45,8,"In 'The House That Refused to End', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,2,False,0
+46,8,Why does the main character act differently near the end of 'The House That Refused to End'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,2,False,0
+47,8,What is the central theme of 'The House That Refused to End'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,2,False,0
+48,8,How does the author make the ending of 'The House That Refused to End' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,2,False,0
+49,9,What is the main setting of 'The Glass City'?,a river valley,a city,a house,a tower,a city,Literal,3,False,0
+50,9,What action changes the direction of events in 'The Glass City'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,3,False,0
+51,9,"In 'The Glass City', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,3,False,0
+52,9,Why does the main character act differently near the end of 'The Glass City'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,3,False,0
+53,9,What is the central theme of 'The Glass City'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,3,False,0
+54,9,How does the author make the ending of 'The Glass City' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,3,False,0
+55,10,What is the main setting of 'The Paper Rebellion'?,a river valley,a city,a house,a tower,a city,Literal,3,False,0
+56,10,What action changes the direction of events in 'The Paper Rebellion'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,3,False,0
+57,10,"In 'The Paper Rebellion', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,3,False,0
+58,10,Why does the main character act differently near the end of 'The Paper Rebellion'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,3,False,0
+59,10,What is the central theme of 'The Paper Rebellion'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,3,False,0
+60,10,How does the author make the ending of 'The Paper Rebellion' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,3,False,0
+61,11,What is the main setting of 'The Algorithm’s Garden'?,a river valley,a city,a house,a tower,a city,Literal,3,False,0
+62,11,What action changes the direction of events in 'The Algorithm’s Garden'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,3,False,0
+63,11,"In 'The Algorithm’s Garden', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,3,False,0
+64,11,Why does the main character act differently near the end of 'The Algorithm’s Garden'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,3,False,0
+65,11,What is the central theme of 'The Algorithm’s Garden'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,3,False,0
+66,11,How does the author make the ending of 'The Algorithm’s Garden' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,3,False,0
+67,12,What is the main setting of 'The Tower of Silence'?,a river valley,a city,a house,a tower,a city,Literal,3,False,0
+68,12,What action changes the direction of events in 'The Tower of Silence'?,a brave decision,an accident,a lie told by a friend,a letter found,a brave decision,Detail,3,False,0
+69,12,"In 'The Tower of Silence', what does a repeated image or object symbolize?",hope,fear,confusion,wealth,hope,Vocabulary,3,False,0
+70,12,Why does the main character act differently near the end of 'The Tower of Silence'?,they realize a truth,they are forced,they win a prize,they run away,they realize a truth,Inference,3,False,0
+71,12,What is the central theme of 'The Tower of Silence'?,freedom and responsibility,luck and chance,technology and control,friendship and humor,freedom and responsibility,Theme,3,False,0
+72,12,How does the author make the ending of 'The Tower of Silence' powerful?,by using imagery and reflection,by adding a twist,by introducing a new character,by ending in a question,by using imagery and reflection,Evaluation,3,False,0

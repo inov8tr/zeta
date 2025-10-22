@@ -1,0 +1,88 @@
+question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+1,1,6,modals of deduction,"A: I can’t find my wallet anywhere.
+B: You must have left it in the car.
+A: Oh, maybe you’re right. I was in a hurry this morning.",What does 'must have left' express?,Obligation,Past certainty,Future plan,Possibility,Past certainty,Grammar,6,False,0
+2,1,6,modals of deduction,"A: I can’t find my wallet anywhere.
+B: You must have left it in the car.
+A: Oh, maybe you’re right. I was in a hurry this morning.",Where did he probably leave the wallet?,In the car,At school,At home,In the store,In the car,Inference,6,False,0
+3,1,6,modals of deduction,"A: I can’t find my wallet anywhere.
+B: You must have left it in the car.
+A: Oh, maybe you’re right. I was in a hurry this morning.",Why does he think that?,He was in a hurry,He lost money,He changed cars,He bought something,He was in a hurry,Comprehension,6,False,0
+4,2,6,third conditional,"A: If I had studied harder, I would have passed the exam.
+B: Don’t worry. You can try again next term.
+A: Yeah, I guess you’re right.",What does the boy regret?,Not studying harder,Being late,Missing school,Changing subjects,Not studying harder,Comprehension,6,False,0
+5,2,6,third conditional,"A: If I had studied harder, I would have passed the exam.
+B: Don’t worry. You can try again next term.
+A: Yeah, I guess you’re right.",Which structure shows an unreal past?,If I had studied...,If I study...,If I study hard...,If I will study...,If I had studied...,Grammar,6,False,0
+6,2,6,third conditional,"A: If I had studied harder, I would have passed the exam.
+B: Don’t worry. You can try again next term.
+A: Yeah, I guess you’re right.",What can he do next term?,Try again,Quit school,Move abroad,Take a break,Try again,Inference,6,False,0
+7,3,6,reported speech (complex),"A: What did the manager say about the presentation?
+B: She said it had been excellent and that we should prepare a summary for the board.
+A: That’s great feedback!",What did the manager think?,It was excellent,It was late,It was canceled,It was short,It was excellent,Comprehension,6,False,0
+8,3,6,reported speech (complex),"A: What did the manager say about the presentation?
+B: She said it had been excellent and that we should prepare a summary for the board.
+A: That’s great feedback!",Which tense is used in reported speech?,Past perfect,Future,Present,Conditional,Past perfect,Grammar,6,False,0
+9,3,6,reported speech (complex),"A: What did the manager say about the presentation?
+B: She said it had been excellent and that we should prepare a summary for the board.
+A: That’s great feedback!",What did they have to prepare?,A summary,A report,A video,A poster,A summary,Detail,6,False,0
+10,4,6,inversion,"A: Rarely have I seen such a beautiful sunset.
+B: I know, the colors are unbelievable!",What is unusual about the speaker’s sentence?,The word order,The tense,The adjective,The subject,The word order,Grammar,6,False,0
+11,4,6,inversion,"A: Rarely have I seen such a beautiful sunset.
+B: I know, the colors are unbelievable!",What is the speaker describing?,A sunset,A mountain,A beach,A storm,A sunset,Comprehension,6,False,0
+12,4,6,inversion,"A: Rarely have I seen such a beautiful sunset.
+B: I know, the colors are unbelievable!",What does 'rarely' mean here?,Not often,Always,Sometimes,Never,Not often,Vocabulary,6,False,0
+13,5,6,linking devices (contrast),"A: Although the movie was long, I really enjoyed it.
+B: Me too, but the ending was confusing.
+A: True, yet it made me think.",How did they feel about the movie?,They enjoyed it,They hated it,They fell asleep,They left early,They enjoyed it,Comprehension,6,False,0
+14,5,6,linking devices (contrast),"A: Although the movie was long, I really enjoyed it.
+B: Me too, but the ending was confusing.
+A: True, yet it made me think.",Which word shows contrast?,Although,Because,Since,Before,Although,Grammar,6,False,0
+15,5,6,linking devices (contrast),"A: Although the movie was long, I really enjoyed it.
+B: Me too, but the ending was confusing.
+A: True, yet it made me think.",What did the boy find confusing?,The ending,The beginning,The sound,The actors,The ending,Detail,6,False,0
+16,6,6,participle clauses,"A: Walking through the forest, we saw a group of deer.
+B: That must have been amazing!
+A: It was. They didn’t even notice us.",What were they doing when they saw the deer?,Walking,Running,Driving,Eating,Walking,Comprehension,6,False,0
+17,6,6,participle clauses,"A: Walking through the forest, we saw a group of deer.
+B: That must have been amazing!
+A: It was. They didn’t even notice us.",What structure is 'Walking through the forest'?,Participle clause,Relative clause,Infinitive phrase,Adverb clause,Participle clause,Grammar,6,False,0
+18,6,6,participle clauses,"A: Walking through the forest, we saw a group of deer.
+B: That must have been amazing!
+A: It was. They didn’t even notice us.",What did they see?,A group of deer,A bear,A bird,A river,A group of deer,Detail,6,False,0
+19,7,6,functional language (doubt),"A: I’m not sure that’s the best idea.
+B: Why not?
+A: Because it could make the problem worse.
+B: Hmm, you might be right.",What is the speaker unsure about?,An idea,A person,A schedule,A rule,An idea,Comprehension,6,False,0
+20,7,6,functional language (doubt),"A: I’m not sure that’s the best idea.
+B: Why not?
+A: Because it could make the problem worse.
+B: Hmm, you might be right.",What expression shows doubt?,I’m not sure,Why not,Could make,Might be,I’m not sure,Grammar,6,False,0
+21,7,6,functional language (doubt),"A: I’m not sure that’s the best idea.
+B: Why not?
+A: Because it could make the problem worse.
+B: Hmm, you might be right.",What does 'you might be right' mean?,Agreement,Disagreement,Apology,Refusal,Agreement,Function,6,False,0
+22,8,6,passive voice (abstract),"A: The new policy was introduced to reduce waste.
+B: Was it successful?
+A: Not really, but some improvements were made.",Why was the policy introduced?,To reduce waste,To increase spending,To hire workers,To change rules,To reduce waste,Comprehension,6,False,0
+23,8,6,passive voice (abstract),"A: The new policy was introduced to reduce waste.
+B: Was it successful?
+A: Not really, but some improvements were made.",Which structure is passive?,Was introduced,Reduce waste,Was successful,To make,Was introduced,Grammar,6,False,0
+24,8,6,passive voice (abstract),"A: The new policy was introduced to reduce waste.
+B: Was it successful?
+A: Not really, but some improvements were made.",What was the result?,Some improvements were made,It failed completely,It was perfect,They canceled it,Some improvements were made,Inference,6,False,0
+25,9,6,modal perfect (could have),"A: I could have called you, but my phone died.
+B: It’s okay. I was asleep anyway.",Why didn’t the speaker call?,His phone died,He forgot,He didn’t want to,He was busy,His phone died,Comprehension,6,False,0
+26,9,6,modal perfect (could have),"A: I could have called you, but my phone died.
+B: It’s okay. I was asleep anyway.",What does 'could have called' express?,Missed possibility,Obligation,Habit,Request,Missed possibility,Grammar,6,False,0
+27,9,6,modal perfect (could have),"A: I could have called you, but my phone died.
+B: It’s okay. I was asleep anyway.",What was the listener doing?,Sleeping,Working,Driving,Talking,Sleeping,Detail,6,False,0
+28,10,6,cause and effect,"A: The river rose quickly because of the heavy rain.
+B: That’s why the bridge was closed.
+A: Yeah, it was dangerous to cross.",Why did the river rise?,Because of rain,Because of snow,Because of wind,Because of heat,Because of rain,Comprehension,6,False,0
+29,10,6,cause and effect,"A: The river rose quickly because of the heavy rain.
+B: That’s why the bridge was closed.
+A: Yeah, it was dangerous to cross.",Which phrase shows cause?,Because of,That’s why,It was,Quickly,Because of,Grammar,6,False,0
+30,10,6,cause and effect,"A: The river rose quickly because of the heavy rain.
+B: That’s why the bridge was closed.
+A: Yeah, it was dangerous to cross.",Why was the bridge closed?,It was dangerous,It was clean,It was old,It was fixed,It was dangerous,Inference,6,False,0

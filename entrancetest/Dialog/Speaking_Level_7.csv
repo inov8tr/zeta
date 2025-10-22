@@ -1,0 +1,88 @@
+question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+1,1,7,concessive clauses,"A: Although technology saves time, it also steals our attention.
+B: That’s true. Efficiency can make us forget what’s meaningful.
+A: Maybe balance is the only progress worth having.",What is the main idea of the conversation?,Technology only improves life,Balance between efficiency and meaning is essential,Attention is more valuable than technology,Modern life requires more technology,Balance between efficiency and meaning is essential,Inference,7,False,0
+2,1,7,concessive clauses,"A: Although technology saves time, it also steals our attention.
+B: That’s true. Efficiency can make us forget what’s meaningful.
+A: Maybe balance is the only progress worth having.",What word introduces contrast?,Although,Because,Since,If,Although,Grammar,7,False,0
+3,1,7,concessive clauses,"A: Although technology saves time, it also steals our attention.
+B: That’s true. Efficiency can make us forget what’s meaningful.
+A: Maybe balance is the only progress worth having.",What tone best describes the speakers?,Reflective,Sarcastic,Irritated,Indifferent,Reflective,Tone,7,False,0
+4,2,7,cause and consequence,"A: The climate summit ended without agreement.
+B: Then emissions will likely continue rising.
+A: Which means our targets are becoming promises instead of progress.",What are they discussing?,A climate summit,A school project,A political election,A business meeting,A climate summit,Comprehension,7,False,0
+5,2,7,cause and consequence,"A: The climate summit ended without agreement.
+B: Then emissions will likely continue rising.
+A: Which means our targets are becoming promises instead of progress.",What consequence do they mention?,Emissions will rise,Pollution will decrease,People will travel less,Laws will change,Emissions will rise,Inference,7,False,0
+6,2,7,cause and consequence,"A: The climate summit ended without agreement.
+B: Then emissions will likely continue rising.
+A: Which means our targets are becoming promises instead of progress.",Which phrase shows cause and effect?,Which means,Instead of,Without agreement,Likely continue,Which means,Grammar,7,False,0
+7,3,7,nominalization,"A: Cooperation among nations is difficult.
+B: True, but collaboration defines our survival.
+A: That’s a powerful statement.",What noun form is derived from a verb?,Collaboration,Difficult,Survival,Powerful,Collaboration,Grammar,7,False,0
+8,3,7,nominalization,"A: Cooperation among nations is difficult.
+B: True, but collaboration defines our survival.
+A: That’s a powerful statement.",What is the main idea?,Cooperation is necessary for survival,Nations are independent,Survival is easy,Power leads to unity,Cooperation is necessary for survival,Inference,7,False,0
+9,3,7,nominalization,"A: Cooperation among nations is difficult.
+B: True, but collaboration defines our survival.
+A: That’s a powerful statement.",What is the tone of the final statement?,Respectful,Critical,Casual,Angry,Respectful,Tone,7,False,0
+10,4,7,causatives,"A: The director had the report rewritten twice.
+B: She must be looking for perfection.
+A: Or maybe just clarity.",What happened to the report?,It was rewritten twice,It was deleted,It was ignored,It was delayed,It was rewritten twice,Comprehension,7,False,0
+11,4,7,causatives,"A: The director had the report rewritten twice.
+B: She must be looking for perfection.
+A: Or maybe just clarity.",What structure expresses causation?,Had the report rewritten,Was rewritten,Looking for,Must be,Had the report rewritten,Grammar,7,False,0
+12,4,7,causatives,"A: The director had the report rewritten twice.
+B: She must be looking for perfection.
+A: Or maybe just clarity.",What do they imply about the director?,She demands high standards,She dislikes writing,She ignores mistakes,She is confused,She demands high standards,Inference,7,False,0
+13,5,7,mixed conditionals,"A: If I were more confident, I would have applied for that scholarship.
+B: You still can next year.
+A: Maybe, but opportunities don’t wait forever.",What does the boy regret?,Not applying for the scholarship,Missing a test,Talking too much,Taking a break,Not applying for the scholarship,Comprehension,7,False,0
+14,5,7,mixed conditionals,"A: If I were more confident, I would have applied for that scholarship.
+B: You still can next year.
+A: Maybe, but opportunities don’t wait forever.",Which structure mixes past and present?,If I were… I would have…,If I will… I can…,If I had… I might…,If I am… I would…,If I were… I would have…,Grammar,7,False,0
+15,5,7,mixed conditionals,"A: If I were more confident, I would have applied for that scholarship.
+B: You still can next year.
+A: Maybe, but opportunities don’t wait forever.",What is the tone of his last line?,Regretful,Confident,Excited,Angry,Regretful,Tone,7,False,0
+16,6,7,reported speech (argument),"A: Some economists claim that happiness increases with income.
+B: But others argue it plateaus after a certain point.
+A: Maybe money buys comfort, not contentment.",What are they debating?,The link between income and happiness,The price of comfort,The meaning of contentment,The need for money,The link between income and happiness,Comprehension,7,False,0
+17,6,7,reported speech (argument),"A: Some economists claim that happiness increases with income.
+B: But others argue it plateaus after a certain point.
+A: Maybe money buys comfort, not contentment.",What does 'plateaus' mean here?,Stops increasing,Begins rising,Falls sharply,Disappears,Stops increasing,Vocabulary,7,False,0
+18,6,7,reported speech (argument),"A: Some economists claim that happiness increases with income.
+B: But others argue it plateaus after a certain point.
+A: Maybe money buys comfort, not contentment.",What is the implied conclusion?,"Money improves comfort, not happiness",Happiness depends only on wealth,Economists are wrong,Income is not important,"Money improves comfort, not happiness",Inference,7,False,0
+19,7,7,inversion for emphasis,"A: Never before had I seen such an inspiring lecture.
+B: It really was impressive.
+A: I’m thinking of applying to that university now.",What does 'Never before had I seen' emphasize?,Surprise and admiration,Disagreement,Fear,Disinterest,Surprise and admiration,Inference,7,False,0
+20,7,7,inversion for emphasis,"A: Never before had I seen such an inspiring lecture.
+B: It really was impressive.
+A: I’m thinking of applying to that university now.",Which structure is inverted?,Had I seen,Was impressive,Applying to,Thinking of,Had I seen,Grammar,7,False,0
+21,7,7,inversion for emphasis,"A: Never before had I seen such an inspiring lecture.
+B: It really was impressive.
+A: I’m thinking of applying to that university now.",What does the speaker plan to do?,Apply to the university,Leave the class,Write a report,Join a club,Apply to the university,Comprehension,7,False,0
+22,8,7,rhetorical devices,"A: Do you think small actions can really change the world?
+B: Every great movement started small.
+A: That’s a good reminder.",What rhetorical device is used by the second speaker?,Analogy,Hyperbole,Alliteration,Metaphor,Analogy,Grammar,7,False,0
+23,8,7,rhetorical devices,"A: Do you think small actions can really change the world?
+B: Every great movement started small.
+A: That’s a good reminder.",What does the speaker imply?,Small actions can lead to big change,Change is impossible,Movements fail easily,World change is too hard,Small actions can lead to big change,Inference,7,False,0
+24,8,7,rhetorical devices,"A: Do you think small actions can really change the world?
+B: Every great movement started small.
+A: That’s a good reminder.",What tone does 'That’s a good reminder' express?,Appreciation,Doubt,Sarcasm,Confusion,Appreciation,Tone,7,False,0
+25,9,7,nominal clauses,"A: What matters is not who wins, but how the game is played.
+B: I agree. Integrity outlasts victory.",What does the speaker value most?,Integrity,Winning,Luck,Popularity,Integrity,Inference,7,False,0
+26,9,7,nominal clauses,"A: What matters is not who wins, but how the game is played.
+B: I agree. Integrity outlasts victory.",Which phrase is a nominal clause?,What matters is...,I agree,How the game is played,Outlasts victory,What matters is...,Grammar,7,False,0
+27,9,7,nominal clauses,"A: What matters is not who wins, but how the game is played.
+B: I agree. Integrity outlasts victory.",What is the moral lesson?,Integrity is more important than winning,Winning is everything,Games are meaningless,Victory is easy,Integrity is more important than winning,Inference,7,False,0
+28,10,7,functional language (persuasion),"A: We should focus on renewable energy now rather than later.
+B: But it’s expensive.
+A: True, but inaction costs even more in the long term.",What is the topic?,Renewable energy,Economics,Politics,Education,Renewable energy,Comprehension,7,False,0
+29,10,7,functional language (persuasion),"A: We should focus on renewable energy now rather than later.
+B: But it’s expensive.
+A: True, but inaction costs even more in the long term.",What is the persuasive technique used?,Contrast of short-term vs long-term cost,Emotional appeal,Personal story,Repetition,Contrast of short-term vs long-term cost,Grammar,7,False,0
+30,10,7,functional language (persuasion),"A: We should focus on renewable energy now rather than later.
+B: But it’s expensive.
+A: True, but inaction costs even more in the long term.",What does 'inaction costs even more' mean?,Not acting now will be more expensive later,Renewable energy is cheap,Money will be lost immediately,Government should act slowly,Not acting now will be more expensive later,Inference,7,False,0

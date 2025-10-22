@@ -1,0 +1,73 @@
+question_id,passage_id,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+1,1,Where does most of the story 'The Promise at the River' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,1,False,0
+2,1,What decision changes the main character’s path in 'The Promise at the River'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,1,False,0
+3,1,"In 'The Promise at the River', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,1,False,0
+4,1,Why does the main character act differently near the end of 'The Promise at the River'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,1,False,0
+5,1,What is the central theme of 'The Promise at the River'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,1,False,0
+6,1,How does the author make the ending of 'The Promise at the River' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,1,False,0
+7,2,Where does most of the story 'The Secret Notebook' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,1,False,0
+8,2,What decision changes the main character’s path in 'The Secret Notebook'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,1,False,0
+9,2,"In 'The Secret Notebook', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,1,False,0
+10,2,Why does the main character act differently near the end of 'The Secret Notebook'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,1,False,0
+11,2,What is the central theme of 'The Secret Notebook'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,1,False,0
+12,2,How does the author make the ending of 'The Secret Notebook' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,1,False,0
+13,3,Where does most of the story 'The Music Box' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,1,False,0
+14,3,What decision changes the main character’s path in 'The Music Box'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,1,False,0
+15,3,"In 'The Music Box', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,1,False,0
+16,3,Why does the main character act differently near the end of 'The Music Box'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,1,False,0
+17,3,What is the central theme of 'The Music Box'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,1,False,0
+18,3,How does the author make the ending of 'The Music Box' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,1,False,0
+19,4,Where does most of the story 'The Bridge at East Gate' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,2,False,0
+20,4,What decision changes the main character’s path in 'The Bridge at East Gate'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,2,False,0
+21,4,"In 'The Bridge at East Gate', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,2,False,0
+22,4,Why does the main character act differently near the end of 'The Bridge at East Gate'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,2,False,0
+23,4,What is the central theme of 'The Bridge at East Gate'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,2,False,0
+24,4,How does the author make the ending of 'The Bridge at East Gate' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,2,False,0
+25,5,Where does most of the story 'The Protest Tree' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,2,False,0
+26,5,What decision changes the main character’s path in 'The Protest Tree'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,2,False,0
+27,5,"In 'The Protest Tree', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,2,False,0
+28,5,Why does the main character act differently near the end of 'The Protest Tree'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,2,False,0
+29,5,What is the central theme of 'The Protest Tree'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,2,False,0
+30,5,How does the author make the ending of 'The Protest Tree' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,2,False,0
+31,6,Where does most of the story 'The Tunnel Light' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,3,False,0
+32,6,What decision changes the main character’s path in 'The Tunnel Light'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,3,False,0
+33,6,"In 'The Tunnel Light', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,3,False,0
+34,6,Why does the main character act differently near the end of 'The Tunnel Light'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,3,False,0
+35,6,What is the central theme of 'The Tunnel Light'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,3,False,0
+36,6,How does the author make the ending of 'The Tunnel Light' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,3,False,0
+37,7,Where does most of the story 'The Letter from Winter Hill' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,3,False,0
+38,7,What decision changes the main character’s path in 'The Letter from Winter Hill'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,3,False,0
+39,7,"In 'The Letter from Winter Hill', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,3,False,0
+40,7,Why does the main character act differently near the end of 'The Letter from Winter Hill'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,3,False,0
+41,7,What is the central theme of 'The Letter from Winter Hill'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,3,False,0
+42,7,How does the author make the ending of 'The Letter from Winter Hill' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,3,False,0
+43,8,Where does most of the story 'The Stone Lantern' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,3,False,0
+44,8,What decision changes the main character’s path in 'The Stone Lantern'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,3,False,0
+45,8,"In 'The Stone Lantern', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,3,False,0
+46,8,Why does the main character act differently near the end of 'The Stone Lantern'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,3,False,0
+47,8,What is the central theme of 'The Stone Lantern'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,3,False,0
+48,8,How does the author make the ending of 'The Stone Lantern' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,3,False,0
+49,9,Where does most of the story 'The Signal Tower' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,3,False,0
+50,9,What decision changes the main character’s path in 'The Signal Tower'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,3,False,0
+51,9,"In 'The Signal Tower', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,3,False,0
+52,9,Why does the main character act differently near the end of 'The Signal Tower'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,3,False,0
+53,9,What is the central theme of 'The Signal Tower'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,3,False,0
+54,9,How does the author make the ending of 'The Signal Tower' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,3,False,0
+55,10,Where does most of the story 'The Invisible Line' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,2,False,0
+56,10,What decision changes the main character’s path in 'The Invisible Line'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,2,False,0
+57,10,"In 'The Invisible Line', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,2,False,0
+58,10,Why does the main character act differently near the end of 'The Invisible Line'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,2,False,0
+59,10,What is the central theme of 'The Invisible Line'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,2,False,0
+60,10,How does the author make the ending of 'The Invisible Line' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,2,False,0
+61,11,Where does most of the story 'The Debate Club' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,2,False,0
+62,11,What decision changes the main character’s path in 'The Debate Club'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,2,False,0
+63,11,"In 'The Debate Club', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,2,False,0
+64,11,Why does the main character act differently near the end of 'The Debate Club'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,2,False,0
+65,11,What is the central theme of 'The Debate Club'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,2,False,0
+66,11,How does the author make the ending of 'The Debate Club' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,2,False,0
+67,12,Where does most of the story 'The Late Swimmer' take place?,at school,by the river,inside a house,in a city square,by the river,Literal,1,False,0
+68,12,What decision changes the main character’s path in 'The Late Swimmer'?,to help another person,to run away,to hide the truth,to give up,to help another person,Detail,1,False,0
+69,12,"In 'The Late Swimmer', what does a repeated image or object (such as 'light', 'river', or 'bridge') symbolize?",hope and renewal,anger and fear,sadness and regret,wealth and power,hope and renewal,Vocabulary,1,False,0
+70,12,Why does the main character act differently near the end of 'The Late Swimmer'?,they understand a deeper truth,they are punished,they are afraid,they forget their goal,they understand a deeper truth,Inference,1,False,0
+71,12,What is the central theme of 'The Late Swimmer'?,courage and empathy,luck and chance,competition and victory,mystery and fear,courage and empathy,Theme,1,False,0
+72,12,How does the author make the ending of 'The Late Swimmer' powerful?,by using vivid imagery and reflection,by adding a surprise villain,by changing the narrator,by ending in a joke,by using vivid imagery and reflection,Evaluation,1,False,0
