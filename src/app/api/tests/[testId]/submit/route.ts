@@ -155,21 +155,35 @@ export async function POST(
 
     // Compute whether the passage set is complete (either reached target size
     // or no more unanswered questions remain for this passage)
-    const [{ data: qList, error: qErr }, { data: respRows, error: rErr }] = await Promise.all([
-      supabase.from("questions").select("id").eq("section", "reading").eq("passage_id", question.passage_id),
-      supabase
-        .from("responses")
-        .select("correct, question_id")
-        .eq("test_id", testId)
-        .eq("section", "reading"),
-    ]);
+    // Fetch all questions for this passage (guard against null) and responses for this test/section
+    let qList: Array<{ id: string }> | null = null;
+    let qErr: unknown = null;
+    if (question.passage_id) {
+      const qRes = await supabase
+        .from("questions")
+        .select("id")
+        .eq("section", "reading")
+        .eq("passage_id", question.passage_id as string);
+      qList = (qRes.data as Array<{ id: string }> | null) ?? null;
+      qErr = qRes.error ?? null;
+    } else {
+      qList = [];
+      qErr = null;
+    }
+
+    const { data: respRows, error: rErr } = await supabase
+      .from("responses")
+      .select("correct, question_id")
+      .eq("test_id", testId)
+      .eq("section", "reading");
+
     if (qErr) {
       console.error("submit route: failed to load passage questions", qErr);
     }
     if (rErr) {
       console.error("submit route: failed to load reading responses", rErr);
     }
-    const allQIds = new Set((qList ?? []).map((q) => (q as { id: string }).id));
+    const allQIds = new Set((qList ?? []).map((q) => q.id));
     const respForPassage = (respRows ?? []).filter((r) => allQIds.has((r as { question_id: string }).question_id));
     const totalForPassage = allQIds.size;
     const answeredForPassage = respForPassage.length;
@@ -178,7 +192,10 @@ export async function POST(
     const noMoreForPassage = totalForPassage > 0 && answeredForPassage >= totalForPassage;
 
     if (reachedSetSize || noMoreForPassage) {
-      const correctNum = respForPassage.reduce((acc: number, r: any) => acc + (r.correct ? 1 : 0), 0);
+      const correctNum = (respForPassage as Array<{ correct: boolean }>).reduce(
+        (acc: number, r) => acc + (r.correct ? 1 : 0),
+        0
+      );
       const denom = answeredForPassage || passageCount || 1;
       const ratio = correctNum / denom;
 

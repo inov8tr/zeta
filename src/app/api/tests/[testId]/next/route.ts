@@ -175,7 +175,9 @@ export async function POST(
         (candQs ?? []).forEach((q) => {
           const qid = (q as { id: string }).id;
           const pid = (q as { passage_id: string | null }).passage_id;
-          if (!pid) return;
+          if (!pid) {
+            return;
+          }
           if (!answeredIds.has(qid)) {
             unansweredByPassage.set(pid, (unansweredByPassage.get(pid) ?? 0) + 1);
           }
