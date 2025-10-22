@@ -22,6 +22,7 @@ type QuestionPayload = {
     options: string[];
     skillTags: string[];
     mediaUrl?: string | null;
+    optionOrder?: number[]; // maps displayed index -> original index
   };
   passage?: { title: string; body: string } | null;
 };
@@ -172,12 +173,15 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
       try {
         const now = Date.now();
         const timeSpent = questionStartRef.current ? now - questionStartRef.current : 0;
+        const originalIndex = question.question.optionOrder && question.question.optionOrder.length
+          ? question.question.optionOrder[index]
+          : index;
         const res = await fetch(`/api/tests/${testId}/submit`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             questionId: question.question.id,
-            selectedIndex: index,
+            selectedIndex: originalIndex,
             timeSpentMs: timeSpent,
           }),
         });

@@ -100,7 +100,9 @@ function optsFromRow(row) {
   const c2 = row['choice_2'] ?? '';
   const c3 = row['choice_3'] ?? '';
   const c4 = row['choice_4'] ?? '';
-  return [c1, c2, c3, c4].filter((x) => String(x).trim().length > 0 && String(x).trim().toUpperCase() !== 'N/A');
+  return [c1, c2, c3, c4]
+    .map((x) => String(x).trim())
+    .filter((x) => x.length > 0 && x.toUpperCase() !== 'N/A');
 }
 
 async function main() {

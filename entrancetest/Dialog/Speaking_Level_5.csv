@@ -1,88 +1,88 @@
-question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
-1,1,5,reported speech,"A: Did you hear what the teacher said?
+global_dialog_id,question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+501,1,1,5,reported speech,"A: Did you hear what the teacher said?
 B: Yes, she said the project deadline was extended.
-A: That’s great! We’ll have more time to prepare.",What did the teacher say?,The project was canceled,The project deadline was extended,The exam was today,The topic was changed,The project deadline was extended,Comprehension,5,False,0
-2,1,5,reported speech,"A: Did you hear what the teacher said?
+A: That’s great! We’ll have more time to prepare.",What did the teacher say?,The exam was today,The project was canceled,The topic was changed,The project deadline was extended,The project deadline was extended,Comprehension,5,False,0
+501,2,1,5,reported speech,"A: Did you hear what the teacher said?
 B: Yes, she said the project deadline was extended.
-A: That’s great! We’ll have more time to prepare.",Which tense is used in reported speech?,Past,Future,Present,Conditional,Past,Grammar,5,False,0
-3,1,5,reported speech,"A: Did you hear what the teacher said?
+A: That’s great! We’ll have more time to prepare.",Which tense is used in reported speech?,Conditional,Present,Past,Future,Past,Grammar,5,False,0
+501,3,1,5,reported speech,"A: Did you hear what the teacher said?
 B: Yes, she said the project deadline was extended.
-A: That’s great! We’ll have more time to prepare.",Why are they happy?,They have more time,They finished early,They got higher grades,They have no homework,They have more time,Inference,5,False,0
-4,2,5,modal perfect (should have),"A: I missed the bus this morning.
+A: That’s great! We’ll have more time to prepare.",Why are they happy?,They got higher grades,They have more time,They have no homework,They finished early,They have more time,Inference,5,False,0
+502,4,2,5,modal perfect (should have),"A: I missed the bus this morning.
 B: You should have left earlier.
 A: I know. I won’t be late tomorrow.",What happened to the speaker?,He missed the bus,He walked to school,He took a taxi,He stayed home,He missed the bus,Comprehension,5,False,0
-5,2,5,modal perfect (should have),"A: I missed the bus this morning.
+502,5,2,5,modal perfect (should have),"A: I missed the bus this morning.
 B: You should have left earlier.
-A: I know. I won’t be late tomorrow.",What does 'should have' express?,Past regret,Future plan,Permission,Possibility,Past regret,Grammar,5,False,0
-6,2,5,modal perfect (should have),"A: I missed the bus this morning.
+A: I know. I won’t be late tomorrow.",What does 'should have' express?,Future plan,Possibility,Past regret,Permission,Past regret,Grammar,5,False,0
+502,6,2,5,modal perfect (should have),"A: I missed the bus this morning.
 B: You should have left earlier.
-A: I know. I won’t be late tomorrow.",What will he do tomorrow?,Wake up earlier,Take the same bus,Skip school,Be late again,Wake up earlier,Inference,5,False,0
-7,3,5,passive voice,"A: Who built this bridge?
+A: I know. I won’t be late tomorrow.",What will he do tomorrow?,Take the same bus,Skip school,Be late again,Wake up earlier,Wake up earlier,Inference,5,False,0
+503,7,3,5,passive voice,"A: Who built this bridge?
 B: It was built by Korean engineers in 1990.
-A: It still looks strong.",Who built the bridge?,Korean engineers,American engineers,Chinese engineers,Japanese engineers,Korean engineers,Comprehension,5,False,0
-8,3,5,passive voice,"A: Who built this bridge?
+A: It still looks strong.",Who built the bridge?,Korean engineers,Chinese engineers,American engineers,Japanese engineers,Korean engineers,Comprehension,5,False,0
+503,8,3,5,passive voice,"A: Who built this bridge?
 B: It was built by Korean engineers in 1990.
-A: It still looks strong.",Which form is passive?,Was built,Built,Builds,Will build,Was built,Grammar,5,False,0
-9,3,5,passive voice,"A: Who built this bridge?
+A: It still looks strong.",Which form is passive?,Will build,Builds,Was built,Built,Was built,Grammar,5,False,0
+503,9,3,5,passive voice,"A: Who built this bridge?
 B: It was built by Korean engineers in 1990.
-A: It still looks strong.",When was it built?,1990,1980,2000,1995,1990,Detail,5,False,0
-10,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
+A: It still looks strong.",When was it built?,1990,1980,1995,2000,1990,Detail,5,False,0
+504,10,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
 B: What if we don’t?
-A: Then we’ll just order takeout here.",What will they do if they finish early?,Go for coffee,Go home,Order takeout,Take a nap,Go for coffee,Comprehension,5,False,0
-11,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
+A: Then we’ll just order takeout here.",What will they do if they finish early?,Go for coffee,Go home,Take a nap,Order takeout,Go for coffee,Comprehension,5,False,0
+504,11,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
 B: What if we don’t?
-A: Then we’ll just order takeout here.",What does 'if' introduce?,A condition,A result,A reason,A contrast,A condition,Grammar,5,False,0
-12,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
+A: Then we’ll just order takeout here.",What does 'if' introduce?,A contrast,A reason,A condition,A result,A condition,Grammar,5,False,0
+504,12,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
 B: What if we don’t?
-A: Then we’ll just order takeout here.",What will they do if they don’t finish early?,Order takeout,Go for coffee,Leave,Sleep,Order takeout,Inference,5,False,0
-13,5,5,indirect questions,"A: Do you know where the meeting is being held?
+A: Then we’ll just order takeout here.",What will they do if they don’t finish early?,Leave,Sleep,Order takeout,Go for coffee,Order takeout,Inference,5,False,0
+505,13,5,5,indirect questions,"A: Do you know where the meeting is being held?
 B: Yes, it’s in Room 305.
-A: Thanks! I always get lost in this building.",Where is the meeting?,Room 205,Room 305,Room 405,Room 505,Room 305,Comprehension,5,False,0
-14,5,5,indirect questions,"A: Do you know where the meeting is being held?
+A: Thanks! I always get lost in this building.",Where is the meeting?,Room 305,Room 405,Room 505,Room 205,Room 305,Comprehension,5,False,0
+505,14,5,5,indirect questions,"A: Do you know where the meeting is being held?
 B: Yes, it’s in Room 305.
-A: Thanks! I always get lost in this building.",What structure shows an indirect question?,Do you know where…,Where is…,Can you…,Who…,Do you know where…,Grammar,5,False,0
-15,5,5,indirect questions,"A: Do you know where the meeting is being held?
+A: Thanks! I always get lost in this building.",What structure shows an indirect question?,Where is…,Who…,Can you…,Do you know where…,Do you know where…,Grammar,5,False,0
+505,15,5,5,indirect questions,"A: Do you know where the meeting is being held?
 B: Yes, it’s in Room 305.
-A: Thanks! I always get lost in this building.",Why does the speaker thank the other?,For giving directions,For lending money,For helping with homework,For opening the door,For giving directions,Function,5,False,0
-16,6,5,modals (may/might),"A: Do you think it will snow this weekend?
+A: Thanks! I always get lost in this building.",Why does the speaker thank the other?,For opening the door,For helping with homework,For giving directions,For lending money,For giving directions,Function,5,False,0
+506,16,6,5,modals (may/might),"A: Do you think it will snow this weekend?
 B: It might. The weather is getting colder.
-A: I hope it does!",What are they talking about?,The weather,A trip,Homework,Sports,The weather,Comprehension,5,False,0
-17,6,5,modals (may/might),"A: Do you think it will snow this weekend?
+A: I hope it does!",What are they talking about?,Sports,A trip,The weather,Homework,The weather,Comprehension,5,False,0
+506,17,6,5,modals (may/might),"A: Do you think it will snow this weekend?
 B: It might. The weather is getting colder.
-A: I hope it does!",Which modal shows possibility?,Might,Must,Can,Should,Might,Grammar,5,False,0
-18,6,5,modals (may/might),"A: Do you think it will snow this weekend?
+A: I hope it does!",Which modal shows possibility?,Can,Might,Should,Must,Might,Grammar,5,False,0
+506,18,6,5,modals (may/might),"A: Do you think it will snow this weekend?
 B: It might. The weather is getting colder.
-A: I hope it does!",What does the boy hope?,That it will snow,That it will rain,That it will be sunny,That it will be warm,That it will snow,Inference,5,False,0
-19,7,5,functional language (opinions),"A: I think students should wear uniforms.
+A: I hope it does!",What does the boy hope?,That it will be warm,That it will snow,That it will rain,That it will be sunny,That it will snow,Inference,5,False,0
+507,19,7,5,functional language (opinions),"A: I think students should wear uniforms.
 B: Really? I disagree. Uniforms take away individuality.
-A: Maybe, but they make everyone equal.",What is the topic of their discussion?,School uniforms,Sports,Homework,Exams,School uniforms,Comprehension,5,False,0
-20,7,5,functional language (opinions),"A: I think students should wear uniforms.
+A: Maybe, but they make everyone equal.",What is the topic of their discussion?,Homework,School uniforms,Sports,Exams,School uniforms,Comprehension,5,False,0
+507,20,7,5,functional language (opinions),"A: I think students should wear uniforms.
 B: Really? I disagree. Uniforms take away individuality.
-A: Maybe, but they make everyone equal.",Which word introduces opinion?,I think,Should,Maybe,Equal,I think,Grammar,5,False,0
-21,7,5,functional language (opinions),"A: I think students should wear uniforms.
+A: Maybe, but they make everyone equal.",Which word introduces opinion?,Should,I think,Equal,Maybe,I think,Grammar,5,False,0
+507,21,7,5,functional language (opinions),"A: I think students should wear uniforms.
 B: Really? I disagree. Uniforms take away individuality.
-A: Maybe, but they make everyone equal.",Why does the boy disagree?,Uniforms reduce individuality,Uniforms are expensive,Uniforms are uncomfortable,Uniforms are ugly,Uniforms reduce individuality,Inference,5,False,0
-22,8,5,reported requests,"A: Did the manager say anything?
+A: Maybe, but they make everyone equal.",Why does the boy disagree?,Uniforms are uncomfortable,Uniforms are ugly,Uniforms reduce individuality,Uniforms are expensive,Uniforms reduce individuality,Inference,5,False,0
+508,22,8,5,reported requests,"A: Did the manager say anything?
 B: Yes, he asked us to send the report by tomorrow.
-A: Then we’d better start now.",What did the manager ask?,To send the report,To cancel the meeting,To take a break,To finish early,To send the report,Comprehension,5,False,0
-23,8,5,reported requests,"A: Did the manager say anything?
+A: Then we’d better start now.",What did the manager ask?,To finish early,To send the report,To cancel the meeting,To take a break,To send the report,Comprehension,5,False,0
+508,23,8,5,reported requests,"A: Did the manager say anything?
 B: Yes, he asked us to send the report by tomorrow.
-A: Then we’d better start now.",Which form shows a reported request?,Asked us to…,Said we…,Told us that…,Wanted we…,Asked us to…,Grammar,5,False,0
-24,8,5,reported requests,"A: Did the manager say anything?
+A: Then we’d better start now.",Which form shows a reported request?,Wanted we…,Told us that…,Said we…,Asked us to…,Asked us to…,Grammar,5,False,0
+508,24,8,5,reported requests,"A: Did the manager say anything?
 B: Yes, he asked us to send the report by tomorrow.
-A: Then we’d better start now.",When must they send the report?,Tomorrow,Today,Next week,Tonight,Tomorrow,Detail,5,False,0
-25,9,5,second conditional,"A: If you won the lottery, what would you do?
+A: Then we’d better start now.",When must they send the report?,Next week,Today,Tomorrow,Tonight,Tomorrow,Detail,5,False,0
+509,25,9,5,second conditional,"A: If you won the lottery, what would you do?
 B: I’d travel around the world.
-A: I’d start a charity!",What would the boy do if he won?,Travel the world,Buy a car,Build a house,Quit his job,Travel the world,Comprehension,5,False,0
-26,9,5,second conditional,"A: If you won the lottery, what would you do?
+A: I’d start a charity!",What would the boy do if he won?,Buy a car,Quit his job,Travel the world,Build a house,Travel the world,Comprehension,5,False,0
+509,26,9,5,second conditional,"A: If you won the lottery, what would you do?
 B: I’d travel around the world.
-A: I’d start a charity!",Which word shows an unreal condition?,Would,If,Won,Do,Would,Grammar,5,False,0
-27,9,5,second conditional,"A: If you won the lottery, what would you do?
+A: I’d start a charity!",Which word shows an unreal condition?,Would,Do,If,Won,Would,Grammar,5,False,0
+509,27,9,5,second conditional,"A: If you won the lottery, what would you do?
 B: I’d travel around the world.
-A: I’d start a charity!",What would the girl do?,Start a charity,Travel the world,Save the money,Buy a plane,Start a charity,Detail,5,False,0
-28,10,5,passive voice (process),"A: How is chocolate made?
-B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",What is chocolate made from?,Cocoa beans,Coffee beans,Sugar cane,Milk,Cocoa beans,Comprehension,5,False,0
-29,10,5,passive voice (process),"A: How is chocolate made?
-B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",Which word shows passive form?,Made,From,Roasted,Ground,Made,Grammar,5,False,0
-30,10,5,passive voice (process),"A: How is chocolate made?
-B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",What happens after the beans are roasted?,They are ground into powder,They are melted,They are eaten,They are mixed with milk,They are ground into powder,Detail,5,False,0
+A: I’d start a charity!",What would the girl do?,Travel the world,Buy a plane,Start a charity,Save the money,Start a charity,Detail,5,False,0
+510,28,10,5,passive voice (process),"A: How is chocolate made?
+B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",What is chocolate made from?,Cocoa beans,Sugar cane,Milk,Coffee beans,Cocoa beans,Comprehension,5,False,0
+510,29,10,5,passive voice (process),"A: How is chocolate made?
+B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",Which word shows passive form?,Ground,From,Roasted,Made,Made,Grammar,5,False,0
+510,30,10,5,passive voice (process),"A: How is chocolate made?
+B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",What happens after the beans are roasted?,They are ground into powder,They are mixed with milk,They are melted,They are eaten,They are ground into powder,Detail,5,False,0

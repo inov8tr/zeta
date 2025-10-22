@@ -1,0 +1,622 @@
+global_dialog_id,question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+101,1,1,1,be verb,"A: What’s your name?
+B: My name is David.
+A: Are you a student?
+B: Yes, I am.",What is the boy’s name?,Peter,Alex,John,David,David,Comprehension,1,False,0
+101,2,1,1,be verb,"A: What’s your name?
+B: My name is David.
+A: Are you a student?
+B: Yes, I am.",Is David a teacher?,"No, she’s not.","No, he isn’t.","Yes, she is.","Yes, he is.","No, he isn’t.",Grammar,1,False,0
+101,3,1,1,be verb,"A: What’s your name?
+B: My name is David.
+A: Are you a student?
+B: Yes, I am.",What verb form shows identity here?,Do,Have,Be,Go,Be,Grammar,1,False,0
+102,4,2,1,nouns,"A: Who is she?
+B: She’s my sister.
+A: Is she older or younger?
+B: She’s younger than me.",Who is the girl?,His mother,His friend,His teacher,His sister,His sister,Comprehension,1,False,0
+102,5,2,1,nouns,"A: Who is she?
+B: She’s my sister.
+A: Is she older or younger?
+B: She’s younger than me.",What word shows family relation?,Younger,Older,Friend,Sister,Sister,Vocabulary,1,False,0
+102,6,2,1,nouns,"A: Who is she?
+B: She’s my sister.
+A: Is she older or younger?
+B: She’s younger than me.",Is the sister older?,"No, she isn’t.","No, she can’t.","Yes, she is.","Yes, she’s taller.","No, she isn’t.",Comprehension,1,False,0
+103,7,3,1,pronouns,"A: Is this your pencil?
+B: No, it isn’t mine. It’s hers.
+A: Oh, okay.",Whose pencil is it?,His,Yours,Hers,Mine,Hers,Comprehension,1,False,0
+103,8,3,1,pronouns,"A: Is this your pencil?
+B: No, it isn’t mine. It’s hers.
+A: Oh, okay.",What pronoun replaces 'Mary’s pencil'?,Her,His,She,Hers,Hers,Grammar,1,False,0
+103,9,3,1,pronouns,"A: Is this your pencil?
+B: No, it isn’t mine. It’s hers.
+A: Oh, okay.",What does 'it' refer to?,A pen,A bag,A pencil,A book,A pencil,Reference,1,False,0
+104,10,4,1,adjectives,"A: How are you today?
+B: I’m fine, but a little tired.
+A: You should rest!",How does the girl feel?,Tired,Hungry,Angry,Happy,Tired,Comprehension,1,False,0
+104,11,4,1,adjectives,"A: How are you today?
+B: I’m fine, but a little tired.
+A: You should rest!",What adjective describes feeling?,Fine,Should,You,Rest,Fine,Grammar,1,False,0
+104,12,4,1,adjectives,"A: How are you today?
+B: I’m fine, but a little tired.
+A: You should rest!",What advice does the speaker give?,Go out,Eat dinner,Take a rest,Study more,Take a rest,Inference,1,False,0
+105,13,5,1,prepositions,"A: Where is the cat?
+B: It’s under the table.
+A: Oh, I see it!",Where is the cat?,Under the table,On the table,In the bag,Next to the table,Under the table,Comprehension,1,False,0
+105,14,5,1,prepositions,"A: Where is the cat?
+B: It’s under the table.
+A: Oh, I see it!",Which word shows position?,Table,Under,Cat,See,Under,Grammar,1,False,0
+105,15,5,1,prepositions,"A: Where is the cat?
+B: It’s under the table.
+A: Oh, I see it!",What preposition means 'below'?,In,Under,Behind,On,Under,Vocabulary,1,False,0
+106,16,6,1,simple present,"A: What time do you get up?
+B: I get up at 7 o’clock.
+A: Do you eat breakfast?
+B: Yes, I do.",When does the boy get up?,At eight,At seven,At nine,At six,At seven,Comprehension,1,False,0
+106,17,6,1,simple present,"A: What time do you get up?
+B: I get up at 7 o’clock.
+A: Do you eat breakfast?
+B: Yes, I do.",What tense shows daily action?,Past,Present,Future,Perfect,Present,Grammar,1,False,0
+106,18,6,1,simple present,"A: What time do you get up?
+B: I get up at 7 o’clock.
+A: Do you eat breakfast?
+B: Yes, I do.",Does he eat breakfast?,"Yes, he is.","No, he isn’t.","Yes, he does.","No, he doesn’t.","Yes, he does.",Comprehension,1,False,0
+107,19,7,1,question words,"A: Where do you live?
+B: I live in Seoul.
+A: Do you like it there?
+B: Yes, I love my city.",Where does the boy live?,Paris,Busan,Seoul,Tokyo,Seoul,Comprehension,1,False,0
+107,20,7,1,question words,"A: Where do you live?
+B: I live in Seoul.
+A: Do you like it there?
+B: Yes, I love my city.",What question word asks about place?,What,Where,Who,When,Where,Grammar,1,False,0
+107,21,7,1,question words,"A: Where do you live?
+B: I live in Seoul.
+A: Do you like it there?
+B: Yes, I love my city.",Does he like his city?,"Yes, he does.",He isn’t.,"No, he doesn’t.",He can’t.,"Yes, he does.",Comprehension,1,False,0
+108,22,8,1,modal verb (can),"A: Can you swim?
+B: Yes, I can. I go to the pool every weekend.
+A: Wow, that’s great!",What can the boy do?,Run,Sing,Cook,Swim,Swim,Comprehension,1,False,0
+108,23,8,1,modal verb (can),"A: Can you swim?
+B: Yes, I can. I go to the pool every weekend.
+A: Wow, that’s great!",What modal verb shows ability?,Do,Have,Be,Can,Can,Grammar,1,False,0
+108,24,8,1,modal verb (can),"A: Can you swim?
+B: Yes, I can. I go to the pool every weekend.
+A: Wow, that’s great!",Where does he go?,To the pool,To the beach,To the park,To school,To the pool,Detail,1,False,0
+109,25,9,1,adjectives (color),"A: What color is your bag?
+B: It’s blue.
+A: I like blue too!",What color is the bag?,Red,Green,Blue,Black,Blue,Comprehension,1,False,0
+109,26,9,1,adjectives (color),"A: What color is your bag?
+B: It’s blue.
+A: I like blue too!",Which word is an adjective?,Blue,Bag,Too,Color,Blue,Grammar,1,False,0
+109,27,9,1,adjectives (color),"A: What color is your bag?
+B: It’s blue.
+A: I like blue too!",What does 'too' mean here?,Only,Also,Very,Then,Also,Vocabulary,1,False,0
+110,28,10,1,existence (there is/are),"A: How many chairs are there?
+B: There are four chairs.
+A: And the table?
+B: There is one table.",How many chairs are there?,Three,Two,Four,Five,Four,Comprehension,1,False,0
+110,29,10,1,existence (there is/are),"A: How many chairs are there?
+B: There are four chairs.
+A: And the table?
+B: There is one table.",What structure shows existence?,Do,Have,Can,There is/There are,There is/There are,Grammar,1,False,0
+110,30,10,1,existence (there is/are),"A: How many chairs are there?
+B: There are four chairs.
+A: And the table?
+B: There is one table.",How many tables are there?,Two,Three,Four,One,One,Comprehension,1,False,0
+201,1,1,2,simple present,"A: What do you do after school?
+B: I play soccer with my friends.
+A: That sounds fun!",What does the boy do after school?,Watches TV,Reads books,Plays soccer,Studies math,Plays soccer,Comprehension,2,False,0
+201,2,1,2,simple present,"A: What do you do after school?
+B: I play soccer with my friends.
+A: That sounds fun!",What tense shows regular activity?,Continuous,Simple Present,Future,Past,Simple Present,Grammar,2,False,0
+201,3,1,2,simple present,"A: What do you do after school?
+B: I play soccer with my friends.
+A: That sounds fun!",Who does he play with?,His teacher,His coach,His sister,His friends,His friends,Detail,2,False,0
+202,4,2,2,comparatives,"A: This bag is heavier than that one.
+B: Yes, but it’s cheaper!
+A: I’ll take the cheaper one then.",Which bag is heavier?,Neither,The second one,The first one,Both,The first one,Comprehension,2,False,0
+202,5,2,2,comparatives,"A: This bag is heavier than that one.
+B: Yes, but it’s cheaper!
+A: I’ll take the cheaper one then.",What word shows comparison?,One,Heavier,Take,Bag,Heavier,Grammar,2,False,0
+202,6,2,2,comparatives,"A: This bag is heavier than that one.
+B: Yes, but it’s cheaper!
+A: I’ll take the cheaper one then.",Why does the speaker buy the bag?,It’s newer,It’s heavier,It’s cheaper,It’s bigger,It’s cheaper,Inference,2,False,0
+203,7,3,2,frequency adverbs,"A: How often do you exercise?
+B: I usually run in the morning before school.
+A: Really? I never run that early!",How often does the boy run?,Sometimes,Usually,Never,Always,Usually,Comprehension,2,False,0
+203,8,3,2,frequency adverbs,"A: How often do you exercise?
+B: I usually run in the morning before school.
+A: Really? I never run that early!",Which adverb means 'not at all'?,Always,Usually,Never,Often,Never,Vocabulary,2,False,0
+203,9,3,2,frequency adverbs,"A: How often do you exercise?
+B: I usually run in the morning before school.
+A: Really? I never run that early!",When does he run?,On weekends,At night,Before school,After school,Before school,Detail,2,False,0
+204,10,4,2,object pronouns,"A: Do you know Lisa?
+B: Yes, I see her every day in class.
+A: She’s very nice!",Who does the boy see every day?,His teacher,John,Lisa,Anna,Lisa,Comprehension,2,False,0
+204,11,4,2,object pronouns,"A: Do you know Lisa?
+B: Yes, I see her every day in class.
+A: She’s very nice!",Which word is an object pronoun?,Her,He,We,She,Her,Grammar,2,False,0
+204,12,4,2,object pronouns,"A: Do you know Lisa?
+B: Yes, I see her every day in class.
+A: She’s very nice!",Where does he see her?,At home,At work,At the park,In class,In class,Detail,2,False,0
+205,13,5,2,time expressions,"A: What time is your English class?
+B: It starts at 9:30.
+A: Don’t be late!",When does the class start?,10:00,11:00,9:30,8:00,9:30,Comprehension,2,False,0
+205,14,5,2,time expressions,"A: What time is your English class?
+B: It starts at 9:30.
+A: Don’t be late!",What phrase shows time?,English,Starts at,Be late,Don’t,Starts at,Grammar,2,False,0
+205,15,5,2,time expressions,"A: What time is your English class?
+B: It starts at 9:30.
+A: Don’t be late!",What advice does the speaker give?,Come early,Don’t be late,Study hard,Take notes,Don’t be late,Inference,2,False,0
+206,16,6,2,verbs of preference,"A: Do you like pizza?
+B: I love it! Especially with cheese.
+A: Me too!",What food does the boy love?,Chicken,Rice,Pasta,Pizza,Pizza,Comprehension,2,False,0
+206,17,6,2,verbs of preference,"A: Do you like pizza?
+B: I love it! Especially with cheese.
+A: Me too!",What word means 'like very much'?,Love,Want,Hate,Eat,Love,Vocabulary,2,False,0
+206,18,6,2,verbs of preference,"A: Do you like pizza?
+B: I love it! Especially with cheese.
+A: Me too!",What topping does he like?,Cheese,Ham,Olive,Tomato,Cheese,Detail,2,False,0
+207,19,7,2,prepositions,"A: Where’s the bookstore?
+B: It’s next to the bank, across from the park.",Where is the bookstore?,In front of the station,On the hill,Next to the bank,Behind the school,Next to the bank,Comprehension,2,False,0
+207,20,7,2,prepositions,"A: Where’s the bookstore?
+B: It’s next to the bank, across from the park.",What preposition means 'opposite of'?,On,Next to,Across from,In,Across from,Vocabulary,2,False,0
+207,21,7,2,prepositions,"A: Where’s the bookstore?
+B: It’s next to the bank, across from the park.",What does the boy ask about?,A place,A color,A person,A time,A place,Grammar,2,False,0
+208,22,8,2,simple present,"A: What do you do on weekends?
+B: I visit my grandparents or go shopping.",What does the girl do on weekends?,Visits her grandparents,Goes swimming,Studies,Sleeps all day,Visits her grandparents,Comprehension,2,False,0
+208,23,8,2,simple present,"A: What do you do on weekends?
+B: I visit my grandparents or go shopping.",What tense is used in 'I visit my grandparents'?,Perfect,Simple Present,Past,Future,Simple Present,Grammar,2,False,0
+208,24,8,2,simple present,"A: What do you do on weekends?
+B: I visit my grandparents or go shopping.",What two activities does she mention?,Cooking and cleaning,Running and reading,Visiting and shopping,Sleeping and eating,Visiting and shopping,Detail,2,False,0
+209,25,9,2,weather,"A: What’s the weather like today?
+B: It’s cloudy and windy.
+A: Let’s take our jackets.",How is the weather?,Hot,Rainy,Sunny,Cloudy and windy,Cloudy and windy,Comprehension,2,False,0
+209,26,9,2,weather,"A: What’s the weather like today?
+B: It’s cloudy and windy.
+A: Let’s take our jackets.",What should they take?,Gloves,Hats,Umbrellas,Jackets,Jackets,Inference,2,False,0
+209,27,9,2,weather,"A: What’s the weather like today?
+B: It’s cloudy and windy.
+A: Let’s take our jackets.",Which word describes wind?,Cold,Rainy,Windy,Hot,Windy,Vocabulary,2,False,0
+210,28,10,2,functional language,"A: Do you want to go to the movies?
+B: Sure! What time?
+A: Let’s go at seven.",What are they planning to do?,Study together,Go to the movies,Play soccer,Eat dinner,Go to the movies,Comprehension,2,False,0
+210,29,10,2,functional language,"A: Do you want to go to the movies?
+B: Sure! What time?
+A: Let’s go at seven.",What does 'Sure!' mean here?,I’m busy,Yes,Maybe,"No, thanks",Yes,Vocabulary,2,False,0
+210,30,10,2,functional language,"A: Do you want to go to the movies?
+B: Sure! What time?
+A: Let’s go at seven.",When will they go?,At seven,At six,At five,At nine,At seven,Detail,2,False,0
+301,1,1,3,past tense,"A: What did you do yesterday?
+B: I visited my grandmother and helped her cook dinner.
+A: That’s nice! Did she like it?
+B: Yes, she did.",What did the boy do yesterday?,Visited his grandmother,Went to school,Slept all day,Played soccer,Visited his grandmother,Comprehension,3,False,0
+301,2,1,3,past tense,"A: What did you do yesterday?
+B: I visited my grandmother and helped her cook dinner.
+A: That’s nice! Did she like it?
+B: Yes, she did.",What verb shows the past?,Like,Cook,Visited,Help,Visited,Grammar,3,False,0
+301,3,1,3,past tense,"A: What did you do yesterday?
+B: I visited my grandmother and helped her cook dinner.
+A: That’s nice! Did she like it?
+B: Yes, she did.",Who did he visit?,His teacher,His friend,His sister,His grandmother,His grandmother,Detail,3,False,0
+302,4,2,3,modals (should),"A: I have a headache.
+B: You should take some rest and drink water.
+A: Thanks, I will.",What problem does the girl have?,A sore throat,A cold,A stomachache,A headache,A headache,Comprehension,3,False,0
+302,5,2,3,modals (should),"A: I have a headache.
+B: You should take some rest and drink water.
+A: Thanks, I will.",What advice does the boy give?,Study more,Take rest and drink water,Go running,Eat candy,Take rest and drink water,Function,3,False,0
+302,6,2,3,modals (should),"A: I have a headache.
+B: You should take some rest and drink water.
+A: Thanks, I will.",Which modal verb gives advice?,Must,Can,Should,Do,Should,Grammar,3,False,0
+303,7,3,3,conjunctions,"A: Why are you late?
+B: Because the bus broke down.
+A: Oh no! So you walked here?
+B: Yes, it took twenty minutes.",Why was the boy late?,The bus broke down,He missed the bus,He forgot his bag,He woke up late,The bus broke down,Comprehension,3,False,0
+303,8,3,3,conjunctions,"A: Why are you late?
+B: Because the bus broke down.
+A: Oh no! So you walked here?
+B: Yes, it took twenty minutes.",What conjunction explains a reason?,So,Because,But,And,Because,Grammar,3,False,0
+303,9,3,3,conjunctions,"A: Why are you late?
+B: Because the bus broke down.
+A: Oh no! So you walked here?
+B: Yes, it took twenty minutes.",How long did it take to walk?,20 minutes,30 minutes,15 minutes,10 minutes,20 minutes,Detail,3,False,0
+304,10,4,3,adverbs of frequency,"A: How often do you go to the gym?
+B: I go three times a week, but I sometimes skip Sunday.",How often does she go to the gym?,Once a week,Every day,Three times a week,Never,Three times a week,Comprehension,3,False,0
+304,11,4,3,adverbs of frequency,"A: How often do you go to the gym?
+B: I go three times a week, but I sometimes skip Sunday.",What word shows frequency?,Week,Skip,Go,Sometimes,Sometimes,Grammar,3,False,0
+304,12,4,3,adverbs of frequency,"A: How often do you go to the gym?
+B: I go three times a week, but I sometimes skip Sunday.",What day does she skip?,Saturday,Sunday,Friday,Monday,Sunday,Detail,3,False,0
+305,13,5,3,prepositions of time,"A: When is your birthday?
+B: It’s on March 15th.
+A: Mine is in May!",When is her birthday?,April 15th,March 15th,June 15th,May 15th,March 15th,Comprehension,3,False,0
+305,14,5,3,prepositions of time,"A: When is your birthday?
+B: It’s on March 15th.
+A: Mine is in May!",Which preposition is used with dates?,From,At,On,In,On,Grammar,3,False,0
+305,15,5,3,prepositions of time,"A: When is your birthday?
+B: It’s on March 15th.
+A: Mine is in May!",When is the boy’s birthday?,In April,In June,In May,In March,In May,Detail,3,False,0
+306,16,6,3,functional language (opinions),"A: What do you think about the new cafeteria?
+B: It’s better than before, but the food is still cold.
+A: Yeah, I agree.",What does the boy think about the cafeteria?,It’s worse,It’s new,It’s closed,It’s better,It’s better,Comprehension,3,False,0
+306,17,6,3,functional language (opinions),"A: What do you think about the new cafeteria?
+B: It’s better than before, but the food is still cold.
+A: Yeah, I agree.",What phrase shows agreement?,It’s better,I agree,I think,New cafeteria,I agree,Grammar,3,False,0
+306,18,6,3,functional language (opinions),"A: What do you think about the new cafeteria?
+B: It’s better than before, but the food is still cold.
+A: Yeah, I agree.",What is still cold?,The drink,The room,The table,The food,The food,Detail,3,False,0
+307,19,7,3,sequence words,"A: First, we mix the flour and sugar. Then, we add eggs.
+B: Finally, we bake it for 30 minutes.",What are they making?,Pasta,Cookies,Salad,Cake,Cake,Inference,3,False,0
+307,20,7,3,sequence words,"A: First, we mix the flour and sugar. Then, we add eggs.
+B: Finally, we bake it for 30 minutes.",What word shows the last step?,Then,Mix,Finally,Add,Finally,Grammar,3,False,0
+307,21,7,3,sequence words,"A: First, we mix the flour and sugar. Then, we add eggs.
+B: Finally, we bake it for 30 minutes.",How long do they bake it?,30 minutes,10 minutes,40 minutes,20 minutes,30 minutes,Detail,3,False,0
+308,22,8,3,past continuous,"A: What were you doing at 8 last night?
+B: I was watching TV with my family.
+A: Me too!",What was he doing last night?,Watching TV,Reading,Sleeping,Cooking,Watching TV,Comprehension,3,False,0
+308,23,8,3,past continuous,"A: What were you doing at 8 last night?
+B: I was watching TV with my family.
+A: Me too!",Which tense describes ongoing past action?,Present,Simple Past,Future,Past Continuous,Past Continuous,Grammar,3,False,0
+308,24,8,3,past continuous,"A: What were you doing at 8 last night?
+B: I was watching TV with my family.
+A: Me too!",Who was he with?,Alone,His family,His friends,His teacher,His family,Detail,3,False,0
+309,25,9,3,modals (must),"A: You must wear your seatbelt in the car.
+B: Yes, safety first!",What must the person do?,Use the phone,Turn off lights,Drive fast,Wear a seatbelt,Wear a seatbelt,Comprehension,3,False,0
+309,26,9,3,modals (must),"A: You must wear your seatbelt in the car.
+B: Yes, safety first!",What modal verb shows rule or obligation?,May,Should,Must,Can,Must,Grammar,3,False,0
+309,27,9,3,modals (must),"A: You must wear your seatbelt in the car.
+B: Yes, safety first!",Why must they wear it?,For comfort,For style,For fun,For safety,For safety,Inference,3,False,0
+310,28,10,3,functional language (requests/offers),"A: Can you help me carry these books?
+B: Of course! Let me take some.
+A: Thanks a lot.",What does the girl ask for?,Permission,Money,Help,Advice,Help,Comprehension,3,False,0
+310,29,10,3,functional language (requests/offers),"A: Can you help me carry these books?
+B: Of course! Let me take some.
+A: Thanks a lot.",What phrase shows an offer?,Thanks a lot,Carry these,Can you help,Let me take some,Let me take some,Grammar,3,False,0
+310,30,10,3,functional language (requests/offers),"A: Can you help me carry these books?
+B: Of course! Let me take some.
+A: Thanks a lot.",How does the boy respond?,He laughs,He ignores her,He refuses,He agrees to help,He agrees to help,Function,3,False,0
+401,1,1,4,first conditional,"A: If it rains tomorrow, we’ll have to cancel the picnic.
+B: That’s too bad! What will we do instead?
+A: Maybe we can go to the museum.",What will they do if it rains?,Go to the park,Go to the museum,Stay home,Still have a picnic,Go to the museum,Comprehension,4,False,0
+401,2,1,4,first conditional,"A: If it rains tomorrow, we’ll have to cancel the picnic.
+B: That’s too bad! What will we do instead?
+A: Maybe we can go to the museum.",Which word introduces a condition?,If,Because,When,So,If,Grammar,4,False,0
+401,3,1,4,first conditional,"A: If it rains tomorrow, we’ll have to cancel the picnic.
+B: That’s too bad! What will we do instead?
+A: Maybe we can go to the museum.",Why will they cancel the picnic?,Because it’s too hot,Because of time,Because of rain,Because of traffic,Because of rain,Inference,4,False,0
+402,4,2,4,modals (might/could),"A: What are you doing this weekend?
+B: I might visit my cousin, or I could just relax at home.
+A: Sounds like a good plan.",What might the boy do?,Visit his cousin,Work,Go to school,Travel abroad,Visit his cousin,Comprehension,4,False,0
+402,5,2,4,modals (might/could),"A: What are you doing this weekend?
+B: I might visit my cousin, or I could just relax at home.
+A: Sounds like a good plan.",Which modal shows possibility?,Can,Might,Will,Must,Might,Grammar,4,False,0
+402,6,2,4,modals (might/could),"A: What are you doing this weekend?
+B: I might visit my cousin, or I could just relax at home.
+A: Sounds like a good plan.",What does 'could' mean here?,A possibility,A future plan,An order,A request,A possibility,Vocabulary,4,False,0
+403,7,3,4,relative clauses,"A: Who’s that man talking to Mr. Kim?
+B: That’s the engineer who designed the new bridge.
+A: Wow, it looks amazing!",Who is the man?,A student,A teacher,An engineer,A driver,An engineer,Comprehension,4,False,0
+403,8,3,4,relative clauses,"A: Who’s that man talking to Mr. Kim?
+B: That’s the engineer who designed the new bridge.
+A: Wow, it looks amazing!",Which word joins the clause?,Where,When,That,Who,Who,Grammar,4,False,0
+403,9,3,4,relative clauses,"A: Who’s that man talking to Mr. Kim?
+B: That’s the engineer who designed the new bridge.
+A: Wow, it looks amazing!",What did the engineer design?,A building,A plane,A bridge,A car,A bridge,Detail,4,False,0
+404,10,4,4,gerunds,"A: I enjoy swimming in the morning.
+B: Really? I prefer running at night.
+A: Both are good exercise!",What activity does the girl enjoy?,Running,Swimming,Walking,Reading,Swimming,Comprehension,4,False,0
+404,11,4,4,gerunds,"A: I enjoy swimming in the morning.
+B: Really? I prefer running at night.
+A: Both are good exercise!",What type of word is 'swimming'?,Gerund,Verb,Adjective,Noun,Gerund,Grammar,4,False,0
+404,12,4,4,gerunds,"A: I enjoy swimming in the morning.
+B: Really? I prefer running at night.
+A: Both are good exercise!",When does the boy run?,Morning,Afternoon,Night,Evening,Night,Detail,4,False,0
+405,13,5,4,modals (have to),"A: We have to finish this project by Friday.
+B: That’s a lot of work!
+A: Don’t worry. If we start today, we can do it.",When must they finish the project?,Friday,Thursday,Sunday,Saturday,Friday,Comprehension,4,False,0
+405,14,5,4,modals (have to),"A: We have to finish this project by Friday.
+B: That’s a lot of work!
+A: Don’t worry. If we start today, we can do it.",What does 'have to' show?,Ability,Possibility,Obligation,Habit,Obligation,Grammar,4,False,0
+405,15,5,4,modals (have to),"A: We have to finish this project by Friday.
+B: That’s a lot of work!
+A: Don’t worry. If we start today, we can do it.",What advice does the speaker give?,Start today,Wait until Friday,Take a break,Ask for help,Start today,Function,4,False,0
+406,16,6,4,comparatives of degree,"A: This test is harder than the last one!
+B: I agree, but it’s also more interesting.",How is the test different?,It’s easier,It’s shorter,It’s harder,It’s boring,It’s harder,Comprehension,4,False,0
+406,17,6,4,comparatives of degree,"A: This test is harder than the last one!
+B: I agree, but it’s also more interesting.",Which word compares two things?,Test,One,Harder,Also,Harder,Grammar,4,False,0
+406,18,6,4,comparatives of degree,"A: This test is harder than the last one!
+B: I agree, but it’s also more interesting.",What is also true about the test?,It’s the same,It’s longer,It’s more interesting,It’s worse,It’s more interesting,Inference,4,False,0
+407,19,7,4,functional language (preferences),"A: Do you prefer reading books or watching movies?
+B: I prefer watching movies because I can relax.",What does the boy prefer?,Sleeping,Watching movies,Reading books,Playing games,Watching movies,Comprehension,4,False,0
+407,20,7,4,functional language (preferences),"A: Do you prefer reading books or watching movies?
+B: I prefer watching movies because I can relax.",What word shows reason?,Or,But,And,Because,Because,Grammar,4,False,0
+407,21,7,4,functional language (preferences),"A: Do you prefer reading books or watching movies?
+B: I prefer watching movies because I can relax.",Why does he prefer movies?,They are funny,They are relaxing,They are short,They are cheap,They are relaxing,Inference,4,False,0
+408,22,8,4,second conditional,"A: If I had more time, I would learn to play guitar.
+B: Me too! Music is amazing.",What would the speaker do with more time?,Play soccer,Travel,Learn guitar,Study math,Learn guitar,Comprehension,4,False,0
+408,23,8,4,second conditional,"A: If I had more time, I would learn to play guitar.
+B: Me too! Music is amazing.",Which word shows an unreal situation?,Had,More,If,Would,Would,Grammar,4,False,0
+408,24,8,4,second conditional,"A: If I had more time, I would learn to play guitar.
+B: Me too! Music is amazing.",What do they both think about music?,It’s expensive,It’s amazing,It’s easy,It’s boring,It’s amazing,Inference,4,False,0
+409,25,9,4,present perfect,"A: Have you ever been to Japan?
+B: Yes, I’ve been there twice.
+A: Did you like it?
+B: I loved it!",How many times has the boy been to Japan?,Once,Twice,Three times,Never,Twice,Comprehension,4,False,0
+409,26,9,4,present perfect,"A: Have you ever been to Japan?
+B: Yes, I’ve been there twice.
+A: Did you like it?
+B: I loved it!",Which form is present perfect?,Was,Go,Have been,Went,Have been,Grammar,4,False,0
+409,27,9,4,present perfect,"A: Have you ever been to Japan?
+B: Yes, I’ve been there twice.
+A: Did you like it?
+B: I loved it!",What did he think of Japan?,He was bored,He didn’t like it,He loved it,He forgot,He loved it,Inference,4,False,0
+410,28,10,4,functional language (advice),"A: I’m worried about my exam tomorrow.
+B: Don’t worry. Just review your notes and sleep early.
+A: Thanks. I’ll do that.",What is the girl worried about?,Her exam,Her health,Her trip,Her friend,Her exam,Comprehension,4,False,0
+410,29,10,4,functional language (advice),"A: I’m worried about my exam tomorrow.
+B: Don’t worry. Just review your notes and sleep early.
+A: Thanks. I’ll do that.",What advice does the boy give?,Eat dinner,Review and sleep early,Go out,Watch TV,Review and sleep early,Function,4,False,0
+410,30,10,4,functional language (advice),"A: I’m worried about my exam tomorrow.
+B: Don’t worry. Just review your notes and sleep early.
+A: Thanks. I’ll do that.",What does 'Don’t worry' express?,Encouragement,Sadness,Anger,Surprise,Encouragement,Vocabulary,4,False,0
+501,1,1,5,reported speech,"A: Did you hear what the teacher said?
+B: Yes, she said the project deadline was extended.
+A: That’s great! We’ll have more time to prepare.",What did the teacher say?,The exam was today,The project was canceled,The topic was changed,The project deadline was extended,The project deadline was extended,Comprehension,5,False,0
+501,2,1,5,reported speech,"A: Did you hear what the teacher said?
+B: Yes, she said the project deadline was extended.
+A: That’s great! We’ll have more time to prepare.",Which tense is used in reported speech?,Conditional,Present,Past,Future,Past,Grammar,5,False,0
+501,3,1,5,reported speech,"A: Did you hear what the teacher said?
+B: Yes, she said the project deadline was extended.
+A: That’s great! We’ll have more time to prepare.",Why are they happy?,They got higher grades,They have more time,They have no homework,They finished early,They have more time,Inference,5,False,0
+502,4,2,5,modal perfect (should have),"A: I missed the bus this morning.
+B: You should have left earlier.
+A: I know. I won’t be late tomorrow.",What happened to the speaker?,He missed the bus,He walked to school,He took a taxi,He stayed home,He missed the bus,Comprehension,5,False,0
+502,5,2,5,modal perfect (should have),"A: I missed the bus this morning.
+B: You should have left earlier.
+A: I know. I won’t be late tomorrow.",What does 'should have' express?,Future plan,Possibility,Past regret,Permission,Past regret,Grammar,5,False,0
+502,6,2,5,modal perfect (should have),"A: I missed the bus this morning.
+B: You should have left earlier.
+A: I know. I won’t be late tomorrow.",What will he do tomorrow?,Take the same bus,Skip school,Be late again,Wake up earlier,Wake up earlier,Inference,5,False,0
+503,7,3,5,passive voice,"A: Who built this bridge?
+B: It was built by Korean engineers in 1990.
+A: It still looks strong.",Who built the bridge?,Korean engineers,Chinese engineers,American engineers,Japanese engineers,Korean engineers,Comprehension,5,False,0
+503,8,3,5,passive voice,"A: Who built this bridge?
+B: It was built by Korean engineers in 1990.
+A: It still looks strong.",Which form is passive?,Will build,Builds,Was built,Built,Was built,Grammar,5,False,0
+503,9,3,5,passive voice,"A: Who built this bridge?
+B: It was built by Korean engineers in 1990.
+A: It still looks strong.",When was it built?,1990,1980,1995,2000,1990,Detail,5,False,0
+504,10,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
+B: What if we don’t?
+A: Then we’ll just order takeout here.",What will they do if they finish early?,Go for coffee,Go home,Take a nap,Order takeout,Go for coffee,Comprehension,5,False,0
+504,11,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
+B: What if we don’t?
+A: Then we’ll just order takeout here.",What does 'if' introduce?,A contrast,A reason,A condition,A result,A condition,Grammar,5,False,0
+504,12,4,5,conditionals (mixed),"A: If we finish early, we can go for coffee.
+B: What if we don’t?
+A: Then we’ll just order takeout here.",What will they do if they don’t finish early?,Leave,Sleep,Order takeout,Go for coffee,Order takeout,Inference,5,False,0
+505,13,5,5,indirect questions,"A: Do you know where the meeting is being held?
+B: Yes, it’s in Room 305.
+A: Thanks! I always get lost in this building.",Where is the meeting?,Room 305,Room 405,Room 505,Room 205,Room 305,Comprehension,5,False,0
+505,14,5,5,indirect questions,"A: Do you know where the meeting is being held?
+B: Yes, it’s in Room 305.
+A: Thanks! I always get lost in this building.",What structure shows an indirect question?,Where is…,Who…,Can you…,Do you know where…,Do you know where…,Grammar,5,False,0
+505,15,5,5,indirect questions,"A: Do you know where the meeting is being held?
+B: Yes, it’s in Room 305.
+A: Thanks! I always get lost in this building.",Why does the speaker thank the other?,For opening the door,For helping with homework,For giving directions,For lending money,For giving directions,Function,5,False,0
+506,16,6,5,modals (may/might),"A: Do you think it will snow this weekend?
+B: It might. The weather is getting colder.
+A: I hope it does!",What are they talking about?,Sports,A trip,The weather,Homework,The weather,Comprehension,5,False,0
+506,17,6,5,modals (may/might),"A: Do you think it will snow this weekend?
+B: It might. The weather is getting colder.
+A: I hope it does!",Which modal shows possibility?,Can,Might,Should,Must,Might,Grammar,5,False,0
+506,18,6,5,modals (may/might),"A: Do you think it will snow this weekend?
+B: It might. The weather is getting colder.
+A: I hope it does!",What does the boy hope?,That it will be warm,That it will snow,That it will rain,That it will be sunny,That it will snow,Inference,5,False,0
+507,19,7,5,functional language (opinions),"A: I think students should wear uniforms.
+B: Really? I disagree. Uniforms take away individuality.
+A: Maybe, but they make everyone equal.",What is the topic of their discussion?,Homework,School uniforms,Sports,Exams,School uniforms,Comprehension,5,False,0
+507,20,7,5,functional language (opinions),"A: I think students should wear uniforms.
+B: Really? I disagree. Uniforms take away individuality.
+A: Maybe, but they make everyone equal.",Which word introduces opinion?,Should,I think,Equal,Maybe,I think,Grammar,5,False,0
+507,21,7,5,functional language (opinions),"A: I think students should wear uniforms.
+B: Really? I disagree. Uniforms take away individuality.
+A: Maybe, but they make everyone equal.",Why does the boy disagree?,Uniforms are uncomfortable,Uniforms are ugly,Uniforms reduce individuality,Uniforms are expensive,Uniforms reduce individuality,Inference,5,False,0
+508,22,8,5,reported requests,"A: Did the manager say anything?
+B: Yes, he asked us to send the report by tomorrow.
+A: Then we’d better start now.",What did the manager ask?,To finish early,To send the report,To cancel the meeting,To take a break,To send the report,Comprehension,5,False,0
+508,23,8,5,reported requests,"A: Did the manager say anything?
+B: Yes, he asked us to send the report by tomorrow.
+A: Then we’d better start now.",Which form shows a reported request?,Wanted we…,Told us that…,Said we…,Asked us to…,Asked us to…,Grammar,5,False,0
+508,24,8,5,reported requests,"A: Did the manager say anything?
+B: Yes, he asked us to send the report by tomorrow.
+A: Then we’d better start now.",When must they send the report?,Next week,Today,Tomorrow,Tonight,Tomorrow,Detail,5,False,0
+509,25,9,5,second conditional,"A: If you won the lottery, what would you do?
+B: I’d travel around the world.
+A: I’d start a charity!",What would the boy do if he won?,Buy a car,Quit his job,Travel the world,Build a house,Travel the world,Comprehension,5,False,0
+509,26,9,5,second conditional,"A: If you won the lottery, what would you do?
+B: I’d travel around the world.
+A: I’d start a charity!",Which word shows an unreal condition?,Would,Do,If,Won,Would,Grammar,5,False,0
+509,27,9,5,second conditional,"A: If you won the lottery, what would you do?
+B: I’d travel around the world.
+A: I’d start a charity!",What would the girl do?,Travel the world,Buy a plane,Start a charity,Save the money,Start a charity,Detail,5,False,0
+510,28,10,5,passive voice (process),"A: How is chocolate made?
+B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",What is chocolate made from?,Cocoa beans,Sugar cane,Milk,Coffee beans,Cocoa beans,Comprehension,5,False,0
+510,29,10,5,passive voice (process),"A: How is chocolate made?
+B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",Which word shows passive form?,Ground,From,Roasted,Made,Made,Grammar,5,False,0
+510,30,10,5,passive voice (process),"A: How is chocolate made?
+B: It’s made from cocoa beans that are dried, roasted, and ground into powder.",What happens after the beans are roasted?,They are ground into powder,They are mixed with milk,They are melted,They are eaten,They are ground into powder,Detail,5,False,0
+601,1,1,6,modals of deduction,"A: I can’t find my wallet anywhere.
+B: You must have left it in the car.
+A: Oh, maybe you’re right. I was in a hurry this morning.",What does 'must have left' express?,Future plan,Obligation,Past certainty,Possibility,Past certainty,Grammar,6,False,0
+601,2,1,6,modals of deduction,"A: I can’t find my wallet anywhere.
+B: You must have left it in the car.
+A: Oh, maybe you’re right. I was in a hurry this morning.",Where did he probably leave the wallet?,At school,At home,In the store,In the car,In the car,Inference,6,False,0
+601,3,1,6,modals of deduction,"A: I can’t find my wallet anywhere.
+B: You must have left it in the car.
+A: Oh, maybe you’re right. I was in a hurry this morning.",Why does he think that?,He bought something,He changed cars,He was in a hurry,He lost money,He was in a hurry,Comprehension,6,False,0
+602,4,2,6,third conditional,"A: If I had studied harder, I would have passed the exam.
+B: Don’t worry. You can try again next term.
+A: Yeah, I guess you’re right.",What does the boy regret?,Being late,Missing school,Not studying harder,Changing subjects,Not studying harder,Comprehension,6,False,0
+602,5,2,6,third conditional,"A: If I had studied harder, I would have passed the exam.
+B: Don’t worry. You can try again next term.
+A: Yeah, I guess you’re right.",Which structure shows an unreal past?,If I study hard...,If I study...,If I will study...,If I had studied...,If I had studied...,Grammar,6,False,0
+602,6,2,6,third conditional,"A: If I had studied harder, I would have passed the exam.
+B: Don’t worry. You can try again next term.
+A: Yeah, I guess you’re right.",What can he do next term?,Take a break,Move abroad,Try again,Quit school,Try again,Inference,6,False,0
+603,7,3,6,reported speech (complex),"A: What did the manager say about the presentation?
+B: She said it had been excellent and that we should prepare a summary for the board.
+A: That’s great feedback!",What did the manager think?,It was short,It was late,It was excellent,It was canceled,It was excellent,Comprehension,6,False,0
+603,8,3,6,reported speech (complex),"A: What did the manager say about the presentation?
+B: She said it had been excellent and that we should prepare a summary for the board.
+A: That’s great feedback!",Which tense is used in reported speech?,Past perfect,Present,Conditional,Future,Past perfect,Grammar,6,False,0
+603,9,3,6,reported speech (complex),"A: What did the manager say about the presentation?
+B: She said it had been excellent and that we should prepare a summary for the board.
+A: That’s great feedback!",What did they have to prepare?,A summary,A report,A video,A poster,A summary,Detail,6,False,0
+604,10,4,6,inversion,"A: Rarely have I seen such a beautiful sunset.
+B: I know, the colors are unbelievable!",What is unusual about the speaker’s sentence?,The word order,The subject,The tense,The adjective,The word order,Grammar,6,False,0
+604,11,4,6,inversion,"A: Rarely have I seen such a beautiful sunset.
+B: I know, the colors are unbelievable!",What is the speaker describing?,A mountain,A storm,A sunset,A beach,A sunset,Comprehension,6,False,0
+604,12,4,6,inversion,"A: Rarely have I seen such a beautiful sunset.
+B: I know, the colors are unbelievable!",What does 'rarely' mean here?,Always,Sometimes,Not often,Never,Not often,Vocabulary,6,False,0
+605,13,5,6,linking devices (contrast),"A: Although the movie was long, I really enjoyed it.
+B: Me too, but the ending was confusing.
+A: True, yet it made me think.",How did they feel about the movie?,They fell asleep,They enjoyed it,They left early,They hated it,They enjoyed it,Comprehension,6,False,0
+605,14,5,6,linking devices (contrast),"A: Although the movie was long, I really enjoyed it.
+B: Me too, but the ending was confusing.
+A: True, yet it made me think.",Which word shows contrast?,Although,Because,Since,Before,Although,Grammar,6,False,0
+605,15,5,6,linking devices (contrast),"A: Although the movie was long, I really enjoyed it.
+B: Me too, but the ending was confusing.
+A: True, yet it made me think.",What did the boy find confusing?,The beginning,The actors,The sound,The ending,The ending,Detail,6,False,0
+606,16,6,6,participle clauses,"A: Walking through the forest, we saw a group of deer.
+B: That must have been amazing!
+A: It was. They didn’t even notice us.",What were they doing when they saw the deer?,Running,Walking,Driving,Eating,Walking,Comprehension,6,False,0
+606,17,6,6,participle clauses,"A: Walking through the forest, we saw a group of deer.
+B: That must have been amazing!
+A: It was. They didn’t even notice us.",What structure is 'Walking through the forest'?,Infinitive phrase,Relative clause,Adverb clause,Participle clause,Participle clause,Grammar,6,False,0
+606,18,6,6,participle clauses,"A: Walking through the forest, we saw a group of deer.
+B: That must have been amazing!
+A: It was. They didn’t even notice us.",What did they see?,A bird,A group of deer,A river,A bear,A group of deer,Detail,6,False,0
+607,19,7,6,functional language (doubt),"A: I’m not sure that’s the best idea.
+B: Why not?
+A: Because it could make the problem worse.
+B: Hmm, you might be right.",What is the speaker unsure about?,An idea,A schedule,A rule,A person,An idea,Comprehension,6,False,0
+607,20,7,6,functional language (doubt),"A: I’m not sure that’s the best idea.
+B: Why not?
+A: Because it could make the problem worse.
+B: Hmm, you might be right.",What expression shows doubt?,Why not,Might be,Could make,I’m not sure,I’m not sure,Grammar,6,False,0
+607,21,7,6,functional language (doubt),"A: I’m not sure that’s the best idea.
+B: Why not?
+A: Because it could make the problem worse.
+B: Hmm, you might be right.",What does 'you might be right' mean?,Apology,Refusal,Agreement,Disagreement,Agreement,Function,6,False,0
+608,22,8,6,passive voice (abstract),"A: The new policy was introduced to reduce waste.
+B: Was it successful?
+A: Not really, but some improvements were made.",Why was the policy introduced?,To increase spending,To reduce waste,To hire workers,To change rules,To reduce waste,Comprehension,6,False,0
+608,23,8,6,passive voice (abstract),"A: The new policy was introduced to reduce waste.
+B: Was it successful?
+A: Not really, but some improvements were made.",Which structure is passive?,Was introduced,Reduce waste,To make,Was successful,Was introduced,Grammar,6,False,0
+608,24,8,6,passive voice (abstract),"A: The new policy was introduced to reduce waste.
+B: Was it successful?
+A: Not really, but some improvements were made.",What was the result?,It failed completely,It was perfect,They canceled it,Some improvements were made,Some improvements were made,Inference,6,False,0
+609,25,9,6,modal perfect (could have),"A: I could have called you, but my phone died.
+B: It’s okay. I was asleep anyway.",Why didn’t the speaker call?,He forgot,His phone died,He didn’t want to,He was busy,His phone died,Comprehension,6,False,0
+609,26,9,6,modal perfect (could have),"A: I could have called you, but my phone died.
+B: It’s okay. I was asleep anyway.",What does 'could have called' express?,Obligation,Request,Missed possibility,Habit,Missed possibility,Grammar,6,False,0
+609,27,9,6,modal perfect (could have),"A: I could have called you, but my phone died.
+B: It’s okay. I was asleep anyway.",What was the listener doing?,Sleeping,Driving,Working,Talking,Sleeping,Detail,6,False,0
+610,28,10,6,cause and effect,"A: The river rose quickly because of the heavy rain.
+B: That’s why the bridge was closed.
+A: Yeah, it was dangerous to cross.",Why did the river rise?,Because of heat,Because of wind,Because of rain,Because of snow,Because of rain,Comprehension,6,False,0
+610,29,10,6,cause and effect,"A: The river rose quickly because of the heavy rain.
+B: That’s why the bridge was closed.
+A: Yeah, it was dangerous to cross.",Which phrase shows cause?,It was,That’s why,Quickly,Because of,Because of,Grammar,6,False,0
+610,30,10,6,cause and effect,"A: The river rose quickly because of the heavy rain.
+B: That’s why the bridge was closed.
+A: Yeah, it was dangerous to cross.",Why was the bridge closed?,It was clean,It was fixed,It was old,It was dangerous,It was dangerous,Inference,6,False,0
+701,1,1,7,concessive clauses,"A: Although technology saves time, it also steals our attention.
+B: That’s true. Efficiency can make us forget what’s meaningful.
+A: Maybe balance is the only progress worth having.",What is the main idea of the conversation?,Attention is more valuable than technology,Modern life requires more technology,Balance between efficiency and meaning is essential,Technology only improves life,Balance between efficiency and meaning is essential,Inference,7,False,0
+701,2,1,7,concessive clauses,"A: Although technology saves time, it also steals our attention.
+B: That’s true. Efficiency can make us forget what’s meaningful.
+A: Maybe balance is the only progress worth having.",What word introduces contrast?,Because,If,Since,Although,Although,Grammar,7,False,0
+701,3,1,7,concessive clauses,"A: Although technology saves time, it also steals our attention.
+B: That’s true. Efficiency can make us forget what’s meaningful.
+A: Maybe balance is the only progress worth having.",What tone best describes the speakers?,Sarcastic,Irritated,Indifferent,Reflective,Reflective,Tone,7,False,0
+702,4,2,7,cause and consequence,"A: The climate summit ended without agreement.
+B: Then emissions will likely continue rising.
+A: Which means our targets are becoming promises instead of progress.",What are they discussing?,A climate summit,A political election,A business meeting,A school project,A climate summit,Comprehension,7,False,0
+702,5,2,7,cause and consequence,"A: The climate summit ended without agreement.
+B: Then emissions will likely continue rising.
+A: Which means our targets are becoming promises instead of progress.",What consequence do they mention?,People will travel less,Laws will change,Pollution will decrease,Emissions will rise,Emissions will rise,Inference,7,False,0
+702,6,2,7,cause and consequence,"A: The climate summit ended without agreement.
+B: Then emissions will likely continue rising.
+A: Which means our targets are becoming promises instead of progress.",Which phrase shows cause and effect?,Instead of,Likely continue,Which means,Without agreement,Which means,Grammar,7,False,0
+703,7,3,7,nominalization,"A: Cooperation among nations is difficult.
+B: True, but collaboration defines our survival.
+A: That’s a powerful statement.",What noun form is derived from a verb?,Survival,Powerful,Collaboration,Difficult,Collaboration,Grammar,7,False,0
+703,8,3,7,nominalization,"A: Cooperation among nations is difficult.
+B: True, but collaboration defines our survival.
+A: That’s a powerful statement.",What is the main idea?,Nations are independent,Survival is easy,Power leads to unity,Cooperation is necessary for survival,Cooperation is necessary for survival,Inference,7,False,0
+703,9,3,7,nominalization,"A: Cooperation among nations is difficult.
+B: True, but collaboration defines our survival.
+A: That’s a powerful statement.",What is the tone of the final statement?,Respectful,Critical,Casual,Angry,Respectful,Tone,7,False,0
+704,10,4,7,causatives,"A: The director had the report rewritten twice.
+B: She must be looking for perfection.
+A: Or maybe just clarity.",What happened to the report?,It was rewritten twice,It was ignored,It was delayed,It was deleted,It was rewritten twice,Comprehension,7,False,0
+704,11,4,7,causatives,"A: The director had the report rewritten twice.
+B: She must be looking for perfection.
+A: Or maybe just clarity.",What structure expresses causation?,Was rewritten,Looking for,Had the report rewritten,Must be,Had the report rewritten,Grammar,7,False,0
+704,12,4,7,causatives,"A: The director had the report rewritten twice.
+B: She must be looking for perfection.
+A: Or maybe just clarity.",What do they imply about the director?,She demands high standards,She dislikes writing,She is confused,She ignores mistakes,She demands high standards,Inference,7,False,0
+705,13,5,7,mixed conditionals,"A: If I were more confident, I would have applied for that scholarship.
+B: You still can next year.
+A: Maybe, but opportunities don’t wait forever.",What does the boy regret?,Missing a test,Talking too much,Taking a break,Not applying for the scholarship,Not applying for the scholarship,Comprehension,7,False,0
+705,14,5,7,mixed conditionals,"A: If I were more confident, I would have applied for that scholarship.
+B: You still can next year.
+A: Maybe, but opportunities don’t wait forever.",Which structure mixes past and present?,If I will… I can…,If I had… I might…,If I were… I would have…,If I am… I would…,If I were… I would have…,Grammar,7,False,0
+705,15,5,7,mixed conditionals,"A: If I were more confident, I would have applied for that scholarship.
+B: You still can next year.
+A: Maybe, but opportunities don’t wait forever.",What is the tone of his last line?,Confident,Excited,Regretful,Angry,Regretful,Tone,7,False,0
+706,16,6,7,reported speech (argument),"A: Some economists claim that happiness increases with income.
+B: But others argue it plateaus after a certain point.
+A: Maybe money buys comfort, not contentment.",What are they debating?,The price of comfort,The need for money,The meaning of contentment,The link between income and happiness,The link between income and happiness,Comprehension,7,False,0
+706,17,6,7,reported speech (argument),"A: Some economists claim that happiness increases with income.
+B: But others argue it plateaus after a certain point.
+A: Maybe money buys comfort, not contentment.",What does 'plateaus' mean here?,Stops increasing,Falls sharply,Begins rising,Disappears,Stops increasing,Vocabulary,7,False,0
+706,18,6,7,reported speech (argument),"A: Some economists claim that happiness increases with income.
+B: But others argue it plateaus after a certain point.
+A: Maybe money buys comfort, not contentment.",What is the implied conclusion?,Income is not important,"Money improves comfort, not happiness",Economists are wrong,Happiness depends only on wealth,"Money improves comfort, not happiness",Inference,7,False,0
+707,19,7,7,inversion for emphasis,"A: Never before had I seen such an inspiring lecture.
+B: It really was impressive.
+A: I’m thinking of applying to that university now.",What does 'Never before had I seen' emphasize?,Surprise and admiration,Fear,Disagreement,Disinterest,Surprise and admiration,Inference,7,False,0
+707,20,7,7,inversion for emphasis,"A: Never before had I seen such an inspiring lecture.
+B: It really was impressive.
+A: I’m thinking of applying to that university now.",Which structure is inverted?,Thinking of,Applying to,Had I seen,Was impressive,Had I seen,Grammar,7,False,0
+707,21,7,7,inversion for emphasis,"A: Never before had I seen such an inspiring lecture.
+B: It really was impressive.
+A: I’m thinking of applying to that university now.",What does the speaker plan to do?,Write a report,Leave the class,Apply to the university,Join a club,Apply to the university,Comprehension,7,False,0
+708,22,8,7,rhetorical devices,"A: Do you think small actions can really change the world?
+B: Every great movement started small.
+A: That’s a good reminder.",What rhetorical device is used by the second speaker?,Analogy,Alliteration,Hyperbole,Metaphor,Analogy,Grammar,7,False,0
+708,23,8,7,rhetorical devices,"A: Do you think small actions can really change the world?
+B: Every great movement started small.
+A: That’s a good reminder.",What does the speaker imply?,Small actions can lead to big change,World change is too hard,Change is impossible,Movements fail easily,Small actions can lead to big change,Inference,7,False,0
+708,24,8,7,rhetorical devices,"A: Do you think small actions can really change the world?
+B: Every great movement started small.
+A: That’s a good reminder.",What tone does 'That’s a good reminder' express?,Appreciation,Sarcasm,Doubt,Confusion,Appreciation,Tone,7,False,0
+709,25,9,7,nominal clauses,"A: What matters is not who wins, but how the game is played.
+B: I agree. Integrity outlasts victory.",What does the speaker value most?,Winning,Popularity,Integrity,Luck,Integrity,Inference,7,False,0
+709,26,9,7,nominal clauses,"A: What matters is not who wins, but how the game is played.
+B: I agree. Integrity outlasts victory.",Which phrase is a nominal clause?,Outlasts victory,What matters is...,How the game is played,I agree,What matters is...,Grammar,7,False,0
+709,27,9,7,nominal clauses,"A: What matters is not who wins, but how the game is played.
+B: I agree. Integrity outlasts victory.",What is the moral lesson?,Integrity is more important than winning,Games are meaningless,Winning is everything,Victory is easy,Integrity is more important than winning,Inference,7,False,0
+710,28,10,7,functional language (persuasion),"A: We should focus on renewable energy now rather than later.
+B: But it’s expensive.
+A: True, but inaction costs even more in the long term.",What is the topic?,Education,Renewable energy,Politics,Economics,Renewable energy,Comprehension,7,False,0
+710,29,10,7,functional language (persuasion),"A: We should focus on renewable energy now rather than later.
+B: But it’s expensive.
+A: True, but inaction costs even more in the long term.",What is the persuasive technique used?,Contrast of short-term vs long-term cost,Emotional appeal,Repetition,Personal story,Contrast of short-term vs long-term cost,Grammar,7,False,0
+710,30,10,7,functional language (persuasion),"A: We should focus on renewable energy now rather than later.
+B: But it’s expensive.
+A: True, but inaction costs even more in the long term.",What does 'inaction costs even more' mean?,Not acting now will be more expensive later,Renewable energy is cheap,Government should act slowly,Money will be lost immediately,Not acting now will be more expensive later,Inference,7,False,0

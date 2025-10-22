@@ -1,106 +1,106 @@
-question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
-1,1,1,be verb,"A: What’s your name?
+global_dialog_id,question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+101,1,1,1,be verb,"A: What’s your name?
 B: My name is David.
 A: Are you a student?
-B: Yes, I am.",What is the boy’s name?,John,David,Alex,Peter,David,Comprehension,1,False,0
-2,1,1,be verb,"A: What’s your name?
+B: Yes, I am.",What is the boy’s name?,Peter,Alex,John,David,David,Comprehension,1,False,0
+101,2,1,1,be verb,"A: What’s your name?
 B: My name is David.
 A: Are you a student?
-B: Yes, I am.",Is David a teacher?,"Yes, he is.","No, he isn’t.","Yes, she is.","No, she’s not.","No, he isn’t.",Grammar,1,False,0
-3,1,1,be verb,"A: What’s your name?
+B: Yes, I am.",Is David a teacher?,"No, she’s not.","No, he isn’t.","Yes, she is.","Yes, he is.","No, he isn’t.",Grammar,1,False,0
+101,3,1,1,be verb,"A: What’s your name?
 B: My name is David.
 A: Are you a student?
-B: Yes, I am.",What verb form shows identity here?,Have,Do,Be,Go,Be,Grammar,1,False,0
-4,2,1,nouns,"A: Who is she?
+B: Yes, I am.",What verb form shows identity here?,Do,Have,Be,Go,Be,Grammar,1,False,0
+102,4,2,1,nouns,"A: Who is she?
 B: She’s my sister.
 A: Is she older or younger?
-B: She’s younger than me.",Who is the girl?,His teacher,His sister,His mother,His friend,His sister,Comprehension,1,False,0
-5,2,1,nouns,"A: Who is she?
+B: She’s younger than me.",Who is the girl?,His mother,His friend,His teacher,His sister,His sister,Comprehension,1,False,0
+102,5,2,1,nouns,"A: Who is she?
 B: She’s my sister.
 A: Is she older or younger?
-B: She’s younger than me.",What word shows family relation?,Sister,Older,Younger,Friend,Sister,Vocabulary,1,False,0
-6,2,1,nouns,"A: Who is she?
+B: She’s younger than me.",What word shows family relation?,Younger,Older,Friend,Sister,Sister,Vocabulary,1,False,0
+102,6,2,1,nouns,"A: Who is she?
 B: She’s my sister.
 A: Is she older or younger?
-B: She’s younger than me.",Is the sister older?,"Yes, she is.","No, she isn’t.","Yes, she’s taller.","No, she can’t.","No, she isn’t.",Comprehension,1,False,0
-7,3,1,pronouns,"A: Is this your pencil?
+B: She’s younger than me.",Is the sister older?,"No, she isn’t.","No, she can’t.","Yes, she is.","Yes, she’s taller.","No, she isn’t.",Comprehension,1,False,0
+103,7,3,1,pronouns,"A: Is this your pencil?
 B: No, it isn’t mine. It’s hers.
-A: Oh, okay.",Whose pencil is it?,His,Hers,Mine,Yours,Hers,Comprehension,1,False,0
-8,3,1,pronouns,"A: Is this your pencil?
+A: Oh, okay.",Whose pencil is it?,His,Yours,Hers,Mine,Hers,Comprehension,1,False,0
+103,8,3,1,pronouns,"A: Is this your pencil?
 B: No, it isn’t mine. It’s hers.
-A: Oh, okay.",What pronoun replaces 'Mary’s pencil'?,Hers,She,Her,His,Hers,Grammar,1,False,0
-9,3,1,pronouns,"A: Is this your pencil?
+A: Oh, okay.",What pronoun replaces 'Mary’s pencil'?,Her,His,She,Hers,Hers,Grammar,1,False,0
+103,9,3,1,pronouns,"A: Is this your pencil?
 B: No, it isn’t mine. It’s hers.
-A: Oh, okay.",What does 'it' refer to?,A pen,A book,A pencil,A bag,A pencil,Reference,1,False,0
-10,4,1,adjectives,"A: How are you today?
+A: Oh, okay.",What does 'it' refer to?,A pen,A bag,A pencil,A book,A pencil,Reference,1,False,0
+104,10,4,1,adjectives,"A: How are you today?
 B: I’m fine, but a little tired.
-A: You should rest!",How does the girl feel?,Happy,Tired,Angry,Hungry,Tired,Comprehension,1,False,0
-11,4,1,adjectives,"A: How are you today?
+A: You should rest!",How does the girl feel?,Tired,Hungry,Angry,Happy,Tired,Comprehension,1,False,0
+104,11,4,1,adjectives,"A: How are you today?
 B: I’m fine, but a little tired.
-A: You should rest!",What adjective describes feeling?,Rest,Fine,Should,You,Fine,Grammar,1,False,0
-12,4,1,adjectives,"A: How are you today?
+A: You should rest!",What adjective describes feeling?,Fine,Should,You,Rest,Fine,Grammar,1,False,0
+104,12,4,1,adjectives,"A: How are you today?
 B: I’m fine, but a little tired.
-A: You should rest!",What advice does the speaker give?,Study more,Take a rest,Go out,Eat dinner,Take a rest,Inference,1,False,0
-13,5,1,prepositions,"A: Where is the cat?
+A: You should rest!",What advice does the speaker give?,Go out,Eat dinner,Take a rest,Study more,Take a rest,Inference,1,False,0
+105,13,5,1,prepositions,"A: Where is the cat?
 B: It’s under the table.
-A: Oh, I see it!",Where is the cat?,On the table,Under the table,Next to the table,In the bag,Under the table,Comprehension,1,False,0
-14,5,1,prepositions,"A: Where is the cat?
+A: Oh, I see it!",Where is the cat?,Under the table,On the table,In the bag,Next to the table,Under the table,Comprehension,1,False,0
+105,14,5,1,prepositions,"A: Where is the cat?
 B: It’s under the table.
-A: Oh, I see it!",Which word shows position?,Cat,Under,See,Table,Under,Grammar,1,False,0
-15,5,1,prepositions,"A: Where is the cat?
+A: Oh, I see it!",Which word shows position?,Table,Under,Cat,See,Under,Grammar,1,False,0
+105,15,5,1,prepositions,"A: Where is the cat?
 B: It’s under the table.
-A: Oh, I see it!",What preposition means 'below'?,Under,On,Behind,In,Under,Vocabulary,1,False,0
-16,6,1,simple present,"A: What time do you get up?
+A: Oh, I see it!",What preposition means 'below'?,In,Under,Behind,On,Under,Vocabulary,1,False,0
+106,16,6,1,simple present,"A: What time do you get up?
 B: I get up at 7 o’clock.
 A: Do you eat breakfast?
-B: Yes, I do.",When does the boy get up?,At six,At seven,At eight,At nine,At seven,Comprehension,1,False,0
-17,6,1,simple present,"A: What time do you get up?
+B: Yes, I do.",When does the boy get up?,At eight,At seven,At nine,At six,At seven,Comprehension,1,False,0
+106,17,6,1,simple present,"A: What time do you get up?
 B: I get up at 7 o’clock.
 A: Do you eat breakfast?
 B: Yes, I do.",What tense shows daily action?,Past,Present,Future,Perfect,Present,Grammar,1,False,0
-18,6,1,simple present,"A: What time do you get up?
+106,18,6,1,simple present,"A: What time do you get up?
 B: I get up at 7 o’clock.
 A: Do you eat breakfast?
-B: Yes, I do.",Does he eat breakfast?,"Yes, he does.","No, he doesn’t.","Yes, he is.","No, he isn’t.","Yes, he does.",Comprehension,1,False,0
-19,7,1,question words,"A: Where do you live?
+B: Yes, I do.",Does he eat breakfast?,"Yes, he is.","No, he isn’t.","Yes, he does.","No, he doesn’t.","Yes, he does.",Comprehension,1,False,0
+107,19,7,1,question words,"A: Where do you live?
 B: I live in Seoul.
 A: Do you like it there?
-B: Yes, I love my city.",Where does the boy live?,Busan,Seoul,Tokyo,Paris,Seoul,Comprehension,1,False,0
-20,7,1,question words,"A: Where do you live?
+B: Yes, I love my city.",Where does the boy live?,Paris,Busan,Seoul,Tokyo,Seoul,Comprehension,1,False,0
+107,20,7,1,question words,"A: Where do you live?
 B: I live in Seoul.
 A: Do you like it there?
-B: Yes, I love my city.",What question word asks about place?,Who,What,Where,When,Where,Grammar,1,False,0
-21,7,1,question words,"A: Where do you live?
+B: Yes, I love my city.",What question word asks about place?,What,Where,Who,When,Where,Grammar,1,False,0
+107,21,7,1,question words,"A: Where do you live?
 B: I live in Seoul.
 A: Do you like it there?
-B: Yes, I love my city.",Does he like his city?,"Yes, he does.","No, he doesn’t.",He isn’t.,He can’t.,"Yes, he does.",Comprehension,1,False,0
-22,8,1,modal verb (can),"A: Can you swim?
+B: Yes, I love my city.",Does he like his city?,"Yes, he does.",He isn’t.,"No, he doesn’t.",He can’t.,"Yes, he does.",Comprehension,1,False,0
+108,22,8,1,modal verb (can),"A: Can you swim?
 B: Yes, I can. I go to the pool every weekend.
-A: Wow, that’s great!",What can the boy do?,Run,Swim,Sing,Cook,Swim,Comprehension,1,False,0
-23,8,1,modal verb (can),"A: Can you swim?
+A: Wow, that’s great!",What can the boy do?,Run,Sing,Cook,Swim,Swim,Comprehension,1,False,0
+108,23,8,1,modal verb (can),"A: Can you swim?
 B: Yes, I can. I go to the pool every weekend.
-A: Wow, that’s great!",What modal verb shows ability?,Do,Can,Be,Have,Can,Grammar,1,False,0
-24,8,1,modal verb (can),"A: Can you swim?
+A: Wow, that’s great!",What modal verb shows ability?,Do,Have,Be,Can,Can,Grammar,1,False,0
+108,24,8,1,modal verb (can),"A: Can you swim?
 B: Yes, I can. I go to the pool every weekend.
-A: Wow, that’s great!",Where does he go?,To the park,To the pool,To school,To the beach,To the pool,Detail,1,False,0
-25,9,1,adjectives (color),"A: What color is your bag?
+A: Wow, that’s great!",Where does he go?,To the pool,To the beach,To the park,To school,To the pool,Detail,1,False,0
+109,25,9,1,adjectives (color),"A: What color is your bag?
 B: It’s blue.
-A: I like blue too!",What color is the bag?,Red,Blue,Black,Green,Blue,Comprehension,1,False,0
-26,9,1,adjectives (color),"A: What color is your bag?
+A: I like blue too!",What color is the bag?,Red,Green,Blue,Black,Blue,Comprehension,1,False,0
+109,26,9,1,adjectives (color),"A: What color is your bag?
 B: It’s blue.
-A: I like blue too!",Which word is an adjective?,Bag,Color,Blue,Too,Blue,Grammar,1,False,0
-27,9,1,adjectives (color),"A: What color is your bag?
+A: I like blue too!",Which word is an adjective?,Blue,Bag,Too,Color,Blue,Grammar,1,False,0
+109,27,9,1,adjectives (color),"A: What color is your bag?
 B: It’s blue.
-A: I like blue too!",What does 'too' mean here?,Also,Very,Only,Then,Also,Vocabulary,1,False,0
-28,10,1,existence (there is/are),"A: How many chairs are there?
+A: I like blue too!",What does 'too' mean here?,Only,Also,Very,Then,Also,Vocabulary,1,False,0
+110,28,10,1,existence (there is/are),"A: How many chairs are there?
 B: There are four chairs.
 A: And the table?
-B: There is one table.",How many chairs are there?,Two,Three,Four,Five,Four,Comprehension,1,False,0
-29,10,1,existence (there is/are),"A: How many chairs are there?
+B: There is one table.",How many chairs are there?,Three,Two,Four,Five,Four,Comprehension,1,False,0
+110,29,10,1,existence (there is/are),"A: How many chairs are there?
 B: There are four chairs.
 A: And the table?
-B: There is one table.",What structure shows existence?,There is/There are,Can,Have,Do,There is/There are,Grammar,1,False,0
-30,10,1,existence (there is/are),"A: How many chairs are there?
+B: There is one table.",What structure shows existence?,Do,Have,Can,There is/There are,There is/There are,Grammar,1,False,0
+110,30,10,1,existence (there is/are),"A: How many chairs are there?
 B: There are four chairs.
 A: And the table?
-B: There is one table.",How many tables are there?,One,Two,Three,Four,One,Comprehension,1,False,0
+B: There is one table.",How many tables are there?,Two,Three,Four,One,One,Comprehension,1,False,0

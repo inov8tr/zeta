@@ -1,85 +1,85 @@
-question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
-1,1,2,simple present,"A: What do you do after school?
+global_dialog_id,question_id,dialog_id,level,grammar_target,dialog_text,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,question_type,difficulty,manual_review,used_count
+201,1,1,2,simple present,"A: What do you do after school?
 B: I play soccer with my friends.
-A: That sounds fun!",What does the boy do after school?,Plays soccer,Reads books,Watches TV,Studies math,Plays soccer,Comprehension,2,False,0
-2,1,2,simple present,"A: What do you do after school?
+A: That sounds fun!",What does the boy do after school?,Watches TV,Reads books,Plays soccer,Studies math,Plays soccer,Comprehension,2,False,0
+201,2,1,2,simple present,"A: What do you do after school?
 B: I play soccer with my friends.
-A: That sounds fun!",What tense shows regular activity?,Simple Present,Past,Future,Continuous,Simple Present,Grammar,2,False,0
-3,1,2,simple present,"A: What do you do after school?
+A: That sounds fun!",What tense shows regular activity?,Continuous,Simple Present,Future,Past,Simple Present,Grammar,2,False,0
+201,3,1,2,simple present,"A: What do you do after school?
 B: I play soccer with my friends.
-A: That sounds fun!",Who does he play with?,His teacher,His sister,His friends,His coach,His friends,Detail,2,False,0
-4,2,2,comparatives,"A: This bag is heavier than that one.
+A: That sounds fun!",Who does he play with?,His teacher,His coach,His sister,His friends,His friends,Detail,2,False,0
+202,4,2,2,comparatives,"A: This bag is heavier than that one.
 B: Yes, but it’s cheaper!
-A: I’ll take the cheaper one then.",Which bag is heavier?,The first one,The second one,Both,Neither,The first one,Comprehension,2,False,0
-5,2,2,comparatives,"A: This bag is heavier than that one.
+A: I’ll take the cheaper one then.",Which bag is heavier?,Neither,The second one,The first one,Both,The first one,Comprehension,2,False,0
+202,5,2,2,comparatives,"A: This bag is heavier than that one.
 B: Yes, but it’s cheaper!
-A: I’ll take the cheaper one then.",What word shows comparison?,Heavier,Bag,Take,One,Heavier,Grammar,2,False,0
-6,2,2,comparatives,"A: This bag is heavier than that one.
+A: I’ll take the cheaper one then.",What word shows comparison?,One,Heavier,Take,Bag,Heavier,Grammar,2,False,0
+202,6,2,2,comparatives,"A: This bag is heavier than that one.
 B: Yes, but it’s cheaper!
-A: I’ll take the cheaper one then.",Why does the speaker buy the bag?,It’s cheaper,It’s heavier,It’s bigger,It’s newer,It’s cheaper,Inference,2,False,0
-7,3,2,frequency adverbs,"A: How often do you exercise?
+A: I’ll take the cheaper one then.",Why does the speaker buy the bag?,It’s newer,It’s heavier,It’s cheaper,It’s bigger,It’s cheaper,Inference,2,False,0
+203,7,3,2,frequency adverbs,"A: How often do you exercise?
 B: I usually run in the morning before school.
-A: Really? I never run that early!",How often does the boy run?,Always,Usually,Sometimes,Never,Usually,Comprehension,2,False,0
-8,3,2,frequency adverbs,"A: How often do you exercise?
+A: Really? I never run that early!",How often does the boy run?,Sometimes,Usually,Never,Always,Usually,Comprehension,2,False,0
+203,8,3,2,frequency adverbs,"A: How often do you exercise?
 B: I usually run in the morning before school.
-A: Really? I never run that early!",Which adverb means 'not at all'?,Never,Always,Usually,Often,Never,Vocabulary,2,False,0
-9,3,2,frequency adverbs,"A: How often do you exercise?
+A: Really? I never run that early!",Which adverb means 'not at all'?,Always,Usually,Never,Often,Never,Vocabulary,2,False,0
+203,9,3,2,frequency adverbs,"A: How often do you exercise?
 B: I usually run in the morning before school.
-A: Really? I never run that early!",When does he run?,Before school,After school,At night,On weekends,Before school,Detail,2,False,0
-10,4,2,object pronouns,"A: Do you know Lisa?
+A: Really? I never run that early!",When does he run?,On weekends,At night,Before school,After school,Before school,Detail,2,False,0
+204,10,4,2,object pronouns,"A: Do you know Lisa?
 B: Yes, I see her every day in class.
-A: She’s very nice!",Who does the boy see every day?,Lisa,Anna,John,His teacher,Lisa,Comprehension,2,False,0
-11,4,2,object pronouns,"A: Do you know Lisa?
+A: She’s very nice!",Who does the boy see every day?,His teacher,John,Lisa,Anna,Lisa,Comprehension,2,False,0
+204,11,4,2,object pronouns,"A: Do you know Lisa?
 B: Yes, I see her every day in class.
-A: She’s very nice!",Which word is an object pronoun?,Her,She,He,We,Her,Grammar,2,False,0
-12,4,2,object pronouns,"A: Do you know Lisa?
+A: She’s very nice!",Which word is an object pronoun?,Her,He,We,She,Her,Grammar,2,False,0
+204,12,4,2,object pronouns,"A: Do you know Lisa?
 B: Yes, I see her every day in class.
-A: She’s very nice!",Where does he see her?,In class,At the park,At home,At work,In class,Detail,2,False,0
-13,5,2,time expressions,"A: What time is your English class?
+A: She’s very nice!",Where does he see her?,At home,At work,At the park,In class,In class,Detail,2,False,0
+205,13,5,2,time expressions,"A: What time is your English class?
 B: It starts at 9:30.
-A: Don’t be late!",When does the class start?,8:00,9:30,10:00,11:00,9:30,Comprehension,2,False,0
-14,5,2,time expressions,"A: What time is your English class?
+A: Don’t be late!",When does the class start?,10:00,11:00,9:30,8:00,9:30,Comprehension,2,False,0
+205,14,5,2,time expressions,"A: What time is your English class?
 B: It starts at 9:30.
-A: Don’t be late!",What phrase shows time?,Starts at,Be late,Don’t,English,Starts at,Grammar,2,False,0
-15,5,2,time expressions,"A: What time is your English class?
+A: Don’t be late!",What phrase shows time?,English,Starts at,Be late,Don’t,Starts at,Grammar,2,False,0
+205,15,5,2,time expressions,"A: What time is your English class?
 B: It starts at 9:30.
-A: Don’t be late!",What advice does the speaker give?,Come early,Study hard,Don’t be late,Take notes,Don’t be late,Inference,2,False,0
-16,6,2,verbs of preference,"A: Do you like pizza?
+A: Don’t be late!",What advice does the speaker give?,Come early,Don’t be late,Study hard,Take notes,Don’t be late,Inference,2,False,0
+206,16,6,2,verbs of preference,"A: Do you like pizza?
 B: I love it! Especially with cheese.
-A: Me too!",What food does the boy love?,Pizza,Rice,Pasta,Chicken,Pizza,Comprehension,2,False,0
-17,6,2,verbs of preference,"A: Do you like pizza?
+A: Me too!",What food does the boy love?,Chicken,Rice,Pasta,Pizza,Pizza,Comprehension,2,False,0
+206,17,6,2,verbs of preference,"A: Do you like pizza?
 B: I love it! Especially with cheese.
-A: Me too!",What word means 'like very much'?,Love,Hate,Want,Eat,Love,Vocabulary,2,False,0
-18,6,2,verbs of preference,"A: Do you like pizza?
+A: Me too!",What word means 'like very much'?,Love,Want,Hate,Eat,Love,Vocabulary,2,False,0
+206,18,6,2,verbs of preference,"A: Do you like pizza?
 B: I love it! Especially with cheese.
-A: Me too!",What topping does he like?,Cheese,Ham,Tomato,Olive,Cheese,Detail,2,False,0
-19,7,2,prepositions,"A: Where’s the bookstore?
-B: It’s next to the bank, across from the park.",Where is the bookstore?,Next to the bank,Behind the school,On the hill,In front of the station,Next to the bank,Comprehension,2,False,0
-20,7,2,prepositions,"A: Where’s the bookstore?
-B: It’s next to the bank, across from the park.",What preposition means 'opposite of'?,Across from,Next to,In,On,Across from,Vocabulary,2,False,0
-21,7,2,prepositions,"A: Where’s the bookstore?
-B: It’s next to the bank, across from the park.",What does the boy ask about?,A place,A person,A time,A color,A place,Grammar,2,False,0
-22,8,2,simple present,"A: What do you do on weekends?
-B: I visit my grandparents or go shopping.",What does the girl do on weekends?,Visits her grandparents,Studies,Sleeps all day,Goes swimming,Visits her grandparents,Comprehension,2,False,0
-23,8,2,simple present,"A: What do you do on weekends?
-B: I visit my grandparents or go shopping.",What tense is used in 'I visit my grandparents'?,Simple Present,Past,Future,Perfect,Simple Present,Grammar,2,False,0
-24,8,2,simple present,"A: What do you do on weekends?
-B: I visit my grandparents or go shopping.",What two activities does she mention?,Visiting and shopping,Cooking and cleaning,Sleeping and eating,Running and reading,Visiting and shopping,Detail,2,False,0
-25,9,2,weather,"A: What’s the weather like today?
+A: Me too!",What topping does he like?,Cheese,Ham,Olive,Tomato,Cheese,Detail,2,False,0
+207,19,7,2,prepositions,"A: Where’s the bookstore?
+B: It’s next to the bank, across from the park.",Where is the bookstore?,In front of the station,On the hill,Next to the bank,Behind the school,Next to the bank,Comprehension,2,False,0
+207,20,7,2,prepositions,"A: Where’s the bookstore?
+B: It’s next to the bank, across from the park.",What preposition means 'opposite of'?,On,Next to,Across from,In,Across from,Vocabulary,2,False,0
+207,21,7,2,prepositions,"A: Where’s the bookstore?
+B: It’s next to the bank, across from the park.",What does the boy ask about?,A place,A color,A person,A time,A place,Grammar,2,False,0
+208,22,8,2,simple present,"A: What do you do on weekends?
+B: I visit my grandparents or go shopping.",What does the girl do on weekends?,Visits her grandparents,Goes swimming,Studies,Sleeps all day,Visits her grandparents,Comprehension,2,False,0
+208,23,8,2,simple present,"A: What do you do on weekends?
+B: I visit my grandparents or go shopping.",What tense is used in 'I visit my grandparents'?,Perfect,Simple Present,Past,Future,Simple Present,Grammar,2,False,0
+208,24,8,2,simple present,"A: What do you do on weekends?
+B: I visit my grandparents or go shopping.",What two activities does she mention?,Cooking and cleaning,Running and reading,Visiting and shopping,Sleeping and eating,Visiting and shopping,Detail,2,False,0
+209,25,9,2,weather,"A: What’s the weather like today?
 B: It’s cloudy and windy.
-A: Let’s take our jackets.",How is the weather?,Sunny,Cloudy and windy,Rainy,Hot,Cloudy and windy,Comprehension,2,False,0
-26,9,2,weather,"A: What’s the weather like today?
+A: Let’s take our jackets.",How is the weather?,Hot,Rainy,Sunny,Cloudy and windy,Cloudy and windy,Comprehension,2,False,0
+209,26,9,2,weather,"A: What’s the weather like today?
 B: It’s cloudy and windy.
-A: Let’s take our jackets.",What should they take?,Umbrellas,Jackets,Gloves,Hats,Jackets,Inference,2,False,0
-27,9,2,weather,"A: What’s the weather like today?
+A: Let’s take our jackets.",What should they take?,Gloves,Hats,Umbrellas,Jackets,Jackets,Inference,2,False,0
+209,27,9,2,weather,"A: What’s the weather like today?
 B: It’s cloudy and windy.
-A: Let’s take our jackets.",Which word describes wind?,Windy,Rainy,Cold,Hot,Windy,Vocabulary,2,False,0
-28,10,2,functional language,"A: Do you want to go to the movies?
+A: Let’s take our jackets.",Which word describes wind?,Cold,Rainy,Windy,Hot,Windy,Vocabulary,2,False,0
+210,28,10,2,functional language,"A: Do you want to go to the movies?
 B: Sure! What time?
-A: Let’s go at seven.",What are they planning to do?,Go to the movies,Study together,Play soccer,Eat dinner,Go to the movies,Comprehension,2,False,0
-29,10,2,functional language,"A: Do you want to go to the movies?
+A: Let’s go at seven.",What are they planning to do?,Study together,Go to the movies,Play soccer,Eat dinner,Go to the movies,Comprehension,2,False,0
+210,29,10,2,functional language,"A: Do you want to go to the movies?
 B: Sure! What time?
-A: Let’s go at seven.",What does 'Sure!' mean here?,"No, thanks",Yes,I’m busy,Maybe,Yes,Vocabulary,2,False,0
-30,10,2,functional language,"A: Do you want to go to the movies?
+A: Let’s go at seven.",What does 'Sure!' mean here?,I’m busy,Yes,Maybe,"No, thanks",Yes,Vocabulary,2,False,0
+210,30,10,2,functional language,"A: Do you want to go to the movies?
 B: Sure! What time?
-A: Let’s go at seven.",When will they go?,At seven,At five,At six,At nine,At seven,Detail,2,False,0
+A: Let’s go at seven.",When will they go?,At seven,At six,At five,At nine,At seven,Detail,2,False,0

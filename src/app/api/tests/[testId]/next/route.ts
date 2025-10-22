@@ -270,13 +270,24 @@ export async function POST(
     section: activeSection.section,
     timeRemainingSeconds,
     level: `${selectedCandidate.level}.${selectedCandidate.sublevel}`,
-    question: {
-      id: selectedQuestion.id,
-      stem: selectedQuestion.stem,
-      options: selectedQuestion.options,
-      skillTags: selectedQuestion.skill_tags ?? [],
-      mediaUrl: selectedQuestion.media_url,
-    },
+    question: (() => {
+      const originalOptions = selectedQuestion.options ?? [];
+      const order = originalOptions.map((_, i) => i);
+      // Fisher-Yates shuffle
+      for (let i = order.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+      const shuffled = order.map((idx) => originalOptions[idx]);
+      return {
+        id: selectedQuestion.id,
+        stem: selectedQuestion.stem,
+        options: shuffled,
+        optionOrder: order,
+        skillTags: selectedQuestion.skill_tags ?? [],
+        mediaUrl: selectedQuestion.media_url,
+      };
+    })(),
   };
 
   if (activeSection.section === "reading") {
