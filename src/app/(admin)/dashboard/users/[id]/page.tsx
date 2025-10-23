@@ -11,8 +11,8 @@ import AssignTestButton from "@/components/admin/AssignTestButton";
 import VerifyUserButton from "@/components/admin/VerifyUserButton";
 import ArchiveToggleButton from "@/components/admin/ArchiveToggleButton";
 import SendSurveyInviteButton from "@/components/admin/SendSurveyInviteButton";
+import EditSurveyButton from "@/components/admin/EditSurveyButton";
 import { createAdminClient } from "@/lib/supabaseAdmin";
-import { Button } from "@/components/ui/Button";
 import type { ParentSurveyForm } from "@/app/(public)/survey/page";
 
 type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
@@ -20,7 +20,6 @@ type ProfileWithRelations = ProfileRow & {
   classes: { name: string; level: string | null } | { name: string; level: string | null }[] | null;
 };
 type TestRow = Database["public"]["Tables"]["tests"]["Row"];
-type ConsultationRow = Database["public"]["Tables"]["consultations"]["Row"];
 type StudentMetaRow = Database["public"]["Tables"]["students"]["Row"];
 type ParentSurveyRow = Database["public"]["Tables"]["parent_surveys"]["Row"];
 
@@ -63,12 +62,6 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     .order("assigned_at", { ascending: false })
     .returns<TestRow[]>();
 
-  const consultationsPromise = supabase
-    .from("consultations")
-    .select("id, status, created_at")
-    .eq("user_id", id)
-    .order("created_at", { ascending: false })
-    .returns<ConsultationRow[]>();
 
   const authUserPromise = admin.auth.admin.getUserById(id);
   const studentMetaPromise = admin
@@ -82,9 +75,8 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     .eq("student_id", id)
     .maybeSingle<ParentSurveyRow>();
 
-  const [testsResult, consultationsResult, authUserResult, studentMetaResult, parentSurveyResult] = await Promise.all([
+  const [testsResult, authUserResult, studentMetaResult, parentSurveyResult] = await Promise.all([
     testsPromise,
-    consultationsPromise,
     authUserPromise,
     studentMetaPromise,
     parentSurveyPromise,
@@ -96,16 +88,10 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const emailAddress = authUser?.email ?? null;
 
   const tests = (testsResult.data as TestRow[] | null) ?? [];
-  const consultations = (consultationsResult.data as ConsultationRow[] | null) ?? [];
   const studentMeta = (studentMetaResult.data as StudentMetaRow | null) ?? null;
   const parentSurvey = (parentSurveyResult.data as ParentSurveyRow | null) ?? null;
   const surveyCompleted = studentMeta?.survey_completed ?? false;
   const surveySubmittedAt = parentSurvey?.created_at ?? null;
-  const surveyToken = studentMeta?.survey_token ?? null;
-  const adminSurveyLink =
-    surveyToken != null
-      ? `/survey?student_id=${encodeURIComponent(id)}&token=${encodeURIComponent(surveyToken)}&admin=true`
-      : null;
   const surveyForm = (parentSurvey?.data as ParentSurveyForm | null) ?? null;
 
   const pastLearningLabels: Record<string, string> = {
@@ -255,13 +241,6 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
               revalidatePath={`/dashboard/users/${id}`}
             />
           ) : null}
-          {adminSurveyLink ? (
-            <Button asChild size="sm" variant="outline">
-              <Link href={adminSurveyLink} target="_blank" rel="noreferrer">
-                Fill survey
-              </Link>
-            </Button>
-          ) : null}
           {archivingEnabled ? <ArchiveToggleButton userId={id} archived={isArchived} /> : null}
         </div>
       </div>
@@ -329,7 +308,10 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
 
       <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
         <header className="border-b border-brand-primary/10 px-6 py-4">
-          <h2 className="text-lg font-semibold text-brand-primary-dark">Parent Survey</h2>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-lg font-semibold text-brand-primary-dark">Parent Survey</h2>
+            <EditSurveyButton studentId={id} hasSurvey={Boolean(surveyForm)} />
+          </div>
         </header>
         <div className="px-6 py-4 text-sm text-neutral-800">
           {surveyForm ? (
@@ -496,34 +478,6 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
                     View
                   </Link>
                 </div>
-              </article>
-            ))
-          )}
-        </div>
-      </section>
-
-      <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
-        <header className="border-b border-brand-primary/10 px-6 py-4">
-          <h2 className="text-lg font-semibold text-brand-primary-dark">Consultation history</h2>
-        </header>
-        <div className="divide-y divide-brand-primary/10">
-          {consultations.length === 0 ? (
-            <EmptyRow message="No consultations recorded." />
-          ) : (
-            consultations.map((consultation) => (
-              <article key={consultation.id} className="flex items-center justify-between px-6 py-4 text-sm text-neutral-800">
-                <div>
-                  <div className="font-medium text-brand-primary-dark">{consultation.status}</div>
-                  <div className="text-xs text-neutral-muted">
-                    {consultation.created_at ? format(new Date(consultation.created_at), "MMM d, yyyy p") : "—"}
-                  </div>
-                </div>
-                <Link
-                  href={`/dashboard/consultations`}
-                  className="text-xs font-semibold uppercase text-brand-primary hover:text-brand-primary-dark"
-                >
-                  Manage
-                </Link>
               </article>
             ))
           )}
