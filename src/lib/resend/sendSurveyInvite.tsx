@@ -6,7 +6,7 @@ import { SurveyInviteEmail } from "@/emails/SurveyInviteEmail";
 import { render } from "@react-email/render";
 
 const SURVEY_EXPIRY_HOURS = 72;
-const sanitizeUrl = (value: string) => value.replace(/^['"]|['"]$/g, "").replace(/\/$/, "");
+const sanitizeUrl = (value: string) => value.replace(/^\s+|\s+$/g, "").replace(/^["']+|["']+$/g, "").replace(/\/$/, "");
 const DEFAULT_SITE_URL = sanitizeUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zeta-eng.com");
 const rawSurveyBase =
   process.env.NEXT_PUBLIC_PARENT_SURVEY_URL && process.env.NEXT_PUBLIC_PARENT_SURVEY_URL.length > 0
