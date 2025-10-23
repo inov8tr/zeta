@@ -8,8 +8,10 @@
     "loading": "예약 양식을 불러오는 중입니다…",
     "stepOneLabel": "1단계",
     "stepOneTitle": "예약 유형을 선택하세요",
+    "stepOneDescription": "무료 상담 또는 레벨 테스트 중 원하는 예약 유형을 선택해 주세요.",
     "stepTwoLabel": "2단계",
     "stepTwoTitle": "가능한 시간을 알려 주세요",
+    "stepTwoDescription": "가능한 날짜와 시간을 남겨 주시면 확인 후 다시 안내드릴게요.",
     "consultation": {
       "title": "무료 상담",
       "description": "학습 목표와 반 배치를 상의하기 위해 제타 선생님을 만나보세요."

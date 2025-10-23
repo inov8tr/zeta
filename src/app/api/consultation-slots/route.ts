@@ -1,6 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { cookies } from "next/headers";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { createClient } from "@supabase/supabase-js";
 import { endOfDay, format, startOfDay } from "date-fns";
 
@@ -23,6 +22,15 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
 
 const SUPABASE_URL_STR = SUPABASE_URL as string;
 const SUPABASE_SERVICE_ROLE_KEY_STR = SUPABASE_SERVICE_ROLE_KEY as string;
+const SUPABASE_PROJECT_REF = (() => {
+  try {
+    const url = new URL(SUPABASE_URL_STR);
+    return url.hostname.split(".")[0] ?? "";
+  } catch {
+    return "";
+  }
+})();
+const SUPABASE_AUTH_COOKIE = SUPABASE_PROJECT_REF ? `sb-${SUPABASE_PROJECT_REF}-auth-token` : null;
 
 const adminClient = createClient<Database>(SUPABASE_URL_STR, SUPABASE_SERVICE_ROLE_KEY_STR, {
   auth: {
@@ -32,30 +40,60 @@ const adminClient = createClient<Database>(SUPABASE_URL_STR, SUPABASE_SERVICE_RO
   },
 });
 
+const parseAccessToken = (raw: string | undefined) => {
+  if (!raw) {
+    return null;
+  }
+  try {
+    const parsed = JSON.parse(raw);
+    if (typeof parsed === "string") {
+      return parsed;
+    }
+    if (parsed?.access_token) {
+      return parsed.access_token as string;
+    }
+    if (parsed?.currentSession?.access_token) {
+      return parsed.currentSession.access_token as string;
+    }
+    if (Array.isArray(parsed) && parsed[0]?.access_token) {
+      return parsed[0].access_token as string;
+    }
+  } catch {
+    // raw token might already be a stringified JWT
+    if (raw.split(".").length === 3) {
+      return raw;
+    }
+  }
+  return null;
+};
+
 async function assertAdmin() {
-  const cookieStore = cookies();
-  const supabase = createRouteHandlerClient<Database>({
-    cookies: () => cookieStore,
-  });
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError) {
-    console.error("consultation-slots: failed to load user session", userError);
+  if (!SUPABASE_AUTH_COOKIE) {
+    console.error("consultation-slots: missing Supabase project reference.");
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!user) {
+  const cookieStore = await cookies();
+  const authCookie = cookieStore.get(SUPABASE_AUTH_COOKIE);
+  const accessToken = parseAccessToken(authCookie?.value);
+
+  if (!accessToken) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { data: userData, error: userError } = await adminClient.auth.getUser(accessToken);
+
+  if (userError || !userData?.user) {
+    if (userError) {
+      console.error("consultation-slots: getUser failed", userError);
+    }
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { data: profile, error } = await adminClient
     .from("profiles")
     .select("role")
-    .eq("user_id", user.id)
+    .eq("user_id", userData.user.id)
     .maybeSingle();
 
   if (error) {
@@ -88,6 +126,7 @@ const mapRowsToResponse = (rows: SlotRow[]) =>
     start_time: row.start_time,
     end_time: row.end_time,
     is_booked: row.is_booked,
+    booked_by: row.booked_by,
   }));
 
 export async function GET(request: NextRequest) {

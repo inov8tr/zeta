@@ -42,7 +42,7 @@ const ConsultationFormCard = ({ dictionary, contactPhone }: Props) => {
         ) : (
           <>
             {!session && (
-              <p className="mb-4 rounded-2xl bg-brand-primary/5 px-4 py-3 text-sm text-neutral-700">
+              <p className="mb-4 rounded-xl bg-neutral-100 px-4 py-3 text-sm text-neutral-700">
                 {card?.guestReminder ??
                   "Leave the password fields blank to continue as a guest, or set one to create your account while booking."}
               </p>
@@ -52,7 +52,6 @@ const ConsultationFormCard = ({ dictionary, contactPhone }: Props) => {
               contactPhone={contactPhone ?? undefined}
               initialFullName={initialFullName}
               initialEmail={session?.user.email ?? undefined}
-              readOnlyEmail={Boolean(session?.user.email)}
               initialUsername={initialUsername}
               session={session}
               supabase={supabase}

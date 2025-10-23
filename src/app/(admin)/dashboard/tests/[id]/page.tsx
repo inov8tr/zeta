@@ -7,7 +7,6 @@ import { format } from "date-fns";
 import { Database } from "@/lib/database.types";
 
 type TestRow = Database["public"]["Tables"]["tests"]["Row"];
-type ConsultationRow = Database["public"]["Tables"]["consultations"]["Row"];
 type ProfileRow = Pick<Database["public"]["Tables"]["profiles"]["Row"], "full_name">;
 
 interface TestDetailPageProps {
@@ -31,15 +30,17 @@ const TestDetailPage = async ({ params }: TestDetailPageProps) => {
     notFound();
   }
 
-  let consultations: ConsultationRow[] = [];
+  let recentTests: TestRow[] = [];
   if (test.student_id) {
-    const { data: consultationsData } = await supabase
-      .from("consultations")
-      .select("id, status, created_at")
-      .eq("user_id", test.student_id)
-      .order("created_at", { ascending: false })
+    const { data: testsData } = await supabase
+      .from("tests")
+      .select("id, type, status, assigned_at, completed_at")
+      .eq("student_id", test.student_id)
+      .neq("id", test.id)
+      .order("assigned_at", { ascending: false })
+      .order("completed_at", { ascending: false })
       .limit(5);
-    consultations = (consultationsData as ConsultationRow[] | null) ?? [];
+    recentTests = (testsData as TestRow[] | null) ?? [];
   }
 
   const { data: profile } = test.student_id
@@ -89,24 +90,31 @@ const TestDetailPage = async ({ params }: TestDetailPageProps) => {
 
       <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
         <header className="border-b border-brand-primary/10 px-6 py-4">
-          <h2 className="text-lg font-semibold text-brand-primary-dark">Recent consultations</h2>
+          <h2 className="text-lg font-semibold text-brand-primary-dark">Recent tests</h2>
         </header>
         <div className="divide-y divide-brand-primary/10">
-          {consultations.length === 0 ? (
+          {recentTests.length === 0 ? (
             <div className="px-6 py-8 text-center text-sm text-neutral-muted">
-              This student has no consultation history.
+              This student has no other test history yet.
             </div>
           ) : (
-            consultations.map((record) => (
+            recentTests.map((record) => (
               <article key={record.id} className="flex items-center justify-between px-6 py-4 text-sm text-neutral-800">
                 <div>
-                  <div className="font-medium text-brand-primary-dark">{record.status}</div>
+                  <div className="font-medium text-brand-primary-dark">{record.type}</div>
                   <div className="text-xs text-neutral-muted">
-                    {record.created_at ? format(new Date(record.created_at), "MMM d, yyyy p") : "—"}
+                    Status: {record.status}
+                  </div>
+                  <div className="text-xs text-neutral-muted">
+                    {record.completed_at
+                      ? `Completed ${format(new Date(record.completed_at), "MMM d, yyyy p")}`
+                      : record.assigned_at
+                        ? `Assigned ${format(new Date(record.assigned_at), "MMM d, yyyy p")}`
+                        : "Scheduled"}
                   </div>
                 </div>
                 <Link
-                  href="/dashboard/consultations"
+                  href={`/dashboard/result/${record.id}`}
                   className="text-xs font-semibold uppercase text-brand-primary hover:text-brand-primary-dark"
                 >
                   View

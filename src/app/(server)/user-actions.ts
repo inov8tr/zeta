@@ -15,6 +15,211 @@ export type UpdateUserProfileState = {
 
 const ROLE_OPTIONS = ["admin", "teacher", "student", "parent"] as const;
 
+type UserStatusActionResult = {
+  error?: string;
+};
+
+async function findUserByEmail(admin: ReturnType<typeof createAdminClient>, email: string) {
+  try {
+    const { data, error } = await admin.auth.admin.listUsers({ page: 1, perPage: 200 });
+    if (error) {
+      throw error;
+    }
+    return data.users.find((user) => user.email?.toLowerCase() === email.toLowerCase()) ?? null;
+  } catch (error) {
+    console.error("findUserByEmail: lookup failed", error);
+    return null;
+  }
+}
+
+const createUserSchema = z
+  .object({
+    email: z
+      .string()
+      .email({ message: "A valid email address is required" })
+      .transform((value) => value.toLowerCase()),
+    full_name: z.string().trim().min(1, { message: "Full name is required" }),
+    role: z.enum(ROLE_OPTIONS, { message: "Invalid role" }),
+    phone: z
+      .string()
+      .trim()
+      .optional()
+      .transform((value) => (value && value.length > 0 ? value : null)),
+    class_id: z
+      .union([z.string().uuid({ message: "Invalid class selection" }), z.literal(""), z.undefined()])
+      .transform((value) => (value && value.length > 0 ? value : null)),
+    test_status: z
+      .string()
+      .trim()
+      .optional()
+      .transform((value) => (value && value.length > 0 ? value : "none")),
+    password: z.string().min(8, { message: "Password must be at least 8 characters" }),
+    confirm_password: z.string().min(8, { message: "Confirm password must be at least 8 characters" }),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password !== data.confirm_password) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["confirm_password"],
+        message: "Passwords do not match",
+      });
+    }
+  });
+
+export type CreateUserState = {
+  error: string | null;
+};
+
+export async function createUserAction(
+  _prevState: CreateUserState,
+  formData: FormData
+): Promise<CreateUserState> {
+  const raw = Object.fromEntries(formData.entries());
+  const parsed = createUserSchema.safeParse(raw);
+  if (!parsed.success) {
+    const message = parsed.error.issues[0]?.message ?? "Invalid form submission";
+    return { error: message };
+  }
+
+  const { confirm_password: _confirmPassword, ...payload } = parsed.data;
+  void _confirmPassword;
+  const { email, full_name, role, phone, class_id, test_status, password } = payload;
+
+  const cookieStore = cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore,
+  });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return { error: "You must be signed in." };
+  }
+
+  const { data: actorProfile, error: actorError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", session.user.id)
+    .maybeSingle<{ role: string }>();
+
+  if (actorError) {
+    console.error("createUserAction: failed to load actor profile", actorError);
+    return { error: "Unable to verify permissions." };
+  }
+
+  if ((actorProfile?.role ?? "").toLowerCase() !== "admin") {
+    return { error: "Only admins can create users." };
+  }
+
+  const admin = createAdminClient();
+  const normalizedEmail = email.toLowerCase();
+  let authUserId: string | null = null;
+
+  const existing = await findUserByEmail(admin, normalizedEmail);
+  if (existing) {
+    authUserId = existing.id ?? null;
+    try {
+      if (authUserId) {
+        await admin.auth.admin.updateUserById(authUserId, {
+          password,
+          email_confirm: true,
+          user_metadata: {
+            full_name,
+            role,
+            phone,
+          },
+        });
+      }
+    } catch (updateError) {
+      console.error("createUserAction: failed to update existing user", updateError);
+      return { error: "Unable to update existing user credentials. Please try again." };
+    }
+  }
+
+  if (!authUserId) {
+    try {
+      const { data: createData, error: createError } = await admin.auth.admin.createUser({
+        email: normalizedEmail,
+        password,
+        email_confirm: true,
+        user_metadata: {
+          full_name,
+          role,
+          phone,
+        },
+      });
+      if (createError) {
+        throw createError;
+      }
+      authUserId = createData.user?.id ?? null;
+    } catch (createError) {
+      console.error("createUserAction: createUser failed", createError);
+      return { error: "Unable to create user. Please check the details and try again." };
+    }
+  }
+
+  if (!authUserId) {
+    return { error: "Unable to resolve created user. Please try again." };
+  }
+
+  try {
+    await admin.auth.admin.updateUserById(authUserId, {
+      user_metadata: {
+        full_name,
+        role,
+        phone,
+      },
+    });
+  } catch (metaError) {
+    console.warn("createUserAction: failed to update user metadata", metaError);
+  }
+
+  const now = new Date().toISOString();
+  const profilePayload = {
+    full_name,
+    role,
+    phone: phone ?? null,
+    class_id: class_id ?? null,
+    test_status: test_status ?? "none",
+    updated_at: now,
+  } satisfies Partial<Database["public"]["Tables"]["profiles"]["Insert"]>;
+
+  const { data: existingProfile, error: profileLookupError } = await admin
+    .from("profiles")
+    .select("user_id")
+    .eq("user_id", authUserId)
+    .maybeSingle<{ user_id: string }>();
+
+  if (profileLookupError) {
+    console.error("createUserAction: profile lookup failed", profileLookupError);
+    return { error: "User created, but profile lookup failed. Please retry." };
+  }
+
+  const profileMutation = existingProfile
+    ? admin
+        .from("profiles")
+        .update(profilePayload as Database["public"]["Tables"]["profiles"]["Update"])
+        .eq("user_id", authUserId)
+    : admin
+        .from("profiles")
+        .insert({
+          user_id: authUserId,
+          ...profilePayload,
+          created_at: now,
+        } as Database["public"]["Tables"]["profiles"]["Insert"]);
+
+  const { error: profileError } = await profileMutation;
+  if (profileError) {
+    console.error("createUserAction: profile mutation failed", profileError);
+    return { error: "User invite sent, but profile update failed. Please try again." };
+  }
+
+  revalidatePath("/dashboard/users");
+  revalidatePath(`/dashboard/users/${authUserId}`);
+  redirect(`/dashboard/users/${authUserId}`);
+}
+
 const schema = z.object({
   user_id: z.string().uuid({ message: "Invalid user id" }),
   full_name: z.string().trim().min(1, { message: "Full name is required" }),
@@ -153,4 +358,100 @@ export async function verifyUserEmailAction(formData: FormData): Promise<{ error
   revalidatePath(`/dashboard/users/${userId}`);
   revalidatePath("/dashboard/users");
   return { success: "Email marked as verified." };
+}
+
+export async function archiveUserAction(userId: string): Promise<UserStatusActionResult> {
+  const cookieStore = cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore,
+  });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return { error: "You must be signed in." };
+  }
+
+  const { data: actorProfile, error: actorError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", session.user.id)
+    .maybeSingle<{ role: string }>();
+
+  if (actorError || actorProfile?.role !== "admin") {
+    return { error: "Only admins can archive users." };
+  }
+
+  const admin = createAdminClient();
+  const now = new Date().toISOString();
+
+  const { error: updateError } = await admin
+    .from("profiles")
+    .update({ archived: true, archived_at: now, updated_at: now })
+    .eq("user_id", userId);
+
+  if (updateError) {
+    console.error("archiveUserAction: update failed", updateError);
+    return { error: "Failed to archive user." };
+  }
+
+  try {
+    await admin.auth.admin.updateUserById(userId, { ban_duration: "permanent" });
+  } catch (error) {
+    console.error("archiveUserAction: auth update failed", error);
+  }
+
+  revalidatePath("/dashboard/users");
+  revalidatePath(`/dashboard/users/${userId}`);
+  revalidatePath(`/dashboard/users/${userId}/edit`);
+  return {};
+}
+
+export async function restoreUserAction(userId: string): Promise<UserStatusActionResult> {
+  const cookieStore = cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore,
+  });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return { error: "You must be signed in." };
+  }
+
+  const { data: actorProfile, error: actorError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", session.user.id)
+    .maybeSingle<{ role: string }>();
+
+  if (actorError || actorProfile?.role !== "admin") {
+    return { error: "Only admins can restore users." };
+  }
+
+  const admin = createAdminClient();
+  const now = new Date().toISOString();
+
+  const { error: updateError } = await admin
+    .from("profiles")
+    .update({ archived: false, archived_at: null, updated_at: now })
+    .eq("user_id", userId);
+
+  if (updateError) {
+    console.error("restoreUserAction: update failed", updateError);
+    return { error: "Failed to restore user." };
+  }
+
+  try {
+    await admin.auth.admin.updateUserById(userId, { ban_duration: "none" });
+  } catch (error) {
+    console.error("restoreUserAction: auth update failed", error);
+  }
+
+  revalidatePath("/dashboard/users");
+  revalidatePath(`/dashboard/users/${userId}`);
+  revalidatePath(`/dashboard/users/${userId}/edit`);
+  return {};
 }

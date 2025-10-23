@@ -90,7 +90,7 @@ const TestsPage = async () => {
                     </td>
                     <td className="px-6 py-4">
                       <Link
-                        href={`/dashboard/tests/${test.id}`}
+                        href={`/dashboard/result/${test.id}`}
                         className="rounded-full bg-brand-primary px-3 py-1 text-xs font-semibold uppercase text-white transition hover:bg-brand-primary-dark"
                       >
                         View

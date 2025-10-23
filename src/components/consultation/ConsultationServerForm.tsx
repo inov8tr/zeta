@@ -11,7 +11,9 @@ import type { EnrollmentDictionary } from "@/lib/i18n";
 import type { IconType } from "react-icons";
 import { FaGoogle, FaApple } from "react-icons/fa";
 import { SiKakaotalk } from "react-icons/si";
-import ConsultationSlotPicker from "@/components/consultation/ConsultationSlotPicker";
+import ConsultationSlotPicker, {
+  type SlotSelection,
+} from "@/components/consultation/ConsultationSlotPicker";
 
 const oauthProviders: { key: "google" | "apple" | "kakao"; label: string; icon: IconType }[] = [
   { key: "google", label: "Google", icon: FaGoogle },
@@ -35,6 +37,8 @@ const BookingSchema = z.object({
     .trim()
     .min(3, "Please enter a phone number."),
   preferred_start: z.string().min(1, "Pick a date/time."),
+  preferred_end: z.string().optional(),
+  slot_id: z.string().trim().optional(),
   notes: z
     .string()
     .trim()
@@ -106,7 +110,6 @@ interface Props {
   initialEmail?: string;
   initialPhone?: string;
   initialUsername?: string;
-  readOnlyEmail?: boolean;
   session: Session | null;
   supabase: SupabaseClient;
 }
@@ -118,7 +121,6 @@ const ConsultationServerForm = ({
   initialEmail,
   initialPhone,
   initialUsername,
-  readOnlyEmail = false,
   session,
   supabase,
 }: Props) => {
@@ -136,6 +138,11 @@ const ConsultationServerForm = ({
       ? (metadata.user_type.toLowerCase() as UserRole)
       : "student";
   const requirePassword = !session;
+  const passwordTitle = card?.passwordTitle ?? "Create a password";
+  const passwordDescription = session
+    ? "Optional: set a password if you're creating a new account with this booking."
+    : card?.passwordDescription ??
+      "Create your password so you can sign in and manage consultations.";
   const schema = useMemo(() => buildSchema(requirePassword), [requirePassword]);
   const form = useForm<FormValues>({
     resolver: zodResolver(schema) as Resolver<FormValues>,
@@ -145,6 +152,8 @@ const ConsultationServerForm = ({
       email: initialEmail ?? "",
       phone: initialPhone ?? "",
       preferred_start: "",
+      preferred_end: "",
+      slot_id: "",
       notes: "",
       username: initialUsername?.toLowerCase() ?? "",
       password: "",
@@ -153,11 +162,35 @@ const ConsultationServerForm = ({
   });
   useEffect(() => {
     form.register("preferred_start");
+    form.register("preferred_end");
+    form.register("slot_id");
   }, [form]);
   const preferredStartValue = form.watch("preferred_start");
+  const preferredEndValue = form.watch("preferred_end");
+  const slotIdValue = form.watch("slot_id");
+  const slotSelectionValue = useMemo<SlotSelection | null>(() => {
+    if (!slotIdValue || !preferredStartValue) {
+      return null;
+    }
+    return {
+      slotId: slotIdValue,
+      startIso: preferredStartValue,
+      endIso: preferredEndValue && preferredEndValue.length > 0 ? preferredEndValue : preferredStartValue,
+    };
+  }, [slotIdValue, preferredStartValue, preferredEndValue]);
   const handleSlotChange = useCallback(
-    (isoString: string | null) => {
-      form.setValue("preferred_start", isoString ?? "", {
+    (selection: SlotSelection | null) => {
+      form.setValue("slot_id", selection?.slotId ?? "", {
+        shouldDirty: true,
+        shouldValidate: true,
+        shouldTouch: true,
+      });
+      form.setValue("preferred_start", selection?.startIso ?? "", {
+        shouldDirty: true,
+        shouldValidate: true,
+        shouldTouch: true,
+      });
+      form.setValue("preferred_end", selection?.endIso ?? "", {
         shouldDirty: true,
         shouldValidate: true,
         shouldTouch: true,
@@ -215,6 +248,12 @@ const ConsultationServerForm = ({
     const bookingPayload: BookingValues = {
       ...bookingWithoutConfirm,
     };
+    if (!bookingPayload.preferred_end || bookingPayload.preferred_end.trim().length === 0) {
+      bookingPayload.preferred_end = undefined;
+    }
+    if (!bookingPayload.slot_id || bookingPayload.slot_id.trim().length === 0) {
+      bookingPayload.slot_id = undefined;
+    }
     if (!bookingPayload.notes) {
       bookingPayload.notes = undefined;
     }
@@ -291,6 +330,8 @@ const ConsultationServerForm = ({
           email: bookingPayload.email,
           phone: bookingPayload.phone,
           preferred_start: "",
+          preferred_end: "",
+          slot_id: "",
           notes: "",
           username: bookingPayload.username,
           password: "",
@@ -303,22 +344,24 @@ const ConsultationServerForm = ({
   const selectedType = form.watch("appointment_type");
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-      <div>
-        <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-neutral-500">
-          {card?.stepOneLabel ?? "Step 1"}
-        </h3>
-        <p className="mt-1 text-lg font-semibold text-neutral-900">
-          {card?.stepOneTitle ?? "Choose appointment type"}
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <section className="space-y-4">
+        <div className="space-y-1">
+          <h3 className="text-lg font-semibold text-neutral-900">
+            {card?.stepOneTitle ?? "Choose appointment type"}
+          </h3>
+          <p className="text-sm text-neutral-600">
+            {card?.stepOneDescription ?? "Select whether you’d like a consultation or the entrance test."}
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2">
           <button
             type="button"
             onClick={() => form.setValue("appointment_type", "consultation", { shouldValidate: true })}
-            className={`rounded-2xl border px-4 py-4 text-left transition focus:outline-none focus:ring-2 focus:ring-brand-primary/40 ${
+            className={`rounded-xl border px-4 py-4 text-left transition focus:outline-none focus:ring-2 focus:ring-brand-primary/40 ${
               selectedType === "consultation"
                 ? "border-brand-primary bg-brand-primary/10 text-brand-primary"
-                : "border-neutral-300 text-neutral-700 hover:border-neutral-400"
+                : "border-neutral-300 bg-white text-neutral-700 hover:border-neutral-400"
             }`}
           >
             <span className="block text-base font-semibold">
@@ -332,10 +375,10 @@ const ConsultationServerForm = ({
           <button
             type="button"
             onClick={() => form.setValue("appointment_type", "entrance_test", { shouldValidate: true })}
-            className={`rounded-2xl border px-4 py-4 text-left transition focus:outline-none focus:ring-2 focus:ring-brand-primary/40 ${
+            className={`rounded-xl border px-4 py-4 text-left transition focus:outline-none focus:ring-2 focus:ring-brand-primary/40 ${
               selectedType === "entrance_test"
                 ? "border-brand-primary bg-brand-primary/10 text-brand-primary"
-                : "border-neutral-300 text-neutral-700 hover:border-neutral-400"
+                : "border-neutral-300 bg-white text-neutral-700 hover:border-neutral-400"
             }`}
           >
             <span className="block text-base font-semibold">
@@ -350,135 +393,129 @@ const ConsultationServerForm = ({
         {form.formState.errors.appointment_type && (
           <p className="mt-2 text-sm text-red-600">{form.formState.errors.appointment_type.message}</p>
         )}
-      </div>
+      </section>
 
-      <div className="space-y-2">
-        <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-neutral-500">
-          {card?.stepTwoLabel ?? "Step 2"}
-        </h3>
-        <p className="text-lg font-semibold text-neutral-900">
-          {card?.stepTwoTitle ?? "Tell us when you're available"}
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <label>
-          <span className="block text-sm font-medium text-neutral-800">{dictionary?.form?.fullName ?? "Full name"}</span>
-          <input
-            className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
-            {...form.register("full_name")}
-          />
-          {form.formState.errors.full_name && (
-            <p className="text-sm text-red-600">{form.formState.errors.full_name.message}</p>
-          )}
-        </label>
-        <label>
-          <span className="block text-sm font-medium text-neutral-800">{dictionary?.form?.email ?? "Email"}</span>
-          <input
-            className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2 disabled:bg-neutral-100"
-            type="email"
-            {...form.register("email")}
-            readOnly={readOnlyEmail}
-            disabled={readOnlyEmail}
-          />
-          {form.formState.errors.email && (
-            <p className="text-sm text-red-600">{form.formState.errors.email.message}</p>
-          )}
-        </label>
-      </div>
-
-      <div>
-        <label>
-          <span className="block text-sm font-medium text-neutral-800">
-            {dictionary?.form?.username ?? "Username"}
-          </span>
-          <input
-            className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
-            {...form.register("username")}
-          />
-          {dictionary?.form?.usernameHelp && (
-            <p className="mt-1 text-xs text-neutral-500">{dictionary?.form?.usernameHelp}</p>
-          )}
-          {form.formState.errors.username && (
-            <p className="text-sm text-red-600">{form.formState.errors.username.message}</p>
-          )}
-        </label>
-      </div>
-
-      <div className="space-y-4">
-        <label>
-          <span className="block text-sm font-medium text-neutral-800">{dictionary?.form?.phone ?? "Phone"}</span>
-          <input
-            className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
-            {...form.register("phone")}
-          />
-          {form.formState.errors.phone && (
-            <p className="text-sm text-red-600">{form.formState.errors.phone.message}</p>
-          )}
-        </label>
-        <ConsultationSlotPicker
-          label={dictionary?.form?.start ?? "Preferred start (local time)"}
-          value={preferredStartValue}
-          onChange={handleSlotChange}
-          contactPhone={contactPhone}
-          error={form.formState.errors.preferred_start?.message}
-        />
-        <label>
-          <span className="block text-sm font-medium text-neutral-800">
-            {dictionary?.form?.notes ?? "Notes"}
-          </span>
-          <textarea
-            className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
-            rows={4}
-            placeholder={card?.notesPlaceholder ?? "Anything specific you want to cover?"}
-            {...form.register("notes")}
-          />
-        </label>
-      </div>
-
-      {!session && (
-        <div className="rounded-2xl border border-neutral-200 p-4">
-          <div>
-            <span className="text-sm font-medium text-neutral-800">
-              {card?.passwordTitle ?? "Create a password"}
-            </span>
-            <p className="mt-1 text-xs text-neutral-500">
-              {card?.passwordDescription ??
-                "Create your password so you can sign in and manage consultations."}
-            </p>
-          </div>
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <label>
-              <span className="block text-sm font-medium text-neutral-800">
-                {dictionary?.form?.password ?? "Password"}
-              </span>
-              <input
-                className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
-                type="password"
-                {...form.register("password")}
-                required={requirePassword}
-              />
-              {form.formState.errors.password && (
-                <p className="text-sm text-red-600">{form.formState.errors.password.message}</p>
-              )}
-            </label>
-            <label>
-              <span className="block text-sm font-medium text-neutral-800">
-                {dictionary?.form?.confirmPassword ?? "Confirm password"}
-              </span>
-              <input
-                className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
-                type="password"
-                {...form.register("confirmPassword")}
-                required={requirePassword}
-              />
-              {form.formState.errors.confirmPassword && (
-                <p className="text-sm text-red-600">{form.formState.errors.confirmPassword.message}</p>
-              )}
-            </label>
-          </div>
+      <section className="space-y-4">
+        <div className="space-y-1">
+          <h3 className="text-lg font-semibold text-neutral-900">
+            {card?.stepTwoTitle ?? "Tell us when you're available"}
+          </h3>
+          <p className="text-sm text-neutral-600">
+            {card?.stepTwoDescription ?? "We’ll follow up to confirm the date and time that works best."}
+          </p>
         </div>
-      )}
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <label>
+            <span className="block text-sm font-medium text-neutral-800">
+              {dictionary?.form?.fullName ?? "Full name"}
+            </span>
+            <input
+              className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+              {...form.register("full_name")}
+            />
+            {form.formState.errors.full_name && (
+              <p className="text-sm text-red-600">{form.formState.errors.full_name.message}</p>
+            )}
+          </label>
+          <label>
+            <span className="block text-sm font-medium text-neutral-800">
+              {dictionary?.form?.email ?? "Email"}
+            </span>
+            <input
+              className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+              type="email"
+              {...form.register("email")}
+            />
+            {form.formState.errors.email && (
+              <p className="text-sm text-red-600">{form.formState.errors.email.message}</p>
+            )}
+          </label>
+          <label>
+            <span className="block text-sm font-medium text-neutral-800">
+              {dictionary?.form?.username ?? "Username"}
+            </span>
+            <input
+              className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+              {...form.register("username")}
+            />
+            {dictionary?.form?.usernameHelp && (
+              <p className="mt-1 text-xs text-neutral-500">{dictionary?.form?.usernameHelp}</p>
+            )}
+            {form.formState.errors.username && (
+              <p className="text-sm text-red-600">{form.formState.errors.username.message}</p>
+            )}
+          </label>
+          <label>
+            <span className="block text-sm font-medium text-neutral-800">{dictionary?.form?.phone ?? "Phone"}</span>
+            <input
+              className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+              {...form.register("phone")}
+            />
+            {form.formState.errors.phone && (
+              <p className="text-sm text-red-600">{form.formState.errors.phone.message}</p>
+            )}
+          </label>
+        </div>
+
+        <div className="space-y-4">
+          <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-4">
+            <div>
+              <span className="text-sm font-medium text-neutral-800">{passwordTitle}</span>
+              <p className="mt-1 text-xs text-neutral-500">{passwordDescription}</p>
+            </div>
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <label>
+                <span className="block text-sm font-medium text-neutral-800">
+                  {dictionary?.form?.password ?? "Password"}
+                </span>
+                <input
+                  className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+                  type="password"
+                  {...form.register("password")}
+                  required={requirePassword}
+                />
+                {form.formState.errors.password && (
+                  <p className="text-sm text-red-600">{form.formState.errors.password.message}</p>
+                )}
+              </label>
+              <label>
+                <span className="block text-sm font-medium text-neutral-800">
+                  {dictionary?.form?.confirmPassword ?? "Confirm password"}
+                </span>
+                <input
+                  className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+                  type="password"
+                  {...form.register("confirmPassword")}
+                  required={requirePassword}
+                />
+                {form.formState.errors.confirmPassword && (
+                  <p className="text-sm text-red-600">{form.formState.errors.confirmPassword.message}</p>
+                )}
+              </label>
+            </div>
+          </div>
+
+          <ConsultationSlotPicker
+            label={dictionary?.form?.start ?? "Preferred start (local time)"}
+            value={slotSelectionValue}
+            onChange={handleSlotChange}
+            contactPhone={contactPhone}
+            error={form.formState.errors.preferred_start?.message}
+          />
+          <label>
+            <span className="block text-sm font-medium text-neutral-800">
+              {dictionary?.form?.notes ?? "Notes"}
+            </span>
+            <textarea
+              className="mt-1 w-full rounded-lg border border-neutral-300 px-3 py-2"
+              rows={4}
+              placeholder={card?.notesPlaceholder ?? "Anything specific you want to cover?"}
+              {...form.register("notes")}
+            />
+          </label>
+        </div>
+      </section>
 
       <Button type="submit" disabled={isSubmitting} className="w-full">
         {isSubmitting

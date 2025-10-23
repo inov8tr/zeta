@@ -18,6 +18,7 @@
     "@flags-sdk/growthbook": "^0.1.0",
     "@headlessui/react": "^2.2.0",
     "@hookform/resolvers": "^5.2.2",
+    "@react-email/render": "^1.4.0",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/supabase-js": "^2.57.4",
     "@vercel/analytics": "^1.5.0",
@@ -33,6 +34,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.62.0",
     "react-icons": "^5.4.0",
+    "recharts": "^3.3.0",
     "resend": "^6.1.0",
     "rss-parser": "^3.13.0",
     "zod": "^4.1.9"

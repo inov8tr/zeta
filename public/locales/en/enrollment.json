@@ -8,8 +8,10 @@
     "loading": "Loading form…",
     "stepOneLabel": "Step 1",
     "stepOneTitle": "Choose appointment type",
+    "stepOneDescription": "Select whether you’d like a consultation or the entrance test.",
     "stepTwoLabel": "Step 2",
     "stepTwoTitle": "Tell us when you're available",
+    "stepTwoDescription": "Leave a day and time that suits you and we'll follow up to confirm.",
     "consultation": {
       "title": "Free Consultation",
       "description": "Meet a Zeta teacher to discuss learning goals and class placement."

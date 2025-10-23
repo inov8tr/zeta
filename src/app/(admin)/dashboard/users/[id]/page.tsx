@@ -9,7 +9,10 @@ import { format } from "date-fns";
 import { Database } from "@/lib/database.types";
 import AssignTestButton from "@/components/admin/AssignTestButton";
 import VerifyUserButton from "@/components/admin/VerifyUserButton";
+import ArchiveToggleButton from "@/components/admin/ArchiveToggleButton";
+import SendSurveyInviteButton from "@/components/admin/SendSurveyInviteButton";
 import { createAdminClient } from "@/lib/supabaseAdmin";
+import { Button } from "@/components/ui/Button";
 
 type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
 type ProfileWithRelations = ProfileRow & {
@@ -17,6 +20,8 @@ type ProfileWithRelations = ProfileRow & {
 };
 type TestRow = Database["public"]["Tables"]["tests"]["Row"];
 type ConsultationRow = Database["public"]["Tables"]["consultations"]["Row"];
+type StudentMetaRow = Database["public"]["Tables"]["students"]["Row"];
+type ParentSurveyRow = Database["public"]["Tables"]["parent_surveys"]["Row"];
 
 interface UserDetailPageProps {
   params: Promise<{ id: string }>;
@@ -30,11 +35,25 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   });
   const admin = createAdminClient();
 
-  const profilePromise = supabase
+  let archivingEnabled = true;
+  const profileQuery = supabase
     .from("profiles")
-    .select("user_id, full_name, username, role, phone, class_id, test_status, classes(name, level)")
+    .select("user_id, full_name, username, role, phone, class_id, test_status, archived, archived_at, classes(name, level)")
     .eq("user_id", id)
     .maybeSingle<ProfileWithRelations>();
+
+  let { data: profile, error: profileError } = await profileQuery;
+
+  if (profileError && profileError.message?.toLowerCase().includes("archived")) {
+    archivingEnabled = false;
+    const fallback = await supabase
+      .from("profiles")
+      .select("user_id, full_name, username, role, phone, class_id, test_status, classes(name, level)")
+      .eq("user_id", id)
+      .maybeSingle<ProfileWithRelations>();
+    profile = fallback.data;
+    profileError = fallback.error;
+  }
 
   const testsPromise = supabase
     .from("tests")
@@ -51,12 +70,23 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     .returns<ConsultationRow[]>();
 
   const authUserPromise = admin.auth.admin.getUserById(id);
+  const studentMetaPromise = admin
+    .from("students")
+    .select("id, student_name, parent_email, survey_completed, survey_token, survey_token_expiry")
+    .eq("id", id)
+    .maybeSingle<StudentMetaRow>();
+  const parentSurveyPromise = admin
+    .from("parent_surveys")
+    .select("student_id, completed_by, created_at, data")
+    .eq("student_id", id)
+    .maybeSingle<ParentSurveyRow>();
 
-  const [profileResult, testsResult, consultationsResult, authUserResult] = await Promise.all([
-    profilePromise,
+  const [testsResult, consultationsResult, authUserResult, studentMetaResult, parentSurveyResult] = await Promise.all([
     testsPromise,
     consultationsPromise,
     authUserPromise,
+    studentMetaPromise,
+    parentSurveyPromise,
   ]);
 
   const { data: authUserData } = authUserResult;
@@ -64,15 +94,32 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const emailConfirmed = Boolean(authUser?.email_confirmed_at);
   const emailAddress = authUser?.email ?? null;
 
-  const { data: profile, error: profileError } = profileResult;
   const tests = (testsResult.data as TestRow[] | null) ?? [];
   const consultations = (consultationsResult.data as ConsultationRow[] | null) ?? [];
+  const studentMeta = (studentMetaResult.data as StudentMetaRow | null) ?? null;
+  const parentSurvey = (parentSurveyResult.data as ParentSurveyRow | null) ?? null;
+  const surveyCompleted = studentMeta?.survey_completed ?? false;
+  const surveySubmittedAt = parentSurvey?.created_at ?? null;
+  const surveyToken = studentMeta?.survey_token ?? null;
+  const adminSurveyLink =
+    surveyToken != null
+      ? `/survey?student_id=${encodeURIComponent(id)}&token=${encodeURIComponent(surveyToken)}&admin=true`
+      : null;
 
+  if (studentMetaResult.error && studentMetaResult.error.code !== "PGRST116") {
+    console.error("Failed to load student metadata", studentMetaResult.error);
+  }
+  if (parentSurveyResult.error && parentSurveyResult.error.code !== "PGRST116") {
+    console.error("Failed to load parent survey", parentSurveyResult.error);
+  }
+
+  
   if (profileError || !profile) {
     notFound();
   }
 
   const classData = Array.isArray(profile.classes) ? profile.classes[0] : profile.classes;
+  const isArchived = archivingEnabled && (profile as ProfileWithRelations & { archived?: boolean }).archived ? true : false;
 
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-12">
@@ -82,19 +129,42 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
             ← Back to users
           </Link>
           <h1 className="text-3xl font-semibold text-brand-primary-dark">{profile.full_name ?? "Unnamed user"}</h1>
-          <p className="text-sm text-neutral-muted">
-            Role: <span className="font-medium text-brand-primary-dark">{profile.role ?? "student"}</span>
+          <p className="flex flex-wrap items-center gap-3 text-sm text-neutral-muted">
+            <span>
+              Role: <span className="font-medium text-brand-primary-dark">{profile.role ?? "student"}</span>
+            </span>
+            {archivingEnabled && isArchived ? (
+              <span className="inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold uppercase text-amber-700">
+                Archived
+              </span>
+            ) : null}
           </p>
         </div>
-        <div className="mt-2 flex flex-wrap gap-2 sm:mt-0">
+        <div className="mt-2 flex flex-wrap items-start gap-2 sm:mt-0 sm:justify-end">
           <Link
             href={`/dashboard/users/${id}/edit`}
             className="inline-flex items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold uppercase text-white transition hover:bg-brand-primary-dark"
           >
             Edit user
           </Link>
-          <AssignTestButton studentId={id} />
-          <VerifyUserButton userId={id} emailConfirmed={emailConfirmed} />
+          {archivingEnabled && !isArchived ? <AssignTestButton studentId={id} /> : null}
+          {archivingEnabled && !isArchived ? <VerifyUserButton userId={id} emailConfirmed={emailConfirmed} /> : null}
+          {!isArchived ? (
+            <SendSurveyInviteButton
+              studentId={id}
+              parentEmail={emailAddress}
+              studentName={profile.full_name}
+              revalidatePath={`/dashboard/users/${id}`}
+            />
+          ) : null}
+          {adminSurveyLink ? (
+            <Button asChild size="sm" variant="outline">
+              <Link href={adminSurveyLink} target="_blank" rel="noreferrer">
+                Fill survey
+              </Link>
+            </Button>
+          ) : null}
+          {archivingEnabled ? <ArchiveToggleButton userId={id} archived={isArchived} /> : null}
         </div>
       </div>
 
@@ -124,6 +194,12 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
               <dt className="font-medium text-brand-primary-dark">Phone</dt>
               <dd>{profile.phone ?? "—"}</dd>
             </div>
+            {archivingEnabled && isArchived ? (
+              <div>
+                <dt className="font-medium text-brand-primary-dark">Archived on</dt>
+                <dd>{profile.archived_at ? format(new Date(profile.archived_at), "MMM d, yyyy") : "—"}</dd>
+              </div>
+            ) : null}
           </dl>
         </DetailCard>
         <DetailCard title="Assignments">
@@ -135,6 +211,19 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
             <div>
               <dt className="font-medium text-brand-primary-dark">Test status</dt>
               <dd>{profile.test_status ?? "none"}</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-brand-primary-dark">Parent survey</dt>
+              <dd className="flex items-center gap-2">
+                <span className={surveyCompleted ? "text-emerald-600" : "text-amber-600"}>
+                  {surveyCompleted ? "Completed" : "Pending"}
+                </span>
+                {surveySubmittedAt ? (
+                  <span className="text-xs text-neutral-muted">
+                    {format(new Date(surveySubmittedAt), "MMM d, yyyy")}
+                  </span>
+                ) : null}
+              </dd>
             </div>
           </dl>
         </DetailCard>
@@ -149,7 +238,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
             <EmptyRow message="No tests assigned yet." />
           ) : (
             tests.map((test) => (
-              <article key={test.id} className="grid gap-2 px-6 py-4 text-sm text-neutral-800 sm:grid-cols-4">
+              <article key={test.id} className="grid gap-3 px-6 py-4 text-sm text-neutral-800 sm:grid-cols-5">
                 <div>
                   <div className="text-xs uppercase tracking-wide text-brand-primary/70">Type</div>
                   <div className="font-medium text-brand-primary-dark">{test.type}</div>
@@ -167,6 +256,14 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
                 <div>
                   <div className="text-xs uppercase tracking-wide text-brand-primary/70">Score</div>
                   <div className="text-brand-primary-dark">{test.total_score ?? "Pending"}</div>
+                </div>
+                <div className="flex items-end justify-start sm:justify-end">
+                  <Link
+                    href={`/dashboard/result/${test.id}`}
+                    className="inline-flex rounded-full bg-brand-primary px-3 py-1 text-xs font-semibold uppercase text-white transition hover:bg-brand-primary-dark"
+                  >
+                    View
+                  </Link>
                 </div>
               </article>
             ))

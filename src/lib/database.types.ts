@@ -20,6 +20,8 @@ export type Database = {
           test_status: string | null;
           created_at: string | null;
           updated_at: string | null;
+          archived: boolean;
+          archived_at: string | null;
         };
         Insert: {
           user_id: string;
@@ -31,6 +33,8 @@ export type Database = {
           test_status?: string | null;
           created_at?: string | null;
           updated_at?: string | null;
+          archived?: boolean;
+          archived_at?: string | null;
         };
         Update: {
           user_id?: string;
@@ -42,6 +46,8 @@ export type Database = {
           test_status?: string | null;
           created_at?: string | null;
           updated_at?: string | null;
+          archived?: boolean;
+          archived_at?: string | null;
         };
         Relationships: [
           {
@@ -157,6 +163,80 @@ export type Database = {
           {
             foreignKeyName: "consultation_slots_booked_by_fkey";
             columns: ["booked_by"];
+            referencedRelation: "profiles";
+            referencedColumns: ["user_id"];
+          }
+        ];
+      };
+      parent_surveys: {
+        Row: {
+          id: string;
+          student_id: string;
+          completed_by: "parent" | "admin";
+          data: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          student_id: string;
+          completed_by: "parent" | "admin";
+          data: Json;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          student_id?: string;
+          completed_by?: "parent" | "admin";
+          data?: Json;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "parent_surveys_student_id_fkey";
+            columns: ["student_id"];
+            referencedRelation: "students";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      students: {
+        Row: {
+          id: string;
+          profile_id: string | null;
+          student_name: string | null;
+          parent_email: string | null;
+          survey_token: string | null;
+          survey_token_expiry: string | null;
+          survey_completed: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          profile_id?: string | null;
+          student_name?: string | null;
+          parent_email?: string | null;
+          survey_token?: string | null;
+          survey_token_expiry?: string | null;
+          survey_completed?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          profile_id?: string | null;
+          student_name?: string | null;
+          parent_email?: string | null;
+          survey_token?: string | null;
+          survey_token_expiry?: string | null;
+          survey_completed?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "students_profile_id_fkey";
+            columns: ["profile_id"];
             referencedRelation: "profiles";
             referencedColumns: ["user_id"];
           }

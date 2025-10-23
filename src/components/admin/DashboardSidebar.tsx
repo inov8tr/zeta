@@ -4,8 +4,11 @@ import type { ComponentType } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { CalendarDays, Users, GraduationCap, FileCheck2, LayoutDashboard } from "lucide-react";
+import { useState } from "react";
+
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 interface NavItem {
   label: string;
@@ -43,10 +46,28 @@ const NAV_ITEMS: NavItem[] = [
 
 const DashboardSidebar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const supabase = createClientComponentClient();
+  const [signingOut, setSigningOut] = useState(false);
+
+  const handleSignOut = async () => {
+    if (signingOut) {
+      return;
+    }
+    setSigningOut(true);
+    try {
+      await supabase.auth.signOut();
+      router.replace("/login");
+      router.refresh();
+    } catch (error) {
+      console.error("Sign-out failed", error);
+      setSigningOut(false);
+    }
+  };
 
   return (
-    <aside className="hidden w-64 flex-shrink-0 bg-brand-primary text-white shadow-2xl sm:flex sm:min-h-screen">
-      <nav className="flex w-full flex-col gap-8 px-6 py-10">
+    <aside className="hidden sticky top-0 h-screen w-64 flex-shrink-0 bg-brand-primary text-white shadow-2xl sm:flex print:hidden">
+      <nav className="flex w-full flex-col gap-8 overflow-y-auto px-6 py-10">
         <div className="flex items-center gap-3">
           <div className="relative h-10 w-10 flex-shrink-0">
             <Image
@@ -85,12 +106,14 @@ const DashboardSidebar = () => {
             );
           })}
         </ul>
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-4 text-xs text-white/80">
-          Need help?{" "}
-          <a href="mailto:info@zeta-eng.co.kr" className="font-semibold text-brand-accent">
-            Contact support
-          </a>
-        </div>
+        <button
+          type="button"
+          onClick={handleSignOut}
+          disabled={signingOut}
+          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-xs font-semibold uppercase text-white/90 transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {signingOut ? "Signing out…" : "Logout"}
+        </button>
       </nav>
     </aside>
   );

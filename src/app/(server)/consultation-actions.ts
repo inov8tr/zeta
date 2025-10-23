@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { Resend } from "resend";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { createAdminClient } from "@/lib/supabaseAdmin";
+import { Database } from "@/lib/database.types";
 
 const USER_ROLES = ["admin", "teacher", "student", "parent"] as const;
 type UserRole = (typeof USER_ROLES)[number];
@@ -271,40 +272,117 @@ export async function bookConsultation(input: Input) {
   }
 }
 
-export async function updateConsultationStatusAction(formData: FormData): Promise<void> {
-  try {
-    const id = String(formData.get("id"));
-    const status = String(formData.get("status"));
-    if (!id || !["pending", "confirmed", "cancelled"].includes(status)) {
-      throw new Error("Invalid input");
-    }
-    const supabase = createServerActionClient({ cookies: () => cookies() });
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    if (!session) {
-      throw new Error("Unauthorized");
-    }
-    const { data: profile, error: profileError } = await supabase
-      .from("profiles")
-      .select("role")
-      .eq("user_id", session.user.id)
-      .single();
-    if (profileError || profile?.role !== "admin") {
-      throw new Error("Forbidden");
-    }
-    const admin = createAdminClient();
-    const { error } = await admin
-      .from("consultations")
-      .update({ status })
-      .eq("id", id);
-    if (error) {
-      throw error;
-    }
-    revalidatePath("/admin", "page");
-  } catch (e: unknown) {
-    console.error(e);
-    const message = e instanceof Error ? e.message : "Update failed";
-    throw new Error(message);
+export async function updateConsultationAction(input: {
+  consultationId: string;
+  slotId?: string | null;
+  status?: string;
+}) {
+  const cookieStore = cookies();
+  const supabase = createServerActionClient({ cookies: () => cookieStore });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return { error: "You must be signed in." };
   }
+
+  const { data: actorProfile, error: actorError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", session.user.id)
+    .maybeSingle<{ role: string }>();
+
+  if (actorError || actorProfile?.role !== "admin") {
+    return { error: "Only admins can update consultations." };
+  }
+
+  const admin = createAdminClient();
+  const { data: consultation, error: consultationError } = await admin
+    .from("consultations")
+    .select("id, user_id, slot_id")
+    .eq("id", input.consultationId)
+    .maybeSingle<{ id: string; user_id: string | null; slot_id: string | null }>();
+
+  if (consultationError || !consultation) {
+    return { error: "Consultation not found." };
+  }
+
+  const updates: Database["public"]["Tables"]["consultations"]["Update"] = {};
+
+  if (Object.prototype.hasOwnProperty.call(input, "slotId")) {
+    const nextSlotId = input.slotId ?? null;
+
+    if (consultation.slot_id && consultation.slot_id !== nextSlotId) {
+      const { error: releaseError } = await admin
+        .from("consultation_slots")
+        .update({ is_booked: false, booked_by: null })
+        .eq("id", consultation.slot_id);
+      if (releaseError) {
+        console.error("Failed to release previous slot", releaseError);
+        return { error: "Could not release previous slot." };
+      }
+    }
+
+    if (nextSlotId) {
+      const { data: targetSlot, error: slotError } = await admin
+        .from("consultation_slots")
+        .select("id, is_booked")
+        .eq("id", nextSlotId)
+        .maybeSingle<{ id: string; is_booked: boolean }>();
+
+      if (slotError || !targetSlot) {
+        return { error: "Selected slot not found." };
+      }
+
+      if (targetSlot.is_booked && consultation.slot_id !== nextSlotId) {
+        return { error: "That slot is already booked." };
+      }
+
+      const { error: bookError } = await admin
+        .from("consultation_slots")
+        .update({ is_booked: true, booked_by: consultation.user_id ?? null })
+        .eq("id", nextSlotId);
+      if (bookError) {
+        console.error("Failed to book slot", bookError);
+        return { error: "Could not book the selected slot." };
+      }
+    }
+
+    updates.slot_id = nextSlotId;
+  }
+
+  if (input.status) {
+    const allowedStatuses = new Set(["pending", "confirmed", "cancelled"]);
+    if (!allowedStatuses.has(input.status)) {
+      return { error: "Invalid status." };
+    }
+
+    const effectiveSlotId = Object.prototype.hasOwnProperty.call(input, "slotId")
+      ? input.slotId
+      : consultation.slot_id;
+
+    const nextStatus = input.status as "pending" | "confirmed" | "cancelled";
+
+    if (nextStatus === "confirmed" && !effectiveSlotId) {
+      return { error: "Assign a slot before confirming." };
+    }
+
+    updates.status = nextStatus;
+  }
+
+  if (Object.keys(updates).length > 0) {
+    const { error: updateError } = await admin
+      .from("consultations")
+      .update(updates)
+      .eq("id", input.consultationId);
+    if (updateError) {
+      console.error("updateConsultationAction", updateError);
+      return { error: "Failed to update consultation." };
+    }
+  }
+
+  revalidatePath("/dashboard/consultations");
+  revalidatePath("/dashboard");
+  return {};
 }

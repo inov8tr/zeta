@@ -9,11 +9,11 @@ interface AdminShellProps {
 
 const AdminShell = ({ children }: AdminShellProps) => {
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-neutral-lightest via-white to-brand-primary/10 text-neutral-900">
+    <div className="flex min-h-screen bg-gradient-to-br from-neutral-lightest via-white to-brand-primary/10 text-neutral-900 print:block print:bg-white">
       <DashboardSidebar />
       <div className="flex flex-1 flex-col">
-        <DashboardHeader />
-        <div className="flex-1 overflow-y-auto bg-white/70 backdrop-blur">
+        <div className="sticky top-0 z-20"><DashboardHeader /></div>
+        <div className="flex-1 overflow-y-auto bg-white/70 backdrop-blur print:bg-white print:p-0">
           {children}
         </div>
       </div>

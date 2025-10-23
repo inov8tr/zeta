@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const DashboardHeader = () => {
   return (
-    <header className="sticky top-0 z-10 bg-white/90 shadow-sm backdrop-blur">
+    <header className="bg-white/90 shadow-sm backdrop-blur print:hidden">
       <div className="flex items-center justify-between border-b border-brand-primary/10 px-6 py-4">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-brand-primary/70">Admin workspace</p>

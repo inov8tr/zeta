@@ -35,18 +35,26 @@ type ConsultationSlot = Pick<
   "id" | "slot_date" | "start_time" | "end_time" | "is_booked"
 >;
 
+export type SlotSelection = {
+  slotId: string;
+  startIso: string;
+  endIso: string;
+};
+
 type SlotEvent = {
   id: string;
+  slotId: string;
   start: Date;
   end: Date;
   title: string;
   slotStartIso: string;
+  slotEndIso: string;
 };
 
 type ConsultationSlotPickerProps = {
   label: string;
-  value?: string | null;
-  onChange: (isoString: string | null) => void;
+  value?: SlotSelection | null;
+  onChange: (selection: SlotSelection | null) => void;
   contactPhone?: string;
   error?: string;
 };
@@ -87,10 +95,12 @@ const buildEvents = (rows: ConsultationSlot[]): SlotEvent[] =>
       const end = slot.end_time && isAfter(endCandidate, start) ? endCandidate : addMinutes(start, DEFAULT_SLOT_MINUTES);
       return {
         id: slot.id,
+        slotId: slot.id,
         start,
         end,
         title: format(start, "EEE h:mma"),
         slotStartIso: start.toISOString(),
+        slotEndIso: end.toISOString(),
       };
     })
     .sort((a, b) => a.start.getTime() - b.start.getTime());
@@ -201,22 +211,23 @@ const ConsultationSlotPicker = ({ label, value, onChange, contactPhone, error }:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const selectedEventLabel = useMemo(() => formatSelectedLabel(value), [value]);
+  const selectedIso = value?.startIso ?? null;
+  const selectedEventLabel = useMemo(() => formatSelectedLabel(selectedIso), [selectedIso]);
 
   const handleSelectEvent = useCallback(
     (event: SlotEvent) => {
-      if (value && event.slotStartIso === value) {
+      if (value && event.slotId === value.slotId) {
         onChange(null);
         return;
       }
-      onChange(event.slotStartIso);
+      onChange({ slotId: event.slotId, startIso: event.slotStartIso, endIso: event.slotEndIso });
     },
     [onChange, value],
   );
 
   const eventPropGetter = useCallback(
     (event: SlotEvent) => {
-      const isSelected = value ? event.slotStartIso === value : false;
+      const isSelected = value ? event.slotId === value.slotId : false;
       if (isSelected) {
         return {
           className: "border-0 bg-brand-primary text-white shadow-md transition",
