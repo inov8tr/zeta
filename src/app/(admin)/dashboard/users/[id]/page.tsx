@@ -13,6 +13,7 @@ import ArchiveToggleButton from "@/components/admin/ArchiveToggleButton";
 import SendSurveyInviteButton from "@/components/admin/SendSurveyInviteButton";
 import { createAdminClient } from "@/lib/supabaseAdmin";
 import { Button } from "@/components/ui/Button";
+import type { ParentSurveyForm } from "@/app/(public)/survey/page";
 
 type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
 type ProfileWithRelations = ProfileRow & {
@@ -105,6 +106,103 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     surveyToken != null
       ? `/survey?student_id=${encodeURIComponent(id)}&token=${encodeURIComponent(surveyToken)}&admin=true`
       : null;
+  const surveyForm = (parentSurvey?.data as ParentSurveyForm | null) ?? null;
+
+  const pastLearningLabels: Record<string, string> = {
+    worksheet_program: "학습지",
+    subject_academy: "단과학원",
+    multi_subject_academy: "전과목(보습)학원",
+    private_tutoring: "과외",
+    other: "기타",
+  };
+
+  const academySubjectLabels: Record<string, string> = {
+    korean: "국어",
+    math: "수학",
+    english: "영어",
+    essay: "논술",
+    all_subjects: "전과목",
+    physical_education: "체육",
+    music: "음악",
+    other: "기타",
+  };
+
+  const academyCountLabels: Record<string, string> = {
+    none: "없음",
+    one: "1개",
+    two: "2개",
+    three: "3개",
+    four_plus: "4개 이상",
+  };
+
+  const selfStudyLabels: Record<string, string> = {
+    educational_broadcast: "교육방송",
+    paid_online_course: "유료 인터넷 방송",
+    reference_books: "참고서/문제집",
+    class_review: "수업내용 예·복습",
+    other: "기타",
+  };
+
+  const academyGoalLabels: Record<string, string> = {
+    grade_improvement: "내신 성적 향상",
+    additional_subject_learning: "기타 과목 학습",
+    special_school_admission: "특목고/외고 진학",
+    other: "기타",
+  };
+
+  const satisfactionLabels: Record<string, string> = {
+    filled_gaps: "부족한 부분 채움",
+    advanced_learning: "선행학습 진행",
+    better_grades: "내신 상승",
+    study_skills: "공부 방법 습득",
+    reduced_home_alone_time: "혼자 있는 시간 감소",
+  };
+
+  const homeworkLabels: Record<string, string> = {
+    none: "필요 없음",
+    under_30_minutes: "30분 이내",
+    under_60_minutes: "1시간 이내",
+    over_60_minutes: "1시간 이상",
+    other: "기타",
+  };
+
+  const discoveryLabels: Record<string, string> = {
+    referral: "소개",
+    advertisement: "광고",
+    signage: "간판/현수막",
+    other: "기타",
+  };
+
+  const formatList = (values?: string[], labels?: Record<string, string>) => {
+    if (!values || values.length === 0) {
+      return "—";
+    }
+    return values
+      .map((value) => (labels && labels[value] ? labels[value] : value))
+      .join(", ");
+  };
+
+  const formatSingle = (value?: string, labels?: Record<string, string>) => {
+    if (!value) {
+      return "—";
+    }
+    return labels && labels[value] ? labels[value] : value;
+  };
+
+  const formatListWithOther = (values: string[] | undefined, labels: Record<string, string>, other?: string) => {
+    const base = formatList(values, labels);
+    if (other && other.trim().length > 0) {
+      return base === "—" ? other : `${base} (기타: ${other})`;
+    }
+    return base;
+  };
+
+  const formatSingleWithOther = (value: string | undefined, labels: Record<string, string>, other?: string) => {
+    if (value === "other" && other && other.trim().length > 0) {
+      return other;
+    }
+    return formatSingle(value, labels);
+  };
 
   if (studentMetaResult.error && studentMetaResult.error.code !== "PGRST116") {
     console.error("Failed to load student metadata", studentMetaResult.error);
@@ -227,6 +325,139 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
             </div>
           </dl>
         </DetailCard>
+      </section>
+
+      <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
+        <header className="border-b border-brand-primary/10 px-6 py-4">
+          <h2 className="text-lg font-semibold text-brand-primary-dark">Parent Survey</h2>
+        </header>
+        <div className="px-6 py-4 text-sm text-neutral-800">
+          {surveyForm ? (
+            <div className="space-y-6">
+              <dl className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">작성일</dt>
+                  <dd>{surveySubmittedAt ? format(new Date(surveySubmittedAt), "yyyy-MM-dd HH:mm") : "—"}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">학부모 연락처</dt>
+                  <dd>{surveyForm.parentContact || "—"}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">학생 전화번호</dt>
+                  <dd>{surveyForm.studentPhone || "—"}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">학교 / 학년</dt>
+                  <dd>
+                    {surveyForm.school || "—"}{" "}
+                    {surveyForm.grade ? <span className="text-neutral-muted">({surveyForm.grade})</span> : null}
+                  </dd>
+                </div>
+                <div className="lg:col-span-2">
+                  <dt className="font-medium text-brand-primary-dark">과거 영어 학습 이력</dt>
+                  <dd>{formatListWithOther(surveyForm.pastLearningMethods, pastLearningLabels, surveyForm.pastLearningOther)}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">현재 다니는 학원 수</dt>
+                  <dd>{formatSingle(surveyForm.currentAcademyCount, academyCountLabels)}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">현재 학원 과목</dt>
+                  <dd>
+                    {formatListWithOther(
+                      surveyForm.currentAcademySubjects,
+                      academySubjectLabels,
+                      surveyForm.currentAcademySubjectsOther,
+                    )}
+                  </dd>
+                </div>
+                <div className="lg:col-span-2">
+                  <dt className="font-medium text-brand-primary-dark">기존 학원 변경 이유</dt>
+                  <dd>{surveyForm.reasonForChange || "—"}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">자기주도 학습 방법</dt>
+                  <dd>{formatListWithOther(surveyForm.selfStudyMethods, selfStudyLabels, surveyForm.selfStudyOther)}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">학원의 주목적</dt>
+                  <dd>{formatSingleWithOther(surveyForm.academyGoal, academyGoalLabels, surveyForm.academyGoalOther)}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">학원 만족 포인트</dt>
+                  <dd>{formatList(surveyForm.satisfactionAreas, satisfactionLabels)}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">희망 숙제량</dt>
+                  <dd>{formatSingleWithOther(surveyForm.homeworkAmount, homeworkLabels, surveyForm.homeworkOther)}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">영어 시험 최고 점수</dt>
+                  <dd>{surveyForm.highestEnglishScore || "—"}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">주간 독서량</dt>
+                  <dd>{surveyForm.weeklyReadingCount ? `${surveyForm.weeklyReadingCount}권` : "—"}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">자신있는 과목</dt>
+                  <dd>{surveyForm.strongestSubject || "—"}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">어려워하는 과목</dt>
+                  <dd>{surveyForm.weakestSubject || "—"}</dd>
+                </div>
+                <div className="lg:col-span-2">
+                  <dt className="font-medium text-brand-primary-dark">보완이 필요하다고 생각하는 부분</dt>
+                  <dd>{surveyForm.perceivedGap || "—"}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">제타영어를 알게 된 경로</dt>
+                  <dd>{formatSingleWithOther(surveyForm.discoveryChannel, discoveryLabels, surveyForm.discoveryOther)}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-brand-primary-dark">소개자</dt>
+                  <dd>{surveyForm.discoveryReferrer || "—"}</dd>
+                </div>
+                <div className="lg:col-span-2">
+                  <dt className="font-medium text-brand-primary-dark">기타 요청사항</dt>
+                  <dd>{surveyForm.additionalNotes || "—"}</dd>
+                </div>
+              </dl>
+
+              {surveyForm.schedules && surveyForm.schedules.length > 0 ? (
+                <div>
+                  <h3 className="text-sm font-semibold text-brand-primary-dark">현재 다니는 학원 시간표</h3>
+                  <div className="mt-3 overflow-x-auto rounded-xl border border-neutral-200">
+                    <table className="min-w-full divide-y divide-neutral-200 text-left text-sm">
+                      <thead className="bg-neutral-50">
+                        <tr>
+                          <th className="px-4 py-2 font-medium text-neutral-700">학원명</th>
+                          <th className="px-4 py-2 font-medium text-neutral-700">요일</th>
+                          <th className="px-4 py-2 font-medium text-neutral-700">등원</th>
+                          <th className="px-4 py-2 font-medium text-neutral-700">하원</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-neutral-100">
+                        {surveyForm.schedules.map((schedule) => (
+                          <tr key={schedule.id}>
+                            <td className="px-4 py-2">{schedule.academyName || "—"}</td>
+                            <td className="px-4 py-2">{schedule.dayOfWeek || "—"}</td>
+                            <td className="px-4 py-2">{schedule.startTime || "—"}</td>
+                            <td className="px-4 py-2">{schedule.endTime || "—"}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          ) : (
+            <p className="text-sm text-neutral-muted">학부모 설문이 아직 제출되지 않았습니다.</p>
+          )}
+        </div>
       </section>
 
       <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">

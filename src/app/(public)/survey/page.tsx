@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import Card from "@/components/ui/card";
 
-type ParentSurveyForm = {
+export type ParentSurveyForm = {
   studentName: string;
   school: string;
   grade: string;
@@ -37,7 +37,7 @@ type ParentSurveyForm = {
   additionalNotes: string;
 };
 
-type SurveySchedule = {
+export type SurveySchedule = {
   id: string;
   academyName: string;
   dayOfWeek: string;
