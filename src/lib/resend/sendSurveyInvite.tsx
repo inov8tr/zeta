@@ -8,27 +8,34 @@ import { render } from "@react-email/render";
 const SURVEY_EXPIRY_HOURS = 72;
 
 const sanitizeUrl = (value: string) =>
-  value.replace(/^\s+|\s+$/g, "").replace(/^["']+|["']+$/g, "").replace(/\/$/, "");
+  value.replace(/^\s+|\s+$/g, "").replace(/^["']+|["']+$/g, "");
 
-const ensureAbsoluteUrl = (value: string, fallback: string) => {
-  const candidate = sanitizeUrl(value);
+const normalizeBaseUrl = (rawValue: string | undefined, defaultValue: string) => {
+  const candidate = sanitizeUrl(rawValue ?? "");
   if (!candidate) {
-    return fallback;
+    return defaultValue;
   }
-  try {
-    return new URL(candidate).toString();
-  } catch {
-    return new URL(candidate.replace(/^https?:\/\//, ""), fallback).toString();
+
+  const lower = candidate.toLowerCase();
+  if (lower.startsWith("http://") || lower.startsWith("https://")) {
+    return candidate.replace(/\/+$/, "");
   }
+  if (lower.startsWith("//")) {
+    return `https:${candidate}`.replace(/\/+$/, "");
+  }
+  if (candidate.startsWith("/")) {
+    return `${defaultValue.replace(/\/+$/, "")}${candidate}`.replace(/\/+$/, "");
+  }
+  if (candidate.includes(".")) {
+    return `https://${candidate}`.replace(/\/+$/, "");
+  }
+  return `${defaultValue.replace(/\/+$/, "")}/${candidate}`.replace(/\/+$/, "");
 };
 
-const DEFAULT_SITE_URL = ensureAbsoluteUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zeta-eng.com", "https://www.zeta-eng.com");
-
-const SURVEY_BASE_URL = ensureAbsoluteUrl(
-  process.env.NEXT_PUBLIC_PARENT_SURVEY_URL && process.env.NEXT_PUBLIC_PARENT_SURVEY_URL.length > 0
-    ? process.env.NEXT_PUBLIC_PARENT_SURVEY_URL
-    : `${DEFAULT_SITE_URL.replace(/\/$/, "")}/survey`,
-  DEFAULT_SITE_URL,
+const DEFAULT_SITE_URL = normalizeBaseUrl(process.env.NEXT_PUBLIC_SITE_URL, "https://www.zeta-eng.com");
+const SURVEY_BASE_URL = normalizeBaseUrl(
+  process.env.NEXT_PUBLIC_PARENT_SURVEY_URL ?? `${DEFAULT_SITE_URL}/survey`,
+  `${DEFAULT_SITE_URL}/survey`,
 );
 
 export async function sendSurveyInvite(studentId: string, parentEmail: string, studentName: string) {
