@@ -6,11 +6,13 @@ import { SurveyInviteEmail } from "@/emails/SurveyInviteEmail";
 import { render } from "@react-email/render";
 
 const SURVEY_EXPIRY_HOURS = 72;
-const DEFAULT_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zeta-eng.com";
-const SURVEY_BASE_URL =
+const sanitizeUrl = (value: string) => value.replace(/^['"]|['"]$/g, "").replace(/\/$/, "");
+const DEFAULT_SITE_URL = sanitizeUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zeta-eng.com");
+const rawSurveyBase =
   process.env.NEXT_PUBLIC_PARENT_SURVEY_URL && process.env.NEXT_PUBLIC_PARENT_SURVEY_URL.length > 0
-    ? process.env.NEXT_PUBLIC_PARENT_SURVEY_URL.replace(/\/$/, "")
-    : `${DEFAULT_SITE_URL.replace(/\/$/, "")}/survey`;
+    ? process.env.NEXT_PUBLIC_PARENT_SURVEY_URL
+    : `${DEFAULT_SITE_URL}/survey`;
+const SURVEY_BASE_URL = sanitizeUrl(rawSurveyBase);
 
 export async function sendSurveyInvite(studentId: string, parentEmail: string, studentName: string) {
   if (!studentId || !parentEmail) {
