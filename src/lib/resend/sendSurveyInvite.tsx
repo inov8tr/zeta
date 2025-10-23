@@ -6,13 +6,30 @@ import { SurveyInviteEmail } from "@/emails/SurveyInviteEmail";
 import { render } from "@react-email/render";
 
 const SURVEY_EXPIRY_HOURS = 72;
-const sanitizeUrl = (value: string) => value.replace(/^\s+|\s+$/g, "").replace(/^["']+|["']+$/g, "").replace(/\/$/, "");
-const DEFAULT_SITE_URL = sanitizeUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zeta-eng.com");
-const rawSurveyBase =
+
+const sanitizeUrl = (value: string) =>
+  value.replace(/^\s+|\s+$/g, "").replace(/^["']+|["']+$/g, "").replace(/\/$/, "");
+
+const ensureAbsoluteUrl = (value: string, fallback: string) => {
+  const candidate = sanitizeUrl(value);
+  if (!candidate) {
+    return fallback;
+  }
+  try {
+    return new URL(candidate).toString();
+  } catch {
+    return new URL(candidate.replace(/^https?:\/\//, ""), fallback).toString();
+  }
+};
+
+const DEFAULT_SITE_URL = ensureAbsoluteUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zeta-eng.com", "https://www.zeta-eng.com");
+
+const SURVEY_BASE_URL = ensureAbsoluteUrl(
   process.env.NEXT_PUBLIC_PARENT_SURVEY_URL && process.env.NEXT_PUBLIC_PARENT_SURVEY_URL.length > 0
     ? process.env.NEXT_PUBLIC_PARENT_SURVEY_URL
-    : `${DEFAULT_SITE_URL}/survey`;
-const SURVEY_BASE_URL = sanitizeUrl(rawSurveyBase);
+    : `${DEFAULT_SITE_URL.replace(/\/$/, "")}/survey`,
+  DEFAULT_SITE_URL,
+);
 
 export async function sendSurveyInvite(studentId: string, parentEmail: string, studentName: string) {
   if (!studentId || !parentEmail) {
@@ -42,7 +59,10 @@ export async function sendSurveyInvite(studentId: string, parentEmail: string, s
     throw upsertError;
   }
 
-  const surveyLink = `${SURVEY_BASE_URL}?student_id=${encodeURIComponent(studentId)}&token=${encodeURIComponent(token)}`;
+  const surveyUrl = new URL(SURVEY_BASE_URL);
+  surveyUrl.searchParams.set("student_id", studentId);
+  surveyUrl.searchParams.set("token", token);
+  const surveyLink = surveyUrl.toString();
 
   const emailHtml = await render(<SurveyInviteEmail studentName={studentName} surveyLink={surveyLink} />);
 
