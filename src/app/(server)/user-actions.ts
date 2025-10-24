@@ -223,6 +223,7 @@ export async function createUserAction(
         .insert({
           user_id: authUserId,
           ...profilePayload,
+          archived: false,
           created_at: now,
         } as Database["public"]["Tables"]["profiles"]["Insert"]);
 

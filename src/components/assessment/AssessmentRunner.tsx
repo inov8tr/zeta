@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { Hourglass, BookOpen, GraduationCap, Headphones, MessageCircle } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { SECTION_ORDER } from "@/lib/tests/adaptiveConfig";
 
@@ -37,6 +39,32 @@ type SubmitResponse = {
 
 const HEARTBEAT_INTERVAL_MS = 15_000;
 
+const SECTION_LABELS: Record<string, string> = {
+  reading: "Reading",
+  grammar: "Grammar",
+  listening: "Listening",
+  dialog: "Dialog",
+};
+
+const SECTION_ICONS: Record<string, LucideIcon> = {
+  reading: BookOpen,
+  grammar: GraduationCap,
+  listening: Headphones,
+  dialog: MessageCircle,
+};
+
+const formatTimer = (seconds: number | null) => {
+  if (seconds === null || Number.isNaN(seconds)) {
+    return "--:--";
+  }
+  const safeSeconds = Math.max(0, Math.floor(seconds));
+  const mins = Math.floor(safeSeconds / 60)
+    .toString()
+    .padStart(2, "0");
+  const secs = (safeSeconds % 60).toString().padStart(2, "0");
+  return `${mins}:${secs}`;
+};
+
 const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
   const [loading, setLoading] = useState(true);
   const [question, setQuestion] = useState<QuestionPayload | null>(null);
@@ -50,9 +78,12 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
+  const [sectionProgress, setSectionProgress] = useState<Record<string, number>>({});
   const lastHeartbeatRef = useRef<number>(Date.now());
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const questionStartRef = useRef<number | null>(null);
+  const sectionInitialTimeRef = useRef<number | null>(null);
 
   const stopTimer = useCallback(() => {
     if (timerRef.current) {
@@ -77,6 +108,9 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
       const data: { timeRemainingSeconds: number; expired: boolean; summary?: { weightedLevel: number | null; totalScore: number | null } } =
         await res.json();
       setTimeRemaining(data.timeRemainingSeconds);
+      if (sectionInitialTimeRef.current === null && data.timeRemainingSeconds !== undefined) {
+        sectionInitialTimeRef.current = data.timeRemainingSeconds;
+      }
       if (data.expired) {
         if (data.summary) {
           setFinalSummary(data.summary);
@@ -123,6 +157,11 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
 
       if (payload.sectionCompleted) {
         setMessage("Section complete! Moving to the next section...");
+        setCompletedSections((prev) => {
+          const next = new Set(prev);
+          next.add(payload.section);
+          return next;
+        });
         await fetchNextQuestion();
         return;
       }
@@ -130,8 +169,13 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
       setQuestion(payload);
       setCurrentSection(payload.section);
       setTimeRemaining(payload.timeRemainingSeconds);
+      sectionInitialTimeRef.current = payload.timeRemainingSeconds ?? null;
       setMessage(null);
       questionStartRef.current = Date.now();
+      setSectionProgress((prev) => ({
+        ...prev,
+        [payload.section]: prev[payload.section] ?? 0,
+      }));
     } catch (err) {
       console.error(err);
       setError(err instanceof Error ? err.message : "Failed to load next question");
@@ -150,7 +194,9 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
       const payload: { status: string; timeLimitSeconds: number; elapsedMs: number } = await res.json();
       setStatus(payload.status);
       const remaining = payload.timeLimitSeconds * 1000 - payload.elapsedMs;
-      setTimeRemaining(Math.max(0, Math.floor(remaining / 1000)));
+      const remainingSeconds = Math.max(0, Math.floor(remaining / 1000));
+      setTimeRemaining(remainingSeconds);
+      sectionInitialTimeRef.current = remainingSeconds;
       lastHeartbeatRef.current = Date.now();
       await fetchNextQuestion();
     } catch (err) {
@@ -200,6 +246,19 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
           setQuestion(null);
           return;
         }
+        if (data.sectionCompleted && question?.section) {
+          setCompletedSections((prev) => {
+            const next = new Set(prev);
+            next.add(question.section);
+            return next;
+          });
+        }
+        if (question?.section) {
+          setSectionProgress((prev) => ({
+            ...prev,
+            [question.section]: (prev[question.section] ?? 0) + 1,
+          }));
+        }
         await fetchNextQuestion();
       } catch (err) {
         console.error(err);
@@ -240,12 +299,11 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
         </p>
         {finalSummary ? (
           <div className="rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-brand-primary-dark">Summary (preliminary)</h2>
+            <h2 className="text-lg font-semibold text-brand-primary-dark">Preliminary score</h2>
+            <p className="mt-2 text-sm text-neutral-muted">
+              Your teacher will review the full details and follow up with personalized feedback.
+            </p>
             <dl className="mt-4 grid gap-3 text-sm text-neutral-700 sm:grid-cols-2">
-              <div>
-                <dt className="text-xs uppercase text-brand-primary/70">Weighted level</dt>
-                <dd className="font-medium text-brand-primary-dark">{finalSummary.weightedLevel ?? "—"}</dd>
-              </div>
               <div>
                 <dt className="text-xs uppercase text-brand-primary/70">Overall score</dt>
                 <dd className="font-medium text-brand-primary-dark">{finalSummary.totalScore ?? "Pending review"}</dd>
@@ -253,6 +311,14 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
             </dl>
           </div>
         ) : null}
+        <div className="mx-auto max-w-xl rounded-3xl border border-brand-primary/10 bg-brand-primary/5 p-6 text-left text-sm text-brand-primary-dark">
+          <p className="font-semibold uppercase tracking-[0.25em] text-brand-primary/70">What happens next</p>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-brand-primary-dark/80">
+            <li>Your teacher reviews your responses to customize upcoming lessons.</li>
+            <li>You&apos;ll receive feedback and placement updates inside the student dashboard.</li>
+            <li>Use the resources tab to stay warm while we prepare your next assessment.</li>
+          </ul>
+        </div>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/student"
@@ -281,33 +347,82 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
 
   const { section, question: q, passage } = question;
 
+  const sectionTitle = SECTION_LABELS[section] ?? "Assessment";
+  const initialSeconds = sectionInitialTimeRef.current ?? timeRemaining ?? 0;
+  const progressPercent =
+    timeRemaining !== null && initialSeconds > 0 ? Math.max(0, Math.min(100, (timeRemaining / initialSeconds) * 100)) : 0;
+
   return (
-    <main className="mx-auto flex min-h-screen max-w-5xl flex-col gap-6 px-6 py-10">
-      <header className="flex flex-col gap-2 border-b border-brand-primary/10 pb-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-[0.4em] text-brand-primary/70">Entrance assessment</p>
-          <h1 className="text-2xl font-semibold text-brand-primary-dark">
-            {section === "reading"
-              ? "Reading comprehension"
-              : section === "grammar"
-              ? "Grammar"
-              : section === "listening"
-              ? "Listening"
-              : "Dialog"}
-          </h1>
-          {progressLabel ? (
-            <p className="text-xs text-neutral-muted">Section {progressLabel}</p>
-          ) : null}
-        </div>
-        <div className="flex items-center gap-4 text-xs text-brand-primary-dark">
-          <div className="rounded-full bg-brand-primary/10 px-3 py-1 font-semibold uppercase">
-            {question.level}
+    <main className="min-h-screen bg-gradient-to-br from-neutral-lightest via-white to-brand-primary/10">
+      <div className="mx-auto flex min-h-screen max-w-5xl flex-col gap-6 px-6 py-10">
+        <header className="relative overflow-hidden rounded-3xl border border-brand-primary/20 bg-white px-6 py-8 shadow-sm">
+          <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-brand-primary/10 blur-3xl" aria-hidden />
+          <div className="absolute -left-24 bottom-0 h-40 w-40 rounded-full bg-brand-primary/5 blur-3xl" aria-hidden />
+          <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.4em] text-brand-primary/70">Zeta adaptive assessment</p>
+              <h1 className="mt-2 text-3xl font-semibold text-brand-primary-dark">{sectionTitle}</h1>
+              {progressLabel ? (
+                <p className="mt-1 text-sm text-neutral-muted">Section {progressLabel}</p>
+              ) : (
+                <p className="mt-1 text-sm text-neutral-muted">Adaptive section tailored to your level</p>
+              )}
+            </div>
+            <div className="flex flex-col gap-3 text-brand-primary-dark">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-primary text-lg text-white shadow">
+                <Hourglass className="h-5 w-5" />
+              </span>
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-brand-primary/70">Time remaining</p>
+                  <p className="text-2xl font-semibold text-brand-primary-dark">{formatTimer(timeRemaining)}</p>
+                </div>
+              </div>
+              <div className="h-2 w-56 overflow-hidden rounded-full bg-brand-primary/10">
+                <div
+                  className="h-full rounded-full bg-brand-primary transition-[width] duration-500 ease-out"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+            </div>
           </div>
-          <div className="rounded-full bg-brand-primary/10 px-3 py-1 font-semibold uppercase">
-            {timeRemaining !== null ? `${timeRemaining}s left` : "Timer"}
-          </div>
-        </div>
-      </header>
+        </header>
+
+        <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {sectionOrder.map((sectionKey) => {
+            const label = SECTION_LABELS[sectionKey] ?? sectionKey;
+            const Icon = SECTION_ICONS[sectionKey] ?? BookOpen;
+            const status = completedSections.has(sectionKey)
+              ? "completed"
+              : currentSection === sectionKey
+                ? "current"
+                : "upcoming";
+            const statusClasses =
+              status === "completed"
+                ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                : status === "current"
+                  ? "border-brand-primary/40 bg-brand-primary/5 text-brand-primary-dark"
+                  : "border-neutral-200 bg-white text-neutral-600";
+            const statusLabel =
+              status === "completed" ? "Completed" : status === "current" ? "In progress" : "Upcoming";
+            const count = sectionProgress[sectionKey] ?? 0;
+            return (
+              <article
+                key={sectionKey}
+                className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm shadow-sm transition ${statusClasses}`}
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/60 text-brand-primary">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-neutral-500">{statusLabel}</p>
+                  <p className="text-sm font-semibold text-neutral-800">{label}</p>
+                  <p className="text-[11px] text-neutral-500">Answered {count}</p>
+                </div>
+              </article>
+            );
+          })}
+        </section>
 
       {message ? (
         <div className="rounded-2xl border border-brand-primary/10 bg-brand-primary/5 p-4 text-sm text-brand-primary-dark">
@@ -323,7 +438,7 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
 
       <div className={passage ? "grid gap-6 lg:grid-cols-2" : "grid gap-6 sm:grid-cols-[minmax(0,1fr)]"}>
         {passage ? (
-          <article className="rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm lg:sticky lg:top-6 lg:h-fit">
+          <article className="rounded-3xl border border-brand-primary/15 bg-white/95 p-6 shadow-sm backdrop-blur lg:sticky lg:top-6 lg:h-fit">
             <h2 className="text-lg font-semibold text-brand-primary-dark">{passage.title}</h2>
             <div className="mt-4 space-y-3 text-sm leading-relaxed text-neutral-700">
               {passage.body.split("\n\n").map((paragraph, idx) => (
@@ -333,9 +448,11 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
           </article>
         ) : null}
 
-        <article className="rounded-3xl border border-brand-primary/10 bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-brand-primary-dark">Question</h2>
-          <p className="mt-4 text-sm text-neutral-800">{q.stem}</p>
+        <article className="rounded-3xl border border-brand-primary/15 bg-white/95 p-6 shadow-sm backdrop-blur">
+          <div className="flex items-center justify-between gap-4">
+            <h2 className="text-lg font-semibold text-brand-primary-dark">Question</h2>
+          </div>
+          <p className="mt-4 text-base text-neutral-900">{q.stem}</p>
           {q.mediaUrl ? (
             <div className="mt-4">
               <audio controls preload="metadata" className="w-full">
@@ -351,9 +468,9 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
                   type="button"
                   onClick={() => handleAnswer(idx)}
                   disabled={submitting}
-                  className="w-full rounded-2xl border border-brand-primary/10 bg-brand-primary/5 px-4 py-3 text-left text-sm font-medium text-brand-primary-dark transition hover:border-brand-primary hover:bg-brand-primary/10 disabled:cursor-not-allowed"
+                  className="group w-full rounded-2xl border border-brand-primary/20 bg-white px-4 py-3 text-left text-sm font-medium text-brand-primary-dark shadow-sm transition hover:border-brand-primary hover:bg-brand-primary/10 disabled:cursor-not-allowed"
                 >
-                  <span className="mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-primary/10 font-semibold">
+                  <span className="mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-primary/10 font-semibold text-brand-primary group-hover:bg-brand-primary group-hover:text-white">
                     {String.fromCharCode(65 + idx)}
                   </span>
                   {option}
@@ -364,9 +481,9 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
         </article>
       </div>
 
-      <div className="flex flex-wrap gap-3 text-xs text-neutral-muted">
-        <span>Skill focus: {q.skillTags.length ? q.skillTags.join(", ") : "general"}</span>
-        <span>Question ID: {q.id}</span>
+        <div className="flex flex-wrap gap-3 text-xs text-neutral-muted">
+          <span>Question ID: {q.id}</span>
+        </div>
       </div>
     </main>
   );

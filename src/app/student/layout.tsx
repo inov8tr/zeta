@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import StudentSidebar from "@/components/student/StudentSidebar";
+import RoutePrefetcher from "@/components/student/RoutePrefetcher";
 import type { Database } from "@/lib/database.types";
 
 const StudentLayout = async ({ children }: { children: ReactNode }) => {
@@ -30,6 +31,7 @@ const StudentLayout = async ({ children }: { children: ReactNode }) => {
     <div className="flex min-h-screen bg-gradient-to-br from-neutral-lightest via-white to-student-primary/10 text-neutral-900 print:block print:bg-white">
       <StudentSidebar showClasses={showClasses} />
       <div className="flex flex-1 flex-col">
+        <RoutePrefetcher />
         <div className="flex-1 overflow-y-auto bg-white/70 backdrop-blur print:bg-white print:p-0">
           {children}
         </div>

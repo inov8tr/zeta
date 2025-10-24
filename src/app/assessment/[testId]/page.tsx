@@ -46,11 +46,17 @@ const AssessmentPage = async ({ params }: AssessmentPageProps) => {
   }
 
   return (
-    <AssessmentRunner
-      testId={testId}
-      initialStatus={testRow.status}
-      studentId={session.user.id}
-    />
+    <div className="min-h-screen bg-gradient-to-br from-brand-primary/5 via-white to-brand-primary/10">
+      <div className="mx-auto max-w-6xl px-4 py-8">
+        <div className="rounded-3xl bg-white/80 p-4 shadow-lg backdrop-blur">
+          <AssessmentRunner
+            testId={testId}
+            initialStatus={testRow.status}
+            studentId={session.user.id}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 
