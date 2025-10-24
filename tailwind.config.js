@@ -15,6 +15,8 @@ module.exports = {
         'brand-primary-dark': '#1c3c62',
         'brand-accent': '#fecc4c',
         'brand-accent-dark': '#d9a840',
+        'student-primary': '#1f6f8b',
+        'student-primary-light': '#399bb5',
         'neutral-lightest': '#fffefc',
         'neutral-muted': '#9ea8c7',
       },

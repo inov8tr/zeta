@@ -21,7 +21,7 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
 
   const { data: profile, error } = await supabase
     .from("profiles")
-    .select("user_id, full_name, phone, role, class_id, test_status")
+    .select("user_id, full_name, phone, role, class_id, test_status, classroom_enabled")
     .eq("user_id", id)
     .maybeSingle<ProfileRow>();
 
@@ -54,6 +54,7 @@ const EditUserPage = async ({ params }: EditUserPageProps) => {
             role: profile.role,
             class_id: profile.class_id,
             test_status: profile.test_status,
+            classroom_enabled: profile.classroom_enabled ?? false,
           }}
           classes={classOptions.map((item) => ({ id: item.id, name: item.name, level: item.level }))}
         />

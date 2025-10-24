@@ -148,6 +148,26 @@ const UserCreateForm = ({ classes, classError }: UserCreateFormProps) => {
             className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           />
         </label>
+
+        <label className="flex flex-col gap-2 text-sm text-neutral-800 md:col-span-2">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Classes tab</span>
+          <div className="flex items-center gap-3 rounded-2xl border border-brand-primary/10 bg-brand-primary/5 px-4 py-3">
+            <input
+              type="checkbox"
+              name="classroom_enabled"
+              id="classroom_enabled"
+              className="h-4 w-4 rounded border-brand-primary/40 text-brand-primary focus:ring-brand-primary"
+            />
+            <div className="space-y-1">
+              <label htmlFor="classroom_enabled" className="text-sm font-semibold text-brand-primary-dark">
+                Allow access to the Classes tab
+              </label>
+              <p className="text-xs text-neutral-muted">
+                Enable this if the student should connect Google Classroom and see class assignments in their dashboard.
+              </p>
+            </div>
+          </div>
+        </label>
       </div>
 
       <p className="text-xs text-neutral-muted">

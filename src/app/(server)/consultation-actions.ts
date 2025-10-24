@@ -7,6 +7,7 @@ import { Resend } from "resend";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { createAdminClient } from "@/lib/supabaseAdmin";
 import { Database } from "@/lib/database.types";
+import { formatDateTime } from "@/lib/formatDateTime";
 
 const USER_ROLES = ["admin", "teacher", "student", "parent"] as const;
 type UserRole = (typeof USER_ROLES)[number];
@@ -385,4 +386,214 @@ export async function updateConsultationAction(input: {
   revalidatePath("/dashboard/consultations");
   revalidatePath("/dashboard");
   return {};
+}
+
+const combineSlotDateTime = (slotDate: string, time: string | null) => {
+  const base = new Date(slotDate);
+  if (time) {
+    const [hours, minutes] = time.split(":").map(Number);
+    if (!Number.isNaN(hours) && !Number.isNaN(minutes)) {
+      base.setHours(hours, minutes, 0, 0);
+    }
+  }
+  return base;
+};
+
+export async function scheduleConsultationSlotAction(input: {
+  slotId: string;
+  notes?: string | null;
+}): Promise<{ error?: string; success?: string }> {
+  const slotId = typeof input?.slotId === "string" ? input.slotId.trim() : "";
+  if (!slotId) {
+    return { error: "Select an available slot before scheduling." };
+  }
+
+  try {
+    const cookieStore = cookies();
+    const supabase = createServerActionClient<Database>({ cookies: () => cookieStore });
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      return { error: "You must be signed in." };
+    }
+
+    const userId = session.user.id;
+    const admin = createAdminClient();
+
+    const { data: slot, error: slotError } = await admin
+      .from("consultation_slots")
+      .select("id, slot_date, start_time, end_time, is_booked, booked_by")
+      .eq("id", slotId)
+      .maybeSingle<{
+        id: string;
+        slot_date: string;
+        start_time: string;
+        end_time: string;
+        is_booked: boolean;
+        booked_by: string | null;
+      }>();
+
+    if (slotError || !slot) {
+      return { error: "Selected time is no longer available." };
+    }
+
+    if (slot.is_booked && slot.booked_by && slot.booked_by !== userId) {
+      return { error: "That time was just booked. Please choose another slot." };
+    }
+
+    const nowIso = new Date().toISOString();
+    const { data: existingUpcoming, error: existingError } = await admin
+      .from("consultations")
+      .select("id")
+      .eq("user_id", userId)
+      .neq("status", "cancelled")
+      .gte("preferred_start", nowIso)
+      .limit(1);
+
+    if (existingError) {
+      console.error("scheduleConsultationSlotAction: failed to check existing consultations", existingError);
+      return { error: "Unable to verify your schedule. Please try again." };
+    }
+
+    if (existingUpcoming && existingUpcoming.length > 0) {
+      return {
+        error: "You already have an upcoming consultation. Reach out to support if you need to reschedule.",
+      };
+    }
+
+    const { data: profile } = await admin
+      .from("profiles")
+      .select("full_name, phone, username, role")
+      .eq("user_id", userId)
+      .maybeSingle<{
+        full_name: string | null;
+        phone: string | null;
+        username: string | null;
+        role: string | null;
+      }>();
+
+    const sanitizedNotes =
+      typeof input.notes === "string" && input.notes.trim().length > 0
+        ? input.notes.trim().slice(0, 1000)
+        : null;
+
+    const start = combineSlotDateTime(slot.slot_date, slot.start_time);
+    const endCandidate = combineSlotDateTime(slot.slot_date, slot.end_time);
+    const end =
+      slot.end_time && !Number.isNaN(endCandidate.getTime()) && endCandidate.getTime() > start.getTime()
+        ? endCandidate
+        : addMinutes(start, DEFAULT_DURATION_MINUTES);
+
+    let slotLocked = false;
+    try {
+      if (!slot.is_booked || slot.booked_by !== userId) {
+        const { data: lockedRow, error: lockError } = await admin
+          .from("consultation_slots")
+          .update({ is_booked: true, booked_by: userId })
+          .eq("id", slotId)
+          .eq("is_booked", false)
+          .select("id, booked_by")
+          .maybeSingle();
+
+        if (lockError || !lockedRow) {
+          const { data: latestSlot } = await admin
+            .from("consultation_slots")
+            .select("booked_by")
+            .eq("id", slotId)
+            .maybeSingle();
+          if (latestSlot?.booked_by === userId) {
+            slotLocked = true;
+          } else {
+            return { error: "That time was just booked. Please choose another slot." };
+          }
+        } else {
+          slotLocked = true;
+        }
+      } else {
+        slotLocked = true;
+      }
+
+      const { data: consultationForSlot } = await admin
+        .from("consultations")
+        .select("id")
+        .eq("user_id", userId)
+        .eq("slot_id", slotId)
+        .maybeSingle();
+
+      if (consultationForSlot) {
+        return { success: "This consultation time is already scheduled for you." };
+      }
+
+      const fullName =
+        profile?.full_name ??
+        (typeof session.user.user_metadata?.full_name === "string"
+          ? (session.user.user_metadata.full_name as string)
+          : null) ??
+        session.user.email ??
+        "Student";
+
+      const username =
+        typeof profile?.username === "string" && profile.username.trim().length > 0
+          ? profile.username.trim()
+          : null;
+
+      const role = isUserRole(profile?.role) ? (profile!.role as UserRole) : "student";
+
+      const { error: insertError } = await admin.from("consultations").insert({
+        user_id: userId,
+        slot_id: slotId,
+        type: "consultation",
+        full_name: fullName,
+        email: session.user.email ?? "",
+        phone: profile?.phone ?? null,
+        preferred_start: start.toISOString(),
+        preferred_end: end.toISOString(),
+        timezone:
+          typeof session.user.user_metadata?.timezone === "string"
+            ? (session.user.user_metadata.timezone as string)
+            : "Asia/Seoul",
+        status: "pending",
+        notes: sanitizedNotes,
+        username,
+        user_type: role,
+      });
+
+      if (insertError) {
+        throw insertError;
+      }
+    } catch (err) {
+      console.error("scheduleConsultationSlotAction: booking failed", err);
+      if (slotLocked) {
+        const { error: releaseError } = await admin
+          .from("consultation_slots")
+          .update({ is_booked: false, booked_by: null })
+          .eq("id", slotId)
+          .eq("booked_by", userId);
+        if (releaseError) {
+          console.error("scheduleConsultationSlotAction: failed to release slot after error", releaseError);
+        }
+      }
+      return { error: "We couldn't schedule that consultation. Please try again." };
+    }
+
+    revalidatePath("/student/consultations");
+    revalidatePath("/dashboard/consultations");
+
+    const confirmationMessage =
+      formatDateTime(start.toISOString(), session.user.user_metadata?.timezone as string | undefined) ??
+      formatDateTime(start.toISOString());
+
+    return {
+      success: confirmationMessage
+        ? `Consultation requested for ${confirmationMessage}. We'll email you once it's confirmed.`
+        : "Consultation requested. We'll email you once it's confirmed.",
+    };
+  } catch (err) {
+    console.error("scheduleConsultationSlotAction: unexpected error", err);
+    return {
+      error: "We couldn't schedule that consultation. Please try again.",
+    };
+  }
 }

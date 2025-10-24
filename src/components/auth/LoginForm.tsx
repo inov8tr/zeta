@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import type { LoginDictionary } from "@/lib/i18n";
 import { Button } from "@/components/ui/Button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { resendSignupVerificationEmailAction } from "@/app/(server)/user-actions";
 
 interface LoginFormProps {
   dictionary: LoginDictionary;
@@ -110,10 +111,6 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
   };
 
   const handleResendConfirmation = async () => {
-    if (!supabase) {
-      setResendMessage("Supabase is not configured.");
-      return;
-    }
     if (!email) {
       setResendMessage(dictionary.emailPlaceholder ?? "Enter your email first.");
       return;
@@ -121,20 +118,20 @@ const LoginForm = ({ dictionary, initialError = null }: LoginFormProps) => {
     setIsResending(true);
     setResendMessage(null);
     try {
-      const { error: resendError } = await supabase.auth.resend({
-        type: "signup",
-        email,
-      });
-      if (resendError) {
-        throw resendError;
+      const result = await resendSignupVerificationEmailAction(email);
+      if (result?.error) {
+        setResendMessage(result.error);
+        return;
       }
       setResendMessage(
-        strings.confirmationResent ?? "Verification email sent. Please check your inbox (and spam folder)."
+        result?.success ??
+          strings.confirmationResent ??
+          "Verification email sent. Please check your inbox (and spam folder).",
       );
     } catch (resendErr) {
       console.error(resendErr);
       const msg =
-        resendErr instanceof Error
+        resendErr instanceof Error && resendErr.message
           ? resendErr.message
           : dictionary.errorGeneric ?? "Unable to resend confirmation email.";
       setResendMessage(msg);

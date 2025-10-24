@@ -22,6 +22,7 @@ export type Database = {
           updated_at: string | null;
           archived: boolean;
           archived_at: string | null;
+          classroom_enabled: boolean | null;
         };
         Insert: {
           user_id: string;
@@ -35,6 +36,7 @@ export type Database = {
           updated_at?: string | null;
           archived?: boolean;
           archived_at?: string | null;
+          classroom_enabled?: boolean | null;
         };
         Update: {
           user_id?: string;
@@ -48,6 +50,7 @@ export type Database = {
           updated_at?: string | null;
           archived?: boolean;
           archived_at?: string | null;
+          classroom_enabled?: boolean | null;
         };
         Relationships: [
           {
@@ -327,6 +330,52 @@ export type Database = {
             columns: ["student_id"];
             referencedRelation: "profiles";
             referencedColumns: ["user_id"];
+          }
+        ];
+      };
+      google_tokens: {
+        Row: {
+          user_id: string;
+          access_token: string | null;
+          refresh_token: string | null;
+          scope: string | null;
+          token_type: string | null;
+          expires_at: string | null;
+          created_at: string | null;
+          updated_at: string | null;
+        };
+        Insert: {
+          user_id: string;
+          access_token?: string | null;
+          refresh_token?: string | null;
+          scope?: string | null;
+          token_type?: string | null;
+          expires_at?: string | null;
+          created_at?: string | null;
+          updated_at?: string | null;
+        };
+        Update: {
+          user_id?: string;
+          access_token?: string | null;
+          refresh_token?: string | null;
+          scope?: string | null;
+          token_type?: string | null;
+          expires_at?: string | null;
+          created_at?: string | null;
+          updated_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "google_tokens_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["user_id"];
+          },
+          {
+            foreignKeyName: "google_tokens_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
           }
         ];
       };

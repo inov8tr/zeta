@@ -13,7 +13,7 @@ import ArchiveToggleButton from "@/components/admin/ArchiveToggleButton";
 import SendSurveyInviteButton from "@/components/admin/SendSurveyInviteButton";
 import EditSurveyButton from "@/components/admin/EditSurveyButton";
 import { createAdminClient } from "@/lib/supabaseAdmin";
-import type { ParentSurveyForm } from "@/app/(public)/survey/page";
+import type { ParentSurveyForm } from "@/app/(public)/survey/shared";
 
 type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
 type ProfileWithRelations = ProfileRow & {

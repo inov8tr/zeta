@@ -17,15 +17,19 @@ if (process.env.SKIP_ENV_VALIDATION === "1") {
   exit(0);
 }
 
-const requiredPublic = [
-  "NEXT_PUBLIC_SUPABASE_URL",
-  "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-  "NEXT_PUBLIC_SITE_URL",
-];
+const requiredPublic = ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY", "NEXT_PUBLIC_SITE_URL"];
+
+const requiredServer = ["GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "GOOGLE_OAUTH_REDIRECT_URI"];
 
 const missing = requiredPublic.filter((name) => !process.env[name]);
 if (missing.length > 0) {
   console.error(`Missing required environment variables: ${missing.join(", ")}`);
+  exit(1);
+}
+
+const missingServer = requiredServer.filter((name) => !process.env[name]);
+if (missingServer.length > 0) {
+  console.error(`Missing required server environment variables: ${missingServer.join(", ")}`);
   exit(1);
 }
 

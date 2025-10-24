@@ -25,6 +25,7 @@ interface UserEditFormProps {
     role: string | null;
     class_id: string | null;
     test_status: string | null;
+    classroom_enabled: boolean | null;
   };
   classes: ClassOption[];
 }
@@ -56,6 +57,9 @@ const useFormStateCompat: typeof useFormStateDom = ((action: unknown, initialSta
 
 const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
   const [state, formAction] = useFormStateCompat(updateUserProfileAction, initialState);
+  const [roleValue, setRoleValue] = React.useState((profile.role ?? "student").toLowerCase());
+  const classroomEnabled = Boolean(profile.classroom_enabled);
+  const allowClassroomToggle = roleValue === "student";
 
   return (
     <form action={formAction} className="space-y-6">
@@ -88,6 +92,7 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
           <select
             name="role"
             defaultValue={(profile.role ?? "student").toLowerCase()}
+            onChange={(event) => setRoleValue(event.target.value)}
             className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           >
             {ROLE_OPTIONS.map((option) => (
@@ -124,6 +129,30 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
             placeholder="e.g. none, assigned, completed"
             className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           />
+        </label>
+
+        <label className="flex flex-col gap-2 text-sm text-neutral-800 md:col-span-2">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Classes tab</span>
+          <div className="flex items-center gap-3 rounded-2xl border border-brand-primary/10 bg-brand-primary/5 px-4 py-3">
+            <input
+              type="checkbox"
+              name="classroom_enabled"
+              id="classroom_enabled"
+              defaultChecked={classroomEnabled}
+              disabled={!allowClassroomToggle}
+              className="h-4 w-4 rounded border-brand-primary/40 text-brand-primary focus:ring-brand-primary disabled:border-neutral-300 disabled:text-neutral-400"
+            />
+            <div className="space-y-1">
+              <label htmlFor="classroom_enabled" className="text-sm font-semibold text-brand-primary-dark">
+                Allow access to the Classes tab
+              </label>
+              <p className="text-xs text-neutral-muted">
+                {allowClassroomToggle
+                  ? "Enable this if the student should connect Google Classroom and see assignments."
+                  : "This option is only available for student accounts."}
+              </p>
+            </div>
+          </div>
         </label>
       </div>
 

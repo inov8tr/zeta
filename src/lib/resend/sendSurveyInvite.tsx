@@ -1,7 +1,7 @@
 import "server-only";
 
 import { createAdminClient } from "@/lib/supabaseAdmin";
-import { resend } from "@/lib/resend";
+import { getResendClient } from "@/lib/resend";
 import { SurveyInviteEmail } from "@/emails/SurveyInviteEmail";
 import { render } from "@react-email/render";
 
@@ -72,13 +72,25 @@ export async function sendSurveyInvite(studentId: string, parentEmail: string, s
   const surveyLink = surveyUrl.toString();
 
   const emailHtml = await render(<SurveyInviteEmail studentName={studentName} surveyLink={surveyLink} />);
+  const emailText = [
+    `안녕하세요. ${studentName} 학생의 상담 및 레벨 테스트 준비를 위해 학부모 설문을 부탁드립니다.`,
+    "아래 링크를 열어 설문지를 작성해 주세요:",
+    surveyLink,
+    "",
+    "링크는 3일 동안만 유효합니다. 기간이 만료되면 다시 요청해 주세요.",
+    "",
+    "감사합니다. 제타영어 드림",
+  ].join("\n");
 
   const fromAddress = process.env.RESEND_FROM_EMAIL ?? "Zeta English <info@zeta-eng.com>";
 
-  await resend.emails.send({
+  const resendClient = getResendClient();
+
+  await resendClient.emails.send({
     from: fromAddress,
     to: parentEmail,
     subject: "Please complete the Zeta English Parent Survey",
     html: emailHtml,
+    text: emailText,
   });
 }

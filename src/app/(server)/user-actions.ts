@@ -6,8 +6,9 @@ import { cookies } from "next/headers";
 import { z } from "zod";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 
-import { Database } from "@/lib/database.types";
 import { createAdminClient } from "@/lib/supabaseAdmin";
+import { sendSignupConfirmationEmail } from "@/lib/resend/sendSignupConfirmation";
+import { Database } from "@/lib/database.types";
 
 export type UpdateUserProfileState = {
   error: string | null;
@@ -31,6 +32,18 @@ async function findUserByEmail(admin: ReturnType<typeof createAdminClient>, emai
     return null;
   }
 }
+
+const getAuthRedirectUrl = () => {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.SITE_URL ??
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+  if (!siteUrl) {
+    return undefined;
+  }
+  const url = new URL("/auth/callback", siteUrl);
+  return url.toString();
+};
 
 const createUserSchema = z
   .object({
@@ -75,6 +88,8 @@ export async function createUserAction(
   formData: FormData
 ): Promise<CreateUserState> {
   const raw = Object.fromEntries(formData.entries());
+  const classroomEnabledInput = formData.get("classroom_enabled");
+  const requestedClassroomEnabled = classroomEnabledInput === "on" || classroomEnabledInput === "true";
   const parsed = createUserSchema.safeParse(raw);
   if (!parsed.success) {
     const message = parsed.error.issues[0]?.message ?? "Invalid form submission";
@@ -84,6 +99,7 @@ export async function createUserAction(
   const { confirm_password: _confirmPassword, ...payload } = parsed.data;
   void _confirmPassword;
   const { email, full_name, role, phone, class_id, test_status, password } = payload;
+  const classroomEnabled = role === "student" ? requestedClassroomEnabled : false;
 
   const cookieStore = cookies();
   const supabase = createServerActionClient<Database>({
@@ -182,6 +198,7 @@ export async function createUserAction(
     phone: phone ?? null,
     class_id: class_id ?? null,
     test_status: test_status ?? "none",
+    classroom_enabled: classroomEnabled,
     updated_at: now,
   } satisfies Partial<Database["public"]["Tables"]["profiles"]["Insert"]>;
 
@@ -247,6 +264,8 @@ export async function updateUserProfileAction(
   formData: FormData
 ): Promise<UpdateUserProfileState> {
   const raw = Object.fromEntries(formData.entries());
+  const classroomEnabledInput = formData.get("classroom_enabled");
+  const requestedClassroomEnabled = classroomEnabledInput === "on" || classroomEnabledInput === "true";
 
   const parsed = schema.safeParse(raw);
   if (!parsed.success) {
@@ -255,6 +274,7 @@ export async function updateUserProfileAction(
   }
 
   const { user_id, full_name, phone, role, class_id, test_status } = parsed.data;
+  const classroomEnabled = role === "student" ? requestedClassroomEnabled : false;
 
   const cookieStore = cookies();
   const supabase = createServerActionClient<Database>({
@@ -292,6 +312,7 @@ export async function updateUserProfileAction(
       role,
       class_id: class_id ?? null,
       test_status: test_status ?? "none",
+      classroom_enabled: classroomEnabled,
       updated_at: new Date().toISOString(),
     })
     .eq("user_id", user_id);
@@ -358,6 +379,94 @@ export async function verifyUserEmailAction(formData: FormData): Promise<{ error
   revalidatePath(`/dashboard/users/${userId}`);
   revalidatePath("/dashboard/users");
   return { success: "Email marked as verified." };
+}
+
+export async function resendSignupVerificationEmailAction(
+  email: string,
+): Promise<{ error?: string; success?: string }> {
+  const trimmedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
+  if (!trimmedEmail) {
+    return { error: "Email address is required." };
+  }
+
+  try {
+    const admin = createAdminClient();
+    const genericSuccessMessage =
+      "If an account exists for that email, we just sent a verification link. Please check your inbox.";
+    const user = await findUserByEmail(admin, trimmedEmail);
+    if (!user) {
+      return { success: genericSuccessMessage };
+    }
+
+    if (user.email_confirmed_at) {
+      return { success: "This email is already verified. You can sign in now." };
+    }
+
+    const userMetadata = (user.user_metadata ?? {}) as Record<string, unknown>;
+    const lastSentRaw = typeof userMetadata.last_verification_email_sent_at === "string"
+      ? userMetadata.last_verification_email_sent_at
+      : null;
+    const lastSentAt = lastSentRaw ? new Date(lastSentRaw) : null;
+    const rateLimitMs = 5 * 60 * 1000;
+    if (lastSentAt && Date.now() - lastSentAt.getTime() < rateLimitMs) {
+      const remainingMs = rateLimitMs - (Date.now() - lastSentAt.getTime());
+      const remainingMinutes = Math.max(1, Math.ceil(remainingMs / 60000));
+      return {
+        error: `Please wait ${remainingMinutes} more minute${remainingMinutes > 1 ? "s" : ""} before requesting another verification email.`,
+      };
+    }
+
+    const redirectTo = getAuthRedirectUrl();
+    const { data, error } = await admin.auth.admin.generateLink({
+      type: "magiclink",
+      email: trimmedEmail,
+      options: redirectTo ? { redirectTo } : undefined,
+    });
+
+    if (error) {
+      console.error("resendSignupVerificationEmailAction: generateLink failed", error);
+      const message = "message" in error && typeof error.message === "string" ? error.message : null;
+      return { error: message ?? "Unable to generate verification link." };
+    }
+
+    const actionLink = data?.properties?.action_link ?? null;
+    if (!actionLink) {
+      console.error("resendSignupVerificationEmailAction: missing action link", data);
+      return { error: "Unable to create verification link. Please try again later." };
+    }
+
+    const generatedUserMetadata = (data?.user?.user_metadata ?? {}) as Record<string, unknown>;
+    const nextMetadata: Record<string, unknown> = {
+      ...userMetadata,
+      ...generatedUserMetadata,
+      last_verification_email_sent_at: new Date().toISOString(),
+    };
+    const userName =
+      typeof nextMetadata.full_name === "string"
+        ? (nextMetadata.full_name as string)
+        : typeof nextMetadata.name === "string"
+          ? (nextMetadata.name as string)
+          : null;
+
+    await sendSignupConfirmationEmail({
+      to: trimmedEmail,
+      confirmLink: actionLink,
+      userName,
+    });
+
+    const { error: metadataError } = await admin.auth.admin.updateUserById(user.id, {
+      user_metadata: nextMetadata,
+    });
+    if (metadataError) {
+      console.error("resendSignupVerificationEmailAction: failed to store metadata timestamp", metadataError);
+    }
+
+    return { success: "Verification email sent. Please check your inbox (and spam folder)." };
+  } catch (err) {
+    console.error("resendSignupVerificationEmailAction: unexpected error", err);
+    const message = err instanceof Error ? err.message : "Failed to resend verification email.";
+    return { error: message };
+  }
 }
 
 export async function archiveUserAction(userId: string): Promise<UserStatusActionResult> {
