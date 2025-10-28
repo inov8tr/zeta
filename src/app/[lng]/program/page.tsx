@@ -254,7 +254,11 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { program } = getDictionaries(lng);
-  const description = program?.hero?.description ?? "Explore LAB, Grammar, and Discussion classes at Zeta.";
+  const title = program?.metadata?.title ?? program?.hero?.title ?? "Our Program";
+  const description =
+    program?.metadata?.description ??
+    program?.hero?.description ??
+    "Explore LAB, Grammar, and Discussion classes at Zeta.";
   const keywords = [
     program?.lab?.title,
     program?.discussion?.title,
@@ -265,10 +269,11 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   return buildLocalizedMetadata({
     lng,
     path: "/program",
-    title: program?.hero?.title ?? "Our Program",
+    title,
     description,
     keywords,
     image: "/images/pages/program/SystemBG.webp",
     imageAlt: program?.hero?.backgroundAlt ?? "Zeta English Academy program overview",
+    useTitleTemplate: program?.metadata?.title ? false : undefined,
   });
 }

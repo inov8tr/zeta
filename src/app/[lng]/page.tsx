@@ -47,9 +47,11 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { home } = getDictionaries(lng);
-  const title = home.hero?.headline ?? "Zeta English Academy";
+  const title = home.metadata?.title ?? home.hero?.headline ?? "Zeta English Academy";
   const description =
-    home.hero?.description ?? "Zeta English Academy — joyful English learning for curious students.";
+    home.metadata?.description ??
+    home.hero?.description ??
+    "Zeta English Academy — joyful English learning for curious students.";
   const keywordCandidates = home.mission?.highlights?.map((highlight) => highlight.label).filter(Boolean);
 
   return buildLocalizedMetadata({

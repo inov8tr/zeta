@@ -18,16 +18,20 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { blog } = getDictionaries(lng);
+  const title = blog.metadata?.title ?? blog.hero?.title ?? "Blog";
 
   return buildLocalizedMetadata({
     lng,
     path: "/blog",
-    title: blog.hero?.title ?? "Blog",
+    title,
     description:
-      blog.hero?.description ?? "Updates and insights from Zeta English Academy.",
+      blog.metadata?.description ??
+      blog.hero?.description ??
+      "Updates and insights from Zeta English Academy.",
     keywords: ["blog", "updates", "English education"],
     image: "/images/pages/home/Strat.webp",
     imageAlt: blog.hero?.title ?? "Zeta English Academy blog",
+    useTitleTemplate: blog.metadata?.title ? false : undefined,
   });
 }
 

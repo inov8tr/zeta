@@ -215,11 +215,11 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
   const { lng: rawLng } = await params;
   const lng: SupportedLanguage = normalizeLanguage(rawLng);
   const { programOverview } = getDictionaries(lng);
-  const title = programOverview?.hero?.title ?? "Program Overview";
+  const title = programOverview?.metadata?.title ?? programOverview?.hero?.title ?? "Program Overview";
   const description =
     programOverview?.metadata?.description ??
     programOverview?.hero?.description ??
-    "A concise overview of Zeta's LAB, Grammar, and Discussion classes.";
+    "Preview Zeta English Academy's LAB, Grammar, and Discussion classes.";
   const keywords = [
     programOverview?.sections?.lab?.title,
     programOverview?.sections?.grammar?.title,
@@ -234,5 +234,6 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
     keywords,
     image: "/images/BookR.webp",
     imageAlt: programOverview?.hero?.imageAlt ?? "Program overview illustration",
+    useTitleTemplate: programOverview?.metadata?.title ? false : undefined,
   });
 }
