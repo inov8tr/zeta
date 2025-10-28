@@ -53,6 +53,24 @@ const SECTION_ICONS: Record<string, LucideIcon> = {
   dialog: MessageCircle,
 };
 
+const inferMediaType = (url: string | null | undefined): "audio" | "image" | null => {
+  if (!url) {
+    return null;
+  }
+  const sanitized = url.split(/[?#]/)[0]?.toLowerCase() ?? "";
+  const extension = sanitized.split(".").pop();
+  if (!extension) {
+    return null;
+  }
+  if (["mp3", "wav", "ogg", "m4a", "aac", "flac", "opus"].includes(extension)) {
+    return "audio";
+  }
+  if (["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp", "heic", "avif"].includes(extension)) {
+    return "image";
+  }
+  return null;
+};
+
 const formatTimer = (seconds: number | null) => {
   if (seconds === null || Number.isNaN(seconds)) {
     return "--:--";
@@ -351,6 +369,7 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
   const initialSeconds = sectionInitialTimeRef.current ?? timeRemaining ?? 0;
   const progressPercent =
     timeRemaining !== null && initialSeconds > 0 ? Math.max(0, Math.min(100, (timeRemaining / initialSeconds) * 100)) : 0;
+  const mediaType = inferMediaType(q.mediaUrl);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-neutral-lightest via-white to-brand-primary/10">
@@ -459,12 +478,22 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
             <p className="text-xs text-neutral-500">Select the best answer.</p>
           </div>
           <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-neutral-900">{q.stem}</p>
-          {q.mediaUrl ? (
+          {mediaType === "audio" ? (
             <div className="mt-4">
               <audio controls preload="metadata" className="w-full">
-                <source src={q.mediaUrl} />
+                <source src={q.mediaUrl ?? undefined} />
                 Your browser does not support the audio element.
               </audio>
+            </div>
+          ) : null}
+          {mediaType === "image" ? (
+            <div className="mt-5 flex justify-center">
+              {/* Using img to avoid Next.js domain restrictions for external assets */}
+              <img
+                src={q.mediaUrl ?? undefined}
+                alt="Question illustration"
+                className="max-h-64 w-full rounded-2xl border border-brand-primary/10 object-contain"
+              />
             </div>
           ) : null}
           <ol className="mt-6 space-y-3">

@@ -7,7 +7,7 @@ export interface ParallelRule {
 }
 
 const RAW_PARALLEL_RULES: Partial<Record<TestSection, ParallelRule>> = {
-  grammar: { base: "reading", offset: -1 },
+  reading: { base: "grammar", offset: 0 },
   listening: { base: "grammar", offset: -1 },
   dialog: { base: "listening", offset: -1 },
 };
