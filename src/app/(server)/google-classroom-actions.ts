@@ -7,8 +7,10 @@ import { Database } from "@/lib/database.types";
 import { deleteGoogleToken } from "@/lib/google/tokenStore";
 
 export async function disconnectGoogleClassroomAction() {
-  const cookieStore = cookies();
-  const supabase = createServerActionClient<Database>({ cookies: () => cookieStore });
+  const cookieStore = await cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+  });
   const {
     data: { session },
     error: sessionError,

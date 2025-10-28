@@ -36,7 +36,7 @@ const UsersPage = async ({ searchParams }: UsersPageProps) => {
   if (showArchived) {
     query = query.eq("archived", true);
   } else {
-    query = query.eq("archived", false);
+    query = query.or("archived.is.null,archived.eq.false");
   }
 
   let { data, error } = await query;

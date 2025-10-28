@@ -24,8 +24,10 @@ export async function POST(
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const cookieStore = cookies();
-  const supabase = createRouteHandlerClient<Database>({ cookies: () => cookieStore });
+  const cookieStore = await cookies();
+  const supabase = createRouteHandlerClient<Database>({
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+  });
 
   const {
     data: { session },

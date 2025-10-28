@@ -9,6 +9,7 @@ import { Database } from "@/lib/database.types";
 import { createAdminClient } from "@/lib/supabaseAdmin";
 import { SECTION_ORDER, parseSeed, LevelState } from "@/lib/tests/adaptiveConfig";
 import { syncParallelSectionLevels } from "@/lib/tests/parallel";
+import { computePlacementSeedForStudent } from "@/lib/tests/placement";
 
 interface AssignEntranceTestInput {
   studentId: string;
@@ -20,8 +21,10 @@ type StartableTestRow = Pick<
 >;
 
 export async function assignEntranceTestAction({ studentId }: AssignEntranceTestInput) {
-  const cookieStore = cookies();
-  const supabase = createServerActionClient<Database>({ cookies: () => cookieStore });
+  const cookieStore = await cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+  });
 
   const {
     data: { session },
@@ -42,11 +45,19 @@ export async function assignEntranceTestAction({ studentId }: AssignEntranceTest
   }
 
   const admin = createAdminClient();
-  const { error } = await admin.from("tests").insert({
+  const placement = await computePlacementSeedForStudent(admin, studentId);
+  const testPayload: Database["public"]["Tables"]["tests"]["Insert"] = {
     student_id: studentId,
     type: "entrance",
     status: "assigned",
-  });
+    assigned_at: new Date().toISOString(),
+  };
+
+  if (placement?.seedStart) {
+    testPayload.seed_start = placement.seedStart;
+  }
+
+  const { error } = await admin.from("tests").insert(testPayload as unknown as never);
 
   if (error) {
     console.error("assignEntranceTestAction", error);
@@ -63,8 +74,10 @@ interface StartTestInput {
 }
 
 export async function startTestAction({ testId }: StartTestInput) {
-  const cookieStore = cookies();
-  const supabase = createServerActionClient<Database>({ cookies: () => cookieStore });
+  const cookieStore = await cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+  });
 
   const {
     data: { session },

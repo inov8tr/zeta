@@ -81,8 +81,10 @@ function extractError(err: unknown): { message: string; code?: string; details?:
 
 export async function bookConsultation(input: Input) {
   try {
-    const cookieStore = cookies();
-    const supabase = createServerActionClient({ cookies: () => cookieStore });
+    const cookieStore = await cookies();
+    const supabase = createServerActionClient({
+      cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+    });
     const {
       data: { session },
     } = await supabase.auth.getSession();
@@ -278,8 +280,10 @@ export async function updateConsultationAction(input: {
   slotId?: string | null;
   status?: string;
 }) {
-  const cookieStore = cookies();
-  const supabase = createServerActionClient({ cookies: () => cookieStore });
+  const cookieStore = await cookies();
+  const supabase = createServerActionClient({
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+  });
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -409,8 +413,10 @@ export async function scheduleConsultationSlotAction(input: {
   }
 
   try {
-    const cookieStore = cookies();
-    const supabase = createServerActionClient<Database>({ cookies: () => cookieStore });
+    const cookieStore = await cookies();
+    const supabase = createServerActionClient<Database>({
+      cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+    });
     const {
       data: { session },
     } = await supabase.auth.getSession();

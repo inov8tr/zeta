@@ -1,4 +1,4 @@
-export const SECTION_ORDER = ["reading", "grammar", "listening", "dialog"] as const;
+export const SECTION_ORDER = ["grammar", "reading", "listening", "dialog"] as const;
 export type TestSection = (typeof SECTION_ORDER)[number];
 
 export interface ParallelRule {
@@ -29,10 +29,10 @@ for (const sectionKey of Object.keys(RAW_PARALLEL_RULES) as TestSection[]) {
 }
 
 export const SECTION_MAX_QUESTIONS: Record<TestSection, number> = {
-  reading: 20,
-  grammar: 15,
-  listening: 10,
-  dialog: 10,
+  grammar: 30,
+  reading: 40,
+  listening: 20,
+  dialog: 20,
 };
 
 export const MIN_LEVEL = { level: 1, sublevel: "1" as const };

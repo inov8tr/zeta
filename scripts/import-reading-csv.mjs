@@ -161,6 +161,14 @@ async function main() {
     }
     const stem = String(q['question_text'] || '').trim();
     const question_type = String(q['question_type'] || '').trim();
+    if (stem.toLowerCase().startsWith('placeholder question')) {
+      qIssues.push(`skipping placeholder stem for passage ${pid}`);
+      continue;
+    }
+    if (options.length > 0 && options.every((opt) => opt.trim().length <= 2)) {
+      qIssues.push(`skipping low-information options for passage ${pid}: ${options.join(',')}`);
+      continue;
+    }
     const issues = [];
     if (!stem) issues.push('missing stem');
     if (options.length < 2) issues.push('not enough options');

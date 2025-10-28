@@ -450,9 +450,15 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
 
         <article className="rounded-3xl border border-brand-primary/15 bg-white/95 p-6 shadow-sm backdrop-blur">
           <div className="flex items-center justify-between gap-4">
-            <h2 className="text-lg font-semibold text-brand-primary-dark">Question</h2>
+            <div>
+              <p className="text-xs uppercase tracking-[0.35em] text-brand-primary/60">Question</p>
+              <h2 className="text-lg font-semibold text-brand-primary-dark">
+                {sectionTitle} question {(sectionProgress[section] ?? 0) + 1}
+              </h2>
+            </div>
+            <p className="text-xs text-neutral-500">Select the best answer.</p>
           </div>
-          <p className="mt-4 text-base text-neutral-900">{q.stem}</p>
+          <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-neutral-900">{q.stem}</p>
           {q.mediaUrl ? (
             <div className="mt-4">
               <audio controls preload="metadata" className="w-full">
@@ -461,23 +467,23 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
               </audio>
             </div>
           ) : null}
-          <ul className="mt-6 space-y-3">
+          <ol className="mt-6 space-y-3">
             {q.options.map((option, idx) => (
               <li key={idx}>
                 <button
                   type="button"
                   onClick={() => handleAnswer(idx)}
                   disabled={submitting}
-                  className="group w-full rounded-2xl border border-brand-primary/20 bg-white px-4 py-3 text-left text-sm font-medium text-brand-primary-dark shadow-sm transition hover:border-brand-primary hover:bg-brand-primary/10 disabled:cursor-not-allowed"
+                  className="group flex w-full items-start gap-4 rounded-2xl border border-brand-primary/20 bg-white px-4 py-3 text-left text-sm font-medium text-brand-primary-dark shadow-sm transition hover:border-brand-primary hover:bg-brand-primary/10 disabled:cursor-not-allowed"
                 >
-                  <span className="mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-primary/10 font-semibold text-brand-primary group-hover:bg-brand-primary group-hover:text-white">
+                  <span className="mt-[2px] inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 text-sm font-semibold text-brand-primary transition-colors group-hover:bg-brand-primary group-hover:text-white">
                     {String.fromCharCode(65 + idx)}
                   </span>
-                  {option}
+                  <span className="flex-1 text-left leading-relaxed text-neutral-900">{option}</span>
                 </button>
               </li>
             ))}
-          </ul>
+          </ol>
         </article>
       </div>
 

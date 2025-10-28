@@ -28,8 +28,10 @@ export async function POST(
   if (typeof testId !== "string" || testId.length === 0) {
     return NextResponse.json({ error: "Invalid test id" }, { status: 400 });
   }
-  const cookieStore = cookies();
-  const supabase = createRouteHandlerClient<Database>({ cookies: () => cookieStore });
+  const cookieStore = await cookies();
+  const supabase = createRouteHandlerClient<Database>({
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+  });
 
   const {
     data: { session },
@@ -183,16 +185,17 @@ export async function POST(
           }
         });
 
-        const availablePassage = passages.find(
+        const availablePassages = passages.filter(
           (row) => (unansweredByPassage.get(row.id) ?? 0) > 0 && (passageUsage.get(row.id) ?? 0) < READING_PASSAGE_SET_SIZE
         );
-        if (!availablePassage) {
+        if (!availablePassages.length) {
           continue;
         }
 
-        passageId = availablePassage.id;
-        passageCount = passageUsage.get(availablePassage.id) ?? 0;
-        passagePayload = { title: availablePassage.title, body: availablePassage.body };
+        const randomPassage = availablePassages[Math.floor(Math.random() * availablePassages.length)];
+        passageId = randomPassage.id;
+        passageCount = passageUsage.get(randomPassage.id) ?? 0;
+        passagePayload = { title: randomPassage.title, body: randomPassage.body };
       }
     }
 
@@ -216,7 +219,12 @@ export async function POST(
 
     const candidateQuestions = (candidateQuestionsData ?? []) as QuestionRow[];
 
-    const nextQuestion = candidateQuestions.find((row) => !answeredIds.has(row.id));
+    const unansweredQuestions = candidateQuestions.filter((row) => !answeredIds.has(row.id));
+    if (unansweredQuestions.length === 0) {
+      continue;
+    }
+
+    const nextQuestion = unansweredQuestions[Math.floor(Math.random() * unansweredQuestions.length)];
 
     if (nextQuestion) {
       selectedQuestion = nextQuestion as QuestionRow;

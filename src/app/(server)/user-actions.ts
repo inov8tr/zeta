@@ -101,9 +101,9 @@ export async function createUserAction(
   const { email, full_name, role, phone, class_id, test_status, password } = payload;
   const classroomEnabled = role === "student" ? requestedClassroomEnabled : false;
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
   const {
     data: { session },
@@ -277,9 +277,9 @@ export async function updateUserProfileAction(
   const { user_id, full_name, phone, role, class_id, test_status } = parsed.data;
   const classroomEnabled = role === "student" ? requestedClassroomEnabled : false;
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
   const {
     data: { session },
@@ -335,9 +335,9 @@ export async function verifyUserEmailAction(formData: FormData): Promise<{ error
     return { error: "Missing user id." };
   }
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
   const {
     data: { session },
@@ -471,9 +471,9 @@ export async function resendSignupVerificationEmailAction(
 }
 
 export async function archiveUserAction(userId: string): Promise<UserStatusActionResult> {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
   const {
     data: { session },
@@ -519,9 +519,9 @@ export async function archiveUserAction(userId: string): Promise<UserStatusActio
 }
 
 export async function restoreUserAction(userId: string): Promise<UserStatusActionResult> {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const supabase = createServerActionClient<Database>({
-    cookies: () => cookieStore,
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
   });
   const {
     data: { session },
