@@ -77,7 +77,7 @@ export async function syncParallelSectionLevels(
       if (section === "grammar" && dependentSection === "reading") {
         const grammarLevel = state.level;
         const adjustedLevel =
-          grammarLevel >= 7 ? 5 : grammarLevel > MIN_LEVEL.level ? grammarLevel - 1 : MIN_LEVEL.level;
+          grammarLevel >= 7 ? 4 : grammarLevel > MIN_LEVEL.level ? grammarLevel - 1 : MIN_LEVEL.level;
         targetState = {
           level: adjustedLevel,
           sublevel: "1",

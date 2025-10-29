@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { format } from "date-fns";
+import { format, formatDistanceStrict } from "date-fns";
 
 import { Database } from "@/lib/database.types";
 import AssignTestButton from "@/components/admin/AssignTestButton";
@@ -12,8 +12,10 @@ import VerifyUserButton from "@/components/admin/VerifyUserButton";
 import ArchiveToggleButton from "@/components/admin/ArchiveToggleButton";
 import SendSurveyInviteButton from "@/components/admin/SendSurveyInviteButton";
 import EditSurveyButton from "@/components/admin/EditSurveyButton";
+import PrintButton from "@/components/dashboard/PrintButton";
 import { createAdminClient } from "@/lib/supabaseAdmin";
 import type { ParentSurveyForm } from "@/app/(public)/survey/shared";
+import { generateEntranceFeedback, type EntranceFeedbackInput } from "@/lib/feedback/generateEntranceFeedback";
 
 type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
 type ProfileWithRelations = ProfileRow & {
@@ -22,10 +24,47 @@ type ProfileWithRelations = ProfileRow & {
 type TestRow = Database["public"]["Tables"]["tests"]["Row"];
 type StudentMetaRow = Database["public"]["Tables"]["students"]["Row"];
 type ParentSurveyRow = Database["public"]["Tables"]["parent_surveys"]["Row"];
+type EntranceFeedbackRow = Database["public"]["Tables"]["entrance_feedback"]["Row"];
 
 interface UserDetailPageProps {
   params: Promise<{ id: string }>;
 }
+
+const parseIntervalToMilliseconds = (value?: string | null) => {
+  if (!value) {
+    return null;
+  }
+  const trimmed = value.trim();
+  const millisMatch = trimmed.match(/(-?\d+(?:\.\d+)?)\s*milliseconds?/i);
+  if (millisMatch) {
+    return Math.round(Number.parseFloat(millisMatch[1]));
+  }
+  const hmsMatch = trimmed.match(/^(\d+):(\d{2}):(\d{2})(?:\.(\d+))?$/);
+  if (hmsMatch) {
+    const hours = Number.parseInt(hmsMatch[1] ?? "0", 10);
+    const minutes = Number.parseInt(hmsMatch[2] ?? "0", 10);
+    const seconds = Number.parseInt(hmsMatch[3] ?? "0", 10);
+    const fraction = hmsMatch[4] ? Number.parseFloat(`0.${hmsMatch[4]}`) : 0;
+    return Math.round(((hours * 60 + minutes) * 60 + seconds + fraction) * 1000);
+  }
+  return null;
+};
+
+const formatDurationFromMs = (value: number | null) => {
+  if (value == null || Number.isNaN(value) || value <= 0) {
+    return "—";
+  }
+  const base = new Date(0);
+  const target = new Date(value);
+  return formatDistanceStrict(base, target, { roundingMethod: "ceil" });
+};
+
+const percentLabel = (value: number | null) => {
+  if (value == null || Number.isNaN(value)) {
+    return "—";
+  }
+  return `${Math.round(value)}%`;
+};
 
 const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const { id } = await params;
@@ -74,12 +113,22 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     .select("student_id, completed_by, created_at, data")
     .eq("student_id", id)
     .maybeSingle<ParentSurveyRow>();
+  const entranceFeedbackPromise = admin
+    .from("entrance_feedback")
+    .select(
+      "id, test_id, estimated_level, total_score, accuracy, time_spent, grammar_score, reading_score, listening_score, dialog_score, feedback_text, created_at"
+    )
+    .eq("user_id", id)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle<EntranceFeedbackRow>();
 
-  const [testsResult, authUserResult, studentMetaResult, parentSurveyResult] = await Promise.all([
+  const [testsResult, authUserResult, studentMetaResult, parentSurveyResult, entranceFeedbackResult] = await Promise.all([
     testsPromise,
     authUserPromise,
     studentMetaPromise,
     parentSurveyPromise,
+    entranceFeedbackPromise,
   ]);
 
   const { data: authUserData } = authUserResult;
@@ -93,6 +142,29 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const surveyCompleted = studentMeta?.survey_completed ?? false;
   const surveySubmittedAt = parentSurvey?.created_at ?? null;
   const surveyForm = (parentSurvey?.data as ParentSurveyForm | null) ?? null;
+  const entranceFeedback = (entranceFeedbackResult.data as EntranceFeedbackRow | null) ?? null;
+  const entranceFeedbackTimeMs = parseIntervalToMilliseconds(entranceFeedback?.time_spent);
+
+  const entranceFeedbackSections: EntranceFeedbackInput["sectionScores"] = {
+    grammar: entranceFeedback ? { score: entranceFeedback.grammar_score, level: null } : undefined,
+    reading: entranceFeedback ? { score: entranceFeedback.reading_score, level: null } : undefined,
+    listening: entranceFeedback ? { score: entranceFeedback.listening_score, level: null } : undefined,
+    dialog: entranceFeedback ? { score: entranceFeedback.dialog_score, level: null } : undefined,
+  };
+
+  const generatedEntranceFeedback = entranceFeedback
+    ? generateEntranceFeedback({
+        studentName: profile?.full_name ?? null,
+        level: entranceFeedback.estimated_level,
+        totalScore: entranceFeedback.total_score,
+        accuracy: entranceFeedback.accuracy,
+        timeSpentMs: entranceFeedbackTimeMs,
+        sectionScores: entranceFeedbackSections,
+      })
+    : null;
+
+  const entranceFeedbackTest = entranceFeedback ? tests.find((test) => test.id === entranceFeedback.test_id) ?? null : null;
+  const entranceFeedbackTimeLabel = formatDurationFromMs(entranceFeedbackTimeMs);
 
   const pastLearningLabels: Record<string, string> = {
     worksheet_program: "학습지",
@@ -195,6 +267,9 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   }
   if (parentSurveyResult.error && parentSurveyResult.error.code !== "PGRST116") {
     console.error("Failed to load parent survey", parentSurveyResult.error);
+  }
+  if (entranceFeedbackResult.error && entranceFeedbackResult.error.code !== "PGRST116") {
+    console.error("Failed to load entrance feedback", entranceFeedbackResult.error);
   }
 
   
@@ -305,6 +380,15 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
           </dl>
         </DetailCard>
       </section>
+
+      {entranceFeedback && generatedEntranceFeedback ? (
+        <EntranceFeedbackCard
+          feedback={generatedEntranceFeedback}
+          record={entranceFeedback}
+          timeLabel={entranceFeedbackTimeLabel}
+          test={entranceFeedbackTest}
+        />
+      ) : null}
 
       <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
         <header className="border-b border-brand-primary/10 px-6 py-4">
@@ -496,6 +580,94 @@ const DetailCard = ({ title, children }: { title: string; children: ReactNode })
 
 const EmptyRow = ({ message }: { message: string }) => (
   <div className="px-6 py-8 text-center text-sm text-neutral-muted">{message}</div>
+);
+
+const EntranceFeedbackCard = ({
+  feedback,
+  record,
+  timeLabel,
+  test,
+}: {
+  feedback: ReturnType<typeof generateEntranceFeedback>;
+  record: EntranceFeedbackRow;
+  timeLabel: string;
+  test: TestRow | null;
+}) => {
+  const completedTimestamp = test?.completed_at ?? record.created_at;
+  const completedLabel = completedTimestamp ? format(new Date(completedTimestamp), "PPp") : null;
+
+  return (
+    <section className="rounded-3xl border border-brand-primary/10 bg-white shadow-sm">
+      <header className="flex flex-col gap-3 border-b border-brand-primary/10 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-lg font-semibold text-brand-primary-dark">Entrance test feedback</h2>
+          <p className="text-xs text-neutral-muted">Automatically generated insights from the latest entrance assessment.</p>
+        </div>
+        <PrintButton />
+      </header>
+      <div className="space-y-6 px-6 py-6 text-sm text-neutral-800">
+        <div className="space-y-3">
+          <p>{feedback.summary}</p>
+          <ul className="list-disc space-y-1 pl-5 text-neutral-700">
+            {feedback.advice.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          <MetricPill label="Zeta band" value={feedback.mappings.zeta} />
+          <MetricPill label="Korean grade approx." value={feedback.mappings.korean} />
+          <MetricPill label="U.S. grade approx." value={feedback.mappings.us} />
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-4">
+          <MetricPill label="Estimated level" value={record.estimated_level != null ? record.estimated_level.toFixed(1) : "—"} />
+          <MetricPill label="Total score" value={percentLabel(record.total_score)} />
+          <MetricPill label="Accuracy" value={percentLabel(record.accuracy)} />
+          <MetricPill label="Time on task" value={timeLabel} />
+        </div>
+
+        <div className="overflow-x-auto rounded-2xl border border-brand-primary/10">
+          <table className="min-w-full divide-y divide-brand-primary/10 text-sm">
+            <thead className="bg-brand-primary/5 text-xs uppercase tracking-wide text-brand-primary">
+              <tr>
+                <th className="px-6 py-3 text-left font-semibold">Section</th>
+                <th className="px-6 py-3 text-left font-semibold">Score</th>
+                <th className="px-6 py-3 text-left font-semibold">Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-brand-primary/10">
+              {feedback.sectionSummaries.map((row) => (
+                <tr key={row.section} className="hover:bg-brand-primary/10">
+                  <td className="px-6 py-3 font-medium text-brand-primary-dark">{row.label}</td>
+                  <td className="px-6 py-3 text-neutral-800">{row.score}</td>
+                  <td className="px-6 py-3 text-neutral-800">{row.level}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="flex flex-col gap-2 text-xs text-neutral-muted md:flex-row md:items-center md:justify-between">
+          <div>
+            {completedLabel ? <span>Completed {completedLabel}</span> : null}
+            {test?.type ? <span className="md:ml-3">Test type: {test.type}</span> : null}
+          </div>
+          <Link href="/dashboard/tests" className="text-xs font-semibold text-brand-primary hover:underline print:hidden">
+            View test history →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const MetricPill = ({ label, value }: { label: string; value: string }) => (
+  <div className="rounded-2xl border border-brand-primary/10 bg-brand-primary/5 px-4 py-3">
+    <div className="text-[10px] font-semibold uppercase tracking-widest text-brand-primary/70">{label}</div>
+    <div className="mt-1 text-base font-semibold text-brand-primary-dark">{value}</div>
+  </div>
 );
 
 export default UserDetailPage;

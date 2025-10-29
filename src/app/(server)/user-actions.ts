@@ -8,6 +8,7 @@ import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 
 import { createAdminClient } from "@/lib/supabaseAdmin";
 import { sendSignupConfirmationEmail } from "@/lib/resend/sendSignupConfirmation";
+import { sendPasswordResetEmail } from "@/lib/resend/sendPasswordReset";
 import { Database } from "@/lib/database.types";
 
 export type UpdateUserProfileState = {
@@ -240,7 +241,19 @@ export async function createUserAction(
 
 const schema = z.object({
   user_id: z.string().uuid({ message: "Invalid user id" }),
+  email: z
+    .string()
+    .trim()
+    .min(1, { message: "Email is required" })
+    .email({ message: "A valid email address is required" })
+    .transform((value) => value.toLowerCase()),
   full_name: z.string().trim().min(1, { message: "Full name is required" }),
+  username: z
+    .string()
+    .trim()
+    .transform((value) => (value.length === 0 ? null : value))
+    .nullable()
+    .optional(),
   phone: z
     .string()
     .trim()
@@ -274,7 +287,7 @@ export async function updateUserProfileAction(
     return { error: message };
   }
 
-  const { user_id, full_name, phone, role, class_id, test_status } = parsed.data;
+  const { user_id, email, full_name, username, phone, role, class_id, test_status } = parsed.data;
   const classroomEnabled = role === "student" ? requestedClassroomEnabled : false;
 
   const cookieStore = await cookies();
@@ -305,10 +318,42 @@ export async function updateUserProfileAction(
   }
 
   const admin = createAdminClient();
+
+  const {
+    data: adminUserData,
+    error: adminUserError,
+  } = await admin.auth.admin.getUserById(user_id);
+
+  if (adminUserError || !adminUserData?.user) {
+    console.error("updateUserProfileAction: failed to load auth user", adminUserError);
+    return { error: "Unable to update auth user. Please try again." };
+  }
+
+  const authUser = adminUserData.user;
+  const wasEmailConfirmed = Boolean(authUser.email_confirmed_at);
+
+  const { error: authUpdateError } = await admin.auth.admin.updateUserById(user_id, {
+    email,
+    email_confirm: wasEmailConfirmed || authUser.email?.toLowerCase() === email,
+    user_metadata: {
+      full_name,
+      role,
+      phone,
+      username,
+    },
+  });
+
+  if (authUpdateError) {
+    console.error("updateUserProfileAction: failed to update auth user", authUpdateError);
+    const message = authUpdateError.message ?? "Failed to update user. Please try again.";
+    return { error: message };
+  }
+
   const { error: updateError } = await admin
     .from("profiles")
     .update({
       full_name,
+      username: username ?? null,
       phone: phone ?? null,
       role,
       class_id: class_id ?? null,
@@ -326,6 +371,106 @@ export async function updateUserProfileAction(
   revalidatePath("/dashboard/users");
   revalidatePath(`/dashboard/users/${user_id}`);
   redirect(`/dashboard/users/${user_id}`);
+}
+
+export async function sendPasswordResetAction(userId: string): Promise<{ error?: string; success?: string }> {
+  if (typeof userId !== "string" || userId.trim().length === 0) {
+    return { error: "Missing user id." };
+  }
+
+  const cookieStore = await cookies();
+  const supabase = createServerActionClient<Database>({
+    cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
+  });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return { error: "You must be signed in." };
+  }
+
+  const { data: actorProfile, error: actorError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", session.user.id)
+    .maybeSingle<{ role: string }>();
+
+  if (actorError) {
+    console.error("sendPasswordResetAction: failed to load actor profile", actorError);
+    return { error: "Unable to verify permissions." };
+  }
+
+  if ((actorProfile?.role ?? "").toLowerCase() !== "admin") {
+    return { error: "Only admins can send password resets." };
+  }
+
+  const admin = createAdminClient();
+
+  const {
+    data: userResult,
+    error: userLookupError,
+  } = await admin.auth.admin.getUserById(userId);
+
+  if (userLookupError || !userResult?.user) {
+    console.error("sendPasswordResetAction: getUserById failed", userLookupError);
+    return { error: "Unable to locate user account." };
+  }
+
+  const authUser = userResult.user;
+  const email = typeof authUser.email === "string" ? authUser.email.trim() : "";
+
+  if (!email) {
+    return { error: "User does not have an email address." };
+  }
+
+  try {
+    const redirectTo = getAuthRedirectUrl();
+    const linkParams: Parameters<typeof admin.auth.admin.generateLink>[0] = redirectTo
+      ? {
+          type: "recovery",
+          email,
+          options: { redirectTo },
+        }
+      : {
+          type: "recovery",
+          email,
+        };
+
+    const {
+      data: linkData,
+      error: linkError,
+    } = await admin.auth.admin.generateLink(linkParams);
+
+    if (linkError) {
+      console.error("sendPasswordResetAction: generateLink failed", linkError);
+      const message = linkError.message ?? "Unable to generate password reset link.";
+      return { error: message };
+    }
+
+    const primaryActionLink = (linkData as { action_link?: string } | null)?.action_link;
+    const propertiesActionLink = (linkData?.properties as { action_link?: string } | undefined)?.action_link;
+    const resetLink =
+      (typeof primaryActionLink === "string" && primaryActionLink.length > 0 ? primaryActionLink : null) ??
+      (typeof propertiesActionLink === "string" && propertiesActionLink.length > 0 ? propertiesActionLink : null);
+
+    if (!resetLink) {
+      console.error("sendPasswordResetAction: missing action link", linkData);
+      return { error: "Password reset link was not generated." };
+    }
+
+    await sendPasswordResetEmail({
+      to: email,
+      resetLink,
+      userName: typeof authUser.user_metadata?.full_name === "string" ? authUser.user_metadata.full_name : null,
+    });
+  } catch (error) {
+    console.error("sendPasswordResetAction: unexpected error", error);
+    const message = error instanceof Error ? error.message : "Failed to send password reset email.";
+    return { error: message };
+  }
+
+  return { success: "Password reset email sent." };
 }
 
 export async function verifyUserEmailAction(formData: FormData): Promise<{ error?: string; success?: string }> {

@@ -574,6 +574,67 @@ export type Database = {
           }
         ];
       };
+      entrance_feedback: {
+        Row: {
+          id: string;
+          user_id: string;
+          test_id: string;
+          estimated_level: number | null;
+          total_score: number | null;
+          accuracy: number | null;
+          time_spent: string | null;
+          grammar_score: number | null;
+          reading_score: number | null;
+          listening_score: number | null;
+          dialog_score: number | null;
+          feedback_text: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          test_id: string;
+          estimated_level?: number | null;
+          total_score?: number | null;
+          accuracy?: number | null;
+          time_spent?: string | null;
+          grammar_score?: number | null;
+          reading_score?: number | null;
+          listening_score?: number | null;
+          dialog_score?: number | null;
+          feedback_text?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          test_id?: string;
+          estimated_level?: number | null;
+          total_score?: number | null;
+          accuracy?: number | null;
+          time_spent?: string | null;
+          grammar_score?: number | null;
+          reading_score?: number | null;
+          listening_score?: number | null;
+          dialog_score?: number | null;
+          feedback_text?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "entrance_feedback_test_id_fkey";
+            columns: ["test_id"];
+            referencedRelation: "tests";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "entrance_feedback_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["user_id"];
+          }
+        ];
+      };
       entrance_survey: {
         Row: {
           id: string;

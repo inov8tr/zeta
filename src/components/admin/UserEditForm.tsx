@@ -20,7 +20,9 @@ interface ClassOption {
 interface UserEditFormProps {
   profile: {
     user_id: string;
+    email: string | null;
     full_name: string | null;
+    username: string | null;
     phone: string | null;
     role: string | null;
     class_id: string | null;
@@ -66,6 +68,17 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
       <input type="hidden" name="user_id" value={profile.user_id} />
 
       <div className="grid gap-6 md:grid-cols-2">
+        <label className="flex flex-col gap-2 text-sm text-neutral-800 md:col-span-2">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            defaultValue={profile.email ?? ""}
+            className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
+          />
+        </label>
+
         <label className="flex flex-col gap-2 text-sm text-neutral-800">
           <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Full name</span>
           <input
@@ -73,6 +86,17 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
             name="full_name"
             required
             defaultValue={profile.full_name ?? ""}
+            className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
+          />
+        </label>
+
+        <label className="flex flex-col gap-2 text-sm text-neutral-800">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Username</span>
+          <input
+            type="text"
+            name="username"
+            defaultValue={profile.username ?? ""}
+            placeholder="Optional username or handle"
             className="rounded-2xl border border-brand-primary/20 px-4 py-2 text-brand-primary-dark shadow-sm focus:border-brand-primary focus:outline-none"
           />
         </label>
@@ -120,7 +144,7 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
           </select>
         </label>
 
-        <label className="flex flex-col gap-2 text-sm text-neutral-800 md:col-span-2">
+        <label className="flex flex-col gap-2 text-sm text-neutral-800">
           <span className="text-xs font-semibold uppercase tracking-wide text-brand-primary/70">Test status</span>
           <input
             type="text"
