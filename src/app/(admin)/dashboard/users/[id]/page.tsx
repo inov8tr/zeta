@@ -66,6 +66,17 @@ const percentLabel = (value: number | null) => {
   return `${Math.round(value)}%`;
 };
 
+const FEEDBACK_SECTIONS = ["grammar", "reading", "listening", "dialog"] as const;
+
+type EntranceFeedbackCardRecord = {
+  estimated_level: number | null;
+  total_score: number | null;
+  accuracy: number | null;
+  time_ms: number | null;
+  created_at: string | null;
+  source: "stored" | "derived";
+};
+
 const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const { id } = await params;
   const cookieStore = await cookies();
@@ -143,28 +154,113 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const surveySubmittedAt = parentSurvey?.created_at ?? null;
   const surveyForm = (parentSurvey?.data as ParentSurveyForm | null) ?? null;
   const entranceFeedback = (entranceFeedbackResult.data as EntranceFeedbackRow | null) ?? null;
-  const entranceFeedbackTimeMs = parseIntervalToMilliseconds(entranceFeedback?.time_spent);
 
-  const entranceFeedbackSections: EntranceFeedbackInput["sectionScores"] = {
-    grammar: entranceFeedback ? { score: entranceFeedback.grammar_score, level: null } : undefined,
-    reading: entranceFeedback ? { score: entranceFeedback.reading_score, level: null } : undefined,
-    listening: entranceFeedback ? { score: entranceFeedback.listening_score, level: null } : undefined,
-    dialog: entranceFeedback ? { score: entranceFeedback.dialog_score, level: null } : undefined,
-  };
+  const entranceTests = tests
+    .filter((test) => test.type === "entrance")
+    .sort((a, b) => {
+      const aDate = new Date(a.completed_at ?? a.assigned_at ?? a.started_at ?? 0).getTime();
+      const bDate = new Date(b.completed_at ?? b.assigned_at ?? b.started_at ?? 0).getTime();
+      return bDate - aDate;
+    });
 
-  const generatedEntranceFeedback = entranceFeedback
-    ? generateEntranceFeedback({
-        studentName: profile?.full_name ?? null,
-        level: entranceFeedback.estimated_level,
-        totalScore: entranceFeedback.total_score,
+  const latestCompletedEntranceTest = entranceTests.find((test) => test.status === "completed") ?? null;
+
+  let entranceFeedbackCardData:
+    | {
+        feedback: ReturnType<typeof generateEntranceFeedback>;
+        record: EntranceFeedbackCardRecord;
+        test: TestRow | null;
+      }
+    | null = null;
+
+  if (entranceFeedback) {
+    const storedTimeMs = parseIntervalToMilliseconds(entranceFeedback.time_spent);
+    const sectionScores: EntranceFeedbackInput["sectionScores"] = {};
+
+    FEEDBACK_SECTIONS.forEach((section) => {
+      const scoreValue =
+        section === "grammar"
+          ? entranceFeedback.grammar_score
+          : section === "reading"
+          ? entranceFeedback.reading_score
+          : section === "listening"
+          ? entranceFeedback.listening_score
+          : entranceFeedback.dialog_score;
+
+      sectionScores[section] = { score: scoreValue ?? null, level: null };
+    });
+
+    const generated = generateEntranceFeedback({
+      studentName: profile?.full_name ?? null,
+      level: entranceFeedback.estimated_level,
+      totalScore: entranceFeedback.total_score,
+      accuracy: entranceFeedback.accuracy,
+      timeSpentMs: storedTimeMs,
+      sectionScores,
+    });
+
+    const associatedTest = tests.find((test) => test.id === entranceFeedback.test_id) ?? latestCompletedEntranceTest;
+
+    entranceFeedbackCardData = {
+      feedback: generated,
+      record: {
+        estimated_level: entranceFeedback.estimated_level,
+        total_score: entranceFeedback.total_score,
         accuracy: entranceFeedback.accuracy,
-        timeSpentMs: entranceFeedbackTimeMs,
-        sectionScores: entranceFeedbackSections,
-      })
-    : null;
+        time_ms: storedTimeMs,
+        created_at: entranceFeedback.created_at,
+        source: "stored",
+      },
+      test: associatedTest ?? null,
+    };
+  } else if (latestCompletedEntranceTest) {
+    const { data: derivedSectionsData, error: derivedSectionsError } = await admin
+      .from("test_sections")
+      .select("section, correct_count, questions_served, final_level")
+      .eq("test_id", latestCompletedEntranceTest.id);
 
-  const entranceFeedbackTest = entranceFeedback ? tests.find((test) => test.id === entranceFeedback.test_id) ?? null : null;
-  const entranceFeedbackTimeLabel = formatDurationFromMs(entranceFeedbackTimeMs);
+    if (!derivedSectionsError && derivedSectionsData) {
+      const sectionScores: EntranceFeedbackInput["sectionScores"] = {};
+      let totalCorrect = 0;
+      let totalServed = 0;
+
+      FEEDBACK_SECTIONS.forEach((section) => {
+        const row = (derivedSectionsData as Array<{ section: string; correct_count: number; questions_served: number; final_level: number | null }>).find(
+          (item) => item.section === section,
+        );
+        const served = row?.questions_served ?? 0;
+        const correct = row?.correct_count ?? 0;
+        totalServed += served;
+        totalCorrect += correct;
+        const score = served > 0 ? Math.round((correct / served) * 1000) / 10 : null;
+        sectionScores[section] = { score, level: row?.final_level ?? null };
+      });
+
+      const derivedAccuracy = totalServed > 0 ? (totalCorrect / totalServed) * 100 : null;
+
+      const generated = generateEntranceFeedback({
+        studentName: profile?.full_name ?? null,
+        level: latestCompletedEntranceTest.weighted_level ?? null,
+        totalScore: latestCompletedEntranceTest.total_score ?? null,
+        accuracy: derivedAccuracy,
+        timeSpentMs: latestCompletedEntranceTest.elapsed_ms ?? null,
+        sectionScores,
+      });
+
+      entranceFeedbackCardData = {
+        feedback: generated,
+        record: {
+          estimated_level: latestCompletedEntranceTest.weighted_level ?? null,
+          total_score: latestCompletedEntranceTest.total_score ?? null,
+          accuracy: derivedAccuracy,
+          time_ms: latestCompletedEntranceTest.elapsed_ms ?? null,
+          created_at: latestCompletedEntranceTest.completed_at ?? latestCompletedEntranceTest.assigned_at ?? null,
+          source: "derived",
+        },
+        test: latestCompletedEntranceTest,
+      };
+    }
+  }
 
   const pastLearningLabels: Record<string, string> = {
     worksheet_program: "학습지",
@@ -381,12 +477,12 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
         </DetailCard>
       </section>
 
-      {entranceFeedback && generatedEntranceFeedback ? (
+      {entranceFeedbackCardData ? (
         <EntranceFeedbackCard
-          feedback={generatedEntranceFeedback}
-          record={entranceFeedback}
-          timeLabel={entranceFeedbackTimeLabel}
-          test={entranceFeedbackTest}
+          feedback={entranceFeedbackCardData.feedback}
+          record={entranceFeedbackCardData.record}
+          timeLabel={formatDurationFromMs(entranceFeedbackCardData.record.time_ms)}
+          test={entranceFeedbackCardData.test}
         />
       ) : null}
 
@@ -589,7 +685,7 @@ const EntranceFeedbackCard = ({
   test,
 }: {
   feedback: ReturnType<typeof generateEntranceFeedback>;
-  record: EntranceFeedbackRow;
+  record: EntranceFeedbackCardRecord;
   timeLabel: string;
   test: TestRow | null;
 }) => {
@@ -606,6 +702,19 @@ const EntranceFeedbackCard = ({
         <PrintButton />
       </header>
       <div className="space-y-6 px-6 py-6 text-sm text-neutral-800">
+        <div className="flex flex-wrap items-center gap-2">
+          <span
+            className={`inline-flex items-center rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-widest ${
+              record.source === "stored"
+                ? "bg-brand-primary/10 text-brand-primary-dark"
+                : "bg-brand-accent/20 text-brand-accent-dark"
+            }`}
+          >
+            {record.source === "stored" ? "Saved summary" : "Preview from latest test"}
+          </span>
+          {completedLabel ? <span className="text-xs text-neutral-muted">Completed {completedLabel}</span> : null}
+        </div>
+
         <div className="space-y-3">
           <p>{feedback.summary}</p>
           <ul className="list-disc space-y-1 pl-5 text-neutral-700">
@@ -651,8 +760,7 @@ const EntranceFeedbackCard = ({
 
         <div className="flex flex-col gap-2 text-xs text-neutral-muted md:flex-row md:items-center md:justify-between">
           <div>
-            {completedLabel ? <span>Completed {completedLabel}</span> : null}
-            {test?.type ? <span className="md:ml-3">Test type: {test.type}</span> : null}
+            {test?.type ? <span>Test type: {test.type}</span> : null}
           </div>
           <Link href="/dashboard/tests" className="text-xs font-semibold text-brand-primary hover:underline print:hidden">
             View test history →

@@ -7,12 +7,13 @@ import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 
 import { Database } from "@/lib/database.types";
 import { createAdminClient } from "@/lib/supabaseAdmin";
-import { SECTION_ORDER, parseSeed, LevelState } from "@/lib/tests/adaptiveConfig";
+import { SECTION_ORDER, parseSeed, LevelState, levelToSeed, MIN_LEVEL, MAX_LEVEL } from "@/lib/tests/adaptiveConfig";
 import { syncParallelSectionLevels } from "@/lib/tests/parallel";
 import { computePlacementSeedForStudent } from "@/lib/tests/placement";
 
 interface AssignEntranceTestInput {
   studentId: string;
+  followUp?: boolean;
 }
 
 type StartableTestRow = Pick<
@@ -20,7 +21,7 @@ type StartableTestRow = Pick<
   "id" | "student_id" | "status" | "seed_start" | "time_limit_seconds" | "elapsed_ms"
 >;
 
-export async function assignEntranceTestAction({ studentId }: AssignEntranceTestInput) {
+export async function assignEntranceTestAction({ studentId, followUp = false }: AssignEntranceTestInput) {
   const cookieStore = await cookies();
   const supabase = createServerActionClient<Database>({
     cookies: () => cookieStore as unknown as ReturnType<typeof cookies>,
@@ -45,17 +46,91 @@ export async function assignEntranceTestAction({ studentId }: AssignEntranceTest
   }
 
   const admin = createAdminClient();
-  const placement = await computePlacementSeedForStudent(admin, studentId);
+  const toLevelState = (value: number | null | undefined) => {
+    if (typeof value !== "number" || Number.isNaN(value)) {
+      return { level: MIN_LEVEL.level, sublevel: MIN_LEVEL.sublevel };
+    }
+    const normalized = Number(value.toFixed(1));
+    const [intPart, decimalPartRaw = "1"] = normalized.toFixed(1).split(".");
+    let level = Number.parseInt(intPart, 10);
+    if (Number.isNaN(level)) {
+      level = MIN_LEVEL.level;
+    }
+    level = Math.min(Math.max(level, MIN_LEVEL.level), MAX_LEVEL.level);
+    const decimalPart = decimalPartRaw.padEnd(1, "0").slice(0, 1);
+    let sublevel: "1" | "2" | "3" = "1";
+    if (decimalPart === "2") {
+      sublevel = "2";
+    } else if (decimalPart === "3") {
+      sublevel = "3";
+    }
+    return { level, sublevel };
+  };
+
+  let seedStart: Record<string, unknown> | null = null;
+
+  if (followUp) {
+    const { data: lastTest } = await admin
+      .from("tests")
+      .select("id, weighted_level, completed_at")
+      .eq("student_id", studentId)
+      .eq("type", "entrance")
+      .eq("status", "completed")
+      .order("completed_at", { ascending: false })
+      .limit(1)
+      .maybeSingle<{ id: string; weighted_level: number | null }>();
+
+    if (lastTest?.id) {
+      const { data: sections } = await admin
+        .from("test_sections")
+        .select("section, final_level")
+        .eq("test_id", lastTest.id);
+
+      if (sections && sections.length > 0) {
+        const levelLookup = new Map<string, number | null | undefined>();
+        for (const section of sections) {
+          levelLookup.set(section.section, section.final_level as number | null | undefined);
+        }
+
+        const seeds: Record<string, string> = {};
+        SECTION_ORDER.forEach((section) => {
+          const levelValue = levelLookup.get(section) ?? lastTest.weighted_level ?? MIN_LEVEL.level;
+          seeds[section] = levelToSeed(toLevelState(levelValue));
+        });
+
+        seedStart = {
+          ...seeds,
+          __meta: {
+            source: "follow_up",
+            previous_test_id: lastTest.id,
+          },
+        };
+      }
+    }
+  }
+
+  if (!seedStart) {
+    const placement = await computePlacementSeedForStudent(admin, studentId);
+    if (placement?.seedStart && typeof placement.seedStart === "object" && !Array.isArray(placement.seedStart)) {
+      const baseSeed = placement.seedStart as Record<string, unknown>;
+      const existingMeta = (baseSeed.__meta ?? {}) as Record<string, unknown>;
+      seedStart = {
+        ...baseSeed,
+        __meta: {
+          source: "initial",
+          ...existingMeta,
+        },
+      };
+    }
+  }
+
   const testPayload: Database["public"]["Tables"]["tests"]["Insert"] = {
     student_id: studentId,
     type: "entrance",
     status: "assigned",
     assigned_at: new Date().toISOString(),
+    seed_start: (seedStart ?? null) as Database["public"]["Tables"]["tests"]["Insert"]["seed_start"],
   };
-
-  if (placement?.seedStart) {
-    testPayload.seed_start = placement.seedStart;
-  }
 
   const { error } = await admin.from("tests").insert(testPayload as unknown as never);
 
