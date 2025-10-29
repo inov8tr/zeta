@@ -14,6 +14,7 @@ interface QuestionRow {
   options: string[];
   skill_tags: string[] | null;
   media_url: string | null;
+  instructions: string | null;
   passage_id: string | null;
   question_passages: { title: string; body: string }[] | { title: string; body: string } | null;
 }
@@ -201,7 +202,7 @@ export async function POST(
 
     let questionQuery = supabase
       .from("questions")
-      .select("id, stem, options, skill_tags, media_url, passage_id, question_passages(title, body)")
+      .select("id, stem, options, skill_tags, media_url, instructions, passage_id, question_passages(title, body)")
       .eq("section", activeSection.section)
       .eq("level", candidate.level)
       .eq("sublevel", candidate.sublevel)
@@ -294,6 +295,7 @@ export async function POST(
         optionOrder: order,
         skillTags: selectedQuestion.skill_tags ?? [],
         mediaUrl: selectedQuestion.media_url,
+        instructions: selectedQuestion.instructions ?? null,
       };
     })(),
   };

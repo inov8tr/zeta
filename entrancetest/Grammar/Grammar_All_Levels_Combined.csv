@@ -1,0 +1,351 @@
+id,created_at,question_text,choice_1,choice_2,choice_3,choice_4,correct_answer,section,question_type,level,difficulty,random_order,type,manual_review,media_url,updated_at,used_count,source_file
+1,2024-10-20,He ___ happy every day.,is,are,was,were,is,Grammar,multiple choice,1,1,True,"simple present, agreement",False,,2024-10-20,0,Grammar Level 1.csv
+2,2024-10-20,I ___ my homework every night.,does,do,did,doing,do,Grammar,multiple choice,1,1,True,"simple present, verb",False,,2024-10-20,0,Grammar Level 1.csv
+3,2024-10-20,They ___ to the park on Sundays.,goes,go,went,going,go,Grammar,multiple choice,1,1,True,"simple present, verb",False,,2024-10-20,0,Grammar Level 1.csv
+4,2024-10-20,Choose the correct article: He has ____ apple.,a,an,the,none,an,Grammar,multiple choice,1,1,True,articles,False,,2024-10-20,0,Grammar Level 1.csv
+5,2024-10-20,How many ___ are there? (book),book,books,book’s,books’,books,Grammar,multiple choice,1,1,True,plurals,False,,2024-10-20,0,Grammar Level 1.csv
+6,2024-10-20,She ___ a teacher.,is,are,am,be,is,Grammar,multiple choice,1,1,True,"simple present, verb",False,,2024-10-20,0,Grammar Level 1.csv
+7,2024-10-20,The dogs ____ hungry.,is,are,am,be,are,Grammar,multiple choice,1,1,True,agreement,False,,2024-10-20,0,Grammar Level 1.csv
+8,2024-10-20,Does she ____ her homework?,do,doing,did,does,does,Grammar,multiple choice,1,1,True,simple present,False,,2024-10-20,0,Grammar Level 1.csv
+9,2024-10-20,The cat is on the _____.,table,tables,table’s,tables’,table,Grammar,multiple choice,1,1,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+10,2024-10-20,The car ____ blue.,is,are,were,be,is,Grammar,multiple choice,1,1,True,"simple present, adjectives",False,,2024-10-20,0,Grammar Level 1.csv
+11,2024-10-20,True/False: She eats breakfast every morning.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,1,False,simple present,False,,2024-10-20,0,Grammar Level 1.csv
+12,2024-10-20,"Choose the plural form: One dog, two _____.",dog,dogs,dog’s,dogs’,dogs,Grammar,multiple choice,1,1,True,plurals,False,,2024-10-20,0,Grammar Level 1.csv
+13,2024-10-20,He ____ to school every day.,go,goes,going,went,goes,Grammar,multiple choice,1,1,True,simple present,False,,2024-10-20,0,Grammar Level 1.csv
+14,2024-10-20,True/False: The books is on the table.,TRUE,FALSE,,,FALSE,Grammar,true/false,1,1,False,agreement,False,,2024-10-20,0,Grammar Level 1.csv
+15,2024-10-20,I ____ my homework every night.,do,doing,did,done,do,Grammar,multiple choice,1,1,True,present tense,False,,2024-10-20,0,Grammar Level 1.csv
+16,2024-10-20,She is ____ a book.,read,reads,reading,to read,reading,Grammar,multiple choice,1,2,True,present continuous,False,,2024-10-20,0,Grammar Level 1.csv
+17,2024-10-20,They are ____ soccer.,playing,played,to play,play,playing,Grammar,multiple choice,1,2,True,present continuous,False,,2024-10-20,0,Grammar Level 1.csv
+18,2024-10-20,He ____ to the store yesterday.,goes,gone,went,going,went,Grammar,multiple choice,1,2,True,simple past,False,,2024-10-20,0,Grammar Level 1.csv
+19,2024-10-20,The children ____ playing in the park.,is,are,was,were,are,Grammar,multiple choice,1,2,True,present continuous,False,,2024-10-20,0,Grammar Level 1.csv
+20,2024-10-20,She ____ dinner last night.,cook,cooked,cooking,cooks,cooked,Grammar,multiple choice,1,2,True,"simple past, routine",False,,2024-10-20,0,Grammar Level 1.csv
+21,2024-10-20,They are ____ TV now.,watching,watched,to watch,watch,watching,Grammar,multiple choice,1,2,True,present continuous,False,,2024-10-20,0,Grammar Level 1.csv
+22,2024-10-20,True/False: She is going to school now.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,2,False,present continuous,False,,2024-10-20,0,Grammar Level 1.csv
+23,2024-10-20,They ____ lunch together yesterday.,eat,ate,eaten,eating,ate,Grammar,multiple choice,1,2,True,simple past,False,,2024-10-20,0,Grammar Level 1.csv
+24,2024-10-20,True/False: I am going to the park now.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,2,False,present continuous,False,,2024-10-20,0,Grammar Level 1.csv
+25,2024-10-20,We ____ to the cinema yesterday.,go,went,going,gone,went,Grammar,multiple choice,1,2,True,simple past,False,,2024-10-20,0,Grammar Level 1.csv
+26,2024-10-20,They are ____ their homework right now.,doing,does,did,do,doing,Grammar,multiple choice,1,2,True,present continuous,False,,2024-10-20,0,Grammar Level 1.csv
+27,2024-10-20,He ____ a song when I called him.,sings,sang,was singing,to sing,was singing,Grammar,multiple choice,1,2,True,past continuous,False,,2024-10-20,0,Grammar Level 1.csv
+28,2024-10-20,True/False: We watched TV yesterday.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,2,False,simple past,False,,2024-10-20,0,Grammar Level 1.csv
+29,2024-10-20,She is ____ to the store now.,goes,go,going,gone,going,Grammar,multiple choice,1,2,True,present continuous,False,,2024-10-20,0,Grammar Level 1.csv
+30,2024-10-20,I ____ to the gym last week.,go,going,went,gone,went,Grammar,multiple choice,1,2,True,simple past,False,,2024-10-20,0,Grammar Level 1.csv
+31,2024-10-20,The cat is ____ the table.,on,in,under,over,on,Grammar,multiple choice,1,3,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+32,2024-10-20,True/False: The dog is next to the tree.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,3,False,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+33,2024-10-20,The car is ____ the garage.,in,on,under,over,in,Grammar,multiple choice,1,3,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+34,2024-10-20,Choose the correct article: She has ____ apple.,a,an,the,none,an,Grammar,multiple choice,1,3,True,articles,False,,2024-10-20,0,Grammar Level 1.csv
+35,2024-10-20,Choose the adjective: The dog is happy.,dog,is,happy,the,happy,Grammar,multiple choice,1,3,True,adjectives,False,,2024-10-20,0,Grammar Level 1.csv
+36,2024-10-20,True/False: The boy is tall.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,3,False,adjectives,False,,2024-10-20,0,Grammar Level 1.csv
+37,2024-10-20,The dog is sitting ____ the chair.,next to,on,under,in,next to,Grammar,multiple choice,1,3,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+38,2024-10-20,Choose the adjective: The sky is blue.,sky,is,blue,the,blue,Grammar,multiple choice,1,3,True,adjectives,False,,2024-10-20,0,Grammar Level 1.csv
+39,2024-10-20,The cup is ____ the table.,on,in,under,above,on,Grammar,multiple choice,1,3,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+40,2024-10-20,Choose the article: He has ____ car.,a,an,the,none,a,Grammar,multiple choice,1,3,True,articles,False,,2024-10-20,0,Grammar Level 1.csv
+41,2024-10-20,True/False: The book is under the table.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,3,False,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+42,2024-10-20,The girl is ____ the bus.,on,in,under,over,on,Grammar,multiple choice,1,3,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+43,2024-10-20,The teacher is ____ the classroom.,in,on,under,above,in,Grammar,multiple choice,1,3,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+44,2024-10-20,True/False: The sun is bright.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,3,False,adjectives,False,,2024-10-20,0,Grammar Level 1.csv
+45,2024-10-20,Choose the correct article: I need ____ pen.,a,an,the,none,a,Grammar,multiple choice,1,3,True,articles,False,,2024-10-20,0,Grammar Level 1.csv
+46,2024-10-20,The box is ____ the bed.,under,on,in,above,under,Grammar,multiple choice,1,3,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+47,2024-10-20,True/False: The car is next to the house.,TRUE,FALSE,,,TRUE,Grammar,true/false,1,3,False,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+48,2024-10-20,Choose the adjective: The flower is red.,flower,is,red,the,red,Grammar,multiple choice,1,3,True,adjectives,False,,2024-10-20,0,Grammar Level 1.csv
+49,2024-10-20,The ball is ____ the chair.,next to,on,in,above,next to,Grammar,multiple choice,1,3,True,prepositions,False,,2024-10-20,0,Grammar Level 1.csv
+50,2024-10-20,Choose the article: He needs ____ eraser.,a,an,the,none,an,Grammar,multiple choice,1,3,True,articles,False,,2024-10-20,0,Grammar Level 1.csv
+1,2025-10-16,She has a cat. → She ___ a cat.,doesn’t have,don’t has,doesn’t has,don’t have,doesn’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+2,2025-10-16,He likes basketball. → He ___ basketball.,doesn’t like,don’t like,doesn’t likes,don’t likes,doesn’t like,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+3,2025-10-16,Do you play soccer? → ___ you play soccer?,Don’t,Doesn’t,Does,Dosn’t,Don’t,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+4,2025-10-16,Tom has short hair. → Tom ___ short hair.,doesn’t have,don’t have,doesn’t has,don’t has,doesn’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+5,2025-10-16,The dog has a long tail. → The dog ___ a long tail.,doesn’t have,don’t have,doesn’t has,don’t has,doesn’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+6,2025-10-16,It is an egg. → It ___ an egg.,isn’t,are,aren’t,am not,isn’t,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+7,2025-10-16,They are boxes. → They ___ boxes.,aren’t,isn’t,am not,ares not,aren’t,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+8,2025-10-16,We have many cookies. → We ___ many cookies.,don’t have,doesn’t have,don’t has,doesn’t has,don’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+9,2025-10-16,She can read letters. → She ___ letters.,can’t read,can’t reads,cannot reads,can reads,can’t read,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+10,2025-10-16,Jesse works on Mondays. → Jesse ___ on Mondays.,doesn’t work,don’t work,doesn’t works,don’t works,doesn’t work,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+11,2025-10-16,I take the bus. → I ___ the bus.,don’t take,doesn’t take,don’t takes,doesn’t takes,don’t take,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+12,2025-10-16,Ariana gives candy to her friends. → Ariana ___ candy to her friends.,doesn’t give,don’t give,doesn’t gives,don’t gives,doesn’t give,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+13,2025-10-16,We know the answer. → We ___ the answer.,don’t know,doesn’t know,don’t knows,doesn’t knows,don’t know,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+14,2025-10-16,The teacher asks questions. → The teacher ___ questions.,doesn’t ask,don’t ask,doesn’t asks,don’t asks,doesn’t ask,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+15,2025-10-16,They try their best. → They ___ their best.,don’t try,doesn’t try,don’t tries,don’t trys,don’t try,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+16,2025-10-16,He does his homework. → He ___ his homework.,doesn’t do,don’t do,doesn’t does,don’t does,doesn’t do,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+17,2025-10-16,The boy can swim. → The boy ___ swim.,can’t,can,can’t swims,can swims,can’t,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+18,2025-10-16,They have apples. → They ___ apples.,don’t have,doesn’t have,don’t has,doesn’t has,don’t have,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+19,2025-10-16,I eat breakfast. → I ___ breakfast.,don’t eat,doesn’t eat,don’t eats,doesn’t eats,don’t eat,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+20,2025-10-16,She goes to school. → She ___ to school.,doesn’t go,don’t go,doesn’t goes,don’t goes,doesn’t go,Grammar,multiple choice,2,1,True,subject-verb agreement,False,,2025-10-16,0,Grammar_Level_2.csv
+21,2025-10-16,Whose bag is this? → It’s ___ bag.,my,me,mine,I,my,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+22,2025-10-16,These are ___ books.,our,ours,we,us,our,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+23,2025-10-16,This is my sister. ___ is the tallest girl in her class.,She,It,Her,Hers,She,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+24,2025-10-16,That cat is big. ___ tail is long.,Its,It’s,It,Their,Its,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+25,2025-10-16,"A: Is this case yours? B: Yes, that case is ___ case.",my,mine,me,I,mine,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+26,2025-10-16,___ wants to meet her.,He,His,Him,He’s,He,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+27,2025-10-16,Which is ___ pencil? The red one or the blue one?,your,you,we,they,your,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+28,2025-10-16,___ are our bags.,Those,This,That,Their,Those,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+29,2025-10-16,"This is Jessica’s file. So it’s not ___, but ___ hers.",mine,me,my,I,mine,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+30,2025-10-16,When is ___ birthday?,her,she,hers,she’s,her,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+31,2025-10-16,The ball is over ___.,there,their,these,those,there,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+32,2025-10-16,___ scissors are yours.,these,this,that,they,these,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+33,2025-10-16,I lost my father’s wallet. = I lost ___ wallet.,his,him,he’s,hes,his,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+34,2025-10-16,The house is big. ___ windows are beautiful.,its,their,they’re,they,its,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+35,2025-10-16,This is not mine. This is ___ book.,her,him,I,we,her,Grammar,multiple choice,2,2,True,pronouns and possessives,False,,2025-10-16,0,Grammar_Level_2.csv
+36,2025-10-16,The book is ___ the table.,on,in,under,beside,on,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+37,2025-10-16,I am ___ the bus stop.,next to,behind,in front of,on,next to,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+38,2025-10-16,The ring is ___ the box.,in,for,to,between,in,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+39,2025-10-16,Her painting is ___ the desk.,under,above,by,next to,under,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+40,2025-10-16,My gift was hidden ___ the closet.,in,on,below,next to,in,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+41,2025-10-16,Her car was ___ my car.,behind,on,in,in front of,behind,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+42,2025-10-16,My pencil was ___ the floor.,on,in,by,at,on,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+43,2025-10-16,They are ___ me.,in front of,behind,next to,beside,in front of,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+44,2025-10-16,The supermarket is ___ the street.,across,on,close,under,across,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+45,2025-10-16,It takes 15 minutes ___ my home to school.,from,for,under,next to,from,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+46,2025-10-16,Don’t forget to clean ___ your bed.,under,by,down,on,under,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+47,2025-10-16,There is a noise ___ the kitchen.,in,on,to,for,in,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+48,2025-10-16,I have a surprise ___ you.,for,to,in,with,for,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+49,2025-10-16,I am going ___ to take the bus.,outside,inside,to,from,outside,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+50,2025-10-16,She is ___ the classroom.,in,by,beyond,after,in,Grammar,multiple choice,2,3,True,prepositions,False,,2025-10-16,0,Grammar_Level_2.csv
+1,2025-10-16,Kathy ___ her brother with his homework now.,helps,help,helped,helping,helps,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+2,2025-10-16,Amy always ___ a water bottle to school.,takes,take,taked,taking,takes,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+3,2025-10-16,My mom always ___ jeans on weekends.,wears,wear,wearing,weared,wears,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+4,2025-10-16,I usually ___ the piano after school.,practice,practices,practicing,to practice,practice,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+5,2025-10-16,My grandfather ___ to me every week.,writes,write,writing,writed,writes,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+6,2025-10-16,I can ___ in English.,speak,speaks,spoke,speaking,speak,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+7,2025-10-16,She ___ her grandparents every week.,calls,call,calling,to call,calls,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+8,2025-10-16,My mom ___ the vase to the window.,moves,move,moving,to move,moves,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+9,2025-10-16,The game ___ and I feel excited.,starts,start,to start,starting,starts,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+10,2025-10-16,What is ___ in here?,happening,happen,happens,happened,happening,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+11,2025-10-16,Children ___ how to write and read.,learn,learns,learning,to learn,learn,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+12,2025-10-16,We ___ our teacher on the field trip.,follow,follows,to follow,following,follow,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+13,2025-10-16,They will ___ their project.,continue,continued,continuing,continues,continue,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+14,2025-10-16,My mom doesn’t ___ my hobbies.,understand,understands,understanding,understood,understand,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+15,2025-10-16,Our tree was ___ fast.,growing,grow,grows,growed,growing,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+16,2025-10-16,My sister ___ her hair now.,brushes,brush,brushed,brushing,brushes,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+17,2025-10-16,Mr. Smith ___ my words.,believes,believe,to believe,believing,believes,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+18,2025-10-16,Jack ___ the door for me.,opens,open,opening,to open,opens,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+19,2025-10-16,I have to ___ for the test.,study,studies,studyed,studying,study,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+20,2025-10-16,My cousin ___ at 3 o’clock.,arrives,arrive,to arrive,arriving,arrives,Grammar,multiple choice,3,1,True,simple present and progressive,False,,2025-10-16,0,Grammar_Level_3.csv
+21,2025-10-16,Have (?) your brother ___ a computer?,does / have,do / have,does / has,do / has,does / have,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+22,2025-10-16,Do (?) you ___ your homework now?,are / doing,are / do,do / doing,do / do,are / doing,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+23,2025-10-16,Wear (X) I ___ my school uniform next week.,don’t wear,doesn’t wear,don’t wears,doesn’t wears,don’t wear,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+24,2025-10-16,Dance (X) Billy ___ now. He is sleeping.,isn’t dancing,is dancing,aren’t dancing,are dancing,isn’t dancing,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+25,2025-10-16,Snow (O) It ___ a lot tomorrow.,will snow,snow,snows,snowed,will snow,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+26,2025-10-16,Need (O) He ___ a paper to do his homework.,needs,need,needing,to need,needs,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+27,2025-10-16,Go (X) I ___ to the library on weekends.,don’t go,doesn’t go,don’t goes,doesn’t goes,don’t go,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+28,2025-10-16,Walk (O) My mom ___ to the supermarket.,walks,walk,walking,to walk,walks,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+29,2025-10-16,Read (?) you ___ the textbook yesterday?,did / read,did / reads,do / read,do / reads,did / read,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+30,2025-10-16,Build (X) They ___ new houses by the mountain.,build,builds,builded,building,build,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+31,2025-10-16,Choose (O) Sally ___ the red shirt.,chooses,choose,choosing,choosed,chooses,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+32,2025-10-16,Buy (X) They ___ vegetables.,don’t buy,doesn’t buy,don’t buys,doesn’t buys,don’t buy,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+33,2025-10-16,Drink (?) you ___ milk every day?,do / drink,do / drinks,does / drink,does / drinks,do / drink,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+34,2025-10-16,Listen (X) He ___ to any music.,doesn’t listen,don’t listen,doesn’t listens,don’t listens,doesn’t listen,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+35,2025-10-16,Leave (?) you ___ right now?,are / leaving,are / leave,is / leaving,is / leave,are / leaving,Grammar,multiple choice,3,2,True,question and negative forms,False,,2025-10-16,0,Grammar_Level_3.csv
+36,2025-10-16,Jack is sick. So he ___ to school.,can’t come,can’t comes,came,will come,can’t come,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+37,2025-10-16,Jerry finished his homework. So he ___ with his friends.,will play,will plays,played,play,will play,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+38,2025-10-16,Luke hurt his legs. So he ___ well.,can’t run,can’t runs,can’t go,can’t goes,can’t run,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+39,2025-10-16,I ___ in my bedroom last night.,was,is,will be,am,was,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+40,2025-10-16,Yesterday Tina ___ to my house.,came,come,will come,comes,came,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+41,2025-10-16,My family ___ to the beach last month.,went,go,will go,goes,went,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+42,2025-10-16,I ___ some cookies in the kitchen.,have,haves,haved,has,have,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+43,2025-10-16,I like our neighbor. But my brother ___ our neighbor.,doesn’t like,don’t like,don’t hate,doesn’t hate,doesn’t like,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+44,2025-10-16,It ___ rainy yesterday. But it is sunny today.,was,will be,is,am,was,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+45,2025-10-16,She ___ good grades next year.,will get,will lose,will buy,will write,will get,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+46,2025-10-16,Who ___ my pencil case?,took,get,will take,will get,took,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+47,2025-10-16,Will you ___ some eggs when you come home?,buy,buys,buyes,bought,buy,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+48,2025-10-16,Olivia ___ for her test.,is preparing,prepare,read,say,is preparing,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+49,2025-10-16,Tim likes video games. And Andy also ___ video games.,likes,hates,like,hate,likes,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+50,2025-10-16,"Pete went up the stairs. Steve went up, too. So Steve ___ Pete.",followed,follow,go,goed,followed,Grammar,multiple choice,3,3,True,mixed tenses and modals,False,,2025-10-16,0,Grammar_Level_3.csv
+1,2025-10-16,My dad ___ me with my homework every night.,helps,help,helped,helping,helps,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+2,2025-10-16,Many people ___ to see our new puppies yesterday.,came,come,comes,comed,came,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+3,2025-10-16,Helen ___ late for school yesterday.,was,is,were,will be,was,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+4,2025-10-16,It ___ outside. We can’t go to the park now.,is raining,rains,raining,rained,is raining,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+5,2025-10-16,We ___ math and science yesterday.,studied,studies,will study,study,studied,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+6,2025-10-16,I ___ the first place in the speech contest last year.,won,win,will win,wins,won,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+7,2025-10-16,We used to ___ sandcastles whenever we went to the beach.,build,built,builds,building,build,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+8,2025-10-16,"Last week, he ___ a nice necklace for his grandmother.",bought,buy,will buy,buyed,bought,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+9,2025-10-16,Did you ___ your room yesterday?,clean,cleans,is cleaning,cleaned,clean,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+10,2025-10-16,We ___ badminton right now.,are playing,play,plays,played,are playing,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+11,2025-10-16,My dad ___ at work yesterday afternoon.,was,is,were,will be,was,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+12,2025-10-16,We ___ to write letters to our grandparents.,are going,will,should,must,are going,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+13,2025-10-16,Our uncle ___ visit us tomorrow.,will,is going,doesn’t,don’t,will,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+14,2025-10-16,Ms. Walker is ___ book a reservation tonight.,going to,will,going,will be,going to,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+15,2025-10-16,I have ___ for my violin lessons tomorrow.,to practice,practice,practicing,practiced,to practice,Grammar,multiple choice,4,1,True,simple and past tense verbs,False,,2025-10-16,0,Grammar_Level_4.csv
+16,2025-10-16,My friend ___ a toy robot today. I will build one tomorrow.,built,build,will built,builds,built,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+17,2025-10-16,"Alex ___ the ball, Hank swung the bat and hit a home run.",threw,throwing,throws,threwed,threw,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+18,2025-10-16,"I studied hard for the test last night. However, I ___ a bad score.",got,get,will get,gets,got,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+19,2025-10-16,I ___ lunch an hour ago. So I have to take my medicine soon.,had,have,will have,has,had,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+20,2025-10-16,"I had a meeting today, but I ___ about it and slept late.",forgot,forget,forgetted,sleeped,forgot,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+21,2025-10-16,She ___ like a butterfly and landed perfectly.,flew,flied,flies,landed,flew,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+22,2025-10-16,"He ___ to school to take his daughter, but she wasn’t there.",came,comes,come,coming,came,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+23,2025-10-16,"Since the weather was freezing, I ___ my closet and grabbed my coat.",opened,opens,open,openned,opened,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+24,2025-10-16,We ___ lunch an hour ago and then watched TV.,had,have,will have,has,had,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+25,2025-10-16,"I ___ hard yesterday, but I still feel tired.",worked,work,working,works,worked,Grammar,multiple choice,4,2,True,irregular verbs and mixed tenses,False,,2025-10-16,0,Grammar_Level_4.csv
+26,2025-10-16,My sister brushes her teeth three times a day. She ___ brushes her teeth.,always,usually,sometimes,rarely,always,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0,Grammar_Level_4.csv
+27,2025-10-16,I have only lived in Korea. I have ___ been to other countries.,never,usually,sometimes,always,never,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0,Grammar_Level_4.csv
+28,2025-10-16,Susan never forgets her medicine. She ___ carries the pills in her bag.,always,sometimes,usually,never,always,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0,Grammar_Level_4.csv
+29,2025-10-16,My family visits my grandparents once a month. They ___ visit them.,usually,always,sometimes,never,usually,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0,Grammar_Level_4.csv
+30,2025-10-16,"He lives far away, so I ___ meet him.",sometimes,never,always,often,sometimes,Grammar,multiple choice,4,2,True,frequency adverbs,False,,2025-10-16,0,Grammar_Level_4.csv
+31,2025-10-16,"My friend bought a new game, ___ we played it together.",so,but,because,however,so,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0,Grammar_Level_4.csv
+32,2025-10-16,"I woke up late today, ___ I missed the train.",so,but,whereas,however,so,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0,Grammar_Level_4.csv
+33,2025-10-16,Peter bought a new lock ___ someone broke into his house.,because,for,to,however,because,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0,Grammar_Level_4.csv
+34,2025-10-16,"I was on the phone, ___ he sent me an e-mail.",while,when,and,so,while,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0,Grammar_Level_4.csv
+35,2025-10-16,"Mike had a lot of money. ___, it didn’t make him happy.",however,so,or,yet,however,Grammar,multiple choice,4,2,True,conjunctions,False,,2025-10-16,0,Grammar_Level_4.csv
+36,2025-10-16,I’ll meet you ___ 2 P.M. tomorrow.,at,on,in,of,at,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0,Grammar_Level_4.csv
+37,2025-10-16,That accident broke out ___ 1999.,in,on,at,of,in,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0,Grammar_Level_4.csv
+38,2025-10-16,She comes to the library ___ Saturdays.,on,in,at,to,on,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0,Grammar_Level_4.csv
+39,2025-10-16,I can’t talk to you ___ the moment.,at,in,on,for,at,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0,Grammar_Level_4.csv
+40,2025-10-16,You promised to meet me ___ my birthday.,on,in,at,when,on,Grammar,multiple choice,4,3,True,prepositions of time,False,,2025-10-16,0,Grammar_Level_4.csv
+41,2025-10-16,I will close the windows ___ the dust from coming in.,to prevent,prevent,to let,let,to prevent,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0,Grammar_Level_4.csv
+42,2025-10-16,___ in the deep sea would be very dangerous.,to swim,swim,to fly,fly,to swim,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0,Grammar_Level_4.csv
+43,2025-10-16,I like ___ in English with my family.,to speak,speak,to speaking,spoke,to speak,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0,Grammar_Level_4.csv
+44,2025-10-16,"She tried ___ him from going, but it didn’t work.",to stop,stop,to start,start,to stop,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0,Grammar_Level_4.csv
+45,2025-10-16,We refused ___ the greedy principal’s order.,to follow,follow,to command,command,to follow,Grammar,multiple choice,4,3,True,infinitives,False,,2025-10-16,0,Grammar_Level_4.csv
+46,2025-10-16,I promise you that I ___ finish my task by 5 P.M.,can,won’t,can’t,shouldn’t,can,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0,Grammar_Level_4.csv
+47,2025-10-16,You ___ leave the classroom once you have finished your exam.,may,may not,will,won’t,may,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0,Grammar_Level_4.csv
+48,2025-10-16,I ___ abroad and study next year.,will go,can went,going to,must went,will go,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0,Grammar_Level_4.csv
+49,2025-10-16,You ___ go see a doctor before it gets worse.,should,can,will,are going to,should,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0,Grammar_Level_4.csv
+50,2025-10-16,Tina ___ come see you in a minute.,will,must,have to,can,will,Grammar,multiple choice,4,3,True,modals,False,,2025-10-16,0,Grammar_Level_4.csv
+1,2025-10-16,I showed my picture album ___ my friend.,to,for,of,with,to,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+2,2025-10-16,My dad bought flowers ___ my mom on her birthday.,for,to,on,and,for,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+3,2025-10-16,Did you finish ___ the dishes?,washing,to wash,for washing,wash,washing,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+4,2025-10-16,They decided ___ camping next weekend.,to go,going,go,for going,to go,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+5,2025-10-16,Do you enjoy ___ your dog?,walking,to walk,for walking,to walking,walking,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+6,2025-10-16,Ted wants ___ his project today.,to finish,finishing,finish,to be finished,to finish,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+7,2025-10-16,My mom promised ___ a special cake for me.,to make,making,for making,to making,to make,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+8,2025-10-16,Most citizens are opposed ___ more taxes.,to paying,to pay,paying,pay,to paying,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+9,2025-10-16,I didn’t expect ___ you here.,to meet,to lose,to meeting,to losing,to meet,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+10,2025-10-16,He was definitely ___ video games.,addicted to,loved to,expected to,wanted to,addicted to,Grammar,multiple choice,5,1,True,to/for and infinitive vs gerund,False,,2025-10-16,0,Grammar_Level_5.csv
+11,2025-10-16,They ___ the dishes since last night.,haven’t done,have done,did,didn’t do,haven’t done,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+12,2025-10-16,We ___ for you for two days now.,have waited,haven’t waited,has waited,waited,have waited,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+13,2025-10-16,Mary and Jake ___ friends since last year.,have been,were,haven’t been,weren’t,have been,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+14,2025-10-16,Jack is hungry. He ___ lunch yet.,hasn’t eaten,have eaten,ate,didn’t eat,hasn’t eaten,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+15,2025-10-16,___ you ___ my cat today?,have / seen,have / saw,haven’t / seen,did / see,have / seen,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+16,2025-10-16,I ___ to Switzerland.,haven’t been,have been,wasn’t,weren’t,haven’t been,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+17,2025-10-16,She ___ in that company for five years.,has worked,hasn’t worked,worked,have working,has worked,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+18,2025-10-16,He ___ Korean food.,hasn’t tried,haven’t tried,didn’t try,not tried,hasn’t tried,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+19,2025-10-16,___ she ___ anyone yesterday?,has / met,have / met,hasn’t / met,haven’t / met,has / met,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+20,2025-10-16,My mom ___ never ___ this device.,has / used,have / used,hasn’t / using,haven’t / using,has / used,Grammar,multiple choice,5,1,True,present perfect,False,,2025-10-16,0,Grammar_Level_5.csv
+21,2025-10-16,We are used to ___ early in the morning.,getting up,get up,gets up,have get up,getting up,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+22,2025-10-16,I often enjoy ___.,singing,to sing,to song,in singing,singing,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+23,2025-10-16,My house needs ___.,painting,to paint,being painted,paint,painting,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+24,2025-10-16,I am looking forward ___ you in Seoul.,to meeting,have meet,to meet,meeting,to meeting,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+25,2025-10-16,He avoids ___ with his rivals.,arguing,to argue,to be argued,argue,arguing,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+26,2025-10-16,"I bought a map, ___ helped me during the trip.",which,who,whom,where,which,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+27,2025-10-16,My parents have made me ___ I am.,who,which,that,what,who,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+28,2025-10-16,How can I forget the day ___ we had our first date?,when,where,which,how,when,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+29,2025-10-16,The house ___ I bought last year has a pool.,which,were,when,in which,which,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+30,2025-10-16,This is ___ we want to know.,what,which,for what,that,what,Grammar,multiple choice,5,2,True,gerunds and relative clauses,False,,2025-10-16,0,Grammar_Level_5.csv
+31,2025-10-16,Math is the much difficult subject of all.,much,the,math,of,much,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+32,2025-10-16,My illness was much more serious as I thought.,much,more,as,at,as,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+33,2025-10-16,Nothing is more exciting as bungee jumping.,nothing,is,exciting,as,as,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+34,2025-10-16,No other cities in England is larger than Seoul.,no,cities,larger,is,is,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+35,2025-10-16,That tower is the most tallest tower in our city.,most,the,that,in,most,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+36,2025-10-16,She is way more smallest than my brother.,smallest,more,way,my,smallest,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+37,2025-10-16,The bag was more expensiver than the wallet.,expensiver,was,more,than,expensiver,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+38,2025-10-16,China has the more people than any other country.,more,the,people,any,the,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+39,2025-10-16,The task was many more difficult than I thought.,many,more,difficult,thought,many,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+40,2025-10-16,This river is longer than any other rivers in this country.,longer,any,rivers,in,rivers,Grammar,multiple choice,5,2,True,comparative and superlative corrections,False,,2025-10-16,0,Grammar_Level_5.csv
+41,2025-10-16,People speak Chinese in Hong Kong. → Chinese ___ in Hong Kong.,is spoken,spoken,is speaked,spoke,is spoken,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0,Grammar_Level_5.csv
+42,2025-10-16,The students will clean the window. → The window ___ by the students.,will be cleaned,is cleaned,be cleaned,was cleaned,will be cleaned,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0,Grammar_Level_5.csv
+43,2025-10-16,My father is making a dog house. → A dog house ___ by my father.,is being made,is made,was being made,was made,is being made,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0,Grammar_Level_5.csv
+44,2025-10-16,They laughed at Judy. → Judy ___ by them.,was laughed at,was laughed,is being laughed,is laughed,was laughed at,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0,Grammar_Level_5.csv
+45,2025-10-16,You must keep your words. → Your words ___ by you.,must be kept,should be kept,must kept,should kept,must be kept,Grammar,multiple choice,5,3,True,passive voice,False,,2025-10-16,0,Grammar_Level_5.csv
+46,2025-10-16,My bicycle was stealed yesterday.,stealed,bicycle,was,yesterday,stealed,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0,Grammar_Level_5.csv
+47,2025-10-16,The building is own by my sister.,own,is,building,by,own,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0,Grammar_Level_5.csv
+48,2025-10-16,I let him to clean my room.,to,clean,let,room,to,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0,Grammar_Level_5.csv
+49,2025-10-16,She got to stuck in the traffic.,to,stuck,in,traffic,to,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0,Grammar_Level_5.csv
+50,2025-10-16,He was heard cry by the policemen.,cry,heard,by,was,cry,Grammar,multiple choice,5,3,True,voice and causative errors,False,,2025-10-16,0,Grammar_Level_5.csv
+1,2025-10-16,The police caught the bank robber. → The bank robber ___ by the police.,was caught,is caught,caught,was caught the police,was caught,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+2,2025-10-16,Many students visit the museum. → The museum ___ by many students.,is visited,visits,was visited,is visited many students,is visited,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+3,2025-10-16,The laundry is done by my mom. → My mom ___ the laundry.,does,did,is doing,does by,does,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+4,2025-10-16,This house was built a long time ago. → They ___ this house a long time ago.,built,build,have built,built by,built,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+5,2025-10-16,My teacher wrote this book. → This book ___ by my teacher.,was written,is written,wrote,has written,was written,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+6,2025-10-16,They have reached their goal. → The goal ___ reached.,has been,had been,was,is,has been,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+7,2025-10-16,These articles were written by famous writers. → Famous writers ___ these articles.,wrote,has written,write,were writing,wrote,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+8,2025-10-16,Rita wrote the letter to him. → The letter ___ to him by Rita.,was written,is written,has been written,was wrote,was written,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+9,2025-10-16,You will be given some instruction by the manager. → The manager ___ you some instruction.,will give,will gave,would give,will give some instruction you,will give,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+10,2025-10-16,She told me a lie. → A lie ___ by her.,was told,is told,has been told,were told,was told,Grammar,multiple choice,6,1,True,active and passive voice,False,,2025-10-16,0,Grammar_Level_6.csv
+11,2025-10-16,Ted is the boy ___ is reading on the bench.,who,which,why,where,who,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+12,2025-10-16,There is the man ___ car was stolen.,whose,who,whom,which,whose,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+13,2025-10-16,This is the ice cream shop ___ has thirty-one flavors.,that,who,whose,what,that,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+14,2025-10-16,I want to wear the dress ___ has a red ribbon.,that,who,where,whom,that,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+15,2025-10-16,"It started to rain, so we stopped ___ soccer.",playing,to play,played,to playing,playing,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+16,2025-10-16,Our class decided ___ a talent show next week.,to have,having,to having,to had,to have,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+17,2025-10-16,We will go to the library ___ we have enough time.,if,so,whether,unless,if,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+18,2025-10-16,I’m going to have my brother ___ me how to do it.,show,to show,showing,to showing,show,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+19,2025-10-16,This car ___ made in our country.,is,does,were,being,is,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+20,2025-10-16,We stopped ___ video games when dinner was ready.,playing,to play,played,to playing,playing,Grammar,multiple choice,6,1,True,relative pronouns and mixed verb patterns,False,,2025-10-16,0,Grammar_Level_6.csv
+21,2025-10-16,You may lose friends ___ you don’t treat them nicely.,if,unless,as if,although,if,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+22,2025-10-16,We ___ late unless we hurry.,will be,won’t be,are,wouldn’t be,will be,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+23,2025-10-16,Take your umbrella in case it ___.,rains,rained,will rain,would rain,rains,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+24,2025-10-16,He acted ___ he didn’t do anything wrong.,as if,if,when,however,as if,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+25,2025-10-16,You will be sick unless you ___ eating.,stop,stops,stopped,will stop,stop,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+26,2025-10-16,"She loses her job, she would still have enough money.",even if,however,unless,whereas,even if,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+27,2025-10-16,"Once I’m done with chores, I ___ the dog.",will walk,would walk,won’t walk,wouldn’t walk,will walk,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+28,2025-10-16,"If only I had taken the train, I ___ late.",wouldn’t have been,would haven’t been,would been,wouldn’t been,wouldn’t have been,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+29,2025-10-16,You’d better write them down; ___ you won’t remember them.,otherwise,despite,if,unless,otherwise,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+30,2025-10-16,You will fail ___ you study harder.,unless,if,since,although,unless,Grammar,multiple choice,6,2,True,conditional clauses,False,,2025-10-16,0,Grammar_Level_6.csv
+31,2025-10-16,"If Sujin had been at the mall, she would have be lost.",be,had,she,would,be,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+32,2025-10-16,"If you take precautions, you should have any problems.",should,take,have,any,should,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+33,2025-10-16,"If you will knock on wood, you will keep bad luck away.",will knock,on,keep,away,will knock,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+34,2025-10-16,"If she doesn’t study, she wasn’t going to pass the test.",wasn’t,doesn’t,study,going to,wasn’t,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+35,2025-10-16,"If I was president, I would have so much power.",was,would,have,much,was,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+36,2025-10-16,"If I will get money tomorrow, I will go on a vacation.",will get,will go,on,tomorrow,will get,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+37,2025-10-16,"If I invited everyone for dinner, there won’t be enough space.",won’t,invited,everyone,enough,won’t,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+38,2025-10-16,What will have happened if I had never met my wife?,will,have,had,never,will,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+39,2025-10-16,"If Joe had worked harder, she can have gotten a promotion.",can,had worked,have gotten,harder,can,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+40,2025-10-16,"If she went there by car, she won’t arrive on time.",won’t,went,by,on,won’t,Grammar,multiple choice,6,3,True,conditional grammar errors,False,,2025-10-16,0,Grammar_Level_6.csv
+41,2025-10-16,"The monster looks as if it were real. In fact, it ___ real.",was not,is,is not,was,was not,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+42,2025-10-16,Mom suggested that I go abroad. Mom believed I ___ go abroad.,could,would,may,shall,could,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+43,2025-10-16,"If I had stayed at the beach, I could have seen the sunset. As I didn’t stay, I ___ see it.",couldn’t,can’t,can,could,couldn’t,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+44,2025-10-16,"He makes it seem as if he ___ the song. In fact, he didn’t.",had written,has written,wrote,writes,had written,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+45,2025-10-16,"If I ___ you, I would say sorry first.",were,if,was,unless,were,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+46,2025-10-16,I ___ I was so rich. I am not rich now.,wish,want,like,love,wish,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+47,2025-10-16,"If I were you, I ___ ask for more. (Don’t ask for more.)",wouldn’t,would,won’t,will,wouldn’t,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+48,2025-10-16,"If it ___ so cold, I would go hiking. (It is very cold.)",weren’t,were,wasn’t,was,weren’t,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+49,2025-10-16,Everything could have turned out differently if you ___ me earlier.,had told,told,had said,said,had told,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+50,2025-10-16,"If I had been there, I would ___ hurt badly.",have gotten,got,get,haven’t gotten,have gotten,Grammar,multiple choice,6,3,True,advanced conditionals and paraphrasing,False,,2025-10-16,0,Grammar_Level_6.csv
+1,2025-10-16,"If I ___ to bed now, I wouldn’t sleep.",go,went,had gone,I had,went,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+2,2025-10-16,"If I were rich, I ___ a yacht.",I’ll have,I can have,I’d have,I had,I’d have,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+3,2025-10-16,"I wish I ___ have to work tomorrow, but unfortunately I do.",don’t,didn’t,wouldn’t,won’t,didn’t,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+4,2025-10-16,"If I ___ a camera, I would have taken photos.",had,would have,would have had,I’d had,had,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+5,2025-10-16,The weather is horrible. I wish it ___ raining.,would stop,stopped,stops,will stop,would stop,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+6,2025-10-16,I’d be frightened if somebody ___ a gun at me.,pointed,has pointed,had pointed,was pointing,pointed,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+7,2025-10-16,What would you do ___ you were bitten by a snake?,if,when,unless,whether,if,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+8,2025-10-16,"If I were rich, I would ___ a luxury mansion.",buy,go to,rob,visit,buy,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+9,2025-10-16,"If I ___ you, I would have said hello.",had seen,saw,was seen,see,had seen,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+10,2025-10-16,I wish I hadn’t eaten so much. Now I ___ sick.,feel,felt,am,become,feel,Grammar,multiple choice,7,1,True,conditionals and wish clauses,False,,2025-10-16,0,Grammar_Level_7.csv
+11,2025-10-16,She is the ___ in her group. No one is taller than her.,tallest,shortest,biggest,smallest,tallest,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+12,2025-10-16,___ house is the party at?,whose,whom,who,where,whose,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+13,2025-10-16,Do you think you could help me carry these books?,do,can,should,may,can,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+14,2025-10-16,This is ___ an expensive area to live in.,quite,very,so,too,quite,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+15,2025-10-16,I’m absolutely ___ so I’m off to bed.,exhausted,glad,delighted,frightened,exhausted,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+16,2025-10-16,The test was pretty easy. = The test was ___ I expected.,easier than,harder than,more easy than,more hard than,easier than,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+17,2025-10-16,___ answer is the correct one?,which,what,who,why,which,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+18,2025-10-16,Let’s go eat. We have ___ time before the bus leaves.,a little,little,a few,few,a little,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+19,2025-10-16,Going to the party?,how about,shall we,do you want to,can you,how about,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+20,2025-10-16,___ restaurant is expensive. They both cost a lot.,both,either,neither,neither of,both,Grammar,multiple choice,7,1,True,comparatives and expressions,False,,2025-10-16,0,Grammar_Level_7.csv
+21,2025-10-16,Do you ___ God?,believe in,believe,think,exist,believe in,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+22,2025-10-16,A thief broke into our house yesterday. = Our house ___ a few days ago.,was broken into,broken into,was broken,had been broken,was broken into,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+23,2025-10-16,You’re walking too fast. I can’t ___ you.,keep up with,look forward to,get along,get by,keep up with,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+24,2025-10-16,We ___ of milk. Please go to the store.,ran out,break down,run away,fill with,ran out,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+25,2025-10-16,I hope everything works out = everything will ___ well.,develop,do physical exercises,solve,produce a plan,develop,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+26,2025-10-16,Scientists are expected to carry out ___.,experiments,orders,surveys,investigations,experiments,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+27,2025-10-16,"No one believed him at first, but he ___ to be right.",turned out,turned away,worked out,put out,turned out,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+28,2025-10-16,What’s ___? = What’s happening?,going on,calling off,go on,put on,going on,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+29,2025-10-16,I’m ___ Paris tonight. I am leaving alone.,off to,heading,coming,take off,off to,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+30,2025-10-16,My mom always ___ me off first to school.,drops,goes,dozes,rips,drops,Grammar,multiple choice,7,2,True,phrasal verbs,False,,2025-10-16,0,Grammar_Level_7.csv
+31,2025-10-16,Amy does not work here ___.,anymore,no longer,forever,still,anymore,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+32,2025-10-16,Is he here ___? We need to start the meeting ___.,yet / soon,soon / yet,still / already,already / still,yet / soon,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+33,2025-10-16,He always wears long sleeves ___ the hot weather.,even in,even,not even,even so,even in,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+34,2025-10-16,"Though he doesn’t have a driver’s license, he still bought a car.",even,if,still,when,still,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+35,2025-10-16,"Although it rained a lot, ___ played outside.",we,they,he,she,we,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+36,2025-10-16,We’ll buy more snacks ___ more friends come to the party.,in case,in case of,unless,whether,in case,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+37,2025-10-16,"___, please write this number in your notepad.",in case of emergency,in case of party,in case emergency,in case of class time,in case of emergency,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+38,2025-10-16,She won’t eat vegetables ___ it is fully cooked.,unless,in case,if,when,unless,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+39,2025-10-16,You can borrow my computer ___ you don’t stay up all night.,as long as,when,in case,except,as long as,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+40,2025-10-16,"The day went on, the coronavirus got worse.",as,when,if,unless,as,Grammar,multiple choice,7,2,True,word usage and conjunctions,False,,2025-10-16,0,Grammar_Level_7.csv
+41,2025-10-16,Our company employs 300 people → 300 people ___ by our company.,are employed,employed,had employed,have employed,are employed,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+42,2025-10-16,A car hit my friend on the street → My friend ___ by a car.,got hit,hit,be hit,got hitted,got hit,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+43,2025-10-16,"I don’t have many friends, so I ___ often invited to parties.",am not,am,was not,was,am not,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+44,2025-10-16,Somebody should have cleaned this room. It is so dirty.,should have cleaned,would have cleaned,could have cleaned,must have cleaned,should have cleaned,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+45,2025-10-16,I wonder how Susan is these days. I ___ her for ages.,haven’t seen,never seen,have seen,hadn’t seen,haven’t seen,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+46,2025-10-16,I don’t like ___ what to do. I prefer choosing by myself.,being told,being,be told,told,being told,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+47,2025-10-16,"I ___ a nice position, but I refused it.",was offered,offered,was provided,provided,was offered,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+48,2025-10-16,Very little ___ about the new neighbor.,was known,known,had been known,was knowing,was known,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+49,2025-10-16,You should ___ quickly. We need to leave soon.,get dressed,get married,get lost,get off,get dressed,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv
+50,2025-10-16,I hate ___ waiting. I have other plans too.,being kept,kept,keeping,been kept,being kept,Grammar,multiple choice,7,3,True,passive and causative structures,False,,2025-10-16,0,Grammar_Level_7.csv

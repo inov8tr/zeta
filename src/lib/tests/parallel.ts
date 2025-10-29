@@ -7,6 +7,7 @@ import {
   TestSection,
   SECTION_PARALLEL_DEPENDENTS,
   shiftLevelBy,
+  MIN_LEVEL,
 } from "./adaptiveConfig";
 
 type SectionRow = Pick<
@@ -71,7 +72,17 @@ export async function syncParallelSectionLevels(
       }
 
       const alreadyStarted = (row.questions_served ?? 0) > 0;
-      const targetState = shiftLevelBy(state, offset);
+      let targetState = shiftLevelBy(state, offset);
+
+      if (section === "grammar" && dependentSection === "reading") {
+        const grammarLevel = state.level;
+        const adjustedLevel =
+          grammarLevel >= 7 ? 5 : grammarLevel > MIN_LEVEL.level ? grammarLevel - 1 : MIN_LEVEL.level;
+        targetState = {
+          level: adjustedLevel,
+          sublevel: "1",
+        };
+      }
 
       let nextBase: LevelState = {
         level: row.current_level ?? targetState.level,

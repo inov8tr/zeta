@@ -120,6 +120,7 @@ function toQuestionInsert(row, targetSection = 'grammar') {
         .filter(Boolean)
     : null;
   const media_url = asNull(row['media_url']);
+  const instructions = asNull(row['instructions']);
 
   const issues = [];
   if (!stem) issues.push('missing stem');
@@ -140,6 +141,7 @@ function toQuestionInsert(row, targetSection = 'grammar') {
       answer_index: answerIndex === -1 ? 0 : answerIndex,
       skill_tags,
       media_url,
+      instructions,
     },
   };
 }

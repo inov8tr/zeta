@@ -424,6 +424,7 @@ export type Database = {
           answer_index: number;
           skill_tags: string[] | null;
           media_url: string | null;
+          instructions: string | null;
           created_at: string;
         };
         Insert: {
@@ -437,6 +438,7 @@ export type Database = {
           answer_index: number;
           skill_tags?: string[] | null;
           media_url?: string | null;
+          instructions?: string | null;
           created_at?: string;
         };
         Update: {
@@ -450,6 +452,7 @@ export type Database = {
           answer_index?: number;
           skill_tags?: string[] | null;
           media_url?: string | null;
+          instructions?: string | null;
           created_at?: string;
         };
         Relationships: [

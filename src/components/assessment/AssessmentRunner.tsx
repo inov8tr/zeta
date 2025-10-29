@@ -24,6 +24,7 @@ type QuestionPayload = {
     options: string[];
     skillTags: string[];
     mediaUrl?: string | null;
+    instructions?: string | null;
     optionOrder?: number[]; // maps displayed index -> original index
   };
   passage?: { title: string; body: string } | null;
@@ -364,6 +365,7 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
   }
 
   const { section, question: q, passage } = question;
+  const instructions = q.instructions ?? null;
 
   const sectionTitle = SECTION_LABELS[section] ?? "Assessment";
   const initialSeconds = sectionInitialTimeRef.current ?? timeRemaining ?? 0;
@@ -477,7 +479,10 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
             </div>
             <p className="text-xs text-neutral-500">Select the best answer.</p>
           </div>
-          <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-neutral-900">{q.stem}</p>
+          {instructions ? (
+            <p className="mt-4 text-sm font-medium text-neutral-muted">{instructions}</p>
+          ) : null}
+          <p className="mt-3 whitespace-pre-line text-base leading-relaxed text-neutral-900">{q.stem}</p>
           {mediaType === "audio" ? (
             <div className="mt-4">
               <audio controls preload="metadata" className="w-full">
