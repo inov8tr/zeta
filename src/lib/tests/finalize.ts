@@ -156,17 +156,6 @@ export async function finalizeTest(
     };
 
     const feedback = generateEntranceFeedback(feedbackInput);
-    const formattedText = [
-      feedback.summary,
-      "",
-      ...feedback.advice.map((line) => `• ${line}`),
-      "",
-      "Section snapshot:",
-      ...feedback.sectionSummaries.map((row) => `- ${row.label}: ${row.score} (Level ${row.level})`),
-    ]
-      .filter(Boolean)
-      .join("\n");
-
     await supabase
       .from("entrance_feedback")
       .upsert(
@@ -181,7 +170,12 @@ export async function finalizeTest(
           reading_score: sectionScores.reading?.score ?? null,
           listening_score: sectionScores.listening?.score ?? null,
           dialog_score: sectionScores.dialog?.score ?? null,
-          feedback_text: formattedText,
+          band: feedback.levelBand,
+          lexile: feedback.lexile,
+          cefr: feedback.cefr,
+          korean_equiv: feedback.koreanEquivalent,
+          us_equiv: feedback.usEquivalent,
+          feedback_text: feedback.feedbackText,
         } as Database["public"]["Tables"]["entrance_feedback"]["Insert"],
         { onConflict: "test_id" }
       );

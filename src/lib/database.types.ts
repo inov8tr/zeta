@@ -587,6 +587,11 @@ export type Database = {
           reading_score: number | null;
           listening_score: number | null;
           dialog_score: number | null;
+          band: string | null;
+          lexile: string | null;
+          cefr: string | null;
+          korean_equiv: string | null;
+          us_equiv: string | null;
           feedback_text: string | null;
           created_at: string;
         };
@@ -602,6 +607,11 @@ export type Database = {
           reading_score?: number | null;
           listening_score?: number | null;
           dialog_score?: number | null;
+          band?: string | null;
+          lexile?: string | null;
+          cefr?: string | null;
+          korean_equiv?: string | null;
+          us_equiv?: string | null;
           feedback_text?: string | null;
           created_at?: string;
         };
@@ -617,6 +627,11 @@ export type Database = {
           reading_score?: number | null;
           listening_score?: number | null;
           dialog_score?: number | null;
+          band?: string | null;
+          lexile?: string | null;
+          cefr?: string | null;
+          korean_equiv?: string | null;
+          us_equiv?: string | null;
           feedback_text?: string | null;
           created_at?: string;
         };

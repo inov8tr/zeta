@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Hourglass, BookOpen, GraduationCap, Headphones, MessageCircle } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -491,14 +492,19 @@ const AssessmentRunner = ({ testId, initialStatus }: AssessmentRunnerProps) => {
               </audio>
             </div>
           ) : null}
-          {mediaType === "image" ? (
+          {mediaType === "image" && q.mediaUrl ? (
             <div className="mt-5 flex justify-center">
-              {/* Using img to avoid Next.js domain restrictions for external assets */}
-              <img
-                src={q.mediaUrl ?? undefined}
-                alt="Question illustration"
-                className="max-h-64 w-full rounded-2xl border border-brand-primary/10 object-contain"
-              />
+              <div className="relative h-64 w-full">
+                <Image
+                  src={q.mediaUrl}
+                  alt="Question illustration"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="rounded-2xl border border-brand-primary/10 object-contain"
+                  unoptimized
+                  priority={false}
+                />
+              </div>
             </div>
           ) : null}
           <ol className="mt-6 space-y-3">

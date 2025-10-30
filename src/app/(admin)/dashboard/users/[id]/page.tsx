@@ -75,6 +75,13 @@ type EntranceFeedbackCardRecord = {
   time_ms: number | null;
   created_at: string | null;
   source: "stored" | "derived";
+  band: string | null;
+  lexile: string | null;
+  cefr: string | null;
+  korean_equiv: string | null;
+  us_equiv: string | null;
+  narrative: string | null;
+  feedback_text: string | null;
 };
 
 const UserDetailPage = async ({ params }: UserDetailPageProps) => {
@@ -107,7 +114,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
 
   const testsPromise = supabase
     .from("tests")
-    .select("id, type, status, total_score, assigned_at, completed_at")
+    .select("id, type, status, total_score, weighted_level, assigned_at, completed_at")
     .eq("student_id", id)
     .order("assigned_at", { ascending: false })
     .returns<TestRow[]>();
@@ -190,26 +197,35 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
       sectionScores[section] = { score: scoreValue ?? null, level: null };
     });
 
+    const associatedTest = tests.find((test) => test.id === entranceFeedback.test_id) ?? latestCompletedEntranceTest;
+    const levelFromTest = associatedTest?.weighted_level ?? null;
+    const estimatedLevel = entranceFeedback.estimated_level ?? levelFromTest;
+
     const generated = generateEntranceFeedback({
       studentName: profile?.full_name ?? null,
-      level: entranceFeedback.estimated_level,
+      level: estimatedLevel,
       totalScore: entranceFeedback.total_score,
       accuracy: entranceFeedback.accuracy,
       timeSpentMs: storedTimeMs,
       sectionScores,
     });
 
-    const associatedTest = tests.find((test) => test.id === entranceFeedback.test_id) ?? latestCompletedEntranceTest;
-
     entranceFeedbackCardData = {
       feedback: generated,
       record: {
-        estimated_level: entranceFeedback.estimated_level,
+        estimated_level: estimatedLevel,
         total_score: entranceFeedback.total_score,
         accuracy: entranceFeedback.accuracy,
         time_ms: storedTimeMs,
         created_at: entranceFeedback.created_at,
         source: "stored",
+        band: entranceFeedback.band ?? generated.levelBand,
+        lexile: entranceFeedback.lexile ?? generated.lexile,
+        cefr: entranceFeedback.cefr ?? generated.cefr,
+        korean_equiv: entranceFeedback.korean_equiv ?? generated.koreanEquivalent,
+        us_equiv: entranceFeedback.us_equiv ?? generated.usEquivalent,
+        narrative: generated.narrative,
+        feedback_text: generated.feedbackText,
       },
       test: associatedTest ?? null,
     };
@@ -223,6 +239,7 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
       const sectionScores: EntranceFeedbackInput["sectionScores"] = {};
       let totalCorrect = 0;
       let totalServed = 0;
+      const levelValues: number[] = [];
 
       FEEDBACK_SECTIONS.forEach((section) => {
         const row = (derivedSectionsData as Array<{ section: string; correct_count: number; questions_served: number; final_level: number | null }>).find(
@@ -233,14 +250,19 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
         totalServed += served;
         totalCorrect += correct;
         const score = served > 0 ? Math.round((correct / served) * 1000) / 10 : null;
-        sectionScores[section] = { score, level: row?.final_level ?? null };
+        const finalLevel = row?.final_level ?? null;
+        if (typeof finalLevel === "number" && !Number.isNaN(finalLevel)) {
+          levelValues.push(finalLevel);
+        }
+        sectionScores[section] = { score, level: finalLevel };
       });
 
       const derivedAccuracy = totalServed > 0 ? (totalCorrect / totalServed) * 100 : null;
+      const derivedLevel = levelValues.length > 0 ? Math.round((levelValues.reduce((sum, value) => sum + value, 0) / levelValues.length) * 10) / 10 : latestCompletedEntranceTest.weighted_level ?? null;
 
       const generated = generateEntranceFeedback({
         studentName: profile?.full_name ?? null,
-        level: latestCompletedEntranceTest.weighted_level ?? null,
+        level: derivedLevel,
         totalScore: latestCompletedEntranceTest.total_score ?? null,
         accuracy: derivedAccuracy,
         timeSpentMs: latestCompletedEntranceTest.elapsed_ms ?? null,
@@ -250,12 +272,19 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
       entranceFeedbackCardData = {
         feedback: generated,
         record: {
-          estimated_level: latestCompletedEntranceTest.weighted_level ?? null,
+          estimated_level: derivedLevel,
           total_score: latestCompletedEntranceTest.total_score ?? null,
           accuracy: derivedAccuracy,
           time_ms: latestCompletedEntranceTest.elapsed_ms ?? null,
           created_at: latestCompletedEntranceTest.completed_at ?? latestCompletedEntranceTest.assigned_at ?? null,
           source: "derived",
+          band: generated.levelBand,
+          lexile: generated.lexile,
+          cefr: generated.cefr,
+          korean_equiv: generated.koreanEquivalent,
+          us_equiv: generated.usEquivalent,
+          narrative: generated.narrative,
+          feedback_text: generated.feedbackText,
         },
         test: latestCompletedEntranceTest,
       };
@@ -725,9 +754,9 @@ const EntranceFeedbackCard = ({
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
-          <MetricPill label="Zeta band" value={feedback.mappings.zeta} />
-          <MetricPill label="Korean grade approx." value={feedback.mappings.korean} />
-          <MetricPill label="U.S. grade approx." value={feedback.mappings.us} />
+          <MetricPill label="Level band" value={feedback.levelBand} />
+          <MetricPill label="Korean grade approx." value={feedback.koreanEquivalent} />
+          <MetricPill label="U.S. grade approx." value={feedback.usEquivalent} />
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
@@ -735,6 +764,43 @@ const EntranceFeedbackCard = ({
           <MetricPill label="Total score" value={percentLabel(record.total_score)} />
           <MetricPill label="Accuracy" value={percentLabel(record.accuracy)} />
           <MetricPill label="Time on task" value={timeLabel} />
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+          <div className="rounded-2xl border border-brand-primary/10 bg-brand-primary/5 p-4">
+            <h3 className="text-sm font-semibold text-brand-primary-dark">Level mapping</h3>
+            <dl className="mt-3 space-y-2 text-xs text-neutral-700">
+              <div>
+                <dt className="font-semibold text-brand-primary/80">Band</dt>
+                <dd>{record.band ?? "—"}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-brand-primary/80">Lexile</dt>
+                <dd>{record.lexile ?? "—"}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-brand-primary/80">CEFR</dt>
+                <dd>{record.cefr ?? "—"}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-brand-primary/80">Korean equivalent</dt>
+                <dd>{record.korean_equiv ?? "—"}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-brand-primary/80">U.S. equivalent</dt>
+                <dd>{record.us_equiv ?? "—"}</dd>
+              </div>
+            </dl>
+          </div>
+          <div className="rounded-2xl border border-brand-primary/10 bg-white/80 p-4">
+            <h3 className="text-sm font-semibold text-brand-primary-dark">Narrative focus</h3>
+            <p className="mt-2 whitespace-pre-line text-sm text-neutral-700">{record.narrative ?? feedback.narrative}</p>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-brand-primary/10 bg-white/90 p-4">
+          <h3 className="text-sm font-semibold text-brand-primary-dark">Full feedback summary</h3>
+          <p className="mt-2 whitespace-pre-line text-sm text-neutral-700">{record.feedback_text ?? feedback.feedbackText}</p>
         </div>
 
         <div className="overflow-x-auto rounded-2xl border border-brand-primary/10">

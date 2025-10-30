@@ -15,11 +15,13 @@ export interface EntranceFeedbackResult {
   summary: string;
   advice: string[];
   sectionSummaries: Array<{ section: SectionKey; label: string; score: string; level: string }>;
-  mappings: {
-    zeta: string;
-    korean: string;
-    us: string;
-  };
+  levelBand: string;
+  lexile: string;
+  cefr: string;
+  koreanEquivalent: string;
+  usEquivalent: string;
+  narrative: string;
+  feedbackText: string;
 }
 
 const SECTION_LABELS: Record<SectionKey, string> = {
@@ -31,12 +33,21 @@ const SECTION_LABELS: Record<SectionKey, string> = {
 
 const defaultSectionOrder: SectionKey[] = ["grammar", "reading", "listening", "dialog"];
 
+type EducationMapping = {
+  band: string;
+  lexile: string;
+  cefr: string;
+  korean_equiv: string;
+  us_equiv: string;
+  narrative: string;
+};
+
 export function generateEntranceFeedback(input: EntranceFeedbackInput): EntranceFeedbackResult {
   const levelValue = input.level ?? 0;
-  const { zeta, korean, us } = mapLevel(levelValue);
+  const mapping = getEducationMapping(levelValue);
 
   const studentName = input.studentName?.trim();
-  const nameLabel = studentName && studentName.length > 0 ? `${studentName}` : "This student";
+  const nameLabel = studentName && studentName.length > 0 ? studentName : "This student";
 
   const accuracyLabel = formatPercent(input.accuracy);
   const totalScoreLabel = formatPercent(input.totalScore);
@@ -53,60 +64,135 @@ export function generateEntranceFeedback(input: EntranceFeedbackInput): Entrance
     };
   });
 
-  const strengthSections = sectionSummaries
+  const strengths = sectionSummaries
     .filter((row) => parseFloat(row.score) >= 80)
     .map((row) => row.label);
-
-  const focusSections = sectionSummaries
+  const opportunities = sectionSummaries
     .filter((row) => {
       const value = Number.parseFloat(row.score);
       return Number.isFinite(value) && value < 70;
     })
     .map((row) => row.label);
 
-  const summary = [
-    `${nameLabel} achieved an estimated Level ${levelLabel}, which aligns with our ${zeta} band (roughly Korean ${korean} / U.S. ${us}).`,
-    `The overall test score was ${totalScoreLabel} with an accuracy rate of ${accuracyLabel}.`,
-    timeLabel ? `The assessment was completed in about ${timeLabel}, showing steady pacing throughout the sections.` : null,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const summarySegments = [
+    `${nameLabel} achieved Level ${levelLabel}, placing them in our ${mapping.band} band (${mapping.korean_equiv} / ${mapping.us_equiv}).`,
+    `Lexile range: ${mapping.lexile} | CEFR: ${mapping.cefr}.`,
+    `Accuracy: ${accuracyLabel} | Total score: ${totalScoreLabel}.`,
+    timeLabel ? `Time on task: ${timeLabel}.` : null,
+  ].filter(Boolean);
 
   const advice: string[] = [];
-  if (strengthSections.length > 0) {
-    advice.push(`Strengths were observed in ${joinWithAnd(strengthSections)}.`);
+  if (strengths.length > 0) {
+    advice.push(`Strengths observed in ${joinWithAnd(strengths)}.`);
   }
-  if (focusSections.length > 0) {
-    advice.push(`We recommend extra practice in ${joinWithAnd(focusSections)} to reinforce comprehension.`);
+  if (opportunities.length > 0) {
+    advice.push(`Focus on ${joinWithAnd(opportunities)} to solidify comprehension at this level.`);
   } else {
-    advice.push("Balanced performance across sections shows consistent comprehension and skill application.");
+    advice.push("Balanced performance across sections—maintain current study habits.");
   }
+  advice.push(`Prepare for Level ${Math.max(1, Math.floor(levelValue) + 1)} with continued practice and extended reading.`);
 
-  advice.push(`Continuing at Level ${Math.max(1, Math.floor(levelValue))} with targeted reviews will help consolidate progress before moving up.`);
+  const feedbackText = [
+    summarySegments.join(" "),
+    "",
+    mapping.narrative,
+    "",
+    strengths.length > 0 ? `Strengths: ${joinWithAnd(strengths)}.` : "",
+    opportunities.length > 0 ? `Focus areas: ${joinWithAnd(opportunities)}.` : "",
+  ]
+    .filter((line) => line && line.trim().length > 0)
+    .join("\n");
 
   return {
-    summary,
+    summary: summarySegments.join(" "),
     advice,
     sectionSummaries,
-    mappings: { zeta, korean, us },
+    levelBand: mapping.band,
+    lexile: mapping.lexile,
+    cefr: mapping.cefr,
+    koreanEquivalent: mapping.korean_equiv,
+    usEquivalent: mapping.us_equiv,
+    narrative: mapping.narrative,
+    feedbackText,
   };
 }
 
-const LEVEL_RANGES = [
-  { min: 0, max: 3.4, zeta: "Emerging Intermediate", korean: "초5 – 초6", us: "Grade 5 – 6" },
-  { min: 3.4, max: 4.6, zeta: "Core Intermediate", korean: "중1 – 중2", us: "Grade 6 – 7" },
-  { min: 4.6, max: 5.5, zeta: "High Intermediate", korean: "중2 – 중3", us: "Grade 7 – 8" },
-  { min: 5.5, max: 6.3, zeta: "Upper Intermediate", korean: "중3 – 고1", us: "Grade 8 – 9" },
-  { min: 6.3, max: 7.1, zeta: "Early Advanced", korean: "고1 – 고2", us: "Grade 9 – 10" },
-  { min: 7.1, max: 10, zeta: "Advanced", korean: "고3 이상", us: "Grade 11 – 12" },
-];
-
-function mapLevel(level: number) {
-  const match = LEVEL_RANGES.find((range) => level >= range.min && level < range.max);
-  if (!match) {
-    return { zeta: "Emerging", korean: "초등", us: "Elementary" };
+function getEducationMapping(level: number): EducationMapping {
+  if (level < 2) {
+    return {
+      band: "Early Explorers",
+      lexile: "BR–200L",
+      cefr: "Pre-A1",
+      korean_equiv: "유치원–초2",
+      us_equiv: "Kindergarten–Grade 1",
+      narrative:
+        "Students are beginning English literacy—learning phonics, sight words, and short oral comprehension. Focus on decoding, listening with visuals, and repeating simple sentences.",
+    };
   }
-  return { zeta: match.zeta, korean: match.korean, us: match.us };
+  if (level < 3) {
+    return {
+      band: "Foundation Builders",
+      lexile: "200–300L",
+      cefr: "A1",
+      korean_equiv: "초2–초4",
+      us_equiv: "Grade 2–3",
+      narrative:
+        "Learners can read and understand short sentences and mini-stories, use simple grammar forms, and participate in guided dialogues with support.",
+    };
+  }
+  if (level < 4) {
+    return {
+      band: "Knowledge Navigators",
+      lexile: "250–500L",
+      cefr: "A2",
+      korean_equiv: "초5–중1",
+      us_equiv: "Grade 4–5",
+      narrative:
+        "Students read short paragraphs and early chapter books, expand vocabulary in context, and write short paragraphs with growing grammar accuracy.",
+    };
+  }
+  if (level < 5) {
+    return {
+      band: "Skill Sharpeners",
+      lexile: "600–700L",
+      cefr: "B1",
+      korean_equiv: "중1–중2",
+      us_equiv: "Grade 6–7",
+      narrative:
+        "Learners manage multi-paragraph readings, use complex sentences, and engage in discussions using conjunctions and descriptive vocabulary.",
+    };
+  }
+  if (level < 6) {
+    return {
+      band: "Advanced Learners",
+      lexile: "660–950L",
+      cefr: "B1+ – B2",
+      korean_equiv: "중3–고1",
+      us_equiv: "Grade 8–9",
+      narrative:
+        "Learners analyze thematic texts, apply academic vocabulary, and compose structured essays with increasing independence and control.",
+    };
+  }
+  if (level < 7) {
+    return {
+      band: "Critical Thinkers",
+      lexile: "900–1100L",
+      cefr: "B2+",
+      korean_equiv: "고2–고3",
+      us_equiv: "Grade 10–11",
+      narrative:
+        "Students demonstrate advanced syntax, evidence-based argumentation, and abstract reasoning in academic discussions and writing.",
+    };
+  }
+  return {
+    band: "Leadership Pathfinders",
+    lexile: "1100L+",
+    cefr: "C1–C2",
+    korean_equiv: "대학 수준",
+    us_equiv: "Grade 12 – University",
+    narrative:
+      "Learners exhibit full academic fluency, rhetorical control, and the ability to synthesize complex ideas across disciplines.",
+  };
 }
 
 function formatPercent(value: number | null | undefined) {
