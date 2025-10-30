@@ -21,7 +21,10 @@ const TeacherClassesPage = async () => {
     return null;
   }
 
-  const data = await loadTeacherDashboardData(supabase, user.id);
+  const data = await loadTeacherDashboardData(
+    supabase as unknown as Parameters<typeof loadTeacherDashboardData>[0],
+    user.id,
+  );
   const hasClasses = data.totals.classesCount > 0;
 
   return (

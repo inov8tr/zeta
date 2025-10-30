@@ -23,7 +23,10 @@ const TeacherAssessmentsPage = async () => {
     return null;
   }
 
-  const data = await loadTeacherDashboardData(supabase, user.id);
+  const data = await loadTeacherDashboardData(
+    supabase as unknown as Parameters<typeof loadTeacherDashboardData>[0],
+    user.id,
+  );
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-10">
