@@ -80,7 +80,7 @@ const TeacherSidebar = () => {
   };
 
   return (
-    <aside className="hidden sticky top-0 h-screen w-64 flex-shrink-0 bg-teacher-primary text-teacher-primary-text shadow-2xl sm:flex print:hidden">
+    <aside className="hidden sticky top-0 h-screen w-64 flex-shrink-0 bg-[#192744] text-white shadow-2xl sm:flex print:hidden">
       <nav className="flex w-full flex-col gap-8 overflow-y-auto px-6 py-10">
         <div className="flex items-center gap-3">
           <div className="relative h-10 w-10 flex-shrink-0">
@@ -94,8 +94,8 @@ const TeacherSidebar = () => {
             />
           </div>
           <div>
-            <p className="text-xs uppercase tracking-widest text-teacher-primary-text/80">Zeta Teacher</p>
-            <h1 className="text-xl font-semibold text-teacher-primary-text">Coaching Hub</h1>
+            <p className="text-xs uppercase tracking-widest text-white/70">Zeta Teacher</p>
+            <h1 className="text-xl font-semibold text-white">Coaching Hub</h1>
           </div>
         </div>
         <ul className="flex flex-1 flex-col gap-2 text-sm">
@@ -111,13 +111,13 @@ const TeacherSidebar = () => {
                   href={item.href}
                   className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition ${
                     isActive
-                      ? "bg-white text-teacher-primary-text shadow-lg"
-                      : "text-teacher-primary-text/80 hover:bg-white/20 hover:text-teacher-primary-text"
+                      ? "bg-white text-[#192744] shadow-lg"
+                      : "text-white/80 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   <Icon
                     className={`h-4 w-4 ${
-                      isActive ? "text-teacher-primary-text" : "text-teacher-primary-text/90"
+                      isActive ? "text-[#192744]" : "text-white/90"
                     }`}
                   />
                   <span className="font-medium">{item.label}</span>
@@ -130,9 +130,9 @@ const TeacherSidebar = () => {
           type="button"
           onClick={handleSignOut}
           disabled={signingOut}
-          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/40 bg-white/20 px-4 py-3 text-xs font-semibold uppercase text-teacher-primary-text transition hover:bg-white/40 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/30 bg-white/10 px-4 py-3 text-xs font-semibold uppercase text-white transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          <LogOut className="h-4 w-4 text-teacher-primary-text" />
+          <LogOut className="h-4 w-4 text-white" />
           {signingOut ? "Signing out…" : "Logout"}
         </button>
       </nav>
