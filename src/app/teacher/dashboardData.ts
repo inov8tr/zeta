@@ -110,7 +110,7 @@ interface LoadOptions {
 }
 
 export async function loadTeacherDashboardData(
-  supabase: SupabaseClient<Database>,
+  supabase: SupabaseClient<Database, "public">,
   userId: string,
   options: LoadOptions = {},
 ): Promise<TeacherDashboardData> {
