@@ -12,6 +12,7 @@ import VerifyUserButton from "@/components/admin/VerifyUserButton";
 import ArchiveToggleButton from "@/components/admin/ArchiveToggleButton";
 import SendSurveyInviteButton from "@/components/admin/SendSurveyInviteButton";
 import EditSurveyButton from "@/components/admin/EditSurveyButton";
+import ClassMembershipForm from "@/components/admin/ClassMembershipForm";
 import PrintButton from "@/components/dashboard/PrintButton";
 import { createAdminClient } from "@/lib/supabaseAdmin";
 import type { ParentSurveyForm } from "@/app/(public)/survey/shared";
@@ -25,6 +26,7 @@ type TestRow = Database["public"]["Tables"]["tests"]["Row"];
 type StudentMetaRow = Database["public"]["Tables"]["students"]["Row"];
 type ParentSurveyRow = Database["public"]["Tables"]["parent_surveys"]["Row"];
 type EntranceFeedbackRow = Database["public"]["Tables"]["entrance_feedback"]["Row"];
+type ClassOptionRow = Database["public"]["Tables"]["classes"]["Row"];
 
 interface UserDetailPageProps {
   params: Promise<{ id: string }>;
@@ -140,13 +142,25 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle<EntranceFeedbackRow>();
+  const classesPromise = supabase
+    .from("classes")
+    .select("id, name, level")
+    .order("name", { ascending: true });
 
-  const [testsResult, authUserResult, studentMetaResult, parentSurveyResult, entranceFeedbackResult] = await Promise.all([
+  const [
+    testsResult,
+    authUserResult,
+    studentMetaResult,
+    parentSurveyResult,
+    entranceFeedbackResult,
+    classesResult,
+  ] = await Promise.all([
     testsPromise,
     authUserPromise,
     studentMetaPromise,
     parentSurveyPromise,
     entranceFeedbackPromise,
+    classesPromise,
   ]);
 
   const { data: authUserData } = authUserResult;
@@ -161,6 +175,8 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   const surveySubmittedAt = parentSurvey?.created_at ?? null;
   const surveyForm = (parentSurvey?.data as ParentSurveyForm | null) ?? null;
   const entranceFeedback = (entranceFeedbackResult.data as EntranceFeedbackRow | null) ?? null;
+  const classOptionsRaw = (classesResult.data as ClassOptionRow[] | null) ?? [];
+  const classLoadError = classesResult.error?.message ?? null;
 
   const entranceTests = tests
     .filter((test) => test.type === "entrance")
@@ -403,6 +419,11 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
   }
 
   const classData = Array.isArray(profile.classes) ? profile.classes[0] : profile.classes;
+  const classMembershipOptions = classOptionsRaw.map((item) => ({
+    id: item.id,
+    name: item.name,
+    level: item.level,
+  }));
   const isArchived = archivingEnabled && (profile as ProfileWithRelations & { archived?: boolean }).archived ? true : false;
 
   return (
@@ -483,7 +504,11 @@ const UserDetailPage = async ({ params }: UserDetailPageProps) => {
           <dl className="space-y-2 text-sm text-neutral-800">
             <div>
               <dt className="font-medium text-brand-primary-dark">Class</dt>
-              <dd>{classData ? classData.name : "Unassigned"}</dd>
+              <dd className="space-y-3">
+                <span>{classData ? classData.name : "Unassigned"}</span>
+                <ClassMembershipForm userId={profile.user_id} currentClassId={profile.class_id} classes={classMembershipOptions} />
+                {classLoadError ? <p className="text-xs text-amber-600">{classLoadError}</p> : null}
+              </dd>
             </div>
             <div>
               <dt className="font-medium text-brand-primary-dark">Test status</dt>

@@ -138,7 +138,7 @@ const UserEditForm = ({ profile, classes }: UserEditFormProps) => {
             {classes.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.name}
-                {item.level ? ` — Level ${item.level}` : ""}
+                {item.level ? ` — Section ${item.level}` : ""}
               </option>
             ))}
           </select>

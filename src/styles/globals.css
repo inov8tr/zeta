@@ -15,3 +15,31 @@ body {
 .pentagon-clip {
   @apply clip-path-pentagon bg-brand-primary-light rounded-lg;
 }
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+  }
+
+  .print-roster-page {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .print-roster-page section,
+  .print-roster-page article,
+  .print-roster-page div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-roster-page h2 {
+    margin-bottom: 0.75rem;
+  }
+}
